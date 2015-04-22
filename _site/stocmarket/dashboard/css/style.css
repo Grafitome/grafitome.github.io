@@ -1,0 +1,61 @@
+
+
+body{ background:#282828; font-family:calibri; color:#a3b6b6; font-size:9px;}
+
+#placeHolder1 path {
+  stroke-width: 1px;
+  stroke: white;
+  fill: steelblue;
+  cursor: pointer;
+}
+
+#placeHolder1 path:hover, path.highlighted {
+  fill: tomato;
+}
+
+.tooltip {   
+  position: absolute;           
+  text-align: center;
+   color : red;
+  width: 150px;                  
+  height: 28px;                 
+  padding: 2px;             
+  font: 30px sans-serif;        
+ 
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+
+
+.chartBox{ background-color:#3e3e3e; height:340px; box-shadow:0 0 20px #000;}
+
+.chartBox .heading { font-size:14px; padding:5px 10px; background: rgb(77,77,77); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(77,77,77,1) 0%, rgba(62,62,62,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(77,77,77,1)), color-stop(100%,rgba(62,62,62,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(62,62,62,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(62,62,62,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(77,77,77,1) 0%,rgba(62,62,62,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(77,77,77,1) 0%,rgba(62,62,62,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4d4d', endColorstr='#3e3e3e',GradientType=0 ); /* IE6-9 */}
+
+.chart{padding:10px;width:100%;height:300px;}
+.chartBtnOuter{ float:right; width:75px;}
+.chartBtnOuter ul{ margin:0px; padding:0px;}
+.chartBtnOuter ul li{ list-style:none; display:inline; margin:0px; padding:0px 5px;}
+
+.chartHeader{ font-size:30px; margin:0 0 20px 0; }
+.chartHeader .userInfo{ background-color:#363636;  float:right; font-size:17px; border:solid 1px #363636; padding:5px 10px; border-radius:4px;}
+
+.chartHeader .userInfo i img{  height:30px; width:30px; }
+.userImg{ float:left;  }
+.chartHeader .userInfo  .userName{ float:left; padding:5px 0 0 10px; }
+body{background:url(../img/nav-bg.png) no-repeat left top #2f2f2f; margin:0px; padding:0;}
+
+.mainHeading{color: #fff;
+  font-size: 30px;
+  left: 40%;
+  margin: auto;
+  position: absolute;
+  top: 15px;}

@@ -1,0 +1,4993 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grafitome</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="shortcut icon"  href="img/favicon.ico"/>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+<link href='http://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Khula' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/chartmenu.js"></script>
+<script src="js/stocChart.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/canvasHandler.js"></script>
+</head>
+
+<body style="background-color:#eff0f4;" >
+<canvas id="canvas2" width="1300px" height="800px" style="position:fixed;z-index:9999;display:none;width:1300px;height:800px;"></canvas>	
+<a href="#menu" id="toggle"><span></span></a>
+<div class="pullRight" ><img src="img/nav-arrow.png" alt="nav-arrow"/></div>
+<div class="chartNavContainor  ">
+
+<div class="container " >
+  <div class="chartList ">
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-12 animation fadeInLeft" ><ul class="chartListGrup animated fadeInLeft" >
+
+<li><a id="basicLineChartMenu" index="1" href="#"> <i class="arrow"></i>  Basic Line Chart </a> </li>
+<li> <a  href="#" index="2" id="scatterPlotChartMenu" ><i class="arrow"></i>
+ Scatter Plot Chart </a> </li>
+<li> <a  href="#" index="3" id="drillDownChartMenu"><i class="arrow"></i>
+ Drill Down Chart </a> </li>
+
+<li> <a  href="#" index="4" id="heatmapMenu"><i class="arrow"></i>
+ Heatmap </a> </li>
+
+<li> <a  href="#" index="5" id="transitPieMenu"><i class="arrow"></i>
+ Transit Pie Chart </a> </li>
+
+  <li> <a  href="#" index="6" id="dountChartWithLegendMenu"><i class="arrow"></i>
+Donut Chart with Legend</a>  </li> 
+ 
+  <li> <a  href="#" index="7" id="dountWithBarChartMenu"><i class="arrow"></i>
+Donut Chart with Bars</a>  </li> 
+ 
+ 
+ 
+<li> <a  href="#" index="8" id="radarChartMenu"><i class="arrow"></i>
+ Radar Chart </a>  </li>
+
+<li> <a  href="#" index="9" id="multiAxisMenu"><i class="arrow"></i>
+ Multi Axis Chart </a> </li> 
+
+<li> <a  href="#" index="10" id="groupedBarMenu"><i class="arrow"></i>
+ Grouped Bar Menu </a>  </li>
+ 
+<li> <a  href="#" index="11" id="groupedBar2DMenu"><i class="arrow"></i>
+ Grouped Bars with Negative Values </a>  </li>
+ 
+ <li> <a  href="#" index="12" id="3DBarChartMenu"><i class="arrow"></i>
+ 3D Bar Chart</a>  </li> 
+ 
+  <li> <a  href="#" index="13" id="3DGroupedBarChartMenu"><i class="arrow"></i>
+ 3D Grouped Bar Chart</a>  </li>
+   <li> <a  href="#" index="14" id="3DStackedBarChartMenu"><i class="arrow"></i>
+ 3D Stacked Bar Chart</a>  </li> 
+ 
+  <li> <a  href="#" index="15" id="BulletBarChartMenu"><i class="arrow"></i>
+ Bullet Bar Chart</a>  </li> 
+ 
+ <li> <a  href="#" index="16" id="CricketAnalChartMenu"><i class="arrow"></i>
+ Rounded Bar with special labels</a>  </li> 
+ 
+
+</ul></div>
+<div class="col-lg-4 col-md-4 col-sm-12 animation fadeInLeft" > <ul class="chartListGrup animated fadeInLeft">
+
+
+ 
+
+ 
+
+
+ 
+ <li> <a  href="#" index="17" id="stackedAreaChartMenu"><i class="arrow"></i>
+Stacked Area Chart</a>  </li> 
+
+  <li> <a  href="#" index="18" id="stackedBarChartMenu"><i class="arrow"></i>
+Stacked Bar Chart</a>  </li> 
+  <li> <a  href="#" index="19" id="funnelChartMenu"><i class="arrow"></i>
+Funnel Chart</a>  </li> 
+  <li> <a  href="#" index="20" id="guageGraphMenu"><i class="arrow"></i>
+Guage Graph </a>  </li> 
+
+  <li> <a  href="#" index="21" id="areaChartMenu"><i class="arrow"></i>
+Zoomable Area Chart </a>  </li> 
+
+  <li> <a  href="#" index="22" id="pyramidChartMenu"><i class="arrow"></i>
+Pyramid Chart </a>  </li> 
+
+ <li> <a  href="#" index="23" id="3DPyramidChartMenu"><i class="arrow"></i>
+3D Pyramid Chart </a>  </li> 
+
+ <li> <a  href="#" index="24" id="3DPyramidSliceChartMenu"><i class="arrow"></i>
+3D Pyramid Slice Chart </a>  </li> 
+
+  <li> <a  href="#" index="25" id="invertPyramidMenu"><i class="arrow"></i>
+Invert Pyramid </a>  </li> 
+
+  <li> <a  href="#" index="26" id="meterChartMenu"><i class="arrow"></i>
+Meter Chart</a>  </li> 
+<li> <a  href="#" index="27" id="CombinationalChartMenu"><i class="arrow"></i>
+Combinational Chart</a>  </li> 
+ 
+<li> <a  href="#" index="28" id="variationChartMenu"><i class="arrow"></i>
+Variation Chart</a>  </li> 
+
+<li> <a  href="#" index="29" id="globChartMenu"><i class="arrow"></i>
+Network Chart</a>  </li> 
+ 
+ 
+ <li> <a  href="#" index="30" id="barWithLogoMenu"><i class="arrow"></i>
+Bar With Logo</a>  </li> 
+ <li> <a  href="#" index="31" id="detailChartMenu"><i class="arrow"></i>
+Detail Chart</a>  </li>
+
+<li> <a  href="#" index="32" id="3DbubbleChartMenu"><i class="arrow"></i>
+3D Bubbles Chart </a>  </li> 
+
+    </ul>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-12  animation fadeInLeft" >   <ul class="chartListGrup animated fadeInLeft">
+
+
+
+
+
+
+
+<li> <a  href="#" index="33" id="treeChartMenu"><i class="arrow"></i>
+Tree Chart </a>  </li> 
+
+<li> <a  href="#" index="34" id="areaChartWithVaryColorMenu"><i class="arrow"></i>
+Area Chart With Vary Color </a>  </li> 
+
+<li> <a  href="#" index="35" id="areaChartWithNegativeValueMenu"><i class="arrow"></i>
+Area chart With negative value </a> </li>  
+
+<li> <a  href="#" index="36" id="musicSpikesMenu"><i class="arrow"></i>
+Music Spikes </a></li> 
+
+<li> <a  href="#" index="37" id="comparisonChartMenu"><i class="arrow"></i>
+Comparison Chart </a></li>  
+
+<li> <a  href="#" index="38" id="multipleDountChartMenu"><i class="arrow"></i>
+Multiple Dount Chart </a></li>
+
+<li> <a  href="#" index="39" id="barWithLabelChartMenu"><i class="arrow"></i>
+Bar With Label Chart </a></li>
+
+<li> <a  href="#" index="40" id="logoChartMenu"><i class="arrow"></i>
+Logo Chart </a>
+</li>
+
+<li> <a  href="#" index="41" id="multiAxisChartMenu"><i class="arrow"></i>
+Multiple Axis </a>
+</li>
+
+<li> <a  href="#" index="42" id="roundedThreeDBarMenu"><i class="arrow"></i>
+Rounded 3 D Bar </a>
+</li>
+
+<li> <a  href="#" index="43" id="threeDDountChartMenu"><i class="arrow"></i>
+3 D Dount Chart </a>
+</li>
+
+
+<li> <a  href="#" index="44" id="threeDPieChartMenu"><i class="arrow"></i>
+3 D Pie Chart </a>
+</li>
+
+
+<li> <a  href="#" index="45" id="arcWithCylinderMenu"><i class="arrow"></i>
+Arc With Cylinder </a>
+</li>
+
+<li> <a  href="#" index="46" id="threeDComparisionChartMenu"><i class="arrow"></i>
+Three D Comarison Chart </a>
+</li>
+
+ </ul></div></div></div>
+</div>
+
+
+</div>
+<header >
+<div class="container" style="width:100%; padding:0px;">
+
+      <!--  navbar start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+         <a href="index.html" class="navbar-brand"><img src="img/grafitome.png" alt="StocCharts"/></a>
+          </div>
+      
+
+          <div class="navbar-collapse collapse" id="navbar">
+            
+            <ul class="nav navbar-nav navbar-right ">
+              <li ><a  href="index.html"> Home </a></li>
+              <li><a href="features.html">Features </a></li>
+              <li class="active"><a href="#">  Demo     </a></li>
+            <!--  <li><a href="#"> Business model   </a></li>
+              <li><a href="pricing.html"> Pricing  </a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+     <!--  navbar end -->
+
+    </div></header>
+    
+    <div class="chartDashboard">
+    <div class="chartMainContainor">
+    <div class="row" >
+   
+    <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12 " >
+    <ul class="nextPreBtnList"> 
+     <li> <a href="#"> <i class="fa fa-chevron-left"></i></a></li>
+     <li> <a href="#"><i class="fa fa-th"></i></a></li> 
+     <li><a href="#"> <i class="fa fa-chevron-right"></i>                        </a>                    </li>                </ul></div>
+      <div class="col-lg-6 col-md-6 col-sm-9 col-xs-12 ">
+      <ul class="chartBtn">
+     
+      <li><a href="#" class="play-again-btn" ><i class="fa fa-caret-right"></i>
+ Play Again</a></li>
+      <li><a href="#" class="download-graph"><i class="fa fa-arrow-circle-o-down"></i>
+ Download</a></li>
+      <li><a href="#" id="jsFiddle-share-btn" target="_blank"><i class="fa fa-jsfiddle"></i>
+ jsfiddle</a></li>
+  <li > <a href="stocmarket/Main.html" target="_blank" class="capitalMarketDashboardBtn none" > <i class="fa fa-line-chart"></i>  Capital Market Dashboard </a></li>
+      </ul></div></div>
+      <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12 cssAnimation divPadding "  id="chartDocumationOuter" ><div class="chartDocumation ">
+      <ul class="minMaxBtn"><li><a href="#" title="Minimize" id="minmize"><i class="fa fa-arrows" ></i>
+</a></li> <li><a href="#" id="maxmize" title="Maximize"><i class="fa fa-arrows-h"></i>
+</a></li></ul>
+    <div  class=" documationContent mCustomScrollbar  "> <div class="docCode"> 
+      <div class=" chartDetails basicLineChartMenu" > <h2> Basic Line Chart :
+</h2>
+ <p><strong>Introduction</strong>: <br>
+
+A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments.
+
+</p>
+
+<h3>
+<strong>Steps of making Basic Line Chart:</strong><br>
+<br>
+
+1) Data format to be used: JSON format
+ </h3>
+<div class="chartCode">
+<p ><strong>a) Functions of data Input Parameter: 
+</strong> </p>
+<p class="padding-xs">Name:- Entity Name<br>
+
+Color :- Color of the entity shape<br>
+
+Shape :- Shape of the entity<br>
+
+data:- Actual data of entity<br>
+
+xAxisTickArray:- x axis ticks array<br>
+
+yAxisfactor:- y axis label<br>
+
+xAxisfactor:- x axis label<br>
+
+yAxisData:- JSON Data array
+</p>
+<p class="padding-xs"><br>
+eg) <br>
+
+var basicLineData =<br>
+
+		{</p>
+
+				<p class="padding-sm">xAxisTickArray:["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14"],<br>
+
+				yAxisfactor : "Sold Quantity(last 10 days)",<br>
+
+				yLabelColor:"red",<br>
+
+				xAxisfactor : "Indexes(in whole number)",<br>
+
+				xLabelColor:"green"	,<br>
+
+				padding:30,	<br>
+
+				yAxisData:<br>
+
+				[{		<br>
+		
+				<p class="padding-md">	"Name" : "Angel",<br>
+
+					"Shape" : "circle",<br>
+
+					"color": "brown",<br></p>
+
+				<p  class="padding-xs">	"data" : [12345,42345.23,30234,22345,72345,22345,32345,70345,52345,78345]
+
+				},</p>
+                <p class="padding-md">{<br>
+
+					"Name" : "Venture",<br>
+
+					"Shape" : "square",<br>
+
+					"color": "orange",<br>
+
+					"data" : [</p>
+                    <p class="padding-xs">[90234,90234.34,12034,22394,72934,62394,32374,9234,5234,56034]	
+},	</p>
+<p class="padding-md">{<br>
+
+					"Name" : "Micro",<br>
+
+					"Shape" : "triangle",<br>
+
+					"color": "blue",<br>
+
+					"data" : </p>
+                    <p class="padding-xs">[33340,62304,67214,6734,90734,12034,43240,42340,15234,100034]			
+				},
+</p>
+
+<p class="padding-md">{<br>
+
+					"Name" : "Capital",<br>
+
+					"Shape" : "circle",<br>
+
+					"color": "cyan",<br>
+
+					"data" : </p>
+                    <p class="padding-xs">[68333,23304,90314,9734,19734,90834,67240,82340,51234,97034]		
+				}]
+	};
+</p></div>
+            
+            <h3>2) Calling draw basic line chart function </h3>
+<div class="chartCode">
+<p ><strong>a) Pass div id and  basicLineData as argument in function.
+</strong> </p>
+<p class="padding-xs">eg)<br>
+
+	setTimeout(function(){<br>
+
+			var stocChart1=$("#line1").stocCharts(textStyleConfg);<br>
+
+			stocChart1.drawBasicLineChart('#line1', basicLineData);	<br>
+
+		},50);
+  </p>
+</div>
+        
+        
+
+
+</div>
+ <div class="chartDetails scatterPlotChartMenu"><h2> Scatter Plot Chart :</h2>
+<p><strong>Introduction: </strong><br>
+
+A scatter plot, scatterplot, or scatter graph is a type of mathematical diagram using Cartesian coordinates to display values for two variables from a set of data.
+</p>
+
+
+<h3><strong>Steps of making Scatter Plot Chart:-</strong><br>
+<br>
+1) Others setting parameters can be passed through this paramters.
+</h3>
+<div class="chartCode"><p><strong>a) Functions of user Input Parameter: 
+</strong></p>
+
+<p class="padding-xs">padding :- Clears space around the element<br>
+
+toolTipLabel :- Label to be used in tooltip
+</p>
+<p class="padding-sm">eg) </p>
+
+		<p class="padding-md">var cfgScatterPlot =  {	<br>
+	
+			padding :30,<br>
+
+			toolTipLabel : 'Population'	<br>
+
+		}  
+</p>
+
+
+</div>
+        <h3>2) Data format to be used: JSON format</h3>
+       <div class="chartCode">
+ <p><strong>a) Functions of data Input Parameter:
+ </strong></p>
+<p class="padding-xs">
+Name:- Entity Name<br>
+
+Color :- Color of the entity shape<br>
+
+Shape :- Shape of the entity<br>
+
+data:- Actual data of entity<br>
+
+xAxisTickArray:- x axis ticks array<br>
+
+yIndicationLabel:- y axis label<br>
+
+xIndicationLabel:- x axis label<br>
+
+yAxisData:- JSON Data array
+
+</p>
+
+<p class="padding-sm">eg) <br>
+
+var scatterPlotData = {			</p>
+<p class="padding-md">xAxisTickArray:["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14",<br>
+"Oct'14","Nov'14","Dec'14","Jan'15","Feb'15","Mar'15","Apr'15","May'15","Jun'15"],</p>
+
+				<p style="padding:0 0 0 200px;">	xIndicationLabel:"Time",<br>
+
+					yIndicationLabel:"Population",<br>
+
+					padding:30,<br>
+
+					yAixsData:[</p>
+                    <p style="padding:0 0 0 250px;">{<br>
+
+
+						"name": "Women",<br>
+
+						"color":"pink",<br>
+
+						"shape":"circle",<br>
+
+						"data": <br>
+[20,560,90,250,300,100,130,330,250,500,15,30,200,56,290,150,320,120,230,400,260,400,<br>
+159,230,200,260,190,350,300,290,230,430,150,300,150]
+					},
+</p>
+<p style="padding:0 0 0 250px;">{<br>
+
+						"name": "Child",<br>
+
+						"color":"green",<br>
+
+						"shape":"triangle",<br>
+
+						"data": [200,45,25,330,89,15,220,450,125,380,389,315,190,450,250,430,589,150]
+					},
+</p>
+
+<p style="padding:0 0 0 250px;">{<br>
+
+						"name": "Men",<br>
+
+						"color":"blue",<br>
+
+						"shape":"square",<br>
+
+						"data": [20,90,50,33,95,150,200,190,500,330,450,250,200,340,312,290,140,150]<br>
+								  
+					}]	<br>
+
+		};
+
+</p>
+					
+				</div>
+            <h3>3) Calling draw scatter plot chart function 
+
+
+</h3>
+<div class="chartCode">
+<p> <strong>Pass scatterPlotData and div id where this chart to be made as argument to function.</strong></p><p class="padding-xs">eg)</p>
+
+	<p class="padding-sm">var stocChart2=$("#line2").stocCharts(textStyleConfg);<br>
+
+	stocChart2.drawScatterPlotChart('#line2', scatterPlotData);
+</p></div>
+</div> 
+<div class="chartDetails drillDownChartMenu"><h2>Drill Down Chart :</h2>
+<p><strong>Introduction: </strong><br>
+
+Drill-down from yearly data to quarterly, quarterly to monthly (in a chart showing sales figures) or from categories to individual.
+</p>
+<h3><strong> Steps of making Drill Down Chart:</strong><br>
+<br>
+
+1) Others setting parameters can be passed through this paramters.
+</h3>
+<div class="chartCode"><p><strong>a)  Functions of user Input Parameter: 
+</strong></p>
+<p class="padding-xs">topMargin :- Margin from the top<br>
+
+rightMargin :- Margin from the right<br>
+
+bottomMargin :- Margin from the right<br>
+
+leftMargin :- Margin from the left<br>
+
+color :- Color of the bars
+
+</p>
+<p class="padding-sm">
+	<br>
+
+eg)</p> <p class="padding-md">
+ 
+	var cfgDrillDown = {
+<br>
+			topMargin: 5,<br>
+
+			rightMargin: 0,<br>
+
+			bottomMargin: 40,<br>
+
+			leftMargin: 40,<br>
+
+			color: d3.scale.category20c()<br>
+
+		}
+</p></div>
+            <h3>2) Data format to be used: JSON format</h3>
+            <div class="chartCode"> <p><strong>a) Functions of data Input Parameter: </strong></p>
+            <p class="padding-xs">x :- x axis entities<br>
+
+y :- y axis entities
+</p>
+
+<p class="padding-sm">
+eg) </p><p>
+
+<p class="padding-md">	var barData = [</p>
+
+
+			<p style="padding:0 0 0 200px;"> {	'x': 'IE',
+
+				'y': 5
+
+			}, </p>
+            <p style="padding:0 0 0 200px;">{
+				'x': 'Chrome',
+				'y': 20
+			}, </p>
+            
+              <p style="padding:0 0 0 200px;">{
+				'x': 'Firefox',
+				'y': 10
+
+			}, </p>
+            
+              <p style="padding:0 0 0 200px;">{
+				'x': 'Safari',
+
+				'y': 30
+
+
+			}, </p>
+            
+                <p style="padding:0 0 0 200px;">{
+				'x': 'Opera',
+
+				'y': 5
+
+
+
+			}, </p>
+            
+               <p style="padding:0 0 0 200px;">{
+				'x': 'Not Known',
+
+				'y': 33
+
+
+
+			}, </p>
+
+<p class="padding-md">var Chrome = [</p>
+<p style="padding:0 0 0 200px;">{
+'x': 'v5.0',
+
+				'y': 31
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v6.0',
+
+				'y': 10
+
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v7.0',
+
+				'y': 20
+
+
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v8.0',
+
+				'y': 53
+
+
+
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v9.0',
+
+				'y': 25
+
+
+
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v10.0',
+
+				'y': 35
+
+
+
+}</p>
+
+<p style="padding:0 0 0 200px;">{
+'x': 'v11.0',
+
+				'y': 23
+
+
+
+}];
+</p>
+<p class="padding-md">var Firefox = [
+</p>
+<p style="padding:0 0 0 200px;">{ 'x': 'v25.0',
+				'y': 22
+			}, </p>
+            
+            <p style="padding:0 0 0 200px;"> {
+				'x': 'v26.0',
+				'y': 19
+			},  </p>
+            
+                  <p style="padding:0 0 0 200px;"> {
+				'x': 'v27.0',
+				'y': 25
+			},  </p>
+            
+                       <p style="padding:0 0 0 200px;"> {
+				'x': 'v28.0',
+				'y': 10
+			},  </p>
+            
+                        <p style="padding:0 0 0 200px;"> {'x': 'v29.0',	'y': 34		}];
+ </p>
+        
+</div> 
+<h3>3) Calling draw drill down chart function
+
+</h3>
+<div class="chartCode">
+<p><strong>Pass div id, cfgDrillDown, barData, Chrome, Firefox, cfgDrillDown and button id which is responsible to bring back previous chart.</strong></p><p class="padding-xs">eg)</p>
+
+<p class="padding-sm"> var stocChart7=$("#line3").stocCharts();<br>
+
+ stocChart7.drawDrillDownChart("#line3", barData, Chrome, Firefox, cfgDrillDown, "#backData");
+</p></div></div>
+ <div class="chartDetails heatmapMenu">
+ <h2> Heat Map Chart :
+</h2>
+ <p><strong>Introduction:</strong> <br>
+
+ A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors
+</p>
+<h3><strong>Steps of making heat map chart:</strong><br>
+<br>
+
+1) Data format to be used: JSON
+</h3>
+<div class="chartCode">
+<p class="padding-xs">data:-  Actual data<br>
+
+xLabel : x axis labels<br>
+
+yLabel : y axis labels<br>
+
+yAxisValue : y axis ticks
+</p>
+<p class="padding-sm">eg) <br>
+
+var heatMapData = {<br>
+
+			data:{
+</p> <p class="padding-md"> Rajiv:[18,20,22,16,10],<br>
+
+				Akash:[10,29,21,50],<br>
+
+				Mohit:[11,26,23,9,27],<br>
+
+				Gurjant:[13,16,29,18,21],<br>
+
+				Guarav:[18,12,23,14,8]<br>
+
+			},<br>
+xLabel:"Employee Name",<br>
+
+			yLabel:"Working Hours",<br>
+
+			yAxisValue:['Monday','Tuesday','Wednesday','Thursday','Friday']<br>
+
+	};
+
+</p></div>
+<h3>2) Calling draw heat map chart function<br>
+
+
+</h3>
+<div class="chartCode">
+<p><strong>Pass div id, heatMapData, cfgHeatMap as argument to the function.</strong></p>
+<p class="padding-xs">eg)</p>
+<p class="padding-sm">var stocChart4=$("#line4").stocCharts(textStyleConfg);<br>
+
+	stocChart4.drawHeatMapChart('#line4', heatMapData, cfgHeatMap);
+</p></div>
+
+
+ </div> 
+ <div class="chartDetails transitPieMenu">
+ <h2> Transit Pie Chart :
+</h2>
+ <p><strong>Introduction:</strong> <br>
+
+It is a type of graph in which a circle is divided into sectors, and each sector represents a some fraction of the whole.
+</p>
+<h3> <strong>Steps of making Transit Pie Chart:
+</strong></h3>
+<h3>1)Data format to be used: Array
+</h3>
+<div class="chartCode"> <p><strong>a) Functions of data Input Parameter:
+</strong> </p>
+<p class="padding-xs">
+key:- Legends of pie chart<br>
+
+value: Value for pie chart<br>
+
+label:-  Value for each label<br>
+
+color: color for each data
+	</p>
+    <p class="padding-sm" >eg) 
+</p>
+<p class="padding-md">var dataSet= {<br>
+
+						key :['Agnitio','Apple Inc','IBM','Facebook','Accenture',"Gold Man Sach"],<br>
+
+						value : [12000,1350,433,1234,30234,2134],<br>
+
+						label : 'Cost',<br>
+
+						color : ["#7cb5ec","#434348","#90ed7d","orange","green","cyan"]<br>
+
+					};
+
+</p>
+</div>
+<h3>2) Calling draw transit pie chart function</h3>
+<div class="chartCode"><p><strong>a) Pass dataset as argument to function.
+</strong> </p>
+<p class="padding-xs">eg)</p>
+<p class="padding-sm">var stocChart8=$("#line5").stocCharts();<br>
+
+stocChart5.drawPieChartWithTransition(dataSet);
+ <br>
+
+
+</p></div>
+
+
+</div>    
+ <div class="chartDetails dountChartWithLegendMenu"><h2>
+Donut Chart with Legend :
+
+</h2>
+<p><strong>Introduction: </strong><br>
+
+A doughnut chart displays data as percentage of the whole. Categories are represented by every slice. Doughnut charts are functionally identical to pie charts.
+
+
+</p>
+<h3><strong>Steps of making Donut Chart with Legend:-
+</strong><br>
+<br>
+
+1) Data setting parameters can be passed like this.
+</h3>
+<div class="chartCode"><p><strong>a)  Functions of user Input Parameter: 
+ </strong></p>
+<p class="padding-xs">key:- Set of legends<br>
+
+			value:- Values of each slice<br>
+
+			label: Any  other label to be used<br>
+
+			color:- Color of each slice
+ </p>
+<p class="padding-sm">eg) 
+				var data = {
+</p>
+<p class="padding-md">key :['Mozilla','IE','Firefox','Chrome','Opera','Safari'],<br>
+
+					value : [10,50,80,60,40,80],<br>
+
+					label : 'popular',<br>
+
+					color : ['red','green','blue','cyan','purple','brown']	<br>
+
+		};
+</p>
+</div>
+<h3>2) Calling draw donut chart with legend function
+</h3>
+<div class="chartCode"><p><strong>Pass data and divId where this chart to be made.</strong>
+</p>
+
+<p class="padding-xs">eg)
+</p>
+<p class="padding-sm">
+
+var cnfg={"data":data,"divId":"line22"}<br>
+
+			var stocChart21=$("#line22").stocCharts();<br>
+
+				stocChart21.dountChartWithLegend(cnfg);
+
+</p></div></div> 
+ <div class="chartDetails dountWithBarChartMenu"><h2>  Donut Chart with Bars :
+</h2>
+<p >A doughnut chart displays data as percentage of the whole. Categories are represented by every slice. Doughnut charts are functionally identical to pie charts. Additionally, the bar chart is also embedded to show data.
+</p>
+<h3><strong>Steps of making Donut Chart with Legend:-</strong><br>
+<br>
+1) Data setting parameters can be passed like this.
+
+</h3>
+<div class="chartCode"><p><strong>a) Functions of user Input Parameter: </strong></p>
+<p class="padding-xs">key:- Set of legends<br>
+
+			value:- Values of each slice<br>
+
+			label: Any  other label to be used<br>
+
+			color:- Color of each slice<br>
+
+			textAndLegendColor:- Color of text and legend
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">
+		var data= {<br>
+
+					key :['India','China','Japan','Canada','Australia','England'],<br>
+
+					value : [10,50,80,60,40,80],<br>
+
+					label : 'employee',<br>
+
+					textAndLegendColor : 'black',<br>
+
+					color : ['red','green','blue','cyan','purple','brown']<br>
+
+		   };
+</p> 
+
+<p ><strong>b) Functions of user input parameters for each key</strong></p>
+<p class="padding-xs">key:- Set of legends<br>
+
+				color:- Color of each slice<br>
+
+				Others parameters are values of keys.
+</p>
+<p class="padding-sm">eg)	</p>
+<p class="padding-md">var subDataArray = {<br>
+
+						key :['Doctor','Engineers','Social Worker','Government Employees','XYZ'],<br>
+
+						color :["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd"],<br>
+
+						India :[45,67,32,56,34],<br>
+
+						China :[34,54,42,24,45],<br>
+
+						Japan :[23,34,45,40,23],<br>
+
+						Canada : [82,62,54,199,78],<br>
+
+						Australia : [45,34,23,32,44],<br>
+
+						England :[56,24,54,32,40]<br>
+
+					}; 
+</p>
+
+
+</div>
+        
+        <h3>2) Calling draw donut chart with bar chart function<br>
+
+
+
+</h3>
+<div class="chartCode">
+<p><strong>Pass data, divId and subDataArray in cnfg.
+		then call drawDountWithBarChart function by passing cnfg as argument</strong></p><p class="padding-xs">eg)</p>
+
+<p class="padding-sm">var cnfg={"data":data,"divId":"line23","subDataArray":subDataArray}<br>
+
+			var stocChart23=$("#line23").stocCharts();<br>
+
+			stocChart23.drawDountWithBarChart(cnfg);
+</p></div>
+       </div>      
+ <div class="chartDetails radarChartMenu"><h2> Radar Chart  :</h2>
+<p><strong>Introduction:</strong><br>
+ 
+A radar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart of three or more quantitative variables represented on axes starting from the same point. The relative position and angle of the axes is typically uninformative.
+ </p>
+<h3><strong>Steps of making Radar Chart:</strong><br>
+<br>
+
+1) Others setting parameters can be passed through this paramters.</h3>
+<div class="chartCode"><p><strong>a) Functions of user Input Parameter: </strong> </p>
+<p class="padding-xs">
+colorPieArray:- Color of each slice <br>
+
+legendSet:- Label of each slice/ Name of entities
+</p>
+<p class="padding-sm">eg) </p>
+
+	<p class="padding-md">var colorPieArray=["#7cb5ec","#434348","#90ed7d","orange","green","cyan"];<br>
+
+
+var legendSet=['Agnitio','Apple Inc','IBM','Facebook','Accenture',"Gold Man Sach"];	
+</p> </div>
+    <h3>2)  Data format to be used: Arra </h3>
+    <div class="chartCode"> <p><strong>a) Functions of data Input Parameter: </strong></p>
+    <p  class="padding-xs">dataset:-  Values of entities<br>
+
+eg) <br>
+
+var dataset=[5, 10, 20, 45, 6, 25];
+</p>
+</div>
+    <h3>3) Calling draw radar chart function</h3>
+    <div class="chartCode"><p  ><strong>Pass dataset, legendSet, colorPieArray, factorName i.e., tooltip label and div id where this chart to be made.
+</strong></p> <p class="padding-xs">eg)</p>  <p class="padding-sm">var <br>
+stocChart8=$("#line5").stocCharts();<br>
+
+stocChart8.drawPieChartWithTransition({'data':dataset,'legends':legendSet,"colors":colorPieArray,'factorName':'COST'});
+
+</p></div></div> 
+ <div class="chartDetails multiAxisMenu">
+<h2>Multiple Axis Chart :
+</h2>
+<p><strong>Introduction:</strong><br>
+
+ This chart can have more than one scale axis, so you can easily contrast a set of entities based on multiple parameters</p>
+ <h3><strong>Steps of making multiple axis chart:</strong><br><br>
+
+1) Data format to be used: Array
+</h3>
+ <div class="chartCode"><p><strong>a) Functions of data Input Parameter:  </strong> </p>
+ <p class="padding-xs">dataset:-  Values of entities<br>
+
+	color:- Color of axis<br>
+
+	indicationLabel:- Y-axis label<br>
+
+	lineType:- Type of line(eg) cardinal etc)<br>
+
+	isDottedLine:- Line to be dotted or not<br>
+
+	data:- Actual data to be used for chart<br>
+
+	unit: Temerature measurement 
+</p> <p class="padding-sm">eg) <br>
+
+	var mulitpleLineBarData=<br>
+
+
+	"sea-level":
+</p>
+<p class="padding-md">{
+	"color":"green",<br>
+
+	"indicationLabel":"Sea Level Pressure",<br>
+
+	"chartType":"line",<br>
+
+	"lineType":"cardinal",<br>
+
+	"isDottedLine":false,<br>
+
+	"unit":"mb",<br>
+
+	"data": <br>
+[59,69,43,66,46,54,73,78,62,47,72,45,44,59,61,42,80,54,56,50,70,49,48,76,66,43,73,52,64,72,40,68,<br>
+77,52,44,44,54,54,44,45,63,55,47,63,79,61,52,52,52],<br>
+
+	"temperature":<br>
+
+	{"color":"#90ed7d",<br>
+
+	"chartType":"line",<br>
+
+	"indicationLabel":"Temperature",<br>
+
+	"lineType":"linear",<br>
+
+	"unit":"C",<br>
+
+	"data":<br>
+
+	[64,62,61,60,79,69,67,64,69,78,76,70,65,79,74,79,72,70,63,67,73,79,78,76,70,75,<br>
+74,70,79,63,64,72,77,69,60,69,69,74,79,79,70,66,71,71,72,63,66,78,66],<br>
+"isDottedLine":true<br>
+
+	},<br>
+
+	"rainfall":<br>
+
+	{<br>
+
+	"color":"#7cb5ec",<br>
+
+	"chartType":"bar",<br>
+
+	"indicationLabel":"Rain Fall",<br>
+
+	"unit":"mm",<br>
+
+	"data": <br>
+ [22,77,73,33,60,43,37,29,30,68,20,75,67,31,20,67,50,23,38,44,81,78,36,87,76,<br>
+86,80,36,23,68,28,55,73,39,90,53,93,56,98,32,50,67,76,28,42,21,63,92,98]	}}
+</p></div>
+<h3>2) Calling multiple axis chart function</h3>
+ <div class="chartCode"> <p><strong>Pass below mentioned parameters:-</strong> </p><p class="padding-xs">
+		mulitpleLineBarData, <br>
+
+		marginLeft(space from left to be empty) , <br>
+
+		marginRight(space from right to be empty), <br>
+
+		xAxis() :- Function to generate the x-axis labels<br>
+
+		indicationLabel :- Lable to be displayed<br>
+
+		eg)<br>
+
+		var stocChartLineBars=$("#line7").stocCharts();<br>
+
+		stocChartLineBars.drawBarWithMultipleLineAndCircle({'data':mulitpleLineBarData,<br>
+'marginLeft':50,'marginRight':50,'xAxis':xAxis,'indicationLabel':'Category'});</p>
+
+</div>
+ </div> 
+ <div class="chartDetails groupedBarMenu">
+<h2>Grouped Bar Chart :
+
+</h2>
+<p><strong>Introduction:</strong><br>
+
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent. 
+</p>
+ <h3><strong>Steps of making grouped bar chart:
+</strong><br><br>
+
+1) Data format to be used: JSON
+
+</h3>
+ <div class="chartCode">
+ <p class="padding-xs">[{"doj":"2014-02-01","pending":51,"approved":15,"rejected":9,"halted":32},{"doj":"2014-03-01","pending":69,"approved":41,"rejected":2,"halted":55},{"doj":"2014-04-01","pending":78,"approved":49,"rejected":1,"halted":49},{"doj":"2014-05-01","pending":91,"approved":12,"rejected":3,"halted":36},{"doj":"2014-06-01","pending":56,"approved":13,"rejected":0,"halted":99},{"doj":"2014-07-01","pending":100,"approved":26,"rejected":5,"halted":82},{"doj":"2014-08-01","pending":52,"approved":12,"rejected":10,"halted":79},{"doj":"2014-09-01","pending":67,"approved":34,"rejected":4,"halted":82},{"doj":"2014-10-01","pending":86,"approved":31,"rejected":7,"halted":39},{"doj":"2014-11-01","pending":77,"approved":12,"rejected":3,"halted":92},{"doj":"2014-12-01","pending":61,"approved":15,"rejected":7,"halted":67},{"doj":"2015-01-01","pending":48,"approved":21,"rejected":3,"halted":94},{"doj":"2015-02-01","pending":97,"approved":35,"rejected":10,"halted":30},{"doj":"2015-03-01","pending":56,"approved":41,"rejected":0,"halted":60}]
+
+</p> </div>
+<h3>2) Calling draw grouped bar chart function:</h3>
+ <div class="chartCode"> <p><strong>Pass below mentioned parameters in function:
+</strong> </p><p class="padding-xs">
+	data:- Data to be passed<br>
+
+			xFieldName :-  Label for tooltip of x axis<br>
+
+			showAllTicks: To show ticks or not <br>
+
+			colors:- colors of legends and bars<br>
+
+			yAxisfactor :- Label for y axis<br>
+
+			yLabelColor :- Color on y-axis label<br>
+
+			xAxisfactor :- Label for x axis<br>
+
+			xLabelColor :- Color on y-axis label</p>
+			
+
+
+	<p class="padding-sm">	eg)</p>
+
+	<p class="padding-md">	var groupedChartData=generateDataForStackChart();<br>
+
+			var stocChart8=$("#line8").stocCharts(textStyleConfg);<br>
+
+				stocChart8.groupedBarChart({'data':groupedChartData,
+</p>
+
+<p class="padding-lg">	'xFieldName':'doj',<br>
+
+											'widthOfBar':'',<br>
+
+											'showAllTicks':true,<br>
+
+											'colors':colorJson,<br>
+
+											yAxisfactor : "Orders Quantity(last 10 days)",<br>
+
+											yLabelColor:"grey",<br>
+
+											xAxisfactor : "Indexes(in whole number)",<br>
+
+											xLabelColor:"green",});
+</p>
+
+</div>
+ </div> 
+ <div class="chartDetails groupedBar2DMenu">
+<h2>GroupedBar2DMenu Chart :
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent.  Bars are grouped with each other.
+</p>
+ <h3>
+
+1) Data format to be used: JSON
+
+</h3>
+ <div class="chartCode">
+ <p class="padding-xs">[{"doj":"2014-02-01","pending":51,"approved":15,"rejected":9,"halted":32},{"doj":"2014-03-01","pending":69,"approved":41,"rejected":2,"halted":55},{"doj":"2014-04-01","pending":78,"approved":49,"rejected":1,"halted":49},{"doj":"2014-05-01","pending":91,"approved":12,"rejected":3,"halted":36},{"doj":"2014-06-01","pending":56,"approved":13,"rejected":0,"halted":99},{"doj":"2014-07-01","pending":100,"approved":26,"rejected":5,"halted":82},{"doj":"2014-08-01","pending":52,"approved":12,"rejected":10,"halted":79},{"doj":"2014-09-01","pending":67,"approved":34,"rejected":4,"halted":82},{"doj":"2014-10-01","pending":86,"approved":31,"rejected":7,"halted":39},{"doj":"2014-11-01","pending":77,"approved":12,"rejected":3,"halted":92},{"doj":"2014-12-01","pending":61,"approved":15,"rejected":7,"halted":67},{"doj":"2015-01-01","pending":48,"approved":21,"rejected":3,"halted":94},{"doj":"2015-02-01","pending":97,"approved":35,"rejected":10,"halted":30},{"doj":"2015-03-01","pending":56,"approved":41,"rejected":0,"halted":60}]
+
+
+</p> </div>
+<h3>2) Calling draw grouped 2D bar chart function:
+</h3>
+ <div class="chartCode"> <p><strong>Pass below mentioned parameters in function:
+</strong> </p><p class="padding-xs">
+	data:- Data to be passed<br>
+
+			xFieldName :-  Label for tooltip of x axis<br>
+
+			showAllTicks: To show ticks or not <br>
+
+			colors:- colors of legends and bars<br>
+
+			yAxisfactor :- Label for y axis<br>
+
+			yLabelColor :- Color on y-axis label<br>
+
+			xAxisfactor :- Label for x axis<br>
+
+			xLabelColor :- Color on y-axis label
+</p>
+			
+
+
+	<p class="padding-sm">	eg)</p>
+
+	<p class="padding-md">var groupedChartData=generateDataForStackChart();<br>
+
+			var stocChart19=$("#line19").stocCharts();<br>
+
+				stocChart19.groupedBar2DChart
+</p>
+
+<p class="padding-lg">	({'data':groupedChartData,<br>
+
+											'xFieldName':'doj',<br>
+
+											'widthOfBar':'',<br>
+
+											'showAllTicks':true,<br>
+
+											'colors':colorJson,<br>
+
+											yAxisfactor : "Orders Quantity(last 10 days)",<br>
+
+											yLabelColor:"grey",<br>
+
+											xAxisfactor : "Indexes(in whole number)",<br>
+
+											xLabelColor:"green",});
+</p>
+
+</div>
+ </div> 
+ <div class="chartDetails 3DBarChartMenu">
+<h2>3D Bar Chart :
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent. Bars are represented in 3D view
+
+</p>
+ <h3>
+
+<strong>Steps of making 3D Bar Chart:</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+</h3>
+ <div class="chartCode">
+ <p ><strong>a) Functions of user Input Parameter:-</strong>
+</p>
+<p class="padding-xs">colorPieArray:- Color of each slice <br>
+
+				topMargin: margin from top<br>
+
+				rightMargin: margin from right,<br>
+
+				bottomMargin: margin from bottom,<br>
+
+				leftMargin: margin from left,<br>
+
+				toolTipLabelForYAxis: y axis label for tooltip ,<br>
+
+				color: Color to set,<br>
+
+				xAxisTickArray: Array of ticks for x axis ,<br>
+
+				xLabel:Label for x axis
+
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">var cfg3DBarChart = {<br>
+
+					
+						topMargin: 5,<br>
+
+						rightMargin: 0,<br>
+
+						bottomMargin: 40,<br>
+
+						leftMargin: 40,<br>
+
+						toolTipLabelForYAxis: "Sales(in Crores)",<br>
+
+						color: d3.scale.category20c(),<br>
+
+						xAxisTickArray:[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019],<br>
+
+						xLabel:"Year"<br>
+
+					}
+ </p>
+ </div>
+<h3>2) Data format to be used: Array	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+</p>
+			
+
+
+	<p class="padding-sm">	var heightOfBars = [15, 80, 120, 280, 50, 65, 900, 40, 23, 98];
+</p>
+
+	
+
+
+
+</div>
+
+<h3>3) Calling draw 3D Bar Chart function
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+	Pass div id, heightOfBars and  cfg3DBarChart.
+
+
+
+</p>
+			
+
+
+	<p class="padding-sm">		eg)
+
+</p>
+
+	
+	<p class="padding-md">		var stocChart10=$("#line10").stocCharts();<br>
+
+				stocChart10.drawThreeDBarChart("#line10",<br>
+ heightOfBars, cfg3DBarChart);	
+
+
+
+</p>
+
+
+
+</div>
+ </div> 
+ <div class="chartDetails 3DStackedBarChartMenu">
+<h2>3D Stacked Bar Chart :
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent and multiple bars stacked on top of each other. Bars are represented in 3D view
+
+
+</p>
+ <h3>
+<strong>Steps of making 3D Stacked Bar Chart:</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+</h3>
+ <div class="chartCode">
+ <p class="padding-xs">a) Functions of user Input Parameter:-
+
+</p>
+<p class="padding-sm">colorArray:- Color of each bars <br>
+
+				topMargin:- Margin from top<br>
+
+				rightMargin:- Margin from right,<br>
+
+				bottomMargin:- Margin from bottom,<br>
+
+				leftMargin:- Margin from left,<br>
+
+				toolTipLabelForYAxis:- y axis label for tooltip,<br>
+				
+				xLabel:- Label for x axis
+
+
+</p>
+<p class="padding-md">eg) </p>
+<p class="padding-lg">var cfg3DBarChart = {<br>
+
+		
+						topMargin: 5,<br>
+
+						rightMargin: 0,<br>
+
+						bottomMargin: 40,<br>
+
+						leftMargin: 40,<br>
+
+						toolTipLabelForYAxis: "Sales(in Crores)",<br>
+
+						colorArray: ["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", <br>
+"#e7cb94", "#7f7f7f", "#bcbd22"],<br>
+
+						xLabel:"Year"					}
+
+ </p>
+ </div>
+<h3>2) Data format to be used: Json Array	
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+</p>
+			
+
+
+	<p class="padding-sm">	var threeDStackedBarsData = [{<br>
+
+				'key': 'Barclays',<br>
+
+				'data': [15, 80, 120, 180, 50, 65, 30, 109, 210,13, 123,210, 210]			}, 
+</p>
+
+	
+
+	<p class="padding-sm">	 {
+				'key': 'Morgan Stanley',<br>
+
+				'data': [60, 20, 70, 40, 100, 95, 230, 123, 100,24, 231, 210, 210]
+			},  
+</p>
+
+	<p class="padding-sm">	 {
+				'key': 'SBI',<br>
+
+				'data': [40, 28, 79, 100, 40, 195, 20, 78, 321,45, 109, 210, 210]
+
+			},  
+</p>
+
+	<p class="padding-sm">	 {
+				'key': 'American Express Bank',<br>
+
+				'data': [140, 280, 179, 200, 109, 95, 300, 86, 123,56, 290, 210, 210]
+
+
+			},  
+</p>
+
+	<p class="padding-sm">	 {
+				'key': 'Indusland Bank',<br>
+
+				'data': [120, 34, 50, 100, 400, 65, 30, 34, 310,76, 19, 210, 210]
+
+
+
+			},  
+</p>
+
+	<p class="padding-sm">	 {
+				'key': 'Yes Bank',<br>
+
+				'data': [80, 180, 179, 300, 40, 109, 89, 120, 230,89, 99, 210, 210]
+
+
+
+
+			}];
+</p>
+
+
+
+</div>
+
+<h3>3) Other input parameters required:-		
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+colorArray:- Color of bars<br>
+
+			gridLineColor:- Color of background grid lines<br>
+
+			textColor:- Color of text of ticks<br>
+
+			xAxisArray:-  x axis ticks arrray
+			
+
+
+
+
+</p>
+			
+
+
+	<p class="padding-sm">		eg)
+
+</p>
+
+	
+	<p class="padding-md">		var <br>
+colorArray=["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"];
+				var gridLineColor = "#4d4d4d";<br>
+
+				var textColor = "Grey";<br>
+
+				var xAxisArray = ['1994', '1995', '1996', '1997', '1998', <br>
+'1999','2000','2001','2002','2003', '2004', '2005', '2006'];
+
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+<h3>3) Calling draw 3D Stacked Bar Chart function
+	
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+Pass div id, threeDStackedBarsData, cfg3DBarChart,<br>
+ colorArray, gridLineColor,<br>
+ textColor and xAxisArray as argument.
+
+
+
+</p>
+			
+
+
+	<p class="padding-sm">		eg)
+
+</p>
+
+	
+	<p class="padding-md">	 var <br>
+stocChart27=$("#line27").stocCharts(textStyleConfg);<br>
+
+				stocChart27.drawThreeDStackedBarChart("#line27",<br>
+ threeDStackedBarsData, cfg3DBarChart, colorArray, gridLineColor, textColor, xAxisArray);	
+
+
+
+
+
+</p>
+
+
+
+</div>
+
+
+
+ </div> 
+ <div class="chartDetails BulletBarChartMenu">
+<h2>Bullet Bar Chart :
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent. They are placed horizontally.
+
+
+
+</p>
+ <h3>
+<strong>Steps of making Bullet Bar Chart:
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+</h3>
+ <div class="chartCode">
+ <p ><strong>a) Functions of user Input Parameter:-</strong>
+
+
+</p>
+<p class="padding-xs">colorArray:- Color of each bars <br>
+
+				xFieldName:- X axis label,<br>
+
+				yFieldName:- Y axis label,<br>
+
+				axisColor:- Color of axis,<br>
+
+				data1:- First Bar data <br>
+
+				data2:- second bar data <br>
+				
+				xLabel:- Label for x axis
+
+
+
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">var colorArray=["#A3BFDB","black"];<br>
+
+					var xFieldName="population";<br>
+
+					var yFieldName="year";<br>
+
+					var axisColor="black";<br>
+
+					var cnfg={"data1":data1,
+
+ </p>
+ <p class="padding-lg">"data2":data2,<br>
+
+								"colorArray":colorArray,<br>
+
+								"xFieldName":xFieldName,<br>
+
+								"yFieldName":yFieldName,<br>
+
+								"axisColor":axisColor};<br>
+
+							}
+</p>
+ </div>
+<h3>2) Data format to be used: Json Array
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+</p>
+			
+
+
+	<p class="padding-sm">var data1=[{"population":100,'year':2014},{"population":50,'year':2015},{"population":150,'year':2016},{"population":100,'year':2017},{"population":200,'year':2018},{"population":150,'year':2019},{"population":250,'year':2020},{"population":300,'year':2021}];
+<br>
+<br>
+var data2=[{"population":200,'year':2014},{"population":50,'year':2015},{"population":150,'year':2016},{"population":100,'year':2017},{"population":200,'year':2018},{"population":150,'year':2019},{"population":400,'year':2020},{"population":700,'year':2021}];
+
+</p>
+
+
+
+
+</div>
+
+<h3>3) Calling draw Bullet Bar Chart function
+
+	</h3>
+ <div class="chartCode"> <p >
+<strong>Pass cnfg as argument in function.</strong></p>
+
+
+			<p class="padding-xs">eg)</p>
+			
+
+
+
+
+</p>
+			
+
+
+	<p class="padding-sm">		var stocChart24=$("#line24").stocCharts();<br>
+
+				stocChart24.bulletBar(cnfg);	
+
+
+</p>
+
+	
+	
+
+
+</div>
+
+
+ </div> 
+ 
+ <div class="chartDetails CricketAnalChartMenu">
+<h2>Cricket Analysis Chart :
+
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+This chart will show run scored in each over in a cricket match using bar chart.
+
+
+
+
+</p>
+ <h3>
+<strong>Steps of making Cricket Analysis Chart:
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+
+</h3>
+ <div class="chartCode">
+ <p ><strong>a) Functions of user Input Parameter:-</strong>
+
+
+</p>
+<p class="padding-xs">
+                colorArray:- Color of each bars <br>
+
+				xLabel:- Label for x axis<br>
+
+				yLabel:- Lable for y axis<br>
+
+				xFieldName:- X axis label<br>
+
+				yFieldName:- Y axis label<br>
+
+				axisColor:- Color of axis<br>
+
+				textColor:- color of text<br>
+
+				textFontFamily:- Font of text<br>
+
+				title:- Title Label Data<br>
+
+				titleColor :- Color of title<br>
+
+				xLabelColor:- Color of x axis label<br>
+
+				xDatacolor:- Color of x data<br>
+
+				specialXDataLabel:- Additional label/legend for x data<br>
+	
+				specialXDataColor:- color for additional x data	label<br>
+	
+				specialXData:- Additional label data(eg. powerplay)<br>
+ 
+				specialDataLabel:- Image for additional x data label<br>
+
+				specialIcon:- Icon to be placed on top of bars for revamped look <br>
+
+				specialData:- Fall of wicket data  <br>
+
+				font-style:- Font style for specialData<br>
+
+				specialDataLabelOfWicket:- Label image for fall of wicket on y axis<br>
+
+				yData:- Bar data of run scored each over 
+
+
+
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">var colorArray=["#A3BFDB"];<br>
+
+					var xFieldName="over";<br>
+
+					var yFieldName="run";<br>
+
+					var axisColor="black";
+
+
+ </p>
+ <p class="padding-lg">var AdvancedBarData={<br>
+
+						"textColor":"Black",<br>
+
+						 "textFontFamily":"Cursive",<br>
+
+						 "title" : ['INDIA','ENGLAND','Fourth Royel London ODI','Edgbaston'],<br>
+
+						 "titalColor" : "#867114",<br>
+
+						 "yLabel":"RUNS",<br>
+
+
+						 "yData":[3,5,6,8,9,10,1,13,15,3,5,6,2,1,2,4,7,8,3,13,6,5,6,7,5,4,7,9,3,4,5,6,8,14,12],<br>
+
+						 "xLabel":"OVERS",<br>
+
+						 "xLabelColor" : "white",<br>
+
+						 "xDatacolor" : "#182051",<br>
+
+
+						 "xData":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],<br>
+
+						 "specialXDataLabel"  : 'power Play',<br>
+
+						 "specialXDataColor"  :  "#9a862d",<br>
+
+						 "specialXData" : [1,2,3,4,5,6,33,34,35],<br>
+
+						 "specialDataLabel":"./img/red-ball.png",<br>
+
+						 "specialIcon":"circle",<br>
+
+						 "specialData":{1:[{"Maxwell":"bowled Umesh Yadav"}],7:[{"Watson":"c Kohli b <br>
+Jadeja"},{"Baily":"c & b Jadeja"}]},<br>
+
+						 "font-style":"Arial Black",<br>
+
+						 "specialDataLabelOfWicket" : "./img/wikets.png"
+					}
+					<br>
+<br>
+var
+ cnfg={"data":AdvancedBarData,"colorArray":colorArray,"xFieldName":xFieldName,<br>
+"yFieldName":yFieldName,"axisColor":axisColor};
+
+
+</p>
+ </div>
+<h3>2) Data format to be used: Array	
+
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+</p>
+			
+
+
+	<p class="padding-sm">var yData:[3,5,6,8,9,10,1,13,15,3,5,6,2,1,2,4,7,8,3,13,6,5,6,7,5,4,7,9,3,4,5,6,8,14,12]
+
+
+</p>
+
+
+
+
+</div>
+
+<h3>3) Calling draw 3D Stacked Bar Chart function
+
+
+	</h3>
+ <div class="chartCode"> <p ><strong>Pass cnfg as argument in function.</strong></p>
+
+
+			<p class="padding-xs">eg)</p>
+			
+
+
+
+
+
+			
+
+
+	<p class="padding-sm">		var stocChart25=$("#line25").stocCharts();<br>
+
+				stocChart25.cricketAnalysis(cnfg);	
+	
+
+
+</p>
+
+
+</div>
+
+
+ </div> 
+ <div class="chartDetails stackedAreaChartMenu">
+<h2>Stacked Area Chart :
+
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+This chart will show data in area stacked on top of each other.
+
+
+
+
+
+</p>
+ <h3>
+<strong>Steps of making Stacked Area Chart:
+
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+ <p ><strong>a) Functions of user Input Parameter:-
+</strong>
+
+
+</p>
+<p class="padding-xs">
+               topMargin: Margin from top,<br>
+
+			rightMargin: Margin from right,<br>
+
+			bottomMargin: Margin from bottom,<br>
+
+			leftMargin: Margin from left,<br>
+
+			color: color for areas,<br>
+
+			xLabel: Label for x axis
+
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">var cfgStackedAreaChart = {<br>
+
+				topMargin: 5,<br>
+
+						rightMargin: 0,<br>
+
+						bottomMargin: 40,<br>
+
+						leftMargin: 40,<br>
+
+						color: d3.scale.category20c(),<br>
+
+						xLabel:"Time" }
+
+
+
+ </p>
+ 
+ </div>
+<h3>2) Data format to be used: JSON Array	
+
+
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+
+</p>
+			
+
+
+	<p class="padding-sm">var stackedAreaData = [<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":34.6240,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":31.7140,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":34.8570,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":144.4390,<br>
+"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":153.1140,<br>
+"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":126.4660,<br>
+"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":13.0250,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":6.0190,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":5.3900,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":99.8900<br>
+,"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":79.9660,<br>
+"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":84.7040,<br>
+"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":102.3490,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":114.9680,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":100.8590,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""}];
+					
+
+
+</p>
+
+
+
+
+</div>
+
+<h3>3) Calling draw 3D Stacked Bar Chart function
+
+
+	</h3>
+ <div class="chartCode"> <p ><strong>Pass div id, stackedAreaData and cfgStackedAreaChart as argument in function.
+			
+</strong></p>
+
+
+			<p class="padding-xs">eg)</p>
+			
+
+
+
+
+
+			
+
+
+	<p class="padding-sm">		var stocChart11=$("#line11").stocCharts();<br>
+
+				stocChart11.drawStackedAreaChart("#line11", <br>
+stackedAreaData, cfgStackedAreaChart);
+
+
+
+</p>
+
+
+</div>
+
+
+ </div> 
+ <div class="chartDetails stackedBarChartMenu">
+<h2>Stacked Bar Chart :
+
+
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent and multiple bars stacked on top of each other. Bars are represented in 3D view
+
+
+
+
+
+
+</p>
+ <h3>
+<strong>Steps of making Stacked Bar Chart:
+
+
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+ <p ><strong>a)  Functions of user Input Parameter:-
+
+</strong>
+
+
+</p>
+<p class="padding-xs">
+             topMargin: Margin from top,<br>
+
+			rightMargin: Margin from right,<br>
+
+			bottomMargin: Margin from bottom,<br>
+
+			leftMargin: Margin from left,<br>
+
+			color: color for areas,<br>
+
+			xLabel: Label for x axis
+
+
+</p>
+<p class="padding-sm">eg) </p>
+<p class="padding-md">var cfgStackedAreaChart = {<br>
+
+					
+						topMargin: 5,<br>
+
+						rightMargin: 0,<br>
+
+						bottomMargin: 40,<br>
+
+						leftMargin: 40,<br>
+
+						color: d3.scale.category20c(),<br>
+
+						xLabel:"Time"<br>
+
+					}
+
+
+
+
+ </p>
+ 
+ </div>
+<h3>2) Data format to be used: JSON Array	
+
+
+	</h3>
+ <div class="chartCode"> <p class="padding-xs">
+		eg) 
+
+
+</p>
+			
+
+
+	<p class="padding-sm">
+    var stackedAreaData = [<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":34.6240,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":31.7140,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":34.8570,<br>
+"name":"PRODUCT1","type":"area","band1Color":"#bb533f","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":144.4390,<br>
+"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":153.1140,<br>
+"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":126.4660<br>
+,"name":"PRODUCT2","type":"area","band1Color":"#ba8e3e","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":13.0250,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":6.0190,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":5.3900,<br>
+"name":"PRODUCT3","type":"area","band1Color":"#3ca2b8","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":99.8900,<br>
+"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":79.9660,<br>
+"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":84.7040,<br>
+"name":"PRODUCT4","type":"area","band1Color":"#7929b2","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Dec","categoryorder":11,"y":102.3490,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Jan","categoryorder":12,"y":114.9680,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""},<br>
+
+						{"layoutID":309,"nationalAvg":1,"category":"Feb","categoryorder":13,"y":100.8590,<br>
+"name":"PRODUCT5","type":"area","band1Color":"#be2f96","metric1Label":""}
+						];
+
+
+
+</p>
+
+
+
+
+</div>
+
+<h3>3) Calling draw 3D Stacked Bar Chart function
+
+
+
+	</h3>
+ <div class="chartCode"> <p ><strong>Pass div id, stackedAreaData and cfgStackedAreaChart as argument in function.
+			
+
+			
+</strong></p>
+
+
+			<p class="padding-xs">eg)</p>
+			
+
+
+
+
+
+			
+
+
+	<p class="padding-sm">	var stocChart11=$("#line11").stocCharts();<br>
+
+				stocChart11.drawStackedAreaChart("#line11", stackedAreaData, cfgStackedAreaChart);
+
+</p>
+
+
+</div>
+
+
+ </div> 
+ <div class="chartDetails funnelChartMenu">
+<h2>Funnel Chart :
+
+
+
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+Funnel charts are a type of chart, often used to represent stages in a sales process and show the amount of potential revenue for each stage. This type of chart can also be useful in identifying potential problem areas in an organization's sales processes.
+</p>
+ <h3>
+<strong>Steps of making Funnel Chart:</strong><br>
+<br>
+
+
+1) Data format to be used: JSON Array	
+
+</h3>
+ <div class="chartCode">
+
+<p class="padding-xs">
+            eg) 		
+
+</p>
+<p class="padding-sm">var funnelChartData= [
+ </p>
+<p class="padding-md">["Food",      12000, "#008080"],<br>
+
+							["Travel", 4000,  "#702963"],<br>
+
+							["Bill", 2500,  "#ff634d"],<br>
+
+							["Others",     1500,  "#007fff"] ];</p>
+ 
+ </div>
+<h3>2) Calling draw Funnel Chart function	
+
+
+	</h3>
+ <div class="chartCode"> <p ><strong>Pass funnelChartData as argument in function.</strong>
+</p>
+	<p class="padding-xs">eg)</p>		
+
+
+	<p class="padding-sm">
+   var stockChart14=$("#line14").stocCharts();<br>
+
+			stockChart14.drawFunnelChart(funnelChartData)
+			
+
+</p>
+
+
+
+
+</div>
+ </div> 
+ <div class="chartDetails guageGraphMenu">
+<h2>Gauge Graph :</h2>
+<p><strong>Introduction:</strong><br>
+A gauge chart (or speedometer chart) combines a Doughnut chart and a Pie chart in a single chart.	</p>
+ <h3>
+<strong>Steps of making gauge graph:</strong><br>
+<br>
+
+
+1) Data format to be used: JSON Array
+
+</h3>
+ <div class="chartCode">
+
+<p class="padding-xs">
+            eg) 		
+
+</p>
+<p class="padding-sm">var data= [{"maxSpeedVal":200,<br>
+
+										"speedVal":80}];
+
+ </p>
+
+ 
+ </div>
+<h3>2) Calling draw gauge graph function	</h3>
+
+ <div class="chartCode"> <p ><strong>Pass funnelChartData as argument in function.
+</strong></p>
+		
+
+
+	<p class="padding-xs">
+  id: Div id<br>
+
+			arcStartIndLabel:- Left label<br>
+
+			arcMiddleIndLabel:-	Middle label<br>
+
+			arcEndIndLabel:- Right label
+
+
+</p>
+
+<p class="padding-sm">eg)</p>
+<p class="padding-md">var stockChart15=$("#line15").stocCharts();<br>
+
+			stockChart15.gaugeGraph({'dataA':data,
+</p>
+<p class="padding-md">"id":"#line15",<br>
+
+										'arcStartIndLabel':'No Risk',<br>
+
+										'arcMiddleIndLabel':'Meter',<br>
+
+										'arcEndIndLabel':'Total'});
+			
+</p>
+
+</div>
+ </div> 
+ <div class="chartDetails areaChartMenu">
+<h2>Area Chart</h2>
+<p><strong>Introduction:</strong><br>
+An area chart or area graph displays graphically quantitative data.
+	</p>
+ <h3>
+<strong>Steps of making Area Chart:
+</strong><br>
+<br>
+
+
+1) Data format to be used: JSON Array	
+
+
+</h3>
+ <div class="chartCode">
+
+<p class="padding-xs">
+            eg) 		
+
+</p>
+<p class="padding-sm">var data = <br>
+[{"id":8385,"doj":"2015-02-24"},{"id":9759,"doj":"2015-02-25"},{"id":542,"doj":"2015-02-26"},{"id":8099,"doj":"2015-02-27"},{"id":4087,"doj":"2015-02-28"},{"id":3644,"doj":"2015-03-01"},{"id":6104,"doj":"2015-03-02"},{"id":1415,"doj":"2015-03-03"},{"id":7785,"doj":"2015-03-04"},{"id":4663,"doj":"2015-03-05"},{"id":8181,"doj":"2015-03-06"},{"id":3614,"doj":"2015-03-07"},{"id":2548,"doj":"2015-03-08"},{"id":6308,"doj":"2015-03-09"},{"id":1420,"doj":"2015-03-10"},{"id":1444,"doj":"2015-03-11"},{"id":8455,"doj":"2015-03-12"},{"id":6050,"doj":"2015-03-13"},{"id":5049,"doj":"2015-03-14"},{"id":6924,"doj":"2015-03-15"},{"id":2339,"doj":"2015-03-16"},{"id":5137,"doj":"2015-03-17"},{"id":4343,"doj":"2015-03-18"},{"id":565,"doj":"2015-03-19"},{"id":4803,"doj":"2015-03-20"},{"id":7511,"doj":"2015-03-21"},{"id":4997,"doj":"2015-03-22"},{"id":1985,"doj":"2015-03-23"},{"id":1422,"doj":"2015-03-24"}];
+
+ </p>
+
+ 
+ </div>
+<h3>2) Calling draw Area Chart function
+</h3>
+
+ <div class="chartCode"> <p ><strong>Pass div id, stackedAreaData and cfgStackedAreaChart as argument in function.
+
+</strong></p>
+		
+
+
+	<p class="padding-xs">
+ Functions of input parameter:-<br>
+
+				xFieldName: x axis label name for tooltip<br>
+
+				yFieldName: y axis label name for tooltip<br>
+
+				xAxisIndicationLabel: x axis label below ticks  <br>
+
+				yAxisIndicationLabel: y axis label on left of ticks<br>
+
+				axisColor: color of axis<br>
+
+				attachBrushEvent: Flag for attaching brush event <br>
+
+				redraw: 
+			
+
+
+</p>
+
+<p class="padding-sm">eg)</p>
+<p class="padding-md">var stockChart=$("#line16").stocCharts(textStyleConfg);<br>
+
+				stockChart.areaChart({'data':data,
+										
+</p>
+<p class="padding-md">'xFieldName':'doj',<br>
+
+											"yFieldName":'id', <br>
+
+											'xAxisIndicationLabel':'Time Index',<br>
+
+											'yAxisIndicationLabel':'Money',<br>
+
+											'axisColor':'#222222',<br>
+
+											'attachBrushEvent':true,<br>
+
+											'redraw':false});<br>
+
+				stockChart.circleChart({'color':"black",'r':3,'data':data});		
+			
+</p>
+
+</div>
+ </div> 
+ <div class="chartDetails pyramidChartMenu">
+<h2>Pyramid Chart :</h2>
+<p><strong>Introduction:</strong><br>
+A pyramid chart is an inverted funnel chart. Similar to a funnel chart, the pyramid chart is a single series chart which does not use an axis. It represents data as portions of a 100% (the individual segments add up to represent a whole).
+
+	</p>
+ <h3>
+<strong>Steps of making Pyramid Chart:
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+</h3>
+ <div class="chartCode">
+
+<p>
+         <strong> a) Functions of user Input Parameter:-</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+
+ </p>
+
+ 
+ </div>
+<h3>2) Data format to be used: JSON Array	</h3>
+
+ <div class="chartCode"> <p  class="padding-xs">eg) 
+</p></div>
+
+<h3>3)  Calling draw Pyramid Chart function</h3>
+
+ <div class="chartCode"> <p class="padding-xs"  >Pass div id, stackedAreaData and cfgStackedAreaChart as argument in function.</p>
+ <p class="padding-sm">	eg)
+</p></div>
+ </div> 
+ <div class="chartDetails 3DPyramidChartMenu">
+<h2>3D Pyramid Chart :
+</h2>
+<p><strong>Introduction:</strong><br>
+A pyramid chart is an inverted funnel chart. Similar to a funnel chart, the pyramid chart is a single series chart which does not use an axis. It represents data as portions of a 100% (the individual segments add up to represent a whole).
+
+
+	</p>
+ <h3>
+<strong>Steps of making 3D Pyramid Chart:
+
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+<p>
+         <strong> a) Functions of user Input Parameter:-</strong>
+		
+
+</p>
+<p class="padding-xs">colorArray:- Color for each block of pyramid
+			labelArray:- Array of labels for each block of pyramid </p>
+            
+            <p class="padding-sm">eg)</p>
+<p class="padding-md">var labelArray=["DUSTER","Qualis","Scorpio","Eco Sport","Honda city","Altis","EON"];<br>
+
+				var colorArray 1= ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"];
+</p>
+
+<p class="padding-md">var confg =
+</p>
+<p class="padding-lg">{"data":data,<br>
+
+							"colorArray":colorArray1,<br>
+
+							"labels":labelArray,<br>
+
+							"unit":"M$"};
+		 	
+</p>
+ 
+ </div>
+<h3>2)  Data format to be used: Array</h3>
+
+ <div class="chartCode"> 
+ <p  class="padding-xs">eg) </p>
+ <p class="padding-sm">var data =[20, 15, 10, 10, 20, 20, 5];		</p>
+
+</div>
+
+<h3>3)   Calling draw 3D Pyramid Chart function</h3>
+
+ <div class="chartCode"> <p><strong>Pass confg as argument in function.</strong></p>
+ <p class="padding-xs">	eg)</p>
+  <p class="padding-sm">var stocChart20=$("#line20").stocCharts();<br>
+
+				stocChart20.draw3DPyramidChartWithoutSlice(confg);
+</p></div>
+ </div> 
+ <div class="chartDetails 3DPyramidSliceChartMenu">
+<h2>3D Pyramid Slice Chart :
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A pyramid chart is an inverted funnel chart. Similar to a funnel chart, the pyramid chart is a single series chart which does not use an axis. It represents data as portions of a 100% (the individual segments add up to represent a whole). Pyramid is divided in slices
+
+
+	</p>
+ <h3>
+<strong>Steps of making 3D Pyramid Slice Chart:
+
+
+
+</strong><br>
+<br>
+
+
+1)  Setting user input in configuration 
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+<p>
+         <strong> a) Functions of user Input Parameter:-
+</strong>
+		
+
+</p>
+<p class="padding-xs">		colorArray:- Color for each block of pyramid<br>
+
+			labelArray:- Array of labels for each block of pyramid </p>
+            
+            <p class="padding-sm">eg)</p>
+<p class="padding-md">var  labelArray=["Ford","Mercedes","Volkswagon","Ferrari","BMW","RENUALT","HYUNDAI"];<br>
+
+
+	var colorArray1= ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b", "#e377c2", "#7f7f7f", "#bcbd22"];
+
+</p>
+
+<p class="padding-md">var confg =
+
+</p>
+<p class="padding-lg">{"data":data,<br>
+
+							"colorArray":colorArray1,<br>
+
+							“labels”:labelArray<br>
+
+							"unit":"%"};
+
+		 	
+</p>
+ 
+ </div>
+<h3>2)  Data format to be used: Array	
+</h3>
+
+ <div class="chartCode"> 
+ <p  class="padding-xs">eg) </p>
+ <p class="padding-sm">var data =[20, 15, 10, 10, 20, 20, 5];		</p>
+
+</div>
+
+<h3>3)    Calling draw 3D Pyramid Slice Chart function
+</h3>
+
+ <div class="chartCode"> <p><strong>Pass confg as argument in function.
+</strong></p>
+ <p class="padding-xs">	eg)</p>
+  <p class="padding-sm">var stocChart21=$("#line20").stocCharts();<br>
+
+				stocChart20.draw3DPyramidChartWithoutSlice(confg);
+
+</p></div>
+ </div> 
+ <div class="chartDetails invertPyramidMenu">
+<h2>Invert Pyramid :
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A pyramid chart is an inverted funnel chart. Similar to a funnel chart, the pyramid chart is a single series chart which does not use an axis. If we invert this we get invert pyramid.
+
+	</p>
+ <h3>
+<strong>Steps of making 3D Pyramid Slice Chart:
+
+</strong><br>
+<br>
+
+
+1)  Setting user input in configuration </h3>
+ <div class="chartCode">
+
+<p>
+         <strong> a) Functions of user Input Parameter:-
+
+</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+</p>
+            
+            
+            
+ </div>
+<h3>2)  Data format to be used: Array
+</h3>
+
+ <div class="chartCode"> 
+ <p  class="padding-xs">eg) </p>
+ 
+
+</div>
+
+<h3>3)    Calling draw 3D Pyramid Slice Chart function
+</h3>
+
+ <div class="chartCode"> <p><strong>Pass pyramidPercentData, payableSummaryArray, yLabel as argument in function.
+			
+
+</strong></p>
+ <p class="padding-xs">	eg)</p>
+  <p class="padding-sm">var invertStockChart=$("#line17").stocCharts();<br>
+
+				invertStockChart.drawPyramidChart(pyramidPercentData,payableSummaryArray,true,yLabel);		
+
+
+
+</p></div>
+ </div> 
+ <div class="chartDetails meterChartMenu">
+<h2>Meter Chart :
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+It is a type of chart which display a gauge and a needle to show the value.
+
+
+	</p>
+ <h3>
+<strong>Steps of making Meter Chart:
+
+</strong><br>
+<br>
+
+
+1)  Calling draw Meter Chart function
+</h3>
+ <div class="chartCode">
+
+<p >
+       <strong>Pass div id as argument in init function. Pass angle as argument in turnNeedle function</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+</p>
+            
+    <p class="padding-sm">meterChart.init('line18');<br>
+
+					meterChart.turnNeedle(-90);<br>
+
+					setTimeout(function(){<br>
+
+					meterChart.turnNeedle(90);<br>
+
+					  },2000)
+</p>        
+            
+ </div>
+
+
+</div> 
+ <div class="chartDetails CombinationalChartMenu">
+<h2>Combinational Chart :
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+It's a chart which displays the data using combination of pie and area chart.
+
+
+
+	</p>
+ <h3>
+<strong>Steps of making Combinational Chart:
+
+
+</strong><br>
+<br>
+
+
+1) Setting user input and data in configuration 
+
+</h3>
+ <div class="chartCode">
+
+<p >
+       <strong>Functions of user Input Parameter:-</strong>
+		
+
+</p>
+
+            
+    <p class="padding-xs">
+            xAxisLabel:- Label for x axis<br>
+
+			xAxisData:- x axis data<br>
+
+			yLabel:- y axis label<br>
+
+			labelLine1:- <br>
+
+			dataOfLine1:- <br>
+
+			labelLine2:- <br>
+
+			dataOfLine2:- <br>
+
+			revenueUnit:- Currency unit to use<br>
+
+			PieData:- Data for pie chart<br>
+
+			pieDataFactor:- Currency unit for pie chart<br>
+
+			revenueOfLine1:- Data for first line<br>
+
+			revenueOfLine2:- Data for second line<br>
+
+			color:- Color for each line<br>
+
+			clickedInfo:- Extra information to show on button click<br>
+
+			2006:- <br>
+
+			2012:- <br>
+
+			clickedSybmol:- Image for symbol 
+
+</p> 
+
+<p class="padding-sm">eg)</p> 
+<p class="padding-md">var data = {<br>
+
+						xAxisLabel : 'years',<br>
+
+						xAxisData: [2004,2005,2006,2007,2008,2009,2010,2011,2012,2013],<br>
+
+						yLabel : 'GDP',<br>
+
+						labelLine1 :'india',<br>
+
+						dataOfLine1 : [19,34,70,12,-42,20,-14,67,112,78],<br>
+
+						labelLine2 : 'canada',<br>
+
+						dataOfLine2 :[34,25,-60,22,92,30,24,47,53,38],<br>
+
+						revenueUnit : '$',<br>
+
+						PieData:{
+								 //point wise data<br>
+
+								 'Data1':[76,43,54,32,66,34,21,56,12,55],<br>
+
+								 'Data2':[45,56,23,67,49,34,65,24,57,66]<br>
+
+								 },
+						pieDataFactor:"Revenue($)",<br>
+
+						revenueOfLine1 :[76,43,54,32,66,34,21,56,12,55],<br>
+
+						revenueOfLine2 :[45,56,23,67,49,34,65,24,57,66],<br>
+
+						color : ["#ff7f0e","#9467bd"],<br>
+
+						clickedInfo :{2009:"INDAIN GDP IS FASTEST GROWING ECONOMY",<br>
+
+						2006:"INDAIN GDP IS FASTEST GROWING ECONOMY",<br>
+
+						2012:"INDAIN GDP IS FASTEST GROWING ECONOMY"}<br>
+
+									,	
+						clickedSybmol :'./img/N.png'<br>
+
+				   };
+</p>      
+            
+ </div>
+
+<h3>2) Calling draw Combinational Chart function</h3>
+<div class="chartCode">
+
+<p >
+       <strong>Pass data defined above as argument in function.
+</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+</p>
+            
+    <p class="padding-sm">var stocChart26=$("#line26").stocCharts();<br>
+
+			stocChart26.drawCombinationalChart(data);
+
+</p>        
+            
+ </div>
+
+</div> 
+ <div class="chartDetails variationChartMenu">
+<h2>Variation Chart :
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+It's a type of chart which shows the variation in two data using bar chart. 
+	</p>
+ <h3>
+<strong>Steps of making Variation Chart:
+
+
+
+</strong><br>
+<br>
+
+
+1)  Setting user input and data in configuration 
+
+
+</h3>
+ <div class="chartCode">
+
+<p >
+       <strong>a) Functions of user Input Parameter:-</strong>
+		
+
+</p>
+
+            
+    <p class="padding-xs">
+          title:-  Title text of chart<br>
+
+			subTitle:-  Subtitle text of chart<br>
+
+			titleColor:- color of title text<br>
+
+			yAxisLabel:- y axis label<br>
+
+			yAxisData:- y axis ticks<br>
+
+			xAxisLabel:- x axis label<br>
+
+			xAxisData:- actual data for coordinates
+
+</p> 
+
+<p class="padding-sm">eg)</p> 
+<p class="padding-md">"title" : "Temperature variation by month",<br>
+
+												"subTitle" : "Observed in Vik i Sogn, Norway, 2014",<br>
+
+												"titleColor" : "gray",<br>
+
+												"yAxisLabel" : 'Month',<br>
+
+												"yAxisData": ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', <br>
+'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],<br>
+
+												"xAxisLabel" : "\u00B0"+"C",<br>
+
+												"xAxisData" : [</p>
+
+															<p class="padding-lg">	[-9.7, 9.4],                  
+																[-8.7, 6.5],<br>
+
+																[-3.5, 9.4],<br>
+
+																[-1.4, 19.9],<br>
+
+																[0.0, 22.6],<br>
+
+																[2.9, 29.5],<br>
+
+																[9.2, 30.7],<br>
+
+																[7.3, 26.5],<br>
+
+																[4.4, 18.0],<br>
+
+																[-3.1, 11.4],<br>
+
+																[-5.2, 10.4],<br>
+
+																[-13.5, 9.8]
+															  ], }</p>
+
+									
+
+										
+			<p class="padding-md">		var cnfg = {"data":variationData};
+
+</p>      
+            
+ </div>
+
+<h3>2) Calling draw Variation Chart function</h3>
+<div class="chartCode">
+
+<p >
+       <strong>Pass cnfg defined above as argument in function.
+
+</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+</p>
+            
+    <p class="padding-sm">var stocChart28=$("#line28").stocCharts();<br>
+
+			stocChart28.variationAnalysis(cnfg);
+
+</p>        
+            
+ </div>
+
+</div> 
+ <div class="chartDetails 3DbubbleChartMenu">
+<h2>3D Bubbles Chart :
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+It's a type of chart which shows the data in bubble. 
+	</p>
+ <h3>
+<strong>Steps of making 3D Bubbles Chart:
+
+
+
+
+</strong><br>
+<br>
+
+
+1)  Setting user input and data in configuration 
+
+
+
+</h3>
+ <div class="chartCode">
+
+<p >
+       <strong>a) Functions of user Input Parameter:-
+</strong>
+		
+
+</p>
+
+            
+    <p class="padding-xs">
+          title:-  Title text of chart<br>
+
+			subTitle:-  Subtitle text of chart<br>
+
+			titleColor:- color of title text<br>
+
+			yAxisLabel:- y axis label<br>
+
+			yAxisData:- y axis ticks<br>
+
+			xAxisLabel:- x axis label<br>
+
+			xAxisData:- actual data for coordinates<br>
+
+			legendArray:- Array of legends<br>
+
+			colorArray:- Array of colors
+
+
+</p> 
+
+<p class="padding-sm">eg)</p> 
+<p class="padding-md">"title" : "Temperature variation by month",<br>
+
+						"subTitle" : "Observed in Vik i Sogn, Norway, 2014",
+</p>
+
+															<p class="padding-lg">	"titleColor" : "gray",<br>
+
+						"yAxisLabel" : 'Month',<br>
+
+						"yAxisData": ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+</p>
+
+									
+
+										
+			<p class="padding-md">		"xAxisLabel" : "\u00B0"+"C",
+						"xAxisData" : [
+
+
+</p>     
+<p class=" padding-xlg">[-9.7, 9.4],   <br>
+               
+										[-8.7, 6.5],<br>
+
+										[-3.5, 9.4],<br>
+
+										[-1.4, 19.9],<br>
+
+										[0.0, 22.6],<br>
+
+										[2.9, 29.5],<br>
+
+										[9.2, 30.7],<br>
+
+										[7.3, 26.5],<br>
+
+										[4.4, 18.0],<br>
+
+										[-3.1, 11.4],<br>
+
+										[-5.2, 10.4],<br>
+
+										[-13.5, 9.8]<br>
+
+									  ],
+</p> 
+<p class="padding-xlg">"series" : [<br>{
+
+										data: [[97, 36, 79], [94, 74, 60], [68, 76, 58], [64, 87, 56], [68, 27, 73], [74, 99, 42], [17, 93, 87], [151, 69, 40], [138, 123, 33], [57, 86, 31]]
+									},<br>
+<br>
+ {
+										data: [[125, 10, 87], [12, 75, 59], [111, 54, 8], [86, 55, 93], [115, 3, 58], [190, 63, 44], [191, 33, 17], [97, 113, 56], [115, 67, 48], [54, 125, 81]]
+									}, <br>
+<br>
+ {
+										data: [[147, 47, 21], [120, 12, 4], [116, 76, 91], [38, 30, 60], [57, 98, 64], [61, 117, 80], [183, 60, 13], [167, 78, 75], [164, 112, 10], [30, 77, 82]]
+									}],
+ </p>
+
+<p class="padding-xlg">'legendArray':["Accenture","Wipro","Infosys"],
+						'colorArray'  :["red","blue","green"]			
+		 	
+			var cnfg={"data":bubbleData};
+</p>
+            
+ </div>
+
+<h3>2) Calling draw 3D Bubbles Chart function</h3>
+<div class="chartCode">
+
+<p >
+       <strong>Pass cnfg defined above as argument in function.
+
+
+</strong>
+		
+
+</p>
+<p class="padding-xs">eg)
+
+</p>
+            
+    <p class="padding-sm">var stocChart32=$("#line32").stocCharts();<br>
+
+			stocChart32.threeDBubbleChart(cnfg);
+
+
+</p>        
+            
+ </div>
+
+</div> 
+ <div class="chartDetails 3DGroupedBarChartMenu">
+<h2>3D Grouped Bar Chart :
+
+
+
+
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent and multiple bars grouped with each other. Bars are grouped and are represented in 3D view.
+
+	</p>
+ <h3>
+<strong>Steps of making 3D grouped Bar Chart:
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration 
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+<p >
+       <strong>a) Functions of user Input Parameter:-
+
+</strong>
+		
+
+</p>
+
+            
+    <p class="padding-xs">
+        colorArray:- Color of each bars <br>
+
+				topMargin:- Margin from top<br>
+
+				rightMargin:- Margin from right,<br>
+
+				bottomMargin:- Margin from bottom,<br>
+
+				leftMargin:- Margin from left,<br>
+
+				toolTipLabelForYAxis:- y axis label for tooltip,	<br>
+			
+				xLabel:- Label for x axis<br>
+
+				xAxisTickArray:- x axis ticks			
+
+
+
+</p> 
+
+<p class="padding-sm">eg)</p> 
+<p class="padding-md">var cfg3DBarChart = {</p>
+		
+		<p class="padding-xlg">	topMargin: 5,<br>
+
+			rightMargin: 0,<br>
+
+			bottomMargin: 40,<br>
+
+			leftMargin: 40,<br>
+
+			toolTipLabelForYAxis: "Sales(in Crores)",<br>
+
+			colorArray:["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"],<br>
+
+			xAxisTickArray:[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019, 2020, 2021, 2022, 2023],
+			xLabel:"Year"		}
+
+</p>
+
+									
+
+										
+			
+            
+ </div>
+
+<h3>2) Data format to be used: Json Array</h3>
+<div class="chartCode">
+
+
+<p class="padding-xs">eg)
+
+</p>
+            
+    <p class="padding-sm">var barDataOne = [15, 80, 120, 280, 50, 65, 900, 40, 23, 98, 634, 356, 520, 200];<br>
+
+		var barDataTwo = [150, 180, 20, 20, 90, 650, 300, 400, 230, 308, 434, 320, 120, 189];
+</p>        
+            
+ </div>
+ 
+ 
+ <h3>3)  Calling draw 3D Grouped Bar Chart function</h3>
+<div class="chartCode">
+
+
+<p class="padding-xs">Pass div id, barDataOne,  barDataTwo cfg3DBarChart,
+
+
+</p>
+            
+    <p class="padding-sm">eg)</p>    
+    <p class="padding-md"> var stocChart34=$("#line34").stocCharts(textStyleConfg);<br>
+
+	    stocChart34.drawThreeDGroupedBarChart("#line34", barDataOne, barDataTwo, cfg3DBarChart);
+</p>    
+            
+ </div>
+
+</div> 
+ <div class="chartDetails treeChartMenu">
+<h2>Tree Chart :</h2>
+<p><strong>Introduction:</strong><br>
+A diagram used in strategic decision making, valuation or probability calculations. The diagram starts at a single node, with branches emanating to additional nodes, which represent mutually exclusive decisions or events.
+
+
+
+	</p>
+ <h3>
+<strong>Steps of making Tree Chart:
+
+</strong><br>
+<br>
+
+
+1) Data format to be used: Json Array	
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+
+
+            
+    <p class="padding-xs">
+       eg) </p> 
+
+<p class="padding-sm">
+
+var data = { "Name": "Product",<br>
+
+				"children1": [<br>
+
+
+			   {  "BName":"TShirt",<br>
+
+				  "Email":"",<br>
+
+				  "children1":[<br>
+
+					 {"NickName":"Red TShirt",<br>
+
+						"id":1},<br>
+
+					 {"NickName":"Black TShirt",<br>
+
+						"id":27 }],},<br>
+
+			   {"BName":"Fridge TV",   <br>
+
+				  "Email":"",<br>
+
+				  "children1":[<br>
+
+					 {"NickName":"Large TV",<br>
+
+						"id":2 },   <br>
+ 
+					  { "NickName":"Small TV",<br>
+
+						"id":68} ],<br>
+}]};
+
+</p> 
+
+
+									
+
+										
+			
+            
+ </div>
+
+<h3>2) Calling draw Tree Chart function</h3>
+<div class="chartCode">
+
+
+<p class="padding-xs">Pass div id, data,  link-color(color of connecting ways),  node-color(color of tree nodes) using cfg.
+			
+
+
+</p>
+            
+    <p class="padding-sm">eg)</p>     
+    <p class="padding-md">var stocChart33=$("#line33").stocCharts();<br>
+
+		var cfg={"data":data,"link-color":"#ccc","node-color":"#fff"};<br>
+
+		stocChart33.treeChart(cfg);
+</p>   
+            
+ </div>
+
+</div> 
+ <div class="chartDetails comparisonChartMenu">
+<h2>Comparison Chart :</h2>
+<p><strong>Introduction:</strong><br>
+A comparison chart is a simple bullet chart . It is used for comparison between the estimated value and actual result(for e.g it can be used for checking last decade trend of actual profit and estimated profit yearly).
+
+
+
+	</p>
+ <h3>
+<strong>Steps of making Comparison Chart:
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration	
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+
+
+            
+    <p class="padding-xs">
+       a) var yAxisEstimateData :- It represents the values in gray color, which are representing estimated value.<br>
+
+b) var yAxisActualData :- It represents the bars in centre of every block , which are representing actual values.<br>
+
+c) var xAxisData :- It represents the value(here it is year). </p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">yAxisEstimateData : [300,390,300,270,230,180,150,350,300,300,390,300,270,200,230,180]<br>
+
+yAxisActualData : [330,450,320,250,270,140,190,300,370,330,450,320,250,230,270,140]<br>
+
+xAxisData:[1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014]</p>
+
+
+<p class="padding-lg">var data =  {<br>
+
+title : "Last 16 Year Data , Estimated v/s Actual Profit",<br>
+
+titleColor : "gray",<br>
+
+yAxisLabel : "Profit",<br>
+
+yAxisUnit : "Million",<br>
+
+yAxisEstimateData : [300,390,300,270,230,180,150,350,300,300,390,300,270,200,230,180],<br>
+
+yAxisEstimateDataUnit : 'Estimated',<br>
+
+yAxisActualData : [330,450,320,250,270,140,190,300,370,330,450,320,250,230,270,140],<br>
+
+yAxisActualDataUnit : 'Actual',<br>
+
+xAxisLabel : "Years",<br>
+
+xAxisData : [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014]
+}<br>
+
+var cnfg={"data":data};</p>								
+
+										
+			
+            
+ </div>
+
+<h3>2) Data format to be used: Array</h3>
+
+<h3>3) Calling draw Comparison Chart function</h3>
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass cnfg as argument in function.</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart37=$("#line37").stocCharts();<br>
+
+stocChart37.comparisonAnalysis(cnfg);</p>
+  </div>
+</div> 
+ <div class="chartDetails musicSpikesMenu">
+<h2>Music Spikes :</h2>
+<p><strong>Introduction:</strong><br>
+A music spikes chart is simple bar chart , with different colors in different domains.
+It is used for checking the intensity of a result and in which particular domains it falls in.(for e.g it can be used to check everyday temperature and in which domains it falls).
+
+
+
+	</p>
+ <h3>
+<strong>Steps of making Music Spikes Chart:
+
+</strong><br>
+<br>
+
+
+1) Setting user input in configuration
+
+
+
+
+
+</h3>
+ <div class="chartCode">
+
+
+
+            
+    <p class="padding-xs">
+     a) var yAxisData :- It represents values(here it is temperature) on a particular day.<br>
+
+b)xAxisData :- It represents values(here it is day).</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+title : "Last 15 day's temperature readings",<br>
+
+titleColor : "gray",<br>
+
+yAxisUnit : "\u00B0"+"C",<br>
+
+yAxisLabel : "Temperature",<br>
+
+yAxisData : [18,25,42,25,20,35,45,20,40,10,30,40,32,44,40],<br>
+
+xAxisLabel : "",<br>
+
+xAxisData : <br>
+["1'Mar","2'Mar","3'Mar","4'Mar","5'Mar","6'Mar","7'Mar","8'Mar","9'Mar","10'Mar","11'Mar","12'Mar",<br>
+"13'Mar","14'Mar","15'Mar"]}<br>
+var cnfg={"data":data};</p>
+      
+ </div>
+
+<h3>2) Data format to be used: Array</h3>
+
+<h3>3) Calling draw Music spikes Chart function</h3>
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass cnfg as argument in function.</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart36=$("#line36").stocCharts();<br>
+
+stocChart36.musicSpikesAnalysis(cnfg);</p>
+  </div>
+</div> 
+ <div class="chartDetails areaChartWithNegativeValueMenu">
+<h2>Negative Area Chart :</h2>
+<p><strong>Introduction:</strong><br>
+It is used to visualise the results , along the median(or any value) and visualising the intensity of that negative/positive results.It is used to visualise results with continuously changing value along X-axis.
+</p>
+ <h3><strong>Steps of making Negative Area Chart:</strong><br><br>
+ 1) Setting user input in configuration</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+    a) var yAxisData :- It represents values(here it is temperature) on a particular day/time.<br>
+
+b)var xAxisData :- It represents values(here it is time of a day) with set intervals. <br>
+
+c)var conditionArrayAboveMidPoint:- It is giving gradient colors to the area above average amount line.<br>
+ 
+d)var conditionArrayBelowMidPoint:-It is giving gradient colors to the area below average amount line. </p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+yAxisArray : [-23,45,12,-23,-13,-66,-44,24,34,-12,40,67,-20,-32,-24,-28,20,40,70,-78],<br>
+
+xAxisArray:["8:00","8:30","9:00","9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00",<br>
+"13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30"],<br>
+
+midPoint : 5,<br>
+
+midPointLabel : "Average Amount",<br>
+
+conditionArrayAboveMidPoint : [{34:"#aaefec"},{48:"#90e0dc"},{70:"#6cc0bc"}],<br>
+
+conditionArrayBelowMidPoint : [{15:"#e67a77"},{30:"#f6b0ae"},{50:"#ffd1d0"}],<br>
+
+xAxisLabel:"Time",<br>
+
+yAxisLabel:"Amount"}<br>
+
+
+var cnfg={"data":data};</p>
+      
+ </div>
+
+<h3>2) Data format to be used: Array</h3>
+
+<h3>3) Calling draw Music spikes Chart function</h3>
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass cnfg as argument in function.</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart35=$("#line35").stocCharts();<br>
+
+stocChart35.areaChartWithNegativeValueAnalysis(cnfg);</p>
+  </div>
+</div> 
+<div class="chartDetails areaChartWithVaryColorMenu">
+<h2>Area Chart With Vary Color :</h2>
+<p><strong>Introduction:</strong><br>
+An <strong>area chart</strong> or <strong>area graph</strong> displays graphically quantitive data. It is based on the line chart. The area between axis and line are commonly emphasized with colors, textures and hatchings. Commonly area chart is used for comparison between two or more quantities. 
+
+</p>
+ <h3><strong>Steps of making Area Chart with Color Analysis:
+</strong><br><br>
+ 1) Data format to be used: Json Array 
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+   title: Title text<br>
+
+yAxisArray : y axis data<br>
+
+ xAxisArray : x axis data<br>
+
+midPoint  : Middle point <br>
+
+midPointLabel : Middle point label<br>
+
+conditionArrayAboveMidPoint  : Color Array<br>
+
+conditionArrayBelowMidPoint : Color Array<br>
+
+xAxisLabel : x axis label array<br>
+
+yAxisLabel : y axis label array
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+title : "FootFall Intensity in last 10 hours",<br>
+
+yAxisArray : [33,65,32,53,23,86,64,44,54,32,60,87,40,52,44,48,40,60,90,98],<br>
+
+xAxisArray:["8:00","8:30","9:00","9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00",<br>
+"13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30"],<br>
+
+midPoint : 55,<br>
+
+midPointLabel : "Average Amount",<br>
+
+conditionArrayAboveMidPoint : [{64:"#aaefec"},{78:"#90e0dc"},{100:"#6cc0bc"}],<br>
+
+                         conditionArrayBelowMidPoint : [{45:"#ffd1d0"},{35:"#f6b0ae"},{30:"#e67a77"}],<br>
+
+xAxisLabel:"Time",<br>
+
+yAxisLabel:"Amount"<br>
+
+}
+
+</p>
+      
+ </div>
+
+<h3>2) Calling draw Area Chart function</h3>
+
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass div id, data and pass it in function as cnfg.
+</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var cnfg={"data":data};<br>
+
+var stocChart35=$("#line35").stocCharts();<br>
+
+stocChart35.areaChartWithNegativeValueAnalysis(cnfg);
+</p>
+  </div>
+</div>
+
+<div class="chartDetails multipleDountChartMenu">
+<h2>Multiple Donut Chart :
+</h2>
+<p><strong>Introduction:</strong><br>
+Donut or Doughnut chart is just a simple pie chart with a hole inside
+
+
+</p>
+ <h3><strong>Steps of making  multiple donut chart:
+
+</strong><br><br>
+ 1) Data format to be used: Json Array 
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+ dountData :Donut data<br>
+
+dountKey : Donut key<br>
+
+colorArray : color array<br>
+
+unit : label unit<br>
+
+legend : label of legend<br>
+
+legendColor: color of legends
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+ data:[{<br>
+
+dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"7th",<br>
+
+totalStudent : "45"},
+
+{dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"8th",<br>
+
+totalStudent : "45"},<br>
+<br>
+
+
+
+{dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"9th",<br>
+
+totalStudent : "48"},<br>
+<br>
+{dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"10th",<br>
+
+totalStudent : "44"},<br>
+<br>
+{dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"11th",<br>
+
+totalStudent : "52"
+},<br>
+<br>
+{
+dountData : [50,80,60,40,80],<br>
+
+dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785'],<br>
+
+className :"12th",<br>
+
+totalStudent : "45"
+} 
+],
+
+<br>
+<br>
+unit:"Student's",<br>
+
+legend : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],<br>
+
+legendColor: ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785']}
+
+
+
+
+</p>
+      
+ </div>
+
+<h3>2) Calling draw multiple donut chart function
+</h3>
+
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass div id and data in function.
+
+
+</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart39=$("#line39").stocCharts();<br>
+
+stocChart39.multipleDountChartAnalysis(data);
+
+
+</p>
+  </div>
+</div>
+
+<div class="chartDetails barWithLabelChartMenu">
+<h2>MBar with label analysis Chart :
+
+</h2>
+<p><strong>Introduction:</strong><br>
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent. 
+
+
+
+</p>
+ <h3><strong>Steps of making  Comparison Analysis Chart:
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array 
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+titleColor: Title text color<br>
+
+bottomLabel : label of bottom axis<br>
+
+yAxisLabel : y axis label<br>
+
+yAxisUnit : y axis unit<br>
+
+yAxisData : y axis data<br>
+
+yAxisDataUnit : y axis data unit<br>
+
+unit: label unit<br>
+
+colorArray :color array<br>
+
+xAxisLabel : x axis label <br>
+
+xAxisData : x axis data
+
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+ titleColor : "",<br>
+
+bottomLabel : "Last Scores as compared to average of class",<br>
+
+yAxisLabel : "Profit",<br>
+
+yAxisUnit : "Million",<br>
+
+yAxisData : [25,-17,36,-8,20,-10],<br>
+
+averageValue : 0,<br>
+
+yAxisDataUnit : 'Estimated',<br>
+
+xAxisLabel : "Years",<br>
+
+xAxisData : ["9th(math)","9th(physics)","9th(chemistry)","10th(math)","10th(physics)","10th(chemistry)"],<br>
+
+colorArray : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785','#a48ad4'],<br>
+
+unit : "%"}
+
+
+
+
+</p>
+      
+ </div>
+
+<h3>2) Calling draw bar with label analysis chart function
+
+</h3>
+
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass div id, data in function.
+
+
+</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart40=$("#line40").stocCharts();<br>
+
+stocChart40.barWithLabelAnalysis(data);
+
+
+
+
+</p>
+  </div>
+</div>
+
+<div class="chartDetails logoChartMenu">
+<h2>Logo Chart :
+
+</h2>
+<p><strong>Introduction:</strong><br>
+
+The Logo Chart shows the performance of an individual, relative to the average performance of the organization.
+
+
+</p>
+ <h3><strong>Steps of making  Comparison Analysis Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array 
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+nameArray: Name array<br>
+
+classArray : Class array<br>
+
+imageArray: Image array<br>
+
+imageFrameColor: Frame image color<br>
+
+textArray: Array of text<br>
+
+textColor : Text color<br>
+
+legendArray : Array of legends<br>
+
+legendImageArray : Array of legend image<br>
+
+unit : Label unit
+
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+{nameArray: ['John','Mark','Steev','Hussy','John','John','John','John',],<br>
+
+classArray : ['10th','10th','10th','10th','10th','10th','10th','10th'],<br>
+
+imageArray:["./img/S3.png","./img/S3.png","./img/S3.png","./img/S3.png","./img/S3.png","./img/S3.png","./img/S3.png","./img/S3.png"],<br>
+
+imageFrameColor:["green","green","red","red","green","green","red","red"],<br>
+
+textArray:[-20,30,-40,-50,20,10,50,-80],<br>
+
+textColor : ["green","red"],<br>
+
+legendArray:["Above Average","Below Average","Improving","Worsening"],<br>
+
+legendImageArray:['green','red','green','red'],<br>
+
+unit : "%"}
+
+
+
+
+
+</p>
+      
+ </div>
+
+<h3>2) Calling draw logo chart function
+
+
+</h3>
+
+ <div class="chartCode"> 
+  <p class="padding-xs">Pass div id, data in function as cnfg.
+
+
+
+</p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">var stocChart41=$("#line41").stocCharts();<br>
+
+stocChart41.logoChart(data);
+
+
+
+
+</p>
+  </div>
+</div>
+
+<div class="chartDetails barWithLogoMenu">
+<h2>Bar with logo Chart :
+</h2>
+<p><strong>Introduction:</strong><br>
+
+
+The Bar chart with Logo is an advanced version of Simple Bar Chart, in which rather than companies name, we used their logos to make it more informative.
+
+</p>
+ <h3><strong>Steps of making Tree Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array	
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+xData:- x axis data<br>
+
+yData:- y axis data<br>
+
+imagePathArray:- image array <br>
+
+color:- color to be used<br>
+
+yIndicationLabel:- y axis label<br>
+
+xIndicationLabel:- x axis label<br>
+
+colorArray:- color array<br>
+
+xFieldName:- x axis field name<br>
+
+yFieldName:- y axis field name<br>
+
+axisColor:- color of axis
+
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var AdvancedBarData={<br>
+
+ "yData":[3,5,6,2,10,20,10],<br>
+
+			 'xData':["Volkswagen","Hyundai","Toyota","Ford","porsche","Ebay","Paxcom"],<br>
+
+			 "imagePathArray":["./img/logos/1.jpg","./img/logos/2.jpg","./img/logos/3.jpg","./img/logos/4.jpg","./img/logos/5.jpg","./img/logos/6.jpg","./img/logos/7.jpg"],<br>
+
+			 "color":["#e67a77"],<br>
+
+			 "yIndicationLabel":"Profit",<br>
+
+			 "xIndicationLabel":"Company"<br>
+
+		
+		}
+
+
+
+</p>
+<p class="padding-md">var colorArray=["#A3BFDB"];<br>
+
+		var xFieldName="over";<br>
+
+		var yFieldName="run";<br>
+
+		var axisColor="black";</p>
+      
+ </div>
+
+<h3>2) Calling draw bar with logo chart function <br>
+</h3>
+
+ <div class="chartCode"> 
+  <p><strong>Pass div id, data using cfg in function.</strong></p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">
+        var cnfg={"data":AdvancedBarData};<br>
+
+		var stocChart30=$("#line30").stocCharts();<br>
+
+		stocChart30.barWithLogo(cnfg);
+
+
+
+
+
+</p>
+  </div>
+</div>
+
+
+<div class="chartDetails detailChartMenu">
+<h2>Detail Menu Chart :</h2>
+<p><strong>Introduction:</strong><br>
+The Detail Menu Chart illustrates, what happened in the last pre-defined time interval.
+
+
+
+
+</p>
+ <h3><strong>Steps of making Detail Menu Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array	
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:- Title text<br>
+
+titleSize:- Title size<br>
+
+titleColor:- Title color <br>
+
+color:- color to be used<br>
+
+leftYAxisData:- left y axis data<br>
+
+leftYAxisLabel:- left y axis label<br>
+
+leftYAxisUnit:- left y axis unit<br>
+
+rightYAxisData:- right y axis data<br>
+
+rightYAxisLabel:- right y axis label<br>
+
+rightYAxisUnit:- right y axis unit<br>
+
+xAxisData:- x axis data<br>
+
+xAxisLabel:- x axis label<br>
+
+topYSymbolArray:- top y symbol array<br>
+
+topYSymbolLabel:- top y symbol label<br>
+
+bottomYSymbolArray:- bottom y symbol array<br>
+
+bottomYSymbolLabel:- bottom y symbol label<br>
+
+imageFolderPath:- image folder path
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var data = {<br>
+
+ 
+
+
+
+</p>
+<p class="padding-md">
+						'title' : 'Last 20 Balls Progression Of Innings',<br>
+
+						'titleSize' : 20,<br>
+
+						'titleColor' : 'gray',<br>
+
+						'leftYAxisData' :   [6,6.1,6,6.5,6.2,7,4,3,6,7,4,3.4,5,5,6,5,3,6,7,6],<br>
+
+						'leftYAxisLabel' :  'Average',<br>
+
+						'leftYAxisUnit' : 'rpo',<br>
+
+						'rightYAxisData' : <br>
+ [202,203,205,205,209,210,216,218,220,221,222,223,227,231,233,239,243,243,245,249],<br>
+
+						'rightYAxisLabel' : 'Total Runs',<br>
+
+						'rightYAxisUnit' : 'runs',<br>
+
+						'xAxisData' :       [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],<br>
+
+						'xAxisLabel' : 'Last 20 Balls',<br>
+
+						'topYSymbolArray'  : <br>
+['two','one','two','wicket','four','one','six','two','two','one','one','one','four','four','two','six','four','wicket','two','four'],<br>
+
+						'topYSymbolLabel' : 'Runs Scored',<br>
+
+						'bottomYSymbolArray' :  <br>
+['inSwing','shortPitch','outSwing','yorker','outSwing','yorker','inSwing','shortPitch','outSwing','yorker',<br>
+'outSwing','yorker','inSwing','shortPitch','outSwing','yorker','outSwing','yorker','outSwing','yorker'],<br>
+
+						'bottomYSymbolLabel' : 'Ball Type',<br>
+
+						"imageFolderPath":'./img/'
+					}<br>
+
+		</p>
+      
+ </div>
+
+<h3>2)  Calling draw detail menu chart function <br>
+
+			</h3>
+
+ <div class="chartCode"> 
+  <p><strong>Pass div id, data using cfg in function.</strong></p>
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">
+        var cnfg={"data":data};<br>
+
+	var stocChart31=$("#line31").stocCharts(textStyleConfg);<br>
+
+		stocChart31.detailAnalysis(cnfg);
+
+
+
+
+
+</p>
+
+
+
+
+  </div>
+</div>
+
+<div class="chartDetails Zoomable">
+<h2>Zoomable Area Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+The Zoomable Area Chart is an advanced version of simple Area Chart, in which user can zoom a particular area for more detailed description of that segment.
+
+
+</p>
+ <h3><strong>Steps of making zoomable area Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array	
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+var data = [{"id":401,"doj":"2015-03-28"},{"id":315,"doj":"2015-03-29"},{"id":436,"doj":"2015-03-30"},{"id":230,"doj":"2015-03-31"},{"id":180,"doj":"2015-04-01"},{"id":136,"doj":"2015-04-02"},{"id":220,"doj":"2015-04-03"},{"id":396,"doj":"2015-04-04"},{"id":374,"doj":"2015-04-05"},{"id":279,"doj":"2015-04-06"},{"id":484,"doj":"2015-04-07"},{"id":205,"doj":"2015-04-08"},{"id":242,"doj":"2015-04-09"},{"id":206,"doj":"2015-04-10"},{"id":284,"doj":"2015-04-11"},{"id":167,"doj":"2015-04-12"},{"id":123,"doj":"2015-04-13"},{"id":484,"doj":"2015-04-14"},{"id":450,"doj":"2015-04-15"},{"id":125,"doj":"2015-04-16"},{"id":270,"doj":"2015-04-17"},{"id":153,"doj":"2015-04-18"},{"id":493,"doj":"2015-04-19"},{"id":254,"doj":"2015-04-20"},{"id":481,"doj":"2015-04-21"},{"id":438,"doj":"2015-04-22"},{"id":123,"doj":"2015-04-23"},{"id":268,"doj":"2015-04-24"},{"id":382,"doj":"2015-04-25"}]
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+
+      
+ </div>
+
+<h3>2)  Calling zoomable area chart function and circle chart function</h3>
+
+ <div class="chartCode"> 
+  
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">
+       xFieldName:- x field name<br>
+
+	yFieldName:- y field name<br>
+
+	title:- title text<br>
+
+	xAxisIndicationLabel:- x axis label<br>
+
+	yAxisIndicationLabel:- y axis label<br>
+
+	axisColor:- color of axis <br>
+Pass div id, data and above fields in area chart function.<br>
+
+	Pass color and data in circle chart function
+
+<p class="padding-lg">eg)</p>
+<p class="padding-xlg">var stockChart=$("#line16").stocCharts();<br>
+
+
+stockChart.areaChart({'data':data,'xFieldName':'doj',"yFieldName":'id','title':'Profit Analysis <br>
+Chart','xAxisIndicationLabel':'Time <br>
+Index','yAxisIndicationLabel':'Money','axisColor':'#222222','attachBrushEvent':true,'redraw':false});<br>
+
+
+stockChart.circleChart({'color':"blue",'r':3,'data':data});</p>
+
+
+</p>
+  </div>
+</div>
+
+<div class="chartDetails globChartMenu">
+<h2>Network Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+The Network Chart shows, to which and how the nodes are linked to each other.
+
+
+</p>
+ <h3><strong>Steps of making Network Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array	
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+var data = [{"id":401,"doj":"2015-03-28"},{"id":315,"doj":"2015-03-29"},{"id":436,"doj":"2015-03-30"},{"id":230,"doj":"2015-03-31"},{"id":180,"doj":"2015-04-01"},{"id":136,"doj":"2015-04-02"},{"id":220,"doj":"2015-04-03"},{"id":396,"doj":"2015-04-04"},{"id":374,"doj":"2015-04-05"},{"id":279,"doj":"2015-04-06"},{"id":484,"doj":"2015-04-07"},{"id":205,"doj":"2015-04-08"},{"id":242,"doj":"2015-04-09"},{"id":206,"doj":"2015-04-10"},{"id":284,"doj":"2015-04-11"},{"id":167,"doj":"2015-04-12"},{"id":123,"doj":"2015-04-13"},{"id":484,"doj":"2015-04-14"},{"id":450,"doj":"2015-04-15"},{"id":125,"doj":"2015-04-16"},{"id":270,"doj":"2015-04-17"},{"id":153,"doj":"2015-04-18"},{"id":493,"doj":"2015-04-19"},{"id":254,"doj":"2015-04-20"},{"id":481,"doj":"2015-04-21"},{"id":438,"doj":"2015-04-22"},{"id":123,"doj":"2015-04-23"},{"id":268,"doj":"2015-04-24"},{"id":382,"doj":"2015-04-25"}]
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+
+      
+ </div>
+
+<h3>2)  Calling zoomable area chart function and circle chart function</h3>
+
+ <div class="chartCode"> 
+  
+  <p class="padding-sm">eg)</p>
+   <p class="padding-md">
+       xFieldName:- x field name<br>
+
+	yFieldName:- y field name<br>
+
+	title:- title text<br>
+
+	xAxisIndicationLabel:- x axis label<br>
+
+	yAxisIndicationLabel:- y axis label<br>
+
+	axisColor:- color of axis <br>
+Pass div id, data and above fields in area chart function.<br>
+
+	Pass color and data in circle chart function
+
+<p class="padding-lg">eg)</p>
+<p class="padding-xlg">var stockChart=$("#line16").stocCharts();<br>
+
+
+stockChart.areaChart({'data':data,'xFieldName':'doj',"yFieldName":'id','title':'Profit Analysis <br>
+Chart','xAxisIndicationLabel':'Time <br>
+Index','yAxisIndicationLabel':'Money','axisColor':'#222222','attachBrushEvent':true,'redraw':false});<br>
+
+
+stockChart.circleChart({'color':"blue",'r':3,'data':data});</p>
+
+
+</p>
+  </div>
+</div>
+
+
+<div class="chartDetails multiAxisChartMenu">
+<h2>Multiple Axis Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+The Multi-Axis Line chart is an advanced form of line charts used to contrast a set of entities based on multiple parameters.
+
+
+</p>
+ <h3><strong>Steps of making Multiple Axis Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+yAxisData:- y axis data<br>
+
+yAixsAvgData:- y axis average data<br>
+
+yAxisColor:- y axis color<br>
+
+xAxisData:- x axis data<br>
+
+unit:- label unit<br>
+
+legend:- array of legends<br>
+
+legendColor:- array of legend color<br>
+
+
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			yObject:
+			 [</p>
+             <p class="padding-lg">{
+							yAxisData : [210,280,270,320,350,260,325],<br>
+
+							yAixsAvgData : [80,37,40,100,75,45,30],<br>
+
+							yAxisColor : "orange"<br>
+
+				},<br>
+<br>
+
+				{
+						
+							yAxisData : [240,250,160,295,160,180,170],<br>
+
+							yAixsAvgData : [35,25,20,45,30,20,55],<br>
+
+							yAxisColor : "blue"<br>
+
+				},<br>
+<br>
+
+				{
+						
+							yAxisData : [100,150,50,200,125,75,230],<br>
+
+							yAixsAvgData : [135,125,120,150,130,120,155],<br>
+
+							yAxisColor : "green"<br>
+
+				}
+			],</p>
+            
+            <p class="padding-md">xAxisData : ["Jan","Feb","Mar","Apr","May","June","July"],<br>
+
+			unit:"Student's",<br>
+
+			legend : ["Student Login","Class Avg.Login","Student Interaction","Class.Avg Interaction","Student Time Spent","Class Time Spent"],<br>
+
+			legendColor: ['orange','orange','blue','blue','green','green']
+			}</p>
+      
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails roundedThreeDBarMenu">
+<h2>3D Cylinder bar Chart : :</h2>
+<p><strong>Introduction:</strong><br>
+
+A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent. Bars are represented in 3D cylindrical view.
+
+
+
+
+</p>
+ <h3><strong>Steps of making Rounded Three D Bar:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+yAxisData:- y axis data<br>
+
+yAxisColor:- y axis color<br>
+
+xAxisData:- x axis data<br>
+
+unit:- label unit<br>			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			title : "Country Growth Rate",
+					barData: [
+			 [</p>
+             <p class="padding-lg">{"country": "USA","visits": 4250,"color": "#FF0F00" }, <br>
+
+                                   {"country": "China",	"visits": 3882,	"color": "#FF6600"}, <br>
+
+                                   {"country": "Japan","visits": 3409,"color": "#FF9E01"},<br>
+
+                                   {"country": "Germany","visits": 3022,"color": "#FCD202"},<br>
+
+                                   {"country": "pakistan","visits": 2622,"color": "#F8FF01"}, <br>
+
+                                   {"country": "France",
+						"visits": 2214,
+						"color": "#B0DE09"
+						}, <br>
+{
+						"country": "India",
+						"visits": 1984,
+						"color": "#04D215"
+						}, <br>
+{
+						"country": "Spain",
+						"visits": 1511,
+						"color": "#0D8ECF"
+						}, <br>
+{
+						"country": "England",
+						"visits": 1165,
+						"color": "#0D52D1"
+						},<br>
+{
+						"country": "Russia",
+						"visits": 980,
+						"color": "#2A0CD0"
+						},<br>
+ {
+						"country": "UK",
+						"visits": 743,
+						"color": "#8A0CCF"
+						},<br>
+ {
+						"country": "Canada",
+						"visits": 641,
+						"color": "#CD0D74"
+						}, <br>
+{
+						"country": "Brazil",
+						"visits": 595,
+						"color": "#754DEB"
+						},<br>
+ {
+						"country": "Italy",
+						"visits": 516,
+						"color": "#999999"
+						}],  </p>
+            
+            <p class="padding-md">xAxisLabel : "Country",<br>
+
+				yAxisLabel :"Visits",<br>
+
+				unit : ""}</p>
+      
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails threeDPieChartMenu">
+<h2>Three D Pie Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+It is a type of graph in which a circle/pie is divided into sectors, and each sector represents a some fraction of the whole. Here, pie is shown in 3D.
+
+
+</p>
+ <h3><strong>Steps of making Three D Pie Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+dountData:- dount data array<br>
+
+dountKey:- dount key array<br>
+
+colorArray:- dount color array<br>
+
+unit:- label unit<br>
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				dountData : [231,123,184,155,55],
+				dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+				colorArray : ['pink','#95d7bb','#fcb322','#e67a77','#aec785'],
+				unit : "%"
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails threeDDountChartMenu">
+<h2>Three D Dount Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+A doughnut chart displays data as percentage of the whole. Categories are represented by every slice. Doughnut charts are functionally identical to pie charts.
+Donut is represented in 3D view here.
+
+
+
+</p>
+ <h3><strong>Steps of making Three D Dount Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+dountData:- dount data array<br>
+
+dountKey:- dount key array<br>
+
+colorArray:- dount color array<br>
+
+unit:- label unit<br>
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				dountData : [231,123,184,155,55],
+				dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+				colorArray : ['pink','#95d7bb','#fcb322','#e67a77','#aec785'],
+				unit : "%"
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+      
+ </div>
+
+
+
+ 
+</div>
+
+
+
+<div class="chartDetails arcWithCylinderMenu">
+<h2>Arc With Cylinder Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+It is player stats chart,showing his performance in different countries. 
+
+</p>
+ <h3><strong>Steps of making Arc With Cylinder Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+cylinderdata:- cylinderd data array<br>
+
+label data:- label data array<br>
+
+colorArray:-  color array<br>
+
+key:- key <br>
+   
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+   {
+    </p>
+             <p class="padding-lg">
+   
+				{
+
+							key : "MATCH",<br>
+
+							barData: [80,30,18,15,10,5],<br>
+
+							label : ['AUS','PAK','SA','WI','INDIA','ENG']	
+					
+				},<br>
+<br>
+
+				{
+
+							key : "RUN",<br>
+
+							barData: [575,75,66,56,52,47],<br>
+
+							label : ['INDIA','ENG','AUS','WI','SA','PAK']
+							
+							
+				},<br>
+<br>
+
+				{
+							key : "SR",<br>
+
+							barData: [77,47,41,34,32,20],<br>
+
+							label : ['SA','PAK','INDIA','ENG','AUS','WI']
+							
+				},<br>
+<br>
+
+				{
+							key : "AVG",<br>
+
+							barData: [15.6,14,12,11,10,9],<br>
+
+							label : ['INDIA','WI','ENG','PAK','AUS','SA']
+							
+				},<br>
+<br>
+
+				{
+							key : "100s",<br>
+
+							barData: [90,70,60,50,20,10],<br>
+
+							label : ['WI','ENG','INDIA','PAK','AUS','SA']
+							
+				}<br>
+
+			],
+    </p>
+<p class="padding-lg">   
+       color :{ "INDIA" : "#e67a77",<br>
+
+				     "PAK": "#95d7bb",<br>
+
+					"SA": "#fcb322",<br>
+
+					"WI": "#6d788e",<br>
+
+					"AUS": "#aec785",<br>
+
+					"ENG": "#a48ad4"				 }
+					
+		}</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails threeDComparisionChartMenu">
+<h2>Three D Comparison Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+A 3D comparison chart is a simple bullet chart . It is used for comparison between the estimated value and actual result(for e.g it can be used for checking last decade trend of actual profit and estimated profit yearly).
+
+
+</p>
+ <h3><strong>Steps of making Three D Comparison Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+a) var yAxisEstimateData :- It represents the values in gray color, which are representing estimated value.<br>
+
+b) var yAxisActualData :- It represents the bars in centre of every block , which are representing actual values.<br>
+
+c) var xAxisData :- It represents the value(here it is year).
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+  title : "Last 16 Year Data , Estimated v/s Actual Profit",<br>
+
+						yAxisLabel : "Profit",<br>
+
+						yAxisUnit : "Million",<br>
+
+						yAxisEstimateData : [325,250,340,230,250,290,100,220,350,300],<br>
+
+						yAxisEstimateDataUnit : 'Estimated',<br>
+
+						yAxisActualData : [275,300,320,250,230,270,140,190,300,370],<br>
+
+						yAxisActualDataUnit : 'Actual',<br>
+
+						xAxisLabel : "Years",<br>
+
+						xAxisData : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],<br>
+
+						legendArray : ['Estimate Data','Actual Data']
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+</div>
+  </div></div></div>
+       <div class="col-lg-9 col-md-9 col-sm-12 cssAnimation divPadding" id="chartOuter" ><div class="chartOuter" id="line1"></div></div>
+      </div>
+   </div></div>
+
+
+<script>$(document).ready(function() {
+    $("div.doc-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.doc-tab>div.doc-tab-content").removeClass("active");
+        $("div.doc-tab>div.doc-tab-content").eq(index).addClass("active");
+    });
+});
+		(function($){
+			$(window).load(function(){
+				
+				$("#content-1").mCustomScrollbar({
+					theme:"minimal"
+				});
+				
+			});
+		})(jQuery);
+		
+		
+$("#navCloseOpen").click(function(){
+    $(".chartMenuNav").toggleClass("positionOutSide");
+	$(".deshboardContainor").toggleClass("paddingStyle");
+});
+
+
+$("#toggle" ).click(function(){
+    $(".chartNavContainor").toggleClass("pullLeft");
+	
+});
+
+$("#maxmize" ).click(function(){
+      $("#chartDocumationOuter").addClass("col-lg-12");
+	 $("#chartDocumationOuter").addClass("col-md-12");
+	 $("#chartDocumationOuter").removeClass("col-lg-3");
+	$("#chartDocumationOuter").removeClass("col-md-3");
+	$("#chartOuter").addClass("col-lg-12");
+	$("#chartOuter").addClass("col-md-12");
+    $("#chartOuter").removeClass("col-lg-9");
+	$("#chartOuter").removeClass("col-md-9");
+});
+
+
+$("#minmize" ).click(function(){
+      $("#chartDocumationOuter").removeClass("col-lg-12");
+	 $("#chartDocumationOuter").removeClass("col-md-12");
+	 $("#chartDocumationOuter").addClass("col-lg-3");
+	$("#chartDocumationOuter").addClass("col-md-3");
+	   $("#chartOuter").removeClass("col-lg-12");
+	 $("#chartOuter").removeClass("col-md-12");
+	 $("#chartOuter").addClass("col-lg-9");
+	$("#chartOuter").addClass("col-md-9");
+	
+});
+
+
+$(".chartList ul li" ).click(function(){
+ 
+ if(!isTriggeringClick){
+  $(".chartNavContainor").toggleClass("pullLeft");
+ 
+ }else{
+  isTriggeringClick=false;
+ }
+    
+});
+
+
+/*$(".chartList ul li a" ).click(function(){
+    $(".chartNavContainor").toggleClass("hideDiv");
+	
+	
+}); */
+
+$(".pullRight" ).click(function(){
+    $(".chartNavContainor").toggleClass("pullLeft");
+	
+	
+	
+});
+
+$(".chartList ul li a").click(function(e) {
+        e.preventDefault();
+        $(this).removeClass("inActiveChart");
+        $(this).addClass("activeChart");
+        var index = $(this).index();
+        $(".docCode").removeClass("inActiveChart");
+        $(".docCode").eq(index).addClass("activeChart");
+    });
+
+
+var theToggle = document.getElementById('toggle');
+
+// based on Todd Motto functions
+// http://toddmotto.com/labs/reusable-js/
+
+// hasClass
+function hasClass(elem, className) {
+	return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+}
+// addClass
+function addClass(elem, className) {
+    if (!hasClass(elem, className)) {
+    	elem.className += ' ' + className;
+    }
+}
+// removeClass
+function removeClass(elem, className) {
+	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+	if (hasClass(elem, className)) {
+        while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+            newClass = newClass.replace(' ' + className + ' ', ' ');
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    }
+}
+// toggleClass
+function toggleClass(elem, className) {
+	var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+    if (hasClass(elem, className)) {
+        while (newClass.indexOf(" " + className + " ") >= 0 ) {
+            newClass = newClass.replace( " " + className + " " , " " );
+        }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    } else {
+        elem.className += ' ' + className;
+    }
+}
+
+theToggle.onclick = function() {
+   toggleClass(this, 'on');
+   return false;
+}		
+		
+$(".chartDetails").hover(
+  function () {
+    $(".chartList ul li:hover").addClass("black");
+  },
+  function () {
+    $(".chartList ul li:hover").removeClass("black");
+  }
+);		
+
+        </script><!-- row -->
+
+
+
+
+
+    
+    
+</body>
+</html>

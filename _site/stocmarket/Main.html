@@ -1,0 +1,1604 @@
+<html ng-app="chartApp">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="libs/jquery-1.10.1.min.js" type="text/javascript"></script>
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/theme6.css" id="ctheme" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="css/jqx.base.css" rel="stylesheet" type="text/css">
+<link href="css/jqx.energyblue.css" rel="stylesheet" type="text/css">
+<link href="css/fancySelect.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="css/charttheme.css" rel="stylesheet">
+<link href="css/perfect-scrollbar.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway|Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="libs/angular.min.js"></script>
+<script type="text/javascript" src="libs/d3.v3.min.js"></script>
+<script type="text/javascript" src="libs/stomp.js"></script>
+<script type="text/javascript" src="js/rester.js"></script>
+<script src="MainCtlr.js" type="text/javascript"></script>
+<script src="js/d3-funnel_v1.1.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/chartmenu.js"></script>
+<script src="CompanyImageChartCtlr.js" type="text/javascript"></script>
+<script src="BarGraphCtlr.js" type="text/javascript"></script>
+<script src="PieChartCtlr.js" type="text/javascript"></script>
+<script src="HistoricalDataChart.js" type="text/javascript"></script>
+<script src="ComaprisonChart.js" type="text/javascript"></script>
+<script src="websocketLayer/WebSocketHandler.js" type="text/javascript"></script>
+<script src="RankerHandler.js" type="text/javascript"></script>
+<script src="gainers.js" type="text/javascript"></script>
+<script type="text/javascript" src="ddaccordion.js"></script>
+<script type="text/javascript" src="libs/jqxcolorpicker.js"></script>
+<script type="text/javascript" src="libs/jqx-all.js"></script>
+<script type="text/javascript" src="js/ohlcchart.js"></script>
+<script type="text/javascript" src="js/fancySelect.js"></script>
+<script type="text/javascript" src="areaChart.js" type="text/javascript" ></script>
+<script type="text/javascript" src="canvasHandler.js" type="text/javascript" ></script>
+<script type="text/javascript" src="js/perfect-scrollbar.js" type="text/javascript" ></script>
+
+<!--for twitter authorization -->
+<script type="text/javascript" src="js/oauth.js" type="text/javascript" ></script>
+<script type="text/javascript" src="js/fs.js" type="text/javascript" ></script>
+
+<!--canvas lib -->
+<!--<script src="js/html2canvas.js"></script>-->
+
+<script src="js/canvas2image.js"></script>
+<script type="text/javascript" src="https://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+<script src="https://rawgithub.com/niklasvh/html2canvas/master/dist/html2canvas.min.js"></script>
+<script src="https://rawgithub.com/niklasvh/html2canvas/master/dist/html2canvas.svg.min.js"></script>
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+
+
+<!-- cryptography forencoding and deconding -->
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/aes.js"></script>
+<script type="text/javascript" src="js/enc-base64.js"></script>
+<script type="text/javascript" src="js/sha1.js"></script>
+<script type="text/javascript" src="js/sha3.js"></script>
+<script type="text/javascript" src="js/sha224.js"></script>
+<script type="text/javascript" src="js/sha256.js"></script>
+<script type="text/javascript" src="js/sha384.js"></script>
+<script type="text/javascript" src="js/sha512.js"></script>
+<script type="text/javascript" src="js/hmac.js"></script>
+
+<style>
+	
+
+</style>
+
+<script type='text/javascript'>
+	  $(document).ready(function(){
+		  
+		  $('#chart').removeClass('activeChart');
+		  
+		  //initially hide the second layer of chart
+		  setTimeout(function(){
+			  	$('.d3Chart').hide();
+			 },300);
+			 
+		  $('.chartLink').click(function(){
+			
+			var id="#"+$(this).attr('name');
+			 $('.activeComp').removeClass('activeComp');
+		    $('.activeChart').removeClass('activeChart');
+			//console.log("id::"+id);
+			if(id=="#chart"){
+				$('#leftnav').show();
+				$('#leftNavHistorical').hide();
+				$('#historicDataInnerDiv').hide();
+				$('#multiplechart').hide();
+				$('.accordion').show();
+				$('#ComparativeStudy').hide();
+				$('#ohlc-container').hide();
+				$('.leftMenuBar').hide();
+				$('.RightPanel').show();
+				$('.d3Chart').hide();
+				$('.multiplechart').hide();
+				
+				$("#twitter-sharing-div").hide();
+			}
+			else if(id=="#historicalDataChart")
+			{
+				$('#leftNavHistorical').show();
+				$('#leftnav').hide();
+				$('#historicDataInnerDiv').show();
+				$('.accordion').hide();
+				$('#multiplechart').hide();
+				$('#ComparativeStudy').hide();
+				$('.leftMenuBar').hide();
+				$('#ohlc-container').hide();
+				$('.RightPanel').show();
+				$('.d3Chart').hide();
+				$('#chartListMenu').show();
+				$('.multiplechart').hide();
+				$("#twitter-sharing-div").hide();
+			}
+			
+			else if(id=="#OHLCAnalysis")
+			{
+				$("#twitter-sharing-div").show();
+				$('#leftNavHistorical').hide();
+				$('#leftnav').hide();
+				$('#historicDataInnerDiv').hide();
+				$('.RightPanel').hide();
+				$('#ComparativeStudy').hide();
+				$('#multiplechart').hide();
+				$('.leftMenuBar').hide();
+				$('#ohlc-container').show();
+				$('.d3Chart').hide();
+				$('#chartListMenu').show();
+				fetchData('AA');
+				$('.multiplechart').hide();
+			}
+			
+			else if(id=="#multiplechart")
+			{   
+				$("#canvas2").hide();
+				$('.chartBigOuter').hide();
+				$('#leftNavHistorical').hide();
+				$('#leftnav').hide();
+				$('#historicDataInnerDiv').hide();
+				$('.RightPanel').hide();
+				$('#ComparativeStudy').hide();
+				$('#ohlc-container').hide();
+				$('.leftMenuBar').show();
+				$('.d3Chart').show();
+				$('#chartListMenu').show();
+				$('.multiplechart').show();
+				$('#Default').perfectScrollbar('update');
+				
+				$('#basicLineChartMenu').trigger('click');
+				fetchData('AA');
+				$("#twitter-sharing-div").hide();
+			}
+		
+			
+			else{
+				$('#leftnav').hide();
+				$('#leftNavHistorical').hide();
+				$('#historicDataInnerDiv').hide();
+				$('.accordion').hide();
+				$('#ComparativeStudy').show();
+				$('#ohlc-container').hide();
+				$('.leftMenuBar').hide();
+				$('.RightPanel').show();
+				$('.d3Chart').hide();
+				$('.multiplechart').hide();
+				$("#twitter-sharing-div").hide();
+			}
+			
+			
+			
+			
+		
+			
+			$(id).addClass('activeChart');
+			$(this).addClass('activeComp');
+		  });
+		 
+			  $("#colorPicker").jqxColorPicker({
+				width: 200,
+				height: 180
+			});
+		  
+		  $('#colorpickerbox').hide();
+		  $("#colorpickerbox .btn-close").click(function(){
+			 $(this).parent().hide(); 
+		  });
+		  $('.beanish-color').click(function(e){
+			  console.log("offset is:"+$('.beanish-color'));
+			  $("#colorpickerbox").css('left',e.offSetX +'px');
+			 $('#colorpickerbox').show();
+			$('#colorPicker').bind('colorchange', function (event)
+			{ 
+			 $('.beanish-color').css('background','#'+$("#colorPicker").jqxColorPicker('getColor').hex);
+			// $('#colorPicker').hide();
+			});
+			  
+		  });
+	  });
+	  function loadChart(){
+	  
+	  
+	  }
+	  var showDropDown=false;
+	  function showColorPicker(){
+		  	
+		showDropDown=!showDropDown;
+		if(showDropDown){
+		$('#colordiv').show();
+		}
+		else{
+				$('#colordiv').hide();
+			}
+	}
+		  
+		
+
+	  </script>
+
+    
+</head>
+<body  ng-controller="genereateLogoChartData">
+
+ <canvas id="canvas2" width="1350px" height="900px" style="display:none;position:fixed;left:25%;top:10%;z-index:9999;border:0px solid black;cursor:url(img/pencil-icon.png),edit;"></canvas>
+<img id="canvasImg" src="img/canvas.png" ></img> 
+<div id="colorpickerbox">
+<div class="btn-close"></div> <div id="colorPicker" draggable=”true”></div></div>
+
+	<div class="header">
+		<div class="logo" style="float:left; margin:5px 0 0 0;">  <img src="img/stocChart-logo.png" alt="stocChart-logo"/> </div>
+		<div class="nav">
+			<ul class="nav-list">
+	  
+      <li class="chartLink activeComp" name='historicalDataChart'> <i class="fa fa-line-chart"></i>  Capital Market Dashboard  </li>
+  
+  
+   
+      
+				<li class="chartLink " name="chart" > <i class="fa fa-tachometer"></i> Realtime data plotting </li>
+                  <li class="chartLink " name="leftPanel"   > <i class="fa fa-pencil-square-o"></i>Comparative Study </li> 
+                  
+                    <li class="chartLink " name="OHLCAnalysis"   > <i class="fa fa-files-o"></i>
+OHLC Analysis </li> 
+                     
+                 <li  id="dropdown" onclick="showColorPicker();" style="background-color:#274d65;" > <i class="fa fa-cog"></i> Other Settings </li>
+				<!--<li> <a href="#"><i class="fa fa-home" ></i> </a> </li>
+				<li> <a href="#"><i class="fa fa-folder-open"></i> </a> </li>
+				<li> <a href="#"><i class="fa fa-file-text-o"></i> </a>  </li>
+				<li> <a href="#"><i class="fa fa-external-link-square"></i> </a></li>
+				<li> <a href="#"><i class="fa fa-cogs"></i> </a> </li>-->
+	  
+			</ul>
+           <div id="colordiv" class="colorPikerMenu" > <div class="btnClose"> <a href="#"><img src="img/cross.png" alt="cross"/></a></div><span class="piechart" style="margin-top:0px;">Pie Chart</span>
+          <div class="beanish" id="colorPicker1"><span class="beanish-color"></span>RS < .50 </div>
+       <div class="bullish" id="colorPicker1"><span class="bullish-color"></span> RS > .50</div>
+   <span class="piechart">Bar Chart(relative strength)</span>
+   <div class="beanish" id="colorPicker5"><span class="barrs1"></span> Bar color</div>
+      
+   
+   
+   <span class="piechart">Comparision Chart</span>
+   <div class="beanish" id="colorPicker3"><span class="bar1"></span> Bar1</div>
+            <div class="bullish" id="colorPicker4"><span class="bar2"></span> Bar 2</div>
+            
+            
+              <span class="piechart">Create Editable </span>
+   <div class="beanish" id="colorPicker6"><span><input type="checkbox" id="isEditableArena"></span> Create Editable area</div>
+	<div class="beanish" id="twitterSharing"><img  id="twitterImg" src="img/twitter.png"/> </div>	
+            <div class="bullish" id="colorPicker7"><span id="pencolor" > <i class="fa fa-pencil fa-pencil-color"></i> </span> Pen color</div>
+          <div class="bullish" id="colorPicker7"><span><select id="penstrokewidth" > <option value="2" selected>2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option></select></span> Stroke wirdth
+          <p style="float:left; clear:both;"> <input type="button" class="clear-editing" value="clear all editing" > </p></div>
+         
+            </div>
+		</div>
+	</div>
+	<!-- twitter sharing btn -->
+	<div id="twitter-sharing-div" ></div>
+	
+<div id="ohlc-container" style="display:none;" >
+<div class="charttop-strip">
+<div class="label-value"><input type="text" name="text" id="yahooSymbol" placeholder="enter ticker"></div>
+<div class="date-Time"> <label>Number of days</label>
+<section id="basic-usage  "
+																	style="float: left;">
+																	<select class="basic-usage-demo"
+																		id="sub-divison-filter-selection"
+																		onchange="selectDivion()">
+																		<option value="1000">Last 1 months</option>
+																		<option value="2000">Last 3 months</option>
+																		<option value="3500">Last 6 months</option>
+															
+																		
+																	</select>
+																</section>
+
+</div>
+<div class="dataValueOuter">
+<div class="label-value"><label>Open</label>  <div class="ValueOpen ValueData"></div> </div>
+<div class="label-value"><label>Low</label>  <div class="ValueLow ValueData"></div> </div>
+<div class="label-value"><label>High</label>  <div class="ValueHigh ValueData"></div> </div>
+<div class="label-value"><label>Close</label>  <div class="ValueClose ValueData"></div> </div> </div>
+
+<div class="chartSettingIcon">
+     <ul>
+      <li><a href="#" class="editChart"></a></li>
+      <li id="eclipse"><a href="#" class="ellipticalLine "></a></li>
+      <li id="straight"><a href="#" class="oneLine " ></a></li>
+      <li id="skew"><a href="#" class="croseLine "></a></li>
+      <li id="range"><a href="#" class="twoLine "></a></li>
+      <li id="text"><a href="#" class="text active"></a></li>
+        </ul></div>
+        <div class="downloadAsImage"><a href="#">Download As Image</a></div>
+</div>
+
+</div>
+
+<div class="multiplechart" style="display:none;"  >
+<button id="showHideMenu" class="btnSelectChart">Select Chart</button>
+<div class="leftMenuBar contentHolder chartMenu" style="display:none;" id="Default" >
+<div class="chartMenuList content  " id="chartListMenu"  >
+<ul>
+<li class="active"> <a  href="#" id="basicLineChartMenu" ><i class="fa fa-angle-right chartArrow"></i>
+ Basic Line Chart </a> </li>
+<li> <a  href="#" id="scatterPlotChartMenu" ><i class="fa fa-angle-right chartArrow"></i>
+ Scatter Plot Chart </a> </li>
+<li> <a  href="#" id="drillDownChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Drill Down Chart </a> </li>
+
+<li> <a  href="#" id="heatmapMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Heatmap </a> </li>
+
+<li> <a  href="#" id="transitPieMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Transit Pie Chart </a> </li>
+
+  <li> <a  href="#" id="dountChartWithLegendMenu"><i class="fa fa-angle-right chartArrow"></i>
+Donut Chart with Legend</a>  </li> 
+ 
+  <li> <a  href="#" id="dountWithBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Donut Chart with Bars</a>  </li> 
+ 
+ 
+ 
+<li> <a  href="#" id="radarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Radar Chart </a>  </li>
+
+<li> <a  href="#" id="multiAxisMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Multi Axis Chart </a> </li> 
+
+<li> <a  href="#" id="groupedBarMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Grouped Bar Menu </a>  </li>
+ 
+<li> <a  href="#" id="groupedBar2DMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Grouped Bars with Negative Values </a>  </li>
+ 
+ <li> <a  href="#" id="3DBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ 3D Bar Chart</a>  </li> 
+ 
+ <li> <a  href="#" id="3DGroupedBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ 3D Grouped Bar Chart</a>  </li>
+ 
+ <li> <a  href="#" id="3DStackedBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ 3D Stacked Bar Chart</a>  </li> 
+ 
+ <li> <a  href="#" id="BulletBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Bullet Bar Chart</a>  </li> 
+ 
+ <li> <a  href="#" id="CricketAnalChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+ Rounded Bar with special labels</a>  </li> 
+
+ 
+ <li> <a  href="#" id="stackedAreaChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Stacked Area Chart</a>  </li> 
+
+  <li> <a  href="#" id="stackedBarChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Stacked Bar Chart</a>  </li> 
+  <li> <a  href="#" id="funnelChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Funnel Chart</a>  </li> 
+  <li> <a  href="#" id="guageGraphMenu"><i class="fa fa-angle-right chartArrow"></i>
+Guage Graph </a>  </li> 
+
+  <li> <a  href="#" id="areaChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Zoomable Area Chart </a>  </li> 
+
+  <li> <a  href="#" id="pyramidChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Pyramid Chart </a>  </li> 
+
+ <li> <a  href="#" id="3DPyramidChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+3D Pyramid Chart </a>  </li> 
+
+ <li> <a  href="#" id="3DPyramidSliceChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+3D Pyramid Slice Chart </a>  </li> 
+
+  <li> <a  href="#" id="invertPyramidMenu"><i class="fa fa-angle-right chartArrow"></i>
+Invert Pyramid </a>  </li> 
+
+  <li> <a  href="#" id="meterChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Meter Chart</a>  </li> 
+<li> <a  href="#" id="CombinationalChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Combinational Chart</a>  </li> 
+ 
+<li> <a  href="#" id="variationChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Variation Chart</a>  </li> 
+
+<li> <a  href="#" id="globChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Network Chart</a>  </li> 
+ 
+ 
+ <li> <a  href="#" id="barWithLogoMenu"><i class="fa fa-angle-right chartArrow"></i>
+Bar With Logo</a>  </li> 
+
+ <li> <a  href="#" id="detailChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Detail Chart</a>  </li>
+
+<li> <a  href="#" id="3DbubbleChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+3D Bubble Chart </a>  </li> 
+
+<li> <a  href="#" id="treeChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Tree Chart </a>  </li> 
+
+<li> <a  href="#" id="areaChartWithVaryColorMenu"><i class="fa fa-angle-right chartArrow"></i>
+Area Chart With Vary Color </a>  </li> 
+
+<li> <a  href="#" id="areaChartWithNegativeValueMenu"><i class="fa fa-angle-right chartArrow"></i>
+Area chart With negative value  </li>  
+
+<li> <a  href="#" id="musicSpikesMenu"><i class="fa fa-angle-right chartArrow"></i>
+Music Spikes</li> 
+
+<li> <a  href="#" id="comparisonChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Comparison Chart</li>  
+
+<li> <a  href="#" id="multipleDountChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Multiple Dount Chart</li>
+
+<li> <a  href="#" id="barWithLabelChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Bar With Label Chart</li>
+
+<li> <a  href="#" id="logoChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Logo Chart
+</li>
+
+<li> <a  href="#" id="multiAxisChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Multiple Axis
+</li>
+
+<li> <a  href="#" id="candleChartMenu"><i class="fa fa-angle-right chartArrow"></i>
+Candle Chart
+</li>
+
+
+
+
+  </ul>
+
+  </ul>
+               
+ </div>               
+  </div>
+  <div class="d3Chart" style="display:none;" >
+   <div class="jsFiddleIcon"><a href="http://jsfiddle.net/Sanchit2801/4t7dzgLy/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div>
+   <select class="themeSelect" >
+ <option value="theme1" id="theme1">Theme 1</option>
+ <option value="theme2" id="theme1">Theme 2</option>
+  <option value="theme3" id="theme1">Theme 3</option>
+ <option value="theme4" id="theme1">Theme 4</option>
+  <option value="theme5" id="theme1">Theme 5</option>
+ <option value="theme6" id="theme1">Theme 6</option>
+</select>
+<div class="chartBigOuter" id="basicLineChart" ><div class="heading" >Basic Line Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/k62gcfrx/2/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div> </div>
+<div class="svgChart" id="line1"></div>
+</div>
+
+<div class="chartBigOuter" id="scatterPlotChart" style="display:none;"><div class="heading" >Scatter Plot Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/945vk7dh/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line2"></div>
+</div>
+
+<div class="chartBigOuter" id="drillDownChart" style="display:none;"><div class="heading" >Drill Down Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/4bbvvL11/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line3"></div>
+</div>
+
+<div class="chartBigOuter" id="heatmap" style="display:none;"><div class="heading" >HeatMap Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/g7hf5k59/3/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line4"></div>
+</div>
+
+<div class="chartBigOuter" id="transitPie" style="display:none;"><div class="heading" >Transit Pie Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/mm7g7mxf/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line5"></div>
+</div>
+
+<div class="chartBigOuter" id="dountChartWithLegend" style="display:none;"><div class="heading" >Donut Chart With Legend <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/m9m2vvt2/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line22"></div>
+</div>
+
+<div class="chartBigOuter" id="dountWithBarChart" style="display:none;"><div class="heading" >Donut Chart With Bars <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/fnu5erww/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line23"></div>
+</div>
+
+
+<div class="chartBigOuter" id="radarChart" style="display:none;"><div class="heading" >Radar Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/m29tzL1b/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line6"></div>
+</div>
+
+
+<div class="chartBigOuter" id="multiAxis" style="display:none;"><div class="heading" >Multi Axis Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/nnttkx6d/3/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line7"></div>
+</div>
+
+<div class="chartBigOuter" id="groupedBar" style="display:none;"><div class="heading" >Grouped Bar  <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/bh8kLb7b/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line8"></div>
+</div>
+
+<div class="chartBigOuter" id="groupedBar2D" style="display:none;"><div class="heading" >Grouped Bar 2D <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/Lowvoa4L/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+	<div class="svgChart" id="line19"></div>
+</div>
+
+<div class="chartBigOuter" id="3DBarChart" style="display:none;"><div class="heading" >3D Bar Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/anezf41z/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div> </div>
+<div class="svgChart" id="line10"></div>
+</div>
+
+
+
+<div class="chartBigOuter" id="stackedAreaChart" style="display:none;"><div class="heading" >3D Bar Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/wfeauadu/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line11"></div>
+</div>
+
+<div class="chartBigOuter" id="BulletBarChart" style="display:none;"><div class="heading" >Bullet Bar Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/9gtmko0g/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div> </div>
+<div class="svgChart" id="line24"></div>
+</div>
+
+<div class="chartBigOuter" id="stackedBarChart" style="display:none;"><div class="heading" >Stacked Bar Chart <div class="jsFiddleIcon"><a  target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line12"></div>
+</div>
+
+<div class="chartBigOuter" id="pyramidChart" style="display:none;"><div class="heading" >Pyramid Chart  <div class="jsFiddleIcon"><a  target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line13"></div>
+</div>
+<div class="chartBigOuter" id="3DPyramidChart" style="display:none;"><div class="heading" >3DPyramid  Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/fptv739g/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line20"></div>
+</div>
+
+<div class="chartBigOuter" id="3DPyramidSliceChart" style="display:none;"><div class="heading" >3DPyramid Slice Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/fptv739g/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line21"></div>
+</div>
+
+
+
+
+
+<div class="chartBigOuter" id="funnelChart" style="display:none;"><div class="heading" >Funnel Chart <div class="jsFiddleIcon"><a href="" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line14"></div>
+</div>
+
+<div class="chartBigOuter" id="guageGraph" style="display:none;"><div class="heading" >Funnel Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/b1cqg5jt/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line15"></div>
+</div>
+
+<div class="chartBigOuter" id="areaChart1" style="display:none;"><div class="heading" >Area Chart <div class="jsFiddleIcon"><a target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line16"></div>
+</div>
+
+<div class="chartBigOuter" id="invertPyramid"><div class="heading">Invert Pyramid <div class="jsFiddleIcon"><a target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line17"></div>
+</div>
+
+
+<div class="chartBigOuter" id="meterChart"><div class="heading">Meter Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/3jf1runu/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line18"></div>
+</div>
+
+<div class="chartBigOuter" id="CricketAnalChart"><div class="heading">Cricket Analysis Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/zv1f3f9c/1/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line25"></div>
+</div>
+
+<div class="chartBigOuter" id="CombinationalChart"><div class="heading">Combinational Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/gmr1h035/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line26"></div>
+</div>
+
+
+<div class="chartBigOuter" id="3DStackedBarChart" style="display:none;"><div class="heading" >3D Bar Chart<div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/mcbzfbo3/3/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div> </div>
+<div class="svgChart" id="line27"></div>
+</div>
+
+<div class="chartBigOuter" id="variationChart" style="display:none;"><div class="heading" >3D Bar Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/qg9erg97/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line28"></div>
+</div>
+
+<div class="chartBigOuter" id="globChart" style="display:none;"><div class="heading" >Air Flights Network <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/6c00w21b/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line29"></div>
+</div>
+
+
+<div class="chartBigOuter" id="barWithLogo" style="display:none;"><div class="heading" >Bar Charts With Images <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/b18yza2d/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line30"></div>
+</div>
+
+<div class="chartBigOuter" id="detailChart" style="display:none;"><div class="heading" >Detail Chart <div class="jsFiddleIcon"><a href="http://jsfiddle.net/PAXCEL/b18yza2d/" target="_blank"><img src="img/jsfiddle-icon.png" alt="" title="Edit in fiddle"></a></div></div>
+<div class="svgChart" id="line31"></div>
+</div>
+
+<div class="chartBigOuter" id="3DBubbleChart" style="display:none;"><div class="heading" >3D Bubble Chart </div>
+<div class="svgChart" id="line32"></div>
+</div>
+
+<div class="chartBigOuter" id="treeChart" style="display:none;"><div class="heading" >Tree Chart </div>
+<div class="svgChart" id="line33"></div>
+</div>
+
+
+
+<div class="chartBigOuter" id="areaChartWithVaryColor" style="display:none;"><div class="heading" >Area Chart With Vary Color</div>
+<div class="svgChart" id="line34"></div>
+</div>
+
+<div class="chartBigOuter" id="areaChartWithNegativeValue"><div class="heading">Area Chart With Negative Value</div>
+<div class="svgChart" id="line35"></div>
+</div>
+
+<div class="chartBigOuter" id="musicSpikes"><div class="heading">Music Spikes</div>
+<div class="svgChart" id="line36"></div>
+</div>
+
+<div class="chartBigOuter" id="comparisonChart"><div class="heading">Comparison Chart</div>
+<div class="svgChart" id="line37"></div>
+</div>
+
+<div class="chartBigOuter" id="3DGroupedBarChart"><div class="heading" >3D Grouped Bar Chart</div>
+<div class="svgChart" id="line38"></div>
+</div>
+
+<div class="chartBigOuter" id="multipleDountChart"><div class="heading" >Multiple Dount Chart</div>
+<div class="svgChart" id="line39"></div>
+</div>
+
+<div class="chartBigOuter" id="barWithLabelChart"><div class="heading" >Bar With Label Chart</div>
+<div class="svgChart" id="line40"></div>
+</div>
+
+<div class="chartBigOuter" id="logoChart"><div class="heading" > Logo Chart</div>
+<div class="svgChart" id="line41"></div>
+</div>
+
+<div class="chartBigOuter" id="multiAxisChart"><div class="heading" > Multiple Chart</div>
+<div class="svgChart" id="line42"></div>
+</div>
+
+<div class="chartBigOuter" id="candleChart"><div class="heading" > Candle Chart</div>
+<div class="svgChart" id="line43"></div>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+  
+    <div class="RightPanel">
+       
+    
+  <div class="right-top" id="historicDataInnerDiv">
+							<div>
+								
+								<div id="historicChartOptionsDiv">
+                                <div class="Historical-Data-Setting"> <i class="fa fa-cogs"></i> Historical Data Setting</div>
+									<form class="ng-pristine ng-valid" id="inputSymbolForm" ng-submit="showHistoricChartForSymbol(true,true)">
+										<div class="toprankers1 wirdth"><span id="symbolTitle"> Current Symbol:</span>
+										<input type="text" class="ng-pristine ng-valid" ng-model="symbol" id="symbolInput"></div>
+									</form>
+									<div class="top" id="historicChartOptionsBottomDiv">
+										<div id="yearOptionDiv">
+                                       
+                                       <span class="Duration"> <i class="fa fa-cog"></i> Duration</span>
+										<div class="section">
+                                        
+											<input type="radio" name="006" class="ng-pristine ng-valid" ng-click="showHistoricChartForInterval()" ng-model="historicChartInterval" value="1M">
+											<span>1 month </span>
+											</div>
+											<div class="section">
+											<input type="radio" name="007" class="ng-pristine ng-valid" ng-click="showHistoricChartForInterval()"  ng-model="historicChartInterval" value="3M">
+											<span>3 months </span>
+											</div>
+											<div class="section">
+											<input type="radio" name="008" class="ng-pristine ng-valid" ng-click="showHistoricChartForInterval()" ng-model="historicChartInterval" value="6M">
+											<span>6 months </span>
+											</div>
+											<div class="section">
+											<input type="radio" name="009" class="ng-pristine ng-valid" ng-click="showHistoricChartForInterval()" ng-model="historicChartInterval" value="1Y">
+											<span>1 year </span>
+											</div>
+										</div>
+										<div id="chartTypeOptionDiv">
+                                        <span class="Duration"> <i class="fa fa-cog"></i> Chart Type</span>
+										<div class="section">
+											<input type="checkbox" class="ng-pristine ng-valid" ng-click="showCheckedHistoricChart()" ng-model="areaChart"> <label>Area</label>
+											<div>
+											<div class="section">
+											<input type="checkbox" class="ng-pristine ng-valid" ng-click="showCheckedHistoricChart()" ng-model="barChart"><label>Bar</label></div>
+											<div class="section">
+											<input type="checkbox" class="ng-pristine ng-valid" ng-click="showCheckedHistoricChart()" ng-model="candleChart"><label>Candle</label></div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div></div>
+                    
+  <div class="accordion" style="display:none;" >
+
+<a class="menuitem submenuheader" href="#" >Setting</a>
+<div class="submenu">
+	 <div class="client-setting">
+      
+	<div class="sublink"  >
+  
+							<table width="100%" border="0" cellspacing="0" cellpadding="5">
+				 
+								<tr>
+									<td>K</td>
+									<td><input class="checkbox" type="checkbox" name="K" checked></td>
+								</tr>
+								<tr>
+									<td>AA</td>
+									<td><input  class="checkbox" name="AA" type="checkbox" checked></td>
+								</tr>
+								<tr>
+									<td>GOOG</td>
+									<td><input  class="checkbox" name="GOOG" type="checkbox" checked></td>
+								</tr>
+								<tr>
+									<td>AACC</td>
+									<td><input  class="checkbox"  name="AACC"type="checkbox" checked></td>
+								</tr>
+								<tr>
+									<td>G</td>
+									<td><input   class="checkbox" name="G" type="checkbox" checked></td>
+								</tr>
+								<tr>
+									<td>FB</td>
+									<td><input  class="checkbox" name="FB" type="checkbox" checked></td>
+								</tr>
+								<tr>
+									<td>PEP</td>
+									<td><input   class="checkbox" name="PEP"type="checkbox" checked></td>
+								 </tr>
+			  
+								<tr>
+									<td>ACN</td>
+									<td><input  class="checkbox" name="ACN" type="checkbox" checked></td>
+								</tr>
+			  
+								<tr>
+									<td>KO</td>
+									<td><input  class="checkbox" name="KO" type="checkbox" checked></td>
+								</tr>
+							  
+								 <tr>
+									<td>YHOO</td>
+									<td><input  class="checkbox" name="YHOO"  type="checkbox" checked></td>
+								</tr>
+							  
+								 <tr>
+									<td>AAPL</td>
+									<td><input  class="checkbox" name="AAPL" type="checkbox" checked></td>
+								</tr>
+							  
+								<tr>
+									<td>GALE</td>
+									<td><input  class="checkbox" name="GALE" type="checkbox" checked></td>
+								</tr>
+				 
+			  
+							</table>
+						</div>
+                    </div></div>
+   <a class="menuitem submenuheader" href="#" >Latency Tracker </a>
+<div class="submenu">
+	 <div class="moving">
+					<div class="toprankers"  style="display:none;">Top Rankers <div class="btn"></div></div>
+					
+						<div class="symImg"> </div>
+					</div></div>
+                    
+                    
+                      <a class="menuitem submenuheader" href="#" >Live Bar Chart </a>
+<div class="submenu">
+	  	<div class="chartOuterDiv2" ng-controller="BarGraphCtlr" >
+		<input type="text" id="currentSymbol" name="text" value="AAPL" >
+		
+		<div class="chartDiv2"></div>
+	</div></div>                   
+                    
+                    </div>
+                    <div class="historical-chart" >  <div class="ticker">
+                     <ul>
+                     <li>Ticker</li>
+                      <li>Last  </li>
+                       <li>  Change   </li>
+                        <li>AbsProfit</li>
+                     </ul></div> <div class="chartOuterDiv3">
+  
+     <div class="img"></div>
+		<div class="chartDiv3"></div>
+       
+	</div></div>
+    
+    
+    <div class="PortfolioHealth" >
+    <div class="heading">Portfolio Health</div>
+    <ul>
+        <li>Bearish</li><li><div class="indicator-strip-red"></div></li> </ul>
+    <ul><li>Bullish</li><li><div class="indicator-strip-green"></div></li></ul>
+ <ul><li>Neutral</li><li><div class="indicator-strip-white"></div></li></ul>
+    
+    </div>
+    
+    
+
+	
+	</div>
+	<div id="historicalDataChart1"  ng-controller="historicalDataChartCtlr">
+		<!--<div id="symbolEntryDiv">
+			<form id="symbolEntryForm" ng-submit='drawHistoricCharts();'>
+				<input  type="text" ng-model="symbol" class="symbolInput"></input>
+			</form>
+		</div>
+		style="display: block;
+		z-index: 8888888888888888;
+		visibility: visible;
+		position: absolute;
+		left: 23%;
+		top: 15%;width:750px;"
+		
+		-->
+		<div id="testHistoric"><div id="historicalDataChart" class='historicalDataChartCls historicalDataChart activeChart'></div>
+	<!--<script>
+
+	</script>-->
+			<div  class="sortButton" ng-click="sortBars();" >Sort</div>
+			<div id="closePriceDifferenceChartDiv">
+				
+			</div>
+			<div id="cmf">
+				
+			</div>
+			<div id="closeDemaChartDiv">
+				
+			</div>
+			
+			<div id="timeAxisForHistoricalData">
+			</div>
+			<div id="dataPanel" class="dataPanel" ng-show="showHistoricChartToolTip "ng-style="getPosition()" >
+				
+					<!--<div id="timeValue">{{timeValue}}</div>
+					<div id="cmfValue" >{{cmfValue}}</div>
+					<div id="closeValue">{{closeValue}}</div>
+					<div id="demaValue" >{{demaValue}}</div>-->
+					<div id="timeValue"></div>
+					<div id="cmfValue" ></div>
+					<div id="closeValue"></div>
+					<div id="demaValue" ></div>	
+				
+			</div>
+			
+		</div>
+	</div>	
+	<!--<div id="stockContainer"  ng-controller="StockContinerCtlr">
+		<!--style="width:80%;position:absolute;height:75%;;z-index:999;left:200px;top:5%;background:white;"-->
+	<!--</div>-->
+     
+    
+    <div id="leftnav" style="display:none;">
+	
+<div class="Ploting-Options">
+      <div class="heading">Setting</div>
+	<div class="AbsProfit"  >
+							<div class="inputrow bgcolor">
+								<div class="text">Symbol</div> 
+								<div class="text">%Profit</div>
+								<div class="text">Abs Profit</div> 
+							</div>
+							<div ng-repeat="chartData in logoChartData" class="inputrow">
+								<input type="text" name="K"   readonly='true' ng-model="chartData.symbol" class="none"    >
+								<input type="text" class="change" size="4" maxlength="4"  readonly='true'  ng-model='logoChartJSONData[chartData.symbol].perChange'> 
+								<input type="text" class="change"  size="4" maxlength="4" readonly='true' ng-model='logoChartJSONData[chartData.symbol].absChange' >
+								<!--<input type="text" class="change"  readonly='true' ng-model='chartData.perChange'> 
+								<input type="text" class="change" readonly='true' ng-model='chartData.absChange'>-->
+							</div>
+							<!--<div class="inputrow"><input type="text" name="AA" value="AA" class="none" >    
+								<input type="text"  ng-model='logoChartJSONData["AA"].perChange'> 
+								<input type="text"  ng-model='logoChartJSONData["AA"].absChange'></div>
+							<div class="inputrow"><input class="none" type="text" name="GOOG"  value="GOOG">    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="AACC" value="AACC" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="G" value="G" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="FB" value="FB" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="PEP" value="PEP"  >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="ACN" value="ACN"  >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="KO" value="KO" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="YHOO" value="YHOO"   >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" value="AAPL" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow">
+								<input type="text" class="none" value="GALE" >    <input type="text"  > <input type="text"  >
+							</div>-->
+								
+							<div class="inputrow">
+							<span  class="Left-Label">Left Label:</span><input type="text" class="none Left-Label-input"   ng-model='buyXAxisLabel' ng-change="changeXAxisBuyLable();" ></input>    
+	
+							</div>
+							
+							<div class="inputrow">
+								<span class="right-Label">Right Label:</span><input type="text" class="none right-Label-input"   ng-model='sellXAxisLabel' ng-change="changeXAxisSellLable();"> </input>
+							</div>
+							<div class="inputrowlast" > 
+								<div class="push" ng-click="startChart()"> <a href="#" title="Re-Plot"> </a> </div>
+								<div class="stop" ng-click="stopChart()"> <a href="#" title="Stop Chart"> </a> </div>
+								<div class="edit" ng-click="editChartData()"> <a href="#" title="Edit Value" > </a> </div>
+							</div>
+						</div>
+                    </div>
+
+
+
+
+	</div>
+    
+    <div id="leftNavHistorical" >	<div ng-controller="leftPanelChartCtlr">
+    <div class="chartheading">1 year (close price)</div>
+		<div id="areaChart">
+		</div>
+		 <div class="chartheading2">1 month (relative strength)</div>
+		<div id="staticBarChart">
+		</div>
+		 <div class="chartheading3">2 month (relative strength analysis)</div>
+		<div id="staticPieChart">
+		</div>
+		<div id="pieChartOption">
+			<input type="radio" ng-model="chartType" value="pieChart" ng-click="drawChartType()">Pie</input> 
+			<input type="radio" ng-model="chartType" value="donutChart" ng-click="drawChartType()">Donut </input> 
+		</div>
+	</div></div>
+    
+    <div id="leftPanel">
+  <div id="ComparativeStudy" >
+  <div class="comparative"><input ng-model="comparitiveSymbol1"> <span class="icon"><i class="fa fa-exchange"></i></span> <input ng-model="comparitiveSymbol2" > <input type="button" class="Button" value="Comparison" ng-click="drawComparitiveChart()"> </div>
+	<div class="comparitiveChart-heading">Last 5 days (Dema)</div>
+      <div class="ComparativeStudy-heading">Last 5 years (Close)</div>
+      <div class="clearboth"></div>
+	<div id="comparitiveChart" class="left"></div>
+     <div class="right" id="areaComparisonChart" class="comparisonChartDiv"></div> </div>	
+  </div>
+    <div id="chartLoader" style="width:50px;height:50px;background:url('loader.gif');z-index: 9999999;position: fixed;left: 35%;top: 50%; display:none;">
+    </div>
+	<div id="chart" ng-controller="CompanyImageChartCtlr" >
+		<div id="tooltip">
+			<div id="cName">APPL</div>
+			<div id="changePer"> 
+				<span> % Profit </span> 
+				<div id="cPer" class="label">dhdhd</div>
+			</div>
+			 
+			<div id="Abs"> 
+				<span> Abs Profit </span> 
+				<div class="label" id="cAbs">dhdhd</div>
+			</div>
+		 
+		</div>
+	</div>
+	
+	<div class="xAxisTick"></div>	
+		 
+	 
+</body>
+<script>
+
+
+
+function getRandomColor() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.round(Math.random() * 15)];
+		}
+		return color;
+	}
+	
+		
+		
+function createBuySellGraph(){
+var data=[];
+var	margin = {top: 20, right: 60, bottom: 40, left: 10},
+width = $(window).width()*.24 - margin.left - margin.right,
+height = $(window).height()*.36 - margin.top - margin.bottom;
+
+// Parse the date / time
+var	parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+//var formatDate = d3.time.format("%e-%b-%Y");
+var formatDate = d3.time.format("%H:%M");
+var	xScale;
+var yScale;
+var xAxis;
+var yAxis;
+var svg;
+var labelType;
+var signalGrouping;
+$(document).ready(function(){
+	createLineGraph();
+	setInterval(function(){redrawGraph();},4000);
+});
+var firstTime=false;
+var baseValue=70;
+var scaleMargin=15;
+
+function getChangeInPercentage(currentValue){
+	var changeinPercentage=((currentValue-baseValue)/baseValue)*100;
+	return changeinPercentage;
+}
+function getImageName(changeInPer){
+	if(changeInPer>0){
+		return 'img-sell.png';
+	}
+	else{
+		return 'img-buy.png';
+	}
+}
+
+function generateDynamicData(){
+	var newElementClass;
+	var newElementValue;
+	var ds=new Date();
+	var hours=ds.getHours();
+	var imageName;
+	var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+	newElementValue=Math.floor((Math.random()*100)+1);
+	newElementClass='green';
+	
+	imageName=getImageName(getChangeInPercentage(newElementValue));
+	if(data.length == 0){
+		newElementClass='green';
+	}
+	else{
+		var previousElementValue=data[data.length-1].close;
+		if(newElementValue>=previousElementValue){
+			newElementClass='green';
+		}
+		else{
+			newElementClass='red';
+		}
+	}
+	if(data.length>10){
+		data.shift();
+	}
+	data.push({timeIndex:datevalue,
+		close:newElementValue,
+		className:newElementClass,
+		changeInPercentage:getChangeInPercentage(newElementValue),
+		imageName:imageName
+	});
+	
+}
+function createLineGraph(){
+	generateDynamicData();
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	
+	//console.log("data length "+data.length);
+	firstTime=false;
+	var minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	var maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	//console.log("min timeInndex "+minDate + "max date "+maxDate);
+	var dt=new Date();
+	
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	// Define the axes
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+		
+		
+	// Define the line
+	/*
+	var	valueline = d3.svg.line()
+		.x(function(d) {////console.log("x scale "+xScale(d.timeIndex) + "time "+d.timeIndex); 
+		return xScale(d.timeIndex); })
+		.y(function(d) { return yScale(d.close); });*/
+		
+	
+	//url(images/GraphChartbg.png)
+	// Adds the svg canvas
+var svgWidth=width+100;
+	var svgheight=height+100;
+	svg = d3.select(".chartDiv3")
+			  .append("svg")
+			  .attr("width", svgWidth)
+			  .attr("height", svgheight)
+			  .attr("transform", "translate(" + 30 + "," + margin.top + ")")
+			  .append("g")
+			  .attr("transform", "translate(" + 30 + "," + (margin.top+5) + ")").attr('class','dataValues');
+	/*
+	var allRect=svg.selectAll('rect')
+	.data(data);
+	allRect.enter()
+	.append('rect')
+	.attr("class", function(d) { 
+				return d.className;	
+			})
+	.attr("x", function(d, i) { return xScale(d.timeIndex); })
+	.attr("width", 5);
+	
+	allRect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			if(i==0){
+				return 100;
+			}
+			else{
+				return i*200;
+			}
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	*/
+	i=0;
+	// Add the X Axis
+	svg.append("g")			// Add the X Axis
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
+		/*
+		 d3.select("g.x")
+                .selectAll("div.tick")
+                .data(data)
+                .enter()
+                .append("div")
+                .attr("class", "tick")
+                .text(function (d, i) {
+					return i;
+                }).style('font-size',14);
+				/*
+                .style("left", function (d) {
+                    return Math.round(xScale(d)) - 30 + "px";
+                });
+				*/
+	var newWidth=width-margin.right;
+	// Add the Y Axis
+	svg.append("g")			// Add the Y Axis
+		.attr("class", "y axis")
+		.attr('transform','translate('+width+',0)')
+		.call(yAxis);
+		
+	/*	
+	//label on bar
+	svg.selectAll("path.signal")
+                    .data(data)
+                    .enter().append("path")
+                    .attr("class", "signal")
+                    .attr("d",d3.svg.symbol().type(function(d){
+						//console.log("dddcccc");
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return labelType;
+					
+					})) /*function(d){
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return d3.svg.symbol().type(labelType);
+						})*/
+						/*
+                    .attr("transform", function(d) {
+						return "translate(" + xScale(d.timeIndex) + "," + (yScale(d.close) + 20) + ")";
+					});	
+	*/
+	signalGrouping=d3.select('.dataValues');
+	signalGrouping.selectAll('image')
+				  .data(data)
+                  .enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.attr("width", function(d){
+						return '30';
+					})
+					.attr("height", function(d){
+						return '30';
+					})
+                  ;	
+	
+	svg.append('line').attr('class','verticalLineMapForBuySell').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);
+	svg.append('line').attr('class','horizontalLineMapForBuySell').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);	
+	svg.append('text')
+		.attr('class','priceForBuySellChart')
+		.style('font-size',20)
+		.attr('fill','white')
+		.style('display','none');
+	$('.y').find('path').hide();
+	
+	
+	
+}
+function drawTextForPriceMap(d,maxXScaleValue,minYScaleValue){
+	d3.selectAll('.priceForBuySellChart').attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(0) + ")");
+	d3.selectAll('.priceForBuySellChart')
+		.attr('fill','white')
+	   .transition()
+	   .duration(700)
+	   //.delay(700)
+	   .attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(d.close) + ")")
+	   .attr('fill','#E9044E')
+	   .tween("text", function() {
+			var last = 0;
+			var i = d3.interpolateRound(last,d.close );
+			return function(t){
+				this.textContent = ""+i(t);
+			};
+		});	 
+}	
+function redrawGraph(){
+	
+	var ds;
+	var hours;
+	var datevalue;
+	generateDynamicData();	
+	
+	
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	//console.log("data lebgth "+data.length);
+	minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	//console.log("min timeInndex "+minDate + "max date "+maxDate);
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+	
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+		
+	d3.selectAll('.y').call(yAxis)	
+	d3.selectAll('.x').call(xAxis);	
+	/*
+	// Using time as a key, join the new data to the old nodes.
+    var rect = svg.selectAll("rect")
+        .data(data, function(d) { return d.timeIndex; });
+	
+	// Enter…
+    rect.enter().insert("rect", ".x")
+        .attr("x", function(d, i) { //console.log(xScale(d.timeIndex)+": i "+i); return xScale(d.timeIndex)-.5; })
+       .attr('width',5)
+	   .attr('class',function(d,i){return d.className +"  new"});
+	
+   // Update…
+   rect.transition()
+       .duration(1000)
+       .attr("x", function(d, i) { return xScale(d.timeIndex)-.5; });
+	
+	
+   rect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	   
+	if(data.length==11){
+	// Exit…
+	rect.exit()
+	.remove();
+   }
+   */
+ // $('.signalPath').html('');
+	
+	var updatedSignalGroup=signalGrouping.selectAll('image.signal')
+				  .data(data,function(d){ return d.timeIndex;});
+                  updatedSignalGroup.enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						//console.log("xscale "+xScale(d.timeIndex));
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.on('mouseover',function(d){
+						d3.select(this)
+						.style(" -webkit-box-shadow", '0px 0px 5px #b0962d')
+						.style(" z-index", 99999999)
+						.style("opacity", 0.4)
+						.transition()
+						.duration(800)
+						.attr('stroke-width','2')
+						.attr('fill','transparent')
+						.attr('stroke','white')
+						.attr('width',(Math.abs(d.close)+5))
+						.attr('height',(Math.abs(d.close)+5))
+						.attr('stroke','cyan')
+						//alert(d.timeIndex);
+						d3.select('.verticalLineMapForBuySell').style('display','block');
+						d3.select('.horizontalLineMapForBuySell').style('display','block');
+						
+						var verticalLineMap=d3.selectAll('.verticalLineMapForBuySell');
+						
+						
+						var lineColor=getRandomColor();
+						var close=d.close;
+						/*
+						verticalLineMap
+						.attr('y1',function(){ return yScale(d.close)+30;})
+						.attr('x1',function(){ return xScale(d.timeIndex)+20;})
+						.attr('x2',function(){ return xScale(d.timeIndex)+20;})
+						.attr('y2',function(){ return yScale(d.close);})
+						.attr('stroke',lineColor).style("stroke-dasharray", ("1, 1"));
+						
+						var verticalTransition=verticalLineMap.transition()
+						.duration(1000);
+						
+						verticalTransition.attr('y2',function(){ return yScale(0);});
+						
+						var horizontalLineMap=d3.selectAll('.horizontalLineMapForBuySell');
+						
+						horizontalLineMap
+						.attr('x1',function(){ return xScale(d.timeIndex)+25;})
+						.attr('y1',function(){ return yScale(d.close)+30;})
+						.attr('x2',function(){ return xScale(d.timeIndex);})
+						.attr('y2',function(){ return yScale(d.timeIndex)+30;}).attr('stroke',lineColor).style("stroke-dasharray", ("1, 1"));
+						var horizontalMapTransition=horizontalLineMap.transition()
+						.duration(1000);
+						
+						//horizontalMapTransition.attr('x2',function(){ return (xScale(minChngePercentage)+60);});
+						horizontalMapTransition.attr('x2',function(){ return xScale(maxDate)});*/
+						d3.select('.priceForBuySellChart').style('display','block');
+						drawTextForPriceMap(d,maxDate,minDate);
+					})
+					.on('mouseout',function(d){
+						d3.select('.priceForBuySellChart').style('display','none');
+						d3.selectAll('.priceForBuySellChart').attr("transform", "translate(" + xScale(maxDate) + "," + yScale(0) + ")");
+						d3.select(this)
+						 .transition()
+						 .duration(400)
+						.style(" -webkit-box-shadow", '3px 5px 5px #b0962d')
+						.style(" z-index", 99)
+						.style("opacity", '1')
+						.transition()
+						.duration(800)
+						.delay(200)
+						.attr('stroke','none')
+						.attr("width",function(d){
+					     return (Math.abs(d.close)-20);
+							})
+							.attr("height",function(d){
+					     return (Math.abs(d.close)-20);
+							});
+							
+					})
+					.attr("width", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+					.attr("height", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+                  	
+					
+	//update signal with new data
+	updatedSignalGroup.transition()
+					  .duration(1000)
+					  .attr('x',function(d){ return xScale(d.timeIndex)-scaleMargin; }).attr('y',function(d){ return yScale(d.close)-scaleMargin});
+	
+	updatedSignalGroup.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		});	
+	if(data.length==11){
+		updatedSignalGroup.exit().remove();
+	}
+}
+ }
+ //createBuySellGraph();
+ 
+</script>
+
+
+<script>
+		$(document)
+					.ready(
+				
+						function() {
+							
+	$( ".themeSelect" ).change(function() {
+		
+  $('#ctheme').attr('href', 'css/'+$( this ).val() +'.css');
+});
+							$('.basic-usage-demo').fancySelect();
+
+							// Boilerplate
+							var repoName = 'fancyselect'
+
+							$.get(
+									'https://api.github.com/repos/octopuscreative/'
+											+ repoName, function(repo) {
+										var el = $('#top').find('.repo');
+
+										el.find('.stars').text(
+												repo.watchers_count);
+										el.find('.forks')
+												.text(repo.forks_count);
+									});
+
+							var menu = $('#top').find('menu');
+
+							function positionMenuArrow() {
+								var current = menu.find('.current');
+
+								menu.find('.arrow').css(
+										'left',
+										current.offset().left
+												+ (current.outerWidth() / 2));
+							}
+
+							$(window).on('resize', positionMenuArrow);
+
+							menu
+									.on(
+											'click',
+											'a',
+											function(e) {
+												var el = $(this), href = el
+														.attr('href'), currentSection = $(
+														'#main').find(
+														'.current');
+
+												e.preventDefault();
+
+												menu.find('.current')
+														.removeClass('current');
+
+												el.addClass('current');
+
+												positionMenuArrow();
+
+												if (currentSection.length) {
+													currentSection
+															.fadeOut(300)
+															.promise()
+															.done(
+																	function() {
+																		$(href)
+																				.addClass(
+																						'current')
+																				.fadeIn(
+																						300);
+																	});
+												} else {
+													$(href).addClass('current')
+															.fadeIn(300);
+												}
+											});
+
+							menu.find('a:first').trigger('click')
+						});
+	</script>
+
+<script type="text/javascript" src="js/stocChart.js"></script>
+<script type="text/javascript" src="js/CommonUtil.js"></script>
+<script>
+      jQuery(document).ready(function ($) {
+        "use strict";
+        $('#Default').perfectScrollbar();
+		//$('#Default').perfectScrollbar('update');
+        //$('#LongThumb').perfectScrollbar({minScrollbarLength:100});
+      });
+	  
+	  $('.chartSettingIcon li a').on('click', function(){
+    $('li a.active').removeClass('active');
+    $(this).addClass('active');
+});
+
+$("#showHideMenu").click(function(){
+    $(".leftMenuBar").addClass("menuWidth");
+	$(".leftMenuBar").removeClass("hideMenu");
+	 $(".d3Chart").toggleClass("chartWidth");
+	 $(".leftMenuBar").removeClass("chartMenu");
+});
+$(".chartMenuList ul li").click(function(){
+    $(".leftMenuBar").toggleClass("hideMenu");
+	$(".leftMenuBar").addClass("chartMenu");
+	 
+});
+
+$(".nav ul li").click(function(){
+    $(".nav-list").removeClass("nav-active");
+	
+	 
+});
+
+
+
+$(".btnClose").click(function(){
+	showDropDown=true;
+	  showColorPicker();
+    //$("#colordiv").addClass("colordivHide");
+			 
+});
+
+
+
+
+
+
+(function () {
+		
+		    // Create mobile element
+		    var mobile = document.createElement('div');
+		    mobile.className = 'nav-mobile';
+		    document.querySelector('.nav').appendChild(mobile);
+		
+		    // hasClass
+		    function hasClass(elem, className) {
+		        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+		    }
+		
+		    // toggleClass
+		    function toggleClass(elem, className) {
+		        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
+		        if (hasClass(elem, className)) {
+		            while (newClass.indexOf(' ' + className + ' ') >= 0) {
+		                newClass = newClass.replace(' ' + className + ' ', ' ');
+		            }
+		            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+		        } else {
+		            elem.className += ' ' + className;
+		        }
+		    }
+		
+		    // Mobile nav function
+		    var mobileNav = document.querySelector('.nav-mobile');
+		    var toggle = document.querySelector('.nav-list');
+		    mobileNav.onclick = function () {
+		        toggleClass(this, 'nav-mobile-open');
+		        toggleClass(toggle, 'nav-active');
+		    };
+		})();
+		
+		
+
+</script> 
+
+
+</html>

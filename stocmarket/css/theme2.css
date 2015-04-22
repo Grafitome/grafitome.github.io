@@ -1,0 +1,11 @@
+.chartBigOuter .heading{background: rgb(94,94,94); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(94,94,94,1) 0%, rgba(51,51,51,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(94,94,94,1)), color-stop(100%,rgba(51,51,51,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(94,94,94,1) 0%,rgba(51,51,51,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(94,94,94,1) 0%,rgba(51,51,51,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(94,94,94,1) 0%,rgba(51,51,51,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(94,94,94,1) 0%,rgba(51,51,51,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e5e5e', endColorstr='#333333',GradientType=0 ); /* IE6-9 */ font-size:17px; padding:0 0 0 20px; height:40px; line-height:40px;  position: relative; color: #fff; border-bottom:solid 1px #999;}
+
+.d3Chart{background-color: #c3c7cb;  margin:20px 0 0 0; position:absolute; height:88%; width:76%; right:10px; border:solid 1px #C1C2C3; }
+

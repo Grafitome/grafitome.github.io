@@ -1,0 +1,441 @@
+<html>
+<head>
+<style> /* set the CSS */
+
+body { font: 12px Arial;}
+
+.chartDiv2 path { 
+	stroke: #00ffff;;
+	stroke-width: 2;
+	fill: none;
+}
+
+.chartDiv2 .axis path,
+.chartDiv2 .axis line {
+	stroke: blue;
+	/*stroke: grey;*/
+	/*stroke-width: 0.5;*/
+	shape-rendering: crispEdges;
+}
+
+.chartDiv2
+{
+position:absolute;
+background:url(boder-tran.png);
+width:80%;
+height:80%;
+top:50px;
+color:cyan;
+background-color: black;
+     -webkit-transform: rotatex(-30deg) rotatez(-2deg) rotatey(-40deg);
+	 -webkit-transition:1s ease;
+	 box-shadow: 3px -3px 3px 3px grey;
+}
+.chartDiv2:hover
+{
+background:url(boder-tran.png);
+color:cyan;
+background-color: black;
+-webkit-transform: rotatex(0deg) rotatez(0deg) rotatey(0deg);
+box-shadow: none; 
+-webkit-transition:1s ease;
+}
+.chartDiv2 .tick{
+fill:white;
+
+}
+.chartDiv2 .headerSpan{
+display: block;
+padding: 8px 0px 4px 12px;
+margin: 0px;
+font-size: 12px;
+font-family: 'Open Sans', sans-serif;
+color: white;
+background-color: rgb(94, 148, 220);
+border: 1px solid rgba(0, 0, 0, 0.14902);
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+border-radius: 4px 4px 0px 0px;
+}
+.chartOuterDiv2{
+	border:1px solid rgb(0, 0, 0, 0.14902);
+	border-radius:5px;
+	width:25%;
+	height:50%;
+	padding:10px 10px 10px 10px;
+	background:black;
+	position:absolute;
+	left:75%;
+	
+	
+}
+
+
+.chartDiv2 rect:hover{
+
+fill:orange;
+opacity:1 !important;
+}
+.chartDiv2 .y .domain{
+display:none;
+}
+.chartDiv2 .xaxis text{
+	font-size:24px;
+	
+}
+.chartDiv2 .close{
+	stroke: red;
+	fill:red;
+}
+.chartDiv2 .green {
+	fill: #09a61d;
+}
+.chartDiv2 .red {
+	fill: #cc2b36;
+}
+</style>
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>
+function liveBarGraphs(){
+var data=[];
+var	margin = {top: 50, right: 60, bottom: 30, left: 10},
+width = $(window).width()*.24 - margin.left - margin.right,
+height = $(window).height()*.43 - margin.top - margin.bottom;
+
+// Parse the date / time
+var	parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+//var formatDate = d3.time.format("%e-%b-%Y");
+var formatDate = d3.time.format("%H:%M");
+var	xScale;
+var yScale;
+var xAxis;
+var yAxis;
+var svg;
+var minDate;
+var maxDate;
+$(document).ready(function(){
+	createLineGraph();
+	setInterval(function(){redrawGraph();},4000);
+});
+var firstTime=false;
+
+function drawHorizontalPriceMapLine(d,minXScaleValue){
+	
+	var horizontalLineMap=d3.selectAll('.horizontalLineMap');
+	console.log("time index "+xScale(d.timeIndex) +" close "+yScale(d.close) +"  min data "+xScale(minXScaleValue) +" "+minXScaleValue);
+	
+	//console.log("yscale "+yScale(d.close) +" close "+d.close);	
+	horizontalLineMap
+	.attr('x1',function(){ return xScale(d.timeIndex);})
+	.attr('y1',function(){ return yScale(d.close);})
+	.attr('x2',function(){ return xScale(d.timeIndex);})
+	.attr('y2',function(){ return yScale(d.close);}).attr('stroke','yellow').style("stroke-dasharray", ("2, 2"));
+	var horizontalMapTransition=horizontalLineMap.transition()
+	.duration(700);
+	
+	//horizontalMapTransition.attr('x2',function(){ return (xScale(minChngePercentage)+60);});
+	horizontalMapTransition.attr('x2',function(){ return xScale(minXScaleValue);});
+}
+
+function drawTextForPriceMap(d,maxXScaleValue,minYScaleValue){
+	d3.selectAll('.price').attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(0) + ")");
+	d3.selectAll('.price')
+		.attr('fill','white')
+	   .transition()
+	   .duration(700)
+	   //.delay(700)
+	   .attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(d.close) + ")")
+	   .attr('fill','orange')
+	   .tween("text", function() {
+			var last = 0;
+			var i = d3.interpolateRound(last,d.close );
+			return function(t){
+				this.textContent = ""+i(t);
+			};
+		});	 
+}
+
+function createLineGraph(){
+	var newElementClass;
+	var newElementValue;
+	
+	//create random number
+	//alert(data.length);
+	//for(var i=0;i<50;i++){
+	var ds=new Date();
+	var hours=ds.getHours();
+	var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+	newElementValue=Math.floor((Math.random()*200)+1);
+	
+	newElementClass='green';
+	
+	data.push({timeIndex:datevalue,
+		close:newElementValue,
+		className:newElementClass
+	});
+	
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	
+	console.log("data length "+data.length);
+	firstTime=false;
+	minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	console.log("min timeInndex "+minDate + "max date "+maxDate);
+	var dt=new Date();
+	
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	// Define the axes
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(2).tickFormat(function(d) { return "-"+ d;});
+		
+	// Adds the svg canvas
+	var svgWidth=width+100;
+	var svgheight=height+100;
+	svg = d3.select(".chartDiv2")
+			  .append("svg")
+			  .attr("width", svgWidth)
+			  .attr("height", svgheight)
+			  .attr("transform", "translate(" + 30 + "," + margin.top + ")")
+			  .append("g")
+			  .attr("transform", "translate(" + 30 + "," + margin.top + ")");
+	
+	var allRect=svg.selectAll('rect')
+				   .data(data);
+	allRect.enter()
+		   .append('rect')
+	       .attr("class", function(d) { 
+				return d.className;	
+			})
+			.attr("x", function(d, i) { return xScale(d.timeIndex); })
+			.attr('y',function(d){
+				return yScale(0); 
+			})
+			.attr("width", 10)
+			.on("mouseover",function(d){
+				
+				d3.select('.horizontalLineMap').style('display','block');
+				console.log("time index "+xScale(d.timeIndex) +" close "+yScale(d.close) +"  min data "+xScale(width) +" "+width +" close "+d.close +" timeIndex "+d.timeIndex);					
+				drawHorizontalPriceMapLine(d,maxDate) ;
+				
+			})
+			.on('mouseout',function(d){
+				d3.select('.horizontalLineMap').style('display','none');
+			});
+			
+	
+	allRect.attr('height',function(d){
+		return 0;
+	})
+	.transition()
+	.duration(1000)
+	.attr("y",function(d){
+		return yScale(Math.max(0, d.close));
+	})
+	.attr('height',function(d){
+		return Math.abs(yScale(d.close) - yScale(0)); 
+	});
+	
+	
+	i=0;
+	// Add the X Axis
+	svg.append("g")			// Add the X Axis
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
+		
+	var newWidth=width-margin.right;
+	// Add the Y Axis
+	svg.append("g")			// Add the Y Axis
+		.attr("class", "y axis")
+		.attr('transform','translate('+width+',0)')
+		.call(yAxis);
+	svg.append('line').attr('class','horizontalLineMap').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);	
+	//write text for price map
+	svg.append('text')
+	   .attr('class','price')
+	   .style('font-size',20)
+	   .attr('fill','white')
+	   .style('display','none');
+	   
+	
+	$('.y').find('path').hide();
+}
+
+function redrawGraph(){
+	if(data.length<=15){
+		 firstTime=true;
+		//for(var i=0;i<50;i++){
+			var ds=new Date();
+			var hours=ds.getHours();
+			var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+			newElementValue=Math.floor((Math.random()*200)+1);
+			if(data.length == 0){
+				newElementClass='green';
+			}
+			else{
+				var previousElementValue=data[data.length-1].close;
+				if(newElementValue>=previousElementValue){
+					newElementClass='green';
+				}
+				else{
+					newElementClass='red';
+				}
+			}
+			data.push({timeIndex:datevalue,
+				close:newElementValue,
+				className:newElementClass
+			})
+		//}
+	}
+	
+	else{
+		var ds=new Date();
+		var hours=ds.getHours();
+		var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+		newElementValue=Math.floor((Math.random()*200)+1);
+		var previousElementValue=data[data.length-1].close;
+		data.shift();
+		if(newElementValue>=previousElementValue){
+			newElementClass='green';
+		}
+		else{
+			newElementClass='red';
+		}
+		data.push({close:newElementValue,timeIndex:datevalue,className:newElementClass});
+	}
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	console.log("data lebgth "+data.length);
+	minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	console.log("min timeInndex "+minDate + "max date "+maxDate);
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(2).tickFormat(function(d) { return "-"+ d;});
+	
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+		
+	d3.selectAll('.y').call(yAxis)	
+	d3.selectAll('.x').call(xAxis);	
+	// Using time as a key, join the new data to the old nodes.
+    var rect = svg.selectAll("rect")
+        .data(data, function(d) { return d.timeIndex; });
+	
+	// Enter…
+    rect.enter().insert("rect", ".x")
+        .attr("x", function(d, i) { console.log(xScale(d.timeIndex)+": i "+i); return xScale(d.timeIndex)-.5; })
+       //.attr('width',5)
+	   .attr('class',function(d,i){return d.className +"  new"})
+	     .attr('height',function(d){
+			return 0; 
+		})  
+	    .attr('y',function(d){
+			return yScale(0); 
+		})
+		.on("mouseover",function(d){
+			d3.select('.horizontalLineMap').style('display','block');
+			d3.selectAll('.price').style('display','block');
+			// console.log("xscale max "+xScale(maxDate) +" xScale current "+xScale(d.timeIndex));
+			drawHorizontalPriceMapLine(d,maxDate) ;
+			drawTextForPriceMap(d,maxDate,minDate);
+			d3.selectAll('rect').style('opacity','.2');
+			$(this).css('opacity','1');
+			lastWidth=d3.select(this).attr('width');
+			d3.select(this)
+			.transition()
+			.duration(600)
+			.attr('width','15');
+		})
+		.on('mouseout',function(d){
+			d3.selectAll('rect')
+			.transition()
+			.duration(300)
+			.attr('width',lastWidth)
+			.style('opacity',1);
+				d3.selectAll('.price').text('');
+				d3.selectAll('.price').style('display','none');
+				d3.select('.horizontalLineMap').style('display','none');
+		}) 
+		.transition()
+	   .duration(1000)
+	   .attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	var lastWidth='';
+   // Update…
+   rect.transition()
+       .duration(700)
+       .attr("x", function(d, i) { return xScale(d.timeIndex)-.5; });
+	
+	d3.selectAll('rect')
+	    .attr('width',10);
+		
+	
+   rect.transition()
+	   .duration(700)
+	   .delay(function(d,i){
+			
+			return 700;
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	   
+	if(data.length==16){
+	// Exit…
+	rect.exit()
+	.remove();
+   }
+	
+}
+ 
+ }
+ 
+ liveBarGraphs();
+</script>
+</head>
+<body>
+	
+	<div class="chartOuterDiv2">
+		
+		<div class="chartDiv2"></div>
+	</div>
+	
+</body>
+</html>

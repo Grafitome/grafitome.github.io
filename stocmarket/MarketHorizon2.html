@@ -1,0 +1,503 @@
+<html>
+<head>
+<style> /* set the CSS */
+
+body { font: 12px Arial;}
+
+path { 
+	stroke: #00ffff;;
+	stroke-width: 2;
+	fill: none;
+}
+
+.axis path,
+.axis line {
+	stroke: blue;
+	/*stroke: grey;*/
+	/*stroke-width: 0.5;*/
+	shape-rendering: crispEdges;
+}
+
+.chartDiv
+{
+background:url(images/graphback.png);
+width:670px;
+color:cyan;
+background-color: rgb(35, 48, 71);
+
+}
+.tick{
+fill:white;
+
+}
+.headerSpan{
+display: block;
+padding: 8px 0px 4px 12px;
+margin: 0px;
+font-size: 12px;
+font-family: 'Open Sans', sans-serif;
+color: white;
+background-color: rgb(94, 148, 220);
+border: 1px solid rgba(0, 0, 0, 0.14902);
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+border-radius: 4px 4px 0px 0px;
+}
+.chartOuterDiv{
+	border:1px solid rgb(0, 0, 0, 0.14902);
+	border-radius:5px;
+	width:680px;
+	
+}
+.y .domain{
+display:none;
+}
+.xaxis text{
+	font-size:24px;
+	
+}
+.close{
+	stroke: red;
+	fill:red;
+}
+.green {
+	fill: #09a61d;
+	fill: transparent;
+}
+.red {
+	fill: #cc2b36;
+		fill: transparent;
+}
+#chart{
+	width:1300px;
+	height:650px;
+background:url(bg.jpg);
+}
+.companyLabel{
+	text-align:center;
+}
+#tooltip{ margin:100px 100px; padding:5px;  font-family:  Arial, Gotham, "Helvetica Neue", Helvetica, sans-serif;
+ width:80px; background:#272727; float:left;
+ border-radius:5px;
+-moz-box-shadow: 0px 0px 5px #b0962d;
+ -webkit-box-shadow: 0px 0px 5px #b0962d;
+ box-shadow: 0px 0px 5px #b0962d;
+position:absolute;
+z-index:99999 }
+
+#companyName{ font-size:12px; color:#FFF; padding-left:20%;}
+#changePer{ font-size:12px; color:#FFF; padding-left:20%;}
+#changeAbs{ font-size:12px; color:#FFF; padding-left:20%;}
+#Abs{ font-size:12px; color:#FFF; padding-left:10%;}
+
+.label{ margin:6px 0; padding-left:10%; padding-top:3px; padding-bottom:3px; background:#740505; border-radius:3px; color:#FFF; font-size:12px;text-indent:10px }
+
+
+</style>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+
+<body>
+	<div id="chart"></div>
+		<div id="tooltip">
+		<div id="companyName">Company</div>
+		<div id="cName" class="label">dhdgdgd</div>
+
+		  <div id="changePer">% Profit</div>
+		  <div id="cPer" class="label">dhdgdgd</div>
+		  <div id="changeAbs">Abs Profit</div>
+			<div id="cAbs" class="label">dhdgdgd</div>
+			
+		  
+		  </div>
+	<div class="xAxisTick"></div>
+</body>
+<script>
+		console.log(""+d3.select('#chart'));
+       var symbols=['AAPL','AA','GOOG','AACC','G','FB','PEP','ACN','N','YHOO','K','GALE'];
+	   var marketData=[];
+	   function generateData(){
+			   for(var i=0;i<symbols.length;i++){
+					   marketData.push({symbol:symbols[i],
+						perChange:(Math.random()*10)+2*i,
+						absChange:(Math.random()*100)+20*i
+						});
+					}
+		};
+		
+		function updateMarketData(){
+		     for(var i=0;i<marketData.length;i++){
+				marketData[i].perChange=(Math.random()*20)+20*i;
+				marketData[i].absChange=(Math.random()*100)+20*i;
+			 }
+		}
+		
+		generateData();
+		var height=650;
+		var width=1300;
+		console.log(""+d3.select('#chart'));
+	   var canvas=d3.select('#chart')
+				  .append('svg')
+				  .attr('width',width)
+				  .attr('height',height);
+		
+		var minChngePercentage=d3.min(marketData.map(function(d){return d.perChange-20;}));
+		var maxChangePercentage=d3.max(marketData.map(function(d){return d.perChange+20;}));
+		var minChngeAbs=d3.min(marketData.map(function(d){return d.absChange-20;}));
+		var maxChangeAbs=d3.max(marketData.map(function(d){return d.absChange+20;}));
+		
+		var xScale = d3.scale.linear().domain([minChngePercentage,maxChangePercentage]).range([0, width]);
+	    var yScale = d3.scale.linear().domain([minChngeAbs,maxChangeAbs]).range([height, 0]);
+		
+		// Define the axes
+		var xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom");//.ticks(2);
+		//MARKING TICKS 6 FOR SPACING AMONG THEM
+		var yAxis = d3.svg.axis().scale(yScale)
+		.orient("right");//.ticks(6).tickFormat(function(d) { return "-"+ d;});
+		
+		var leftYAxis=d3.svg.axis().scale(yScale)
+		.orient("left").ticks(6).tickFormat(function(d) { return "-"+ d;});
+				  
+		var lastStateFill="";
+		var lastRadius="";
+		var bubbles=canvas.selectAll('circle')
+					.data(marketData)
+					.enter()
+					.append('circle')
+					.attr("r",function(d){
+					     return Math.abs(d.absChange/5);
+					})
+					.attr('fill',function(d){
+						return d.perChange>14?"green":"pink";
+					})
+					.attr('cx',function(d){
+						return xScale(d.perChange);
+					})
+					.attr('cy',function(d){
+						return yScale(d.absChange);
+					})
+					 .on("mouseover",function(d){
+						lastStateFill=$(this).attr('fill');
+					   //  $(this).attr('fill','yellow');
+						// console.log('**********  '+$(this).pageX+ ' '+d3.event.pageY);
+						// var elementPosition=event.target.getBoundingClientRect();
+						 var leftPosition=(d3.event.pageX-70)+"px";
+						 var topPosition=(d3.event.pageY-140)+'px';
+						 $('#cName').html(d.symbol);
+						 $('#cPer').html(window.parseFloat(d.perChange).toFixed(2));
+						 $('#cAbs').html(window.parseFloat(d.absChange).toFixed(2));
+						 d3.select(this)
+						.style(" -webkit-box-shadow", '0px 0px 5px #b0962d')
+						.style(" z-index", 99999999)
+						.style("opacity", 0.4)
+						.transition()
+						.duration(800)
+						.attr('r',30)
+						.attr('stroke-width','2')
+						.attr('fill','transparent')
+						.attr('stroke','white')
+						.attr('r',40)
+						.attr('r',20)
+						.attr('stroke','cyan')
+						.attr('r',50)
+						
+						.attr('fill',lastStateFill)
+						d3.select('#toolTip')
+						.style("left", leftPosition)
+						.style("top", topPosition)
+						.style('display','block');
+						
+						d3.select('.verticalLineMap').style('display','block');
+						d3.select('.horizontalLineMap').style('display','block');
+						console.log("d   "+d.perChange);
+						var perChange=d.perChange;
+						var absChange=d.absChange;
+						var verticalLineMap=d3.selectAll('.verticalLineMap');
+						
+						verticalLineMap
+						.attr('y1',function(){ return yScale(absChange);})
+						.attr('x1',function(){ console.log(xScale(perChange) +" d per change "+perChange);return xScale(perChange);})
+						.attr('x2',function(){ return xScale(perChange);})
+						.attr('y2',function(){ return yScale(absChange);})
+						.attr('stroke',lastStateFill).style("stroke-dasharray", ("8, 8"));
+						
+						var verticalTransition=verticalLineMap.transition()
+						.duration(1000);
+						
+						verticalTransition.attr('y2',function(){ return yScale(minChngeAbs)-20;});
+						
+						var horizontalLineMap=d3.selectAll('.horizontalLineMap');
+						
+						horizontalLineMap
+						.attr('x1',function(){ console.log(xScale(perChange) +" d per change "+perChange);return xScale(perChange);})
+						.attr('y1',function(){ return yScale(absChange);})
+						.attr('x2',function(){ return xScale(perChange);})
+						.attr('y2',function(){ return yScale(absChange);}).attr('stroke',lastStateFill).style("stroke-dasharray", ("3, 3"));
+						var horizontalMapTransition=horizontalLineMap.transition()
+						.duration(1000);
+						
+						//horizontalMapTransition.attr('x2',function(){ return (xScale(minChngePercentage)+60);});
+						horizontalMapTransition.attr('x2',function(){ return (perChange>150?(xScale(minChngePercentage)+19):(xScale(maxChangePercentage)-50));});
+						
+					})
+					.on("mouseout",function(d){
+					     $(this).attr('fill',lastStateFill);
+						  	d3.select('#toolTip')
+							
+						.style('display','none');
+						
+						 d3.select(this)
+						 .transition()
+						 .duration(400)
+						.style(" -webkit-box-shadow", '3px 5px 5px #b0962d')
+						.style(" z-index", 99)
+						.style("opacity", '1')
+						.transition()
+						.duration(800)
+						.delay(200)
+						.attr('stroke','none')
+						.attr("r",function(d){
+					     return Math.abs(d.absChange/5);
+							});
+							
+						d3.select('.verticalLineMap').style('display','none');
+						d3.select('.horizontalLineMap').style('display','none');
+					});
+				
+		canvas.selectAll('text.companyLabel')
+		.data(marketData)
+		.enter()
+		.append('text')
+		.attr('class','companyLabel')
+		.attr('x',function(d){
+			return xScale(d.perChange)-10;
+		})
+		.attr('y',function(d){
+			return yScale(d.absChange)+5;
+		})
+		.text(function(d){return d.symbol;})
+		.style('font-size','10');
+					
+					
+					//.attr("transform", function(d) {
+					//	return "translate(" + (xScale(d.timeIndex)+2) + "," + (yScale(d.close) + 10) + ")";
+					//});	
+					
+					// Add the X Axis
+	canvas.append("g")			// Add the X Axis
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + (height-20) + ")")
+		.call(xAxis).selectAll('.tick').remove();
+		canvas.append("g")			// Add the X Axis
+		.attr("class", "yright axis") 
+		.attr('transform','translate('+(width-50)+',0)')
+		.call(yAxis);
+		
+		
+		canvas.append("g")			// Add the X Axis
+		.attr("class", "yleft axis")
+		.attr('transform','translate(50,0)')
+		.call(leftYAxis);
+		
+		var minChngePercentage=d3.min(marketData.map(function(d){return d.perChange-20;}));
+		var maxChangePercentage=d3.max(marketData.map(function(d){return d.perChange+20;}));
+		
+		var xAxisTickData=[];
+		xAxisTickData.push(minChngePercentage);
+		xAxisTickData.push(maxChangePercentage);
+		
+		var xAxisTick=d3.select('.xAxisTick');
+		
+		xAxisTick.selectAll('text')
+		.data(xAxisTickData)
+		.enter()
+		.append('text')
+		
+		.text(function(d){
+			if(d== minChngePercentage){
+				return "BULLISH";
+			}
+			else{
+				return "BEARISH";
+			}
+		})
+		.style('margin-left',function(d){
+				
+				if(xScale(d)<250){
+					return 0;
+				}
+				else{
+					return Math.round( xScale(d)-150);
+				}
+		});
+		
+		
+		canvas.append('line').attr('class','verticalLineMap').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);
+		canvas.append('line').attr('class','horizontalLineMap').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);
+		
+		
+		/*
+		var c=canvas.append('g')
+		.attr('class','company');
+		
+		c.selectAll('image')
+		.data(marketData)
+		.enter()
+		.append('image')
+		.attr("xlink:href", function(d){ return "logo-apple.png";})
+		.attr('x',function(d){
+			return xScale(d.perChange);
+		})
+		.attr('y',function(d){
+			return yScale(d.absChange)+7;
+		})
+		.attr("width", "35px")
+        .attr("height", "35px");
+		*/
+		
+		function updateHorizon(){
+		
+				//hide the data map line
+				d3.select('.verticalLineMap').style('display','none');
+				d3.select('.horizontalLineMap').style('display','none');
+				updateMarketData();
+				minChngePercentage=d3.min(marketData.map(function(d){return d.perChange-20;}));
+				maxChangePercentage=d3.max(marketData.map(function(d){return d.perChange+20;}));
+				minChngeAbs=d3.min(marketData.map(function(d){return d.absChange-20;}));
+				maxChangeAbs=d3.max(marketData.map(function(d){return d.absChange+20;}));
+				for(var i=0;i<marketData.length;i++){
+					console.log("  "+marketData[i].perChange);
+				}
+				xScale = d3.scale.linear().domain([-20,maxChangePercentage]).range([0, width]);
+				yScale = d3.scale.linear().domain([minChngeAbs,maxChangeAbs]).range([height, 0]);
+				
+				/*var bubbles=canvas.selectAll('circle')
+					.data(marketData,function(d){
+					   return d.perChange;
+					})
+					.enter()
+					.append('circle')
+					.attr("r",function(d){
+					     return Math.abs(d.absChange/10);
+					})
+					.attr('fill',function(d){
+						return d.perChange>14?"green":"pink";
+					})
+					.attr('cx',function(d){
+						return xScale(d.perChange);
+					})
+					.attr('cy',function(d){
+						return yScale(d.absChange);
+					});*/
+					
+					//.attr("transform", function(d) {
+					//	return "translate(" + (xScale(d.timeIndex)+2) + "," + (yScale(d.close) + 10) + ")";
+					//});	
+					var bubbles=canvas.selectAll('circle')
+					.data(marketData,function(d){
+					   return d.perChange;
+					});
+					/*
+					bubbles.transition().duration(1000)
+					       .attr('cx',function(d){ return xScale(d.perChange)});
+					
+					bubbles.transition().duration(1000).attr('fill',function(d){
+						return d.perChange>14?"green":"pink";
+					});
+					*/
+					bubbles.transition()
+					.duration(1000)
+					.attr('cy',function(d){
+						return yScale(d.absChange);
+					}).attr('cx',function(d){ return xScale(d.perChange)}).attr('fill',function(d){
+						return d.perChange>150?d.perChange>180?"green":"orange":d.perChange<60?"red":"pink";
+					})
+					.attr("r",function(d){
+					     return Math.abs(d.absChange/5);
+					})
+					.text(function(d){
+					return d.symbol;
+					});;
+					
+					bubbles.transition()
+					.duration(1000)
+					.delay(function(d){return 700;});
+					bubbles.exit().remove();
+					
+					//for update text
+					var updatedTextLabels=canvas.selectAll('text.companyLabel')
+					.data(marketData,function(d){ return d.perChange;});
+					
+					
+					updatedTextLabels.transition().duration(1000).attr('x',function(d){
+						return xScale(d.perChange)-10;
+					})
+					.attr('y',function(d){
+						return yScale(d.absChange)+5;
+					})
+					.text(function(d){return d.symbol;})
+					.style('font-size','10');
+					
+					updatedTextLabels.transition().duration(1000).delay(function(d){return 700;});
+					
+					/*
+					
+					d3.selectAll('circle')
+					.data(marketData,function(d){
+						return d.perChange;
+					})
+					.transition()
+					.duration(1000)
+					.delay(500)
+					.attr("r",function(d){
+					     return Math.abs(d.absChange/10);
+					})
+					.transition()
+					.duration(1000)
+					.delay(500)
+					.attr('fill',function(d){
+						return d.perChange>14?"green":"pink";
+					})
+					.transition()
+					.duration(1000)
+					.delay(500)
+					.attr('cx',function(d){
+						return xScale(d.perChange);
+					})
+					.transition()
+					.duration(1000)
+					.delay(500)
+					.attr('cy',function(d){
+						return yScale(d.absChange);
+					});
+					*/
+					/*
+					companayImages=canvas.append('defs')
+					.attr('class','companyImages')
+					
+					companayImages.selectAll('pattern').
+					data(marketData)
+					.enter()
+					.append('pattern')
+					.attr('patternUnits', 'userSpaceOnUse')
+					 .attr('width', '7')
+					 .attr('height', '9')
+					 .append('svg:image')
+					 .attr('xlink:href', 'logo-apple.png')
+					 .attr('x',function(d){
+						return xScale(d.perChange);})
+					 .attr('y', function(d){
+						return yScale(d.absChange);})
+					 .attr('width', 20)
+					 .attr('height', 19);
+					 */
+		}
+		
+		setInterval(updateHorizon,6000);
+</script>
+</html>

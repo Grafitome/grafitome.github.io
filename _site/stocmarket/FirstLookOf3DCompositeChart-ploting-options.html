@@ -1,0 +1,718 @@
+<html ng-app="chartApp">
+<head>
+<script src="libs/jquery-1.10.1.min.js" type="text/javascript"></script>
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Raleway|Fjalla+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="libs/angular.min.js"></script>
+<script type="text/javascript" src="libs/d3.v3.min.js"></script>
+<script type="text/javascript" src="libs/stomp.js"></script>
+<script src="MainCtlr.js" type="text/javascript"></script>
+<script src="CompanyImageChartCtlr.js" type="text/javascript"></script>
+<script src="BarGraphCtlr.js" type="text/javascript"></script>
+<script src="PieChartCtlr.js" type="text/javascript"></script>
+<script src="HistoricalDataChart.js" type="text/javascript"></script>
+<script src="websocketLayer/WebSocketHandler.js" type="text/javascript"></script>
+<script src="RankerHandler.js" type="text/javascript"></script>
+<script src="gainers.js" type="text/javascript"></script>
+<script type="text/javascript" src="ddaccordion.js"></script>
+
+
+<body  ng-controller="genereateLogoChartData">
+	<div class="header">
+		<div class="logo"> <div style="float:left;"> <img src="stocinn-logo.png" alt=""/> </div> </div>
+		<div class="nav">
+			<ul>
+	  <script type='text/javascript'>
+	  $(document).ready(function(){
+		  $('.chartLink').click(function(){
+			var id="#"+$(this).attr('name');
+			 $('.activeComp').removeClass('activeComp');
+		    $('.activeChart').removeClass('activeChart');
+			$(id).addClass('activeChart');
+			$(this).addClass('activeComp');
+		  });
+	  });
+	  function loadChart(){
+	  
+	  
+	  }
+	  var showDropDown=false;
+	  function showColorPicker(){
+		  	
+		  	showDropDown=!showDropDown;
+			if(showDropDown){
+		  	$('#PieChart').show();
+			}
+			else{
+					$('#PieChart').hide();
+				}
+		  }
+		  
+		  $("#colorPicker").jqxColorPicker({
+    width: 300,
+    height: 300
+});
+$('#colorPicker').bind('colorchange', function (event)
+{ 
+ $('#colorholder').css('background','#'+$("#colorPicker").jqxColorPicker('getColor').hex);
+});
+
+	  </script>
+      
+      
+   
+
+      
+				<li class="chartLink activeComp" name="chart" > <i class="fa fa-tachometer"></i> Realtime data plotting </li>
+                <li class="chartLink" name='historicalDataChart'> <i class="fa fa-retweet"></i> Historical data Plotting </li>
+                 <li class="chartLink" id="dropdown" onclick="showColorPicker();" > <i class="fa fa-pencil"></i>  Color Picker </li>
+				<!--<li> <a href="#"><i class="fa fa-home" ></i> </a> </li>
+				<li> <a href="#"><i class="fa fa-folder-open"></i> </a> </li>
+				<li> <a href="#"><i class="fa fa-file-text-o"></i> </a>  </li>
+				<li> <a href="#"><i class="fa fa-external-link-square"></i> </a></li>
+				<li> <a href="#"><i class="fa fa-cogs"></i> </a> </li>-->
+	  
+			</ul>
+           <div id="PieChart" ><span class="piechart">Pie Chart</span>
+           <div class="beanish" id="colorPicker"><span class="beanish-color"></span> Beanish</div>
+            <div class="bullish" id="colorPicker"><span class="bullish-color"></span> Bullish</div>
+            </div>
+		</div>
+	</div>
+    <div class="RightPanel">
+    <div class="client-setting">
+      <div class="heading">Setting</div>
+	<div class="sublink"  >
+							<div class="inputrow bgcolor">
+								<div class="text">Symbol</div> 
+								<div class="text">%Profit</div>
+								<div class="text">Abs Profit</div> 
+							</div>
+							<div ng-repeat="chartData in logoChartData" class="inputrow">
+								<input type="text" name="K"   readonly='true' ng-model="chartData.symbol" class="none"    >
+								<input type="text" class="change" size="4" maxlength="4"  readonly='true'  ng-model='logoChartJSONData[chartData.symbol].perChange'> 
+								<input type="text" class="change"  size="4" maxlength="4" readonly='true' ng-model='logoChartJSONData[chartData.symbol].absChange' >
+								<!--<input type="text" class="change"  readonly='true' ng-model='chartData.perChange'> 
+								<input type="text" class="change" readonly='true' ng-model='chartData.absChange'>-->
+							</div>
+							<!--<div class="inputrow"><input type="text" name="AA" value="AA" class="none" >    
+								<input type="text"  ng-model='logoChartJSONData["AA"].perChange'> 
+								<input type="text"  ng-model='logoChartJSONData["AA"].absChange'></div>
+							<div class="inputrow"><input class="none" type="text" name="GOOG"  value="GOOG">    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="AACC" value="AACC" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="G" value="G" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="FB" value="FB" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="PEP" value="PEP"  >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="ACN" value="ACN"  >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="KO" value="KO" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" name="YHOO" value="YHOO"   >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow"><input type="text" class="none" value="AAPL" >    <input type="text"  > <input type="text"  ></div>
+							<div class="inputrow">
+								<input type="text" class="none" value="GALE" >    <input type="text"  > <input type="text"  >
+							</div>-->
+								
+							<div class="inputrow">
+							Left Label:<input type="text" class="none"  style="background:grey;float:right;width:55%;" ng-model='buyXAxisLabel' ng-change="changeXAxisBuyLable();" ></input>    
+	
+							</div>
+							
+							<div class="inputrow">
+								Right Label:<input type="text" class="none" style="border:1px solid cyan;float:right;width:55%;"  ng-model='sellXAxisLabel' ng-change="changeXAxisSellLable();"> </input>
+							</div>
+							<div class="inputrowlast" > 
+								<div class="push" ng-click="startChart()"> <a href="#"> </a> </div>
+								<div class="stop" ng-click="stopChart()"> <a href="#"> </a> </div>
+								<div class="edit" ng-click="editChartData()"> <a href="#"> </a> </div>
+							</div>
+						</div>
+                    </div>
+                    <div class="historical-chart" >  <div class="ticker">
+                     <ul>
+                     <li>Ticker</li>
+                      <li>Last  </li>
+                       <li>  Change   </li>
+                        <li>AbsProfit</li>
+                     </ul></div> <div class="chartOuterDiv3">
+  
+     <div class="img"></div>
+		<div class="chartDiv3"></div>
+       
+	</div></div>
+    
+    
+    <div class="Historical-portfolio" >
+    <div class="heading">svsccfs</div>
+    <ul>
+        <li>dhdgvd</li><li><div class="indicator-strip-red"></div></li> </ul>
+    <ul><li>dhdgvd</li><li><div class="indicator-strip-green"></div></li></ul>
+ <ul><li>dhdgvd</li><li><div class="indicator-strip-white"></div></li></ul>
+    
+    </div>
+    
+    
+ 	<div class="chartOuterDiv2" ng-controller="BarGraphCtlr" >
+		<input type="text" id="currentSymbol" name="text" value="AAPL" >
+		
+		<div class="chartDiv2"></div>
+	</div>
+	
+	</div>
+	<div id="historicalDataChart1"  ng-controller="historicalDataChartCtlr">
+		<!--<div id="symbolEntryDiv">
+			<form id="symbolEntryForm" ng-submit='drawHistoricCharts();'>
+				<input  type="text" ng-model="symbol" class="symbolInput"></input>
+			</form>
+		</div>-->
+		<div id="historicalDataChart" >
+	<!--<script>
+
+	</script>-->
+			<div  class="sortButton" ng-click="sortBars();" >Sort</div>
+			<div id="cmf">
+				
+			</div>
+			<div id="closeDemaChartDiv">
+				<!--<div id="closeDemaLineTitle" style="height:30px;font-size:12px;color:white;background:black;margin-left:-10px;">
+					<span class="chartTitleSpan" style="margin-top: 8px;display: block;position: absolute;">CLOSE AND DEMMA COMPARISION</span>
+				</div>-->
+			</div>
+			<div id="closePriceDifferenceChartDiv">
+				<!--<div id="closePriceDifferenceTitle" style="height:30px;font-size:12px;color:white;background:black;margin-left:-10px;">
+					<span class="chartTitleSpan" style="margin-top: 8px;display: block;position: absolute;">CHANGE IN CLOSE PRICE </span>
+				</div>-->
+			</div>
+			<div id="timeAxisForHistoricalData">
+			</div>
+			<div id="dataPanel" class="dataPanel" ng-show="showHistoricChartToolTip "ng-style="getPosition()" >
+				
+					<!--<div id="timeValue">{{timeValue}}</div>
+					<div id="cmfValue" >{{cmfValue}}</div>
+					<div id="closeValue">{{closeValue}}</div>
+					<div id="demaValue" >{{demaValue}}</div>-->
+					<div id="timeValue"></div>
+					<div id="cmfValue" ></div>
+					<div id="closeValue"></div>
+					<div id="demaValue" ></div>	
+				
+			</div>
+			
+		</div>
+	</div>	
+	<!--<div id="stockContainer"  ng-controller="StockContinerCtlr">
+		<!--style="width:80%;position:absolute;height:75%;;z-index:999;left:200px;top:5%;background:white;"-->
+	<!--</div>-->
+    
+    <div id="leftnav">
+	
+<div class="accordion">
+<a class="menuitem" href="#">Dynamic Drive</a>
+<a class="menuitem submenuheader" href="#" >CSS Examples</a>
+<div class="submenu">
+	<ul>
+	<li><a href="#">Horizontal CSS Menus</a></li>
+<li><a href="#">Horizontal CSS Menus</a></li>
+	</ul>
+</div>
+<a class="menuitem" href="#">JavaScript Reference</a>
+<a class="menuitem" href="#">DOM Reference</a>
+<a class="menuitem submenuheader" href="#">CSS Drive</a>
+<div class="submenu">
+	<ul>
+	<li><a href="#">Horizontal CSS Menus</a></li>
+    <li><a href="#">Horizontal CSS Menus</a></li>
+    <li><a href="#">Horizontal CSS Menus</a></li>
+	</ul>
+</div>
+		
+</div>
+
+
+
+
+
+	</div>
+	<div id="chartLoader" style="width:50px;height:50px;background:url('loader.gif');z-index: 9999999;position: fixed;left: 35%;top: 50%;">
+	</div>
+	<div id="chart" ng-controller="CompanyImageChartCtlr" class='activeChart'>
+		<div id="tooltip">
+			<div id="cName">APPL</div>
+			<div id="changePer"> 
+				<span> % Profit </span> 
+				<div id="cPer" class="label">dhdhd</div>
+			</div>
+			 
+			<div id="Abs"> 
+				<span> Abs Profit </span> 
+				<div class="label" id="cAbs">dhdhd</div>
+			</div>
+		 
+		</div>
+	</div>
+	
+	<div class="xAxisTick"></div>	
+		 
+		 
+</body>
+<script>
+
+
+
+function getRandomColor() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.round(Math.random() * 15)];
+		}
+		return color;
+	}
+	
+		
+		
+function createBuySellGraph(){
+var data=[];
+var	margin = {top: 20, right: 60, bottom: 40, left: 10},
+width = $(window).width()*.24 - margin.left - margin.right,
+height = $(window).height()*.36 - margin.top - margin.bottom;
+
+// Parse the date / time
+var	parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+//var formatDate = d3.time.format("%e-%b-%Y");
+var formatDate = d3.time.format("%H:%M");
+var	xScale;
+var yScale;
+var xAxis;
+var yAxis;
+var svg;
+var labelType;
+var signalGrouping;
+$(document).ready(function(){
+	createLineGraph();
+	setInterval(function(){redrawGraph();},4000);
+});
+var firstTime=false;
+var baseValue=70;
+var scaleMargin=15;
+
+function getChangeInPercentage(currentValue){
+	var changeinPercentage=((currentValue-baseValue)/baseValue)*100;
+	return changeinPercentage;
+}
+function getImageName(changeInPer){
+	if(changeInPer>0){
+		return 'img-sell.png';
+	}
+	else{
+		return 'img-buy.png';
+	}
+}
+
+function generateDynamicData(){
+	var newElementClass;
+	var newElementValue;
+	var ds=new Date();
+	var hours=ds.getHours();
+	var imageName;
+	var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+	newElementValue=Math.floor((Math.random()*100)+1);
+	newElementClass='green';
+	
+	imageName=getImageName(getChangeInPercentage(newElementValue));
+	if(data.length == 0){
+		newElementClass='green';
+	}
+	else{
+		var previousElementValue=data[data.length-1].close;
+		if(newElementValue>=previousElementValue){
+			newElementClass='green';
+		}
+		else{
+			newElementClass='red';
+		}
+	}
+	if(data.length>10){
+		data.shift();
+	}
+	data.push({timeIndex:datevalue,
+		close:newElementValue,
+		className:newElementClass,
+		changeInPercentage:getChangeInPercentage(newElementValue),
+		imageName:imageName
+	});
+	
+}
+function createLineGraph(){
+	generateDynamicData();
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	
+	//console.log("data length "+data.length);
+	firstTime=false;
+	var minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	var maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	//console.log("min timeInndex "+minDate + "max date "+maxDate);
+	var dt=new Date();
+	
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	// Define the axes
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+		
+		
+	// Define the line
+	/*
+	var	valueline = d3.svg.line()
+		.x(function(d) {////console.log("x scale "+xScale(d.timeIndex) + "time "+d.timeIndex); 
+		return xScale(d.timeIndex); })
+		.y(function(d) { return yScale(d.close); });*/
+		
+	
+	//url(images/GraphChartbg.png)
+	// Adds the svg canvas
+var svgWidth=width+100;
+	var svgheight=height+100;
+	svg = d3.select(".chartDiv3")
+			  .append("svg")
+			  .attr("width", svgWidth)
+			  .attr("height", svgheight)
+			  .attr("transform", "translate(" + 30 + "," + margin.top + ")")
+			  .append("g")
+			  .attr("transform", "translate(" + 30 + "," + (margin.top+5) + ")").attr('class','dataValues');
+	/*
+	var allRect=svg.selectAll('rect')
+	.data(data);
+	allRect.enter()
+	.append('rect')
+	.attr("class", function(d) { 
+				return d.className;	
+			})
+	.attr("x", function(d, i) { return xScale(d.timeIndex); })
+	.attr("width", 5);
+	
+	allRect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			if(i==0){
+				return 100;
+			}
+			else{
+				return i*200;
+			}
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	*/
+	i=0;
+	// Add the X Axis
+	svg.append("g")			// Add the X Axis
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
+		/*
+		 d3.select("g.x")
+                .selectAll("div.tick")
+                .data(data)
+                .enter()
+                .append("div")
+                .attr("class", "tick")
+                .text(function (d, i) {
+					return i;
+                }).style('font-size',14);
+				/*
+                .style("left", function (d) {
+                    return Math.round(xScale(d)) - 30 + "px";
+                });
+				*/
+	var newWidth=width-margin.right;
+	// Add the Y Axis
+	svg.append("g")			// Add the Y Axis
+		.attr("class", "y axis")
+		.attr('transform','translate('+width+',0)')
+		.call(yAxis);
+		
+	/*	
+	//label on bar
+	svg.selectAll("path.signal")
+                    .data(data)
+                    .enter().append("path")
+                    .attr("class", "signal")
+                    .attr("d",d3.svg.symbol().type(function(d){
+						//console.log("dddcccc");
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return labelType;
+					
+					})) /*function(d){
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return d3.svg.symbol().type(labelType);
+						})*/
+						/*
+                    .attr("transform", function(d) {
+						return "translate(" + xScale(d.timeIndex) + "," + (yScale(d.close) + 20) + ")";
+					});	
+	*/
+	signalGrouping=d3.select('.dataValues');
+	signalGrouping.selectAll('image')
+				  .data(data)
+                  .enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.attr("width", function(d){
+						return '30';
+					})
+					.attr("height", function(d){
+						return '30';
+					})
+                  ;	
+	
+	svg.append('line').attr('class','verticalLineMapForBuySell').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);
+	svg.append('line').attr('class','horizontalLineMapForBuySell').attr('x1',0).attr('y1',0).attr('x1',0).attr('y2',0);	
+	svg.append('text')
+		.attr('class','priceForBuySellChart')
+		.style('font-size',20)
+		.attr('fill','white')
+		.style('display','none');
+	$('.y').find('path').hide();
+	
+	
+	
+}
+function drawTextForPriceMap(d,maxXScaleValue,minYScaleValue){
+	d3.selectAll('.priceForBuySellChart').attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(0) + ")");
+	d3.selectAll('.priceForBuySellChart')
+		.attr('fill','white')
+	   .transition()
+	   .duration(700)
+	   //.delay(700)
+	   .attr("transform", "translate(" + xScale(maxXScaleValue) + "," + yScale(d.close) + ")")
+	   .attr('fill','#E9044E')
+	   .tween("text", function() {
+			var last = 0;
+			var i = d3.interpolateRound(last,d.close );
+			return function(t){
+				this.textContent = ""+i(t);
+			};
+		});	 
+}	
+function redrawGraph(){
+	
+	var ds;
+	var hours;
+	var datevalue;
+	generateDynamicData();	
+	
+	
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	//console.log("data lebgth "+data.length);
+	minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	//console.log("min timeInndex "+minDate + "max date "+maxDate);
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+	
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+		
+	d3.selectAll('.y').call(yAxis)	
+	d3.selectAll('.x').call(xAxis);	
+	/*
+	// Using time as a key, join the new data to the old nodes.
+    var rect = svg.selectAll("rect")
+        .data(data, function(d) { return d.timeIndex; });
+	
+	// Enter…
+    rect.enter().insert("rect", ".x")
+        .attr("x", function(d, i) { //console.log(xScale(d.timeIndex)+": i "+i); return xScale(d.timeIndex)-.5; })
+       .attr('width',5)
+	   .attr('class',function(d,i){return d.className +"  new"});
+	
+   // Update…
+   rect.transition()
+       .duration(1000)
+       .attr("x", function(d, i) { return xScale(d.timeIndex)-.5; });
+	
+	
+   rect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	   
+	if(data.length==11){
+	// Exit…
+	rect.exit()
+	.remove();
+   }
+   */
+ // $('.signalPath').html('');
+	
+	var updatedSignalGroup=signalGrouping.selectAll('image.signal')
+				  .data(data,function(d){ return d.timeIndex;});
+                  updatedSignalGroup.enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						//console.log("xscale "+xScale(d.timeIndex));
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.on('mouseover',function(d){
+						d3.select(this)
+						.style(" -webkit-box-shadow", '0px 0px 5px #b0962d')
+						.style(" z-index", 99999999)
+						.style("opacity", 0.4)
+						.transition()
+						.duration(800)
+						.attr('stroke-width','2')
+						.attr('fill','transparent')
+						.attr('stroke','white')
+						.attr('width',(Math.abs(d.close)+5))
+						.attr('height',(Math.abs(d.close)+5))
+						.attr('stroke','cyan')
+						//alert(d.timeIndex);
+						d3.select('.verticalLineMapForBuySell').style('display','block');
+						d3.select('.horizontalLineMapForBuySell').style('display','block');
+						
+						var verticalLineMap=d3.selectAll('.verticalLineMapForBuySell');
+						
+						
+						var lineColor=getRandomColor();
+						var close=d.close;
+						/*
+						verticalLineMap
+						.attr('y1',function(){ return yScale(d.close)+30;})
+						.attr('x1',function(){ return xScale(d.timeIndex)+20;})
+						.attr('x2',function(){ return xScale(d.timeIndex)+20;})
+						.attr('y2',function(){ return yScale(d.close);})
+						.attr('stroke',lineColor).style("stroke-dasharray", ("1, 1"));
+						
+						var verticalTransition=verticalLineMap.transition()
+						.duration(1000);
+						
+						verticalTransition.attr('y2',function(){ return yScale(0);});
+						
+						var horizontalLineMap=d3.selectAll('.horizontalLineMapForBuySell');
+						
+						horizontalLineMap
+						.attr('x1',function(){ return xScale(d.timeIndex)+25;})
+						.attr('y1',function(){ return yScale(d.close)+30;})
+						.attr('x2',function(){ return xScale(d.timeIndex);})
+						.attr('y2',function(){ return yScale(d.timeIndex)+30;}).attr('stroke',lineColor).style("stroke-dasharray", ("1, 1"));
+						var horizontalMapTransition=horizontalLineMap.transition()
+						.duration(1000);
+						
+						//horizontalMapTransition.attr('x2',function(){ return (xScale(minChngePercentage)+60);});
+						horizontalMapTransition.attr('x2',function(){ return xScale(maxDate)});*/
+						d3.select('.priceForBuySellChart').style('display','block');
+						drawTextForPriceMap(d,maxDate,minDate);
+					})
+					.on('mouseout',function(d){
+						d3.select('.priceForBuySellChart').style('display','none');
+						d3.selectAll('.priceForBuySellChart').attr("transform", "translate(" + xScale(maxDate) + "," + yScale(0) + ")");
+						d3.select(this)
+						 .transition()
+						 .duration(400)
+						.style(" -webkit-box-shadow", '3px 5px 5px #b0962d')
+						.style(" z-index", 99)
+						.style("opacity", '1')
+						.transition()
+						.duration(800)
+						.delay(200)
+						.attr('stroke','none')
+						.attr("width",function(d){
+					     return (Math.abs(d.close)-20);
+							})
+							.attr("height",function(d){
+					     return (Math.abs(d.close)-20);
+							});
+							
+					})
+					.attr("width", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+					.attr("height", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+                  	
+					
+	//update signal with new data
+	updatedSignalGroup.transition()
+					  .duration(1000)
+					  .attr('x',function(d){ return xScale(d.timeIndex)-scaleMargin; }).attr('y',function(d){ return yScale(d.close)-scaleMargin});
+	
+	updatedSignalGroup.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		});	
+	if(data.length==11){
+		updatedSignalGroup.exit().remove();
+	}
+}
+ }
+ //createBuySellGraph();
+ 
+</script>
+</html>

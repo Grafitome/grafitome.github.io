@@ -1,0 +1,21 @@
+Starting Data will be of USA:
+GDP growth,
+Population Growth,
+Diabetes
+
+
+
+
+
+
+
+
+
+
+		Different Types Of Data :
+Cancer diversity in every state
+Energy Consumption in state
+Diversity in State
+Death rates
+Incident Rates
+Diabetes

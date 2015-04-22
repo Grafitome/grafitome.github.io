@@ -1,0 +1,462 @@
+<html>
+<head>
+<style> /* set the CSS */
+
+body { font: 12px Arial;}
+
+.chartDiv3 path { 
+	stroke: #00ffff;;
+	stroke-width: 2;
+	fill: none;
+}
+
+.chartDiv3 .axis path,
+.chartDiv3.axis line {
+	stroke: blue;
+	/*stroke: grey;*/
+	/*stroke-width: 0.5;*/
+	shape-rendering: crispEdges;
+}
+
+.chartDiv3
+{
+position:absolute;
+background:url(boder-tran.png);
+width:80%;
+height:80%;
+top:50px;
+color:cyan;
+background-color: black;
+     -webkit-transform: rotatex(-30deg) rotatez(-2deg) rotatey(-40deg);
+	 -webkit-transition:1s ease;
+	 box-shadow: 3px -3px 3px 3px grey;
+}
+.chartDiv3:hover
+{
+background:url(boder-tran.png);
+color:cyan;
+background-color: black;
+-webkit-transform: rotatex(0deg) rotatez(0deg) rotatey(0deg);
+box-shadow: none; 
+-webkit-transition:1s ease;
+}
+.chartDiv2 .tick{
+fill:white;
+
+}
+.chartDiv3 .tick{
+fill:white;
+
+}
+.chartDiv3 .headerSpan{
+display: block;
+padding: 8px 0px 4px 12px;
+margin: 0px;
+font-size: 12px;
+font-family: 'Open Sans', sans-serif;
+color: white;
+background-color: rgb(94, 148, 220);
+border: 1px solid rgba(0, 0, 0, 0.14902);
+border-image-source: initial;
+border-image-slice: initial;
+border-image-width: initial;
+border-image-outset: initial;
+border-image-repeat: initial;
+border-radius: 4px 4px 0px 0px;
+}
+.chartOuterDiv3{
+	border:1px solid rgb(0, 0, 0, 0.14902);
+	border-radius:5px;
+	width:25%;
+	height:48%;
+	padding:10px 10px 10px 10px;
+	background:black;
+	position:absolute;
+	left:75%;
+	top:51%;
+	
+}
+.chartDiv3 .y .domain{
+display:none;
+}
+.chartDiv3 .xaxis text{
+	font-size:24px;
+	
+}
+.chartDiv3 .close{
+	stroke: red;
+	fill:red;
+}
+.chartDiv3 .green {
+	fill: #09a61d;
+	fill: transparent;
+}
+.chartDiv3 .red {
+	fill: #cc2b36;
+		fill: transparent;
+}
+</style>
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>
+function createBuySellGraph(){
+var data=[];
+var	margin = {top: 20, right: 60, bottom: 30, left: 10},
+width = $(window).width()*.24 - margin.left - margin.right,
+height = $(window).height()*.40 - margin.top - margin.bottom;
+
+// Parse the date / time
+var	parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+//var formatDate = d3.time.format("%e-%b-%Y");
+var formatDate = d3.time.format("%H:%M");
+var	xScale;
+var yScale;
+var xAxis;
+var yAxis;
+var svg;
+var labelType;
+var signalGrouping;
+$(document).ready(function(){
+	createLineGraph();
+	setInterval(function(){redrawGraph();},4000);
+});
+var firstTime=false;
+var baseValue=70;
+var scaleMargin=15;
+
+function getChangeInPercentage(currentValue){
+	var changeinPercentage=((currentValue-baseValue)/baseValue)*100;
+	return changeinPercentage;
+}
+function getImageName(changeInPer){
+	if(changeInPer>0){
+		return 'img-sell.png';
+	}
+	else{
+		return 'img-buy.png';
+	}
+}
+
+function generateDynamicData(){
+	var newElementClass;
+	var newElementValue;
+	var ds=new Date();
+	var hours=ds.getHours();
+	var imageName;
+	var datevalue=ds.getFullYear()+"-"+ds.getMonth()+"-"+ds.getDate()+"T"+hours+":"+ds.getMinutes()+":"+ds.getSeconds()+"."+ds.getMilliseconds()+"Z";
+	newElementValue=Math.floor((Math.random()*100)+1);
+	newElementClass='green';
+	
+	imageName=getImageName(getChangeInPercentage(newElementValue));
+	if(data.length == 0){
+		newElementClass='green';
+	}
+	else{
+		var previousElementValue=data[data.length-1].close;
+		if(newElementValue>=previousElementValue){
+			newElementClass='green';
+		}
+		else{
+			newElementClass='red';
+		}
+	}
+	if(data.length>10){
+		data.shift();
+	}
+	data.push({timeIndex:datevalue,
+		close:newElementValue,
+		className:newElementClass,
+		changeInPercentage:getChangeInPercentage(newElementValue),
+		imageName:imageName
+	});
+	
+}
+function createLineGraph(){
+	generateDynamicData();
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	
+	console.log("data length "+data.length);
+	firstTime=false;
+	var minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	var maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	console.log("min timeInndex "+minDate + "max date "+maxDate);
+	var dt=new Date();
+	
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	// Define the axes
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+		
+		
+	// Define the line
+	/*
+	var	valueline = d3.svg.line()
+		.x(function(d) {//console.log("x scale "+xScale(d.timeIndex) + "time "+d.timeIndex); 
+		return xScale(d.timeIndex); })
+		.y(function(d) { return yScale(d.close); });*/
+		
+	
+	//url(images/GraphChartbg.png)
+	// Adds the svg canvas
+var svgWidth=width+100;
+	var svgheight=height+100;
+	svg = d3.select(".chartDiv3")
+			  .append("svg")
+			  .attr("width", svgWidth)
+			  .attr("height", svgheight)
+			  .attr("transform", "translate(" + 30 + "," + margin.top + ")")
+			  .append("g")
+			  .attr("transform", "translate(" + 30 + "," + (margin.top+5) + ")").attr('class','dataValues');
+	
+	var allRect=svg.selectAll('rect')
+	.data(data);
+	allRect.enter()
+	.append('rect')
+	.attr("class", function(d) { 
+				return d.className;	
+			})
+	.attr("x", function(d, i) { return xScale(d.timeIndex); })
+	.attr("width", 5);
+	
+	allRect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			if(i==0){
+				return 100;
+			}
+			else{
+				return i*200;
+			}
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	
+	i=0;
+	// Add the X Axis
+	svg.append("g")			// Add the X Axis
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
+		/*
+		 d3.select("g.x")
+                .selectAll("div.tick")
+                .data(data)
+                .enter()
+                .append("div")
+                .attr("class", "tick")
+                .text(function (d, i) {
+					return i;
+                }).style('font-size',14);
+				/*
+                .style("left", function (d) {
+                    return Math.round(xScale(d)) - 30 + "px";
+                });
+				*/
+	var newWidth=width-margin.right;
+	// Add the Y Axis
+	svg.append("g")			// Add the Y Axis
+		.attr("class", "y axis")
+		.attr('transform','translate('+width+',0)')
+		.call(yAxis);
+		
+	/*	
+	//label on bar
+	svg.selectAll("path.signal")
+                    .data(data)
+                    .enter().append("path")
+                    .attr("class", "signal")
+                    .attr("d",d3.svg.symbol().type(function(d){
+						console.log("dddcccc");
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return labelType;
+					
+					})) /*function(d){
+						if(d.className == 'red'){
+							labelType='triangle-down';
+						}
+						else{
+							labelType='triangle-up';
+						}
+						return d3.svg.symbol().type(labelType);
+						})*/
+						/*
+                    .attr("transform", function(d) {
+						return "translate(" + xScale(d.timeIndex) + "," + (yScale(d.close) + 20) + ")";
+					});	
+	*/
+	signalGrouping=d3.select('.dataValues');
+	signalGrouping.selectAll('image')
+				  .data(data)
+                  .enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.attr("width", function(d){
+						return '30';
+					})
+					.attr("height", function(d){
+						return '30';
+					})
+                  ;	
+	
+	$('.y').find('path').hide();
+	
+	
+	
+}
+
+function redrawGraph(){
+	
+	var ds;
+	var hours;
+	var datevalue;
+	generateDynamicData();	
+	
+	
+	data[data.length-1].timeIndex=parseDate.parse(data[data.length-1].timeIndex);
+	console.log("data lebgth "+data.length);
+	var minDate = d3.min(data, function(d) {
+
+		return d.timeIndex;
+    });
+	var maxDate = d3.max(data, function(d) {
+		return d.timeIndex;
+	});
+	
+	// Set the ranges
+	console.log("min timeInndex "+minDate + "max date "+maxDate);
+	xScale = d3.time.scale().domain([minDate,maxDate]).range([0, width]);
+	yScale = d3.scale.linear().domain([0,d3.max(data.map(function (d) {
+                return d.close;
+            }))]).range([height, 0]);
+			
+	//MARKING TICKS 6 FOR SPACING AMONG THEM
+	yAxis = d3.svg.axis().scale(yScale)
+		.orient("right").ticks(6).tickFormat(function(d) { return "-"+ d;});
+	
+	xAxis = d3.svg.axis().scale(xScale)
+		.orient("bottom").ticks(3).tickFormat(formatDate);
+		
+	d3.selectAll('.y').call(yAxis)	
+	d3.selectAll('.x').call(xAxis);	
+	// Using time as a key, join the new data to the old nodes.
+    var rect = svg.selectAll("rect")
+        .data(data, function(d) { return d.timeIndex; });
+	
+	// Enter…
+    rect.enter().insert("rect", ".x")
+        .attr("x", function(d, i) { console.log(xScale(d.timeIndex)+": i "+i); return xScale(d.timeIndex)-.5; })
+       .attr('width',5)
+	   .attr('class',function(d,i){return d.className +"  new"});
+	
+   // Update…
+   rect.transition()
+       .duration(1000)
+       .attr("x", function(d, i) { return xScale(d.timeIndex)-.5; });
+	
+	
+   rect.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		})
+		.attr("y",function(d){
+			return yScale(Math.max(0, d.close));
+		})
+		.attr('height',function(d){
+			return Math.abs(yScale(d.close) - yScale(0)); 
+		});
+	
+	   
+	if(data.length==11){
+	// Exit…
+	rect.exit()
+	.remove();
+   }
+   
+ // $('.signalPath').html('');
+	
+	var updatedSignalGroup=signalGrouping.selectAll('image')
+				  .data(data,function(d){ return d.timeIndex;});
+                  updatedSignalGroup.enter().append("image")
+                  .attr("class", "signal")
+				  .attr("xlink:href", function(d){ return d.imageName;
+					})
+					.attr('x',function(d){
+						console.log("xscale "+xScale(d.timeIndex));
+						return xScale(d.timeIndex)-scaleMargin;
+					})
+					.attr('y',function(d){
+						return yScale(d.close)-scaleMargin;
+					})
+					.attr("width", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+					.attr("height", function(d){
+						//return Math.abs(d.changeInPercentage);
+						return 30;
+					})
+                  	
+					
+	//update signal with new data
+	updatedSignalGroup.transition()
+					  .duration(1000)
+					  .attr('x',function(d){ return xScale(d.timeIndex)-scaleMargin; }).attr('y',function(d){ return yScale(d.close)-scaleMargin});
+	
+	updatedSignalGroup.transition()
+		.duration(1000)
+		.delay(function(d,i){
+			
+			return 700;
+		});	
+	if(data.length==11){
+		updatedSignalGroup.exit().remove();
+	}
+}
+ }
+ createBuySellGraph();
+</script>
+</head>
+<body>
+	
+	<div class="chartOuterDiv3">
+		
+		<div class="chartDiv3">
+		</div>
+	</div>
+	
+</body>
+</html>
