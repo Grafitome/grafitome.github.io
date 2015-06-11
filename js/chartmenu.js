@@ -2,51 +2,52 @@ var isTriggeringClick=false;
 var selectedChartIndex=1;
 
 var jsFiddleLinkMap={
-"1" : "http://jsfiddle.net/PAXCEL/ycevhobo/1/",
-"2" : "http://jsfiddle.net/PAXCEL/vk04sohw/1/",
-"3" : "http://jsfiddle.net/PAXCEL/Lj2bsdnr/1/",
-"4" : "http://jsfiddle.net/PAXCEL/ogy6uoco/1/",
-"5" : "http://jsfiddle.net/PAXCEL/75331cub/1/",
-"6" : "http://jsfiddle.net/PAXCEL/1o2d6yxj/1/",
-"7" : "http://jsfiddle.net/PAXCEL/ndgww2n3/1/",
+"1" : "http://jsfiddle.net/PAXCEL/ycevhobo/3/",
+"2" : "http://jsfiddle.net/PAXCEL/vk04sohw/2/",
+"3" : "http://jsfiddle.net/PAXCEL/Lj2bsdnr/3/",
+"4" : "http://jsfiddle.net/PAXCEL/ogy6uoco/3/",
+"5" : "http://jsfiddle.net/PAXCEL/75331cub/2/",
+"6" : "http://jsfiddle.net/PAXCEL/1o2d6yxj/2/",
+"7" : "http://jsfiddle.net/PAXCEL/ndgww2n3/3/",
 "8" : "http://jsfiddle.net/PAXCEL/fbLdbgdw/1/",
-"9" : "http://jsfiddle.net/PAXCEL/g7sujqLr/1/",
-"10" : "http://jsfiddle.net/PAXCEL/3fwtgp6h/1/",
-"11" : "http://jsfiddle.net/PAXCEL/4nb73yvx/1/",
-"12" : "http://jsfiddle.net/PAXCEL/6xke3jct/1/",
-"13" : "http://jsfiddle.net/PAXCEL/ns715wcv/1/",
-"14" : "http://jsfiddle.net/PAXCEL/5xnj5e9v/1/",
-"15" : "http://jsfiddle.net/PAXCEL/6degx86y/1/",
+"9" : "http://jsfiddle.net/PAXCEL/g7sujqLr/2/",
+"10" : "http://jsfiddle.net/PAXCEL/3fwtgp6h/2/",
+"11" : "http://jsfiddle.net/PAXCEL/4nb73yvx/3/",
+"12" : "http://jsfiddle.net/PAXCEL/6xke3jct/2/",
+"13" : "http://jsfiddle.net/PAXCEL/ns715wcv/3/",
+"14" : "http://jsfiddle.net/PAXCEL/5xnj5e9v/3/",
+"15" : "http://jsfiddle.net/PAXCEL/6degx86y/2/",
 "16" : "http://jsfiddle.net/PAXCEL/tgLh5t6w/2/",
-"17" : "http://jsfiddle.net/PAXCEL/2kLky6t0/1/",
-"18" : "http://jsfiddle.net/PAXCEL/uo9oL6v1/1/",
-"19" : "http://jsfiddle.net/PAXCEL/3whv97g8/1/",
+"17" : "http://jsfiddle.net/PAXCEL/2kLky6t0/2/",
+"18" : "http://jsfiddle.net/PAXCEL/uo9oL6v1/2/",
+"19" : "http://jsfiddle.net/PAXCEL/3whv97g8/2/",
 "20" : "http://jsfiddle.net/PAXCEL/nh2yfehp/1/",
-"21" : "http://jsfiddle.net/PAXCEL/u62v8k9m/1/",
-"22" : "http://jsfiddle.net/PAXCEL/9qy6jbj9/1/",
+"21" : "http://jsfiddle.net/PAXCEL/u62v8k9m/2/", 
+"22" : "http://jsfiddle.net/PAXCEL/9qy6jbj9/2/",
 "23" : "http://jsfiddle.net/PAXCEL/f4pez9be/1/",
 "24" : "http://jsfiddle.net/PAXCEL/Lob2myog/1/",
-"25" : "http://jsfiddle.net/PAXCEL/udghncaq/1/",
+"25" : "http://jsfiddle.net/PAXCEL/udghncaq/2/",
 "26" : "http://jsfiddle.net/PAXCEL/6r1kjkgo/2/",
-"27" : "http://jsfiddle.net/PAXCEL/fdjuyu3o/2/",
-"28" : "http://jsfiddle.net/PAXCEL/e0acaxm9/1/",
-"29" : "http://jsfiddle.net/PAXCEL/g2us9n5n/2/",
-"30" : "http://jsfiddle.net/PAXCEL/q0zbeoh4/2/",
-"31" : "http://jsfiddle.net/PAXCEL/u9oohepu/2/",
-"32" : "http://jsfiddle.net/PAXCEL/jcw3ubvx/1/",
+"27" : "http://jsfiddle.net/PAXCEL/fdjuyu3o/3/",
+"28" : "http://jsfiddle.net/PAXCEL/e0acaxm9/2/",
+"29" : "http://jsfiddle.net/PAXCEL/g2us9n5n/4/",
+"30" : "http://jsfiddle.net/PAXCEL/q0zbeoh4/3/",
+"31" : "http://jsfiddle.net/PAXCEL/u9oohepu/3/",
+"32" : "http://jsfiddle.net/PAXCEL/jcw3ubvx/2/",
 "33" : "http://jsfiddle.net/PAXCEL/81ewp9ty/1/",
-"34" : "http://jsfiddle.net/PAXCEL/108apo8f/1/",
-"35" : "http://jsfiddle.net/PAXCEL/ub2620sx/2/",
-"36" : "http://jsfiddle.net/PAXCEL/th2rfsrk/1/",
-"37" : "http://jsfiddle.net/PAXCEL/w0qkv82g/1/",
-"38" : "http://jsfiddle.net/PAXCEL/fzp00bg3/1/",
-"39" : "http://jsfiddle.net/PAXCEL/6njfewoy/1/",
-"40" : "http://jsfiddle.net/PAXCEL/4o9cku73/2/",
-"41" :"http://jsfiddle.net/PAXCEL/d7nvk1ub/1/",
-"42" :"http://jsfiddle.net/PAXCEL/fkd4af81/",
+"34" : "http://jsfiddle.net/PAXCEL/108apo8f/3/",
+"35" : "http://jsfiddle.net/PAXCEL/ub2620sx/3/",
+"36" : "http://jsfiddle.net/PAXCEL/th2rfsrk/2/",
+"37" : "http://jsfiddle.net/PAXCEL/w0qkv82g/4/",
+"38" : "http://jsfiddle.net/PAXCEL/fzp00bg3/2/",
+"39" : "http://jsfiddle.net/PAXCEL/6njfewoy/2/",
+"40" : "http://jsfiddle.net/PAXCEL/4o9cku73/3/",
+"41" :"http://jsfiddle.net/PAXCEL/d7nvk1ub/2/",
+"42" :"http://jsfiddle.net/PAXCEL/fkd4af81/2/",
 "43" :"http://jsfiddle.net/PAXCEL/856jwvvw/",
 "44" :"http://jsfiddle.net/PAXCEL/09cefcuo/",
-"45" :"http://jsfiddle.net/PAXCEL/3w4f6zmz/"
+"45" :"http://jsfiddle.net/PAXCEL/3w4f6zmz/",
+"46" :"http://jsfiddle.net/PAXCEL/csw25fcw/"
 
 }
 
@@ -112,7 +113,7 @@ $(document).ready(function(){
 		$("#basicLineChart").show();
 		
 		setTimeout(function(){
-			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
 			var stocChart1=$("#line1").stocCharts(textStyleConfg);
 			stocChart1.drawBasicLineChart('#line1', basicLineData);	
 		},50);
@@ -166,7 +167,7 @@ $(document).ready(function(){
 	var xAxisTickArray=["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14","Nov'14","Dec'14","Jan'15","Feb'15","Mar'15","Apr'15","May'15","Jun'15"];
 	
 	$("#scatterPlotChart").show();
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 	var stocChart2=$("#line1").stocCharts(textStyleConfg);
 	stocChart2.drawScatterPlotChart('#line1', scatterPlotData);	
 	
@@ -208,7 +209,7 @@ $(document).ready(function(){
 		}
 		
 		$("#drillDownChart").show();
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart3=$("#line1").stocCharts(textStyleConfg);
 		stocChart3.drawDrillDownChart("#line1", barData,cfgDrillDown);
 	
@@ -284,9 +285,6 @@ $(document).ready(function(){
 	$("#heatmap").show();
 	var stocChart4=$("#line1").stocCharts(textStyleConfg);
 	stocChart4.drawHeatMapChart('#line1', heatMapData,cfgHeatMap);
-	
-	
-	
   });
   
     $("#transitPieMenu").click(function(){
@@ -299,15 +297,14 @@ $(document).ready(function(){
 		$("#transitPie").show();
 		
 		var dataSet= {
-						key :['Agnitio','Apple Inc','IBM','Facebook','Accenture',"Gold Man Sach"],
+						key :['Agnitio','Apple Inc','IBM','Facebook','Accenture','Gold Man Sach'],
 						value : [12000,8850,10000,4234,10234,12134],
 						label : 'Cost',
-						color : ['#e67a77','#95d7bb','#aec785','#fcb322','#6d788e','#a48ad4']
-						//color:['#00FFFF','#00FF7E','#FFA500','#61b7E8','#6195C5','#EF924D']
+						color : ['#e67a77','#95d7bb','#aec785','#fcb322','#6d788e','#a48ad4'],
+						legendOrient : "left"
 					};
 		   
-	//	var legendSet=['Agnitio','Apple Inc','IBM','Facebook','Accenture',"Gold Man Sach"];
-		var textStyleConfg1={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":"12","background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"white"};
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"black"};	
 		var stocChart5=$("#line1").stocCharts(textStyleConfg);
 		//var colorPieArray=["#7cb5ec","#434348","#90ed7d","orange","green","cyan"];
 		stocChart5.drawPieChartWithTransition(dataSet);
@@ -318,7 +315,7 @@ $(document).ready(function(){
 		selectedChartIndex=$(this).attr("index");
 		updateJsfiddleLink(selectedChartIndex);
 		$(".chartDetails").hide();
-	  $(".radarChartMenu").show();
+	    $(".radarChartMenu").show();
 		$("#line1").empty();
 		
 		var d = [		  
@@ -348,8 +345,8 @@ $(document).ready(function(){
 		  ExtraWidthX: 100
 		}
 		
-		var textStyleConfg1={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","font-weight":300,"axisTextColor":"purple","legendTextColor":"white"};
-		var stocChart6=$("#line1").stocCharts(textStyleConfg1);
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var stocChart6=$("#line1").stocCharts(textStyleConfg);
 		stocChart6.drawRadarChart("#line1", d, mycfg);
 		
 	});
@@ -369,7 +366,7 @@ $(document).ready(function(){
 		var mulitpleLineBarData={'sea-level':{"color":'#3be5b1','indicationLabel':'Sea Level Pressure','chartType':'line','lineType':'cardinal','isDottedLine':false,'unit':'mb','data':gernerateMultiLineData(40,80)},'temperature':{'color':'#90ed7d','chartType':'line','indicationLabel':'Temperature','lineType':'linear','unit':'C','data':gernerateMultiLineData(60,80),'isDottedLine':true},'rainfall':{'color':'#7cb5ec','chartType':'bar','indicationLabel':'Rain Fall','unit':'mm','data':gernerateMultiLineData(20,100)}};
 		var xAxis={'ticks':generateDate()};
 		
-		var textStyleConfg1={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":"12","background":"none","font-weight":300,"legendTextColor":"#a7a7a7","titleFontSize":16};
+		var textStyleConfg1={};
 		var stocChartLineBars=$("#line1").stocCharts(textStyleConfg1);
 		stocChartLineBars.drawBarWithMultipleLineAndCircle({'data':mulitpleLineBarData,'marginLeft':50,'marginRight':50,'xAxis':xAxis,'indicationLabel':'Category'});
 		
@@ -388,7 +385,7 @@ $(document).ready(function(){
 		var groupedChartData=generateDataForStackChart();
 		groupedChartData=groupedChartData.slice(0,groupedChartData.length-3);
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var colorJson={"pending":"#00FFFF","approved":"#00FF7E","rejected":"#FFA500","halted":"#4FB6F2"};
 		var stocChart8=$("#line1").stocCharts(textStyleConfg);
 		
@@ -431,7 +428,7 @@ $(document).ready(function(){
 			title : "Last 10 Year Sales"
 		}
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart10=$("#line1").stocCharts(textStyleConfg);
 	    stocChart10.drawThreeDBarChart("#line1", barData, cfg3DBarChart);
 		
@@ -463,7 +460,7 @@ $(document).ready(function(){
 			yLabel:"Sales(in Crores)",
 			title : "Comparision Of Sale OF Two Item's in Last 10 years"
 		}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart38=$("#line1").stocCharts(textStyleConfg);
 	    stocChart38.drawThreeDGroupedBarChart("#line1", barDataOne, barDataTwo, cfg3DBarChart);
 		
@@ -521,7 +518,7 @@ $(document).ready(function(){
 		}
 		var gridLineColor = "#4d4d4d";
 		var textColor = "Grey";
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart27=$("#line1").stocCharts(textStyleConfg);
 		var xAxisArray = ['1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006'];
 	    stocChart27.drawThreeDStackedBarChart("#line1", heightOfBarOne, heightOfBarTwo, threeDStackedBarsData, cfg3DBarChart, colorArray, gridLineColor, textColor, xAxisArray);
@@ -563,7 +560,7 @@ $(document).ready(function(){
 			color: d3.scale.category20c(),
 			xLabel:"Time"
 		}
-			
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
 		var stocChart11=$("#line1").stocCharts(textStyleConfg);
 	    stocChart11.drawStackedAreaChart("#line1", stackedAreaData, cfgStackedAreaChart);
 		
@@ -616,8 +613,8 @@ $(document).ready(function(){
       
 					}
   
-  
-	  var stockChart14=$("#line1").stocCharts();
+      var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"red","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
+	  var stockChart14=$("#line1").stocCharts(textStyleConfg);
 	  stockChart14.drawFunnelChart(data)
 	});
 	  
@@ -644,7 +641,7 @@ $(document).ready(function(){
 		$("#areaChart1").show();
 		
 		var data=generateData(100,500);
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stockChart=$("#line1").stocCharts(textStyleConfg);
 		stockChart.areaChart({'data':data,'xFieldName':'doj',"yFieldName":'id','title':'Profit Analysis Chart','xAxisIndicationLabel':'Time Index','yAxisIndicationLabel':'Money','axisColor':'#222222','attachBrushEvent':true,'redraw':false});
 		stockChart.circleChart({'color':"#fff953",'r':3,'data':data});
@@ -772,7 +769,7 @@ $(document).ready(function(){
 		var groupedChartData=generateDataForStackChart(-20);
 		groupedChartData=groupedChartData.slice(0,groupedChartData.length-3)
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var colorJson={"pending":"#00FFFF","approved":"#00FF7E","rejected":"#FFA500","halted":"#4FB6F2"};
 		
 		var stocChart19=$("#line1").stocCharts(textStyleConfg);
@@ -843,7 +840,7 @@ $(document).ready(function(){
 				color : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785','#a48ad4']
 		   };
 		
-		//var textStyleConfg1={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":"12","background":"none","font-color":"green","font-weight":300,"axisTextColor":"purple","legendTextColor":"#333333"};	
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"green","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
 		var cnfg={"data":data,"divId":"line1"}
 		var stocChart21=$("#line1").stocCharts(textStyleConfg);
 		stocChart21.dountChartWithLegend(cnfg);
@@ -877,7 +874,7 @@ $(document).ready(function(){
 				}; 
 		
 		var legendTextColor="purple";	
-		//var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":"12","background":"none","font-color":"#333333","font-weight":300,"axisTextColor":"purple","legendTextColor":"#333333"};
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"#333333","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};
 		var cnfg={"data":data,"divId":"line1","subDataArray":subDataArray}
 		var stocChart23=$("#line1").stocCharts(textStyleConfg);
 		stocChart23.drawDountWithBarChart(cnfg);
@@ -899,7 +896,7 @@ $(document).ready(function(){
 		var yFieldName="year";
 		var axisColor="#a7a7a7";
 		var cnfg={"data1":data1,"data2":data2,"colorArray":colorArray,"xFieldName":xFieldName,"yFieldName":yFieldName,"axisColor":axisColor,"xLabel":"Population","yLabel":"Year","title":"Sales Comparisons Chart Of Last 8 Years"};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart24=$("#line1").stocCharts(textStyleConfg);
 		stocChart24.bulletBar(cnfg);
 	});	
@@ -983,7 +980,7 @@ $("#line1").empty();
 								,	
 					clickedSybmol :'./img/N.png'
 	           };
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart26=$("#line1").stocCharts(textStyleConfg);
 		stocChart26.drawCombinationalChart(data);
 		
@@ -1020,7 +1017,7 @@ $("#line1").empty();
 										    [-13.5, 9.8]
 									      ],
 							}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var cnfg={"data":variationData};
 		var stocChart28=$("#line1").stocCharts(textStyleConfg);
 		stocChart28.variationAnalysis(cnfg);
@@ -1091,7 +1088,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":globData};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"gray","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"gray","titleFontSize":16};
 		var stocChart29=$("#line1").stocCharts(textStyleConfg);
 		stocChart29.globChartAnalysis(cnfg);
 	});	
@@ -1129,7 +1126,7 @@ $("#line1").empty();
 		var yFieldName="run";
 		var axisColor="black";
 
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var cnfg={"data":AdvancedBarData};
 		var stocChart30=$("#line1").stocCharts(textStyleConfg);
 		stocChart30.barWithLogo(cnfg);
@@ -1167,7 +1164,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart31=$("#line1").stocCharts(textStyleConfg);
 		stocChart31.detailAnalysis(cnfg);
 	});	
@@ -1222,7 +1219,7 @@ $("#line1").empty();
 					}
 	
 	var cnfg={"data":bubbleData};
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 	var stocChart32=$("#line1").stocCharts(textStyleConfg);
 	stocChart32.threeDBubbleChart(cnfg);
 });	
@@ -1337,7 +1334,7 @@ $("#line1").empty();
     
    ]};
 			
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
 		var stocChart33=$("#line1").stocCharts(textStyleConfg);
 		var cfg={"data":data,"link-color":"#ccc","node-color":"#fff"};
 		stocChart33.treeChart(cfg);
@@ -1366,7 +1363,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart34=$("#line1").stocCharts(textStyleConfg);
 		stocChart34.areaChartWithVaryColorAnalysis(cnfg);
 	});	
@@ -1395,7 +1392,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart35=$("#line1").stocCharts(textStyleConfg);
 		stocChart35.areaChartWithNegativeValueAnalysis(cnfg);
 	});
@@ -1420,7 +1417,7 @@ $("#line1").empty();
 				   }
 
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart36=$("#line1").stocCharts(textStyleConfg);
 		stocChart36.musicSpikesAnalysis(cnfg);
 	});
@@ -1448,7 +1445,7 @@ $("#line1").empty();
 					}
 
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
 		var stocChart37=$("#line1").stocCharts(textStyleConfg);
 		stocChart37.comparisonAnalysis(cnfg);
 	});
@@ -1536,7 +1533,7 @@ $("#line1").empty();
 			}
 		
 
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart39=$("#line1").stocCharts(textStyleConfg);
 		stocChart39.multipleDountChartAnalysis(data);
 	});
@@ -1563,7 +1560,7 @@ $("#line1").empty();
 						unit : "%"
 						
 					}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
 		var stocChart40=$("#line1").stocCharts(textStyleConfg);
 		stocChart40.barWithLabelAnalysis(data);
 	});
@@ -1609,7 +1606,7 @@ $("#line1").empty();
 				*/
 			}
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart41=$("#line1").stocCharts(textStyleConfg);
 		stocChart41.logoChart(data);
 	});
@@ -1652,7 +1649,7 @@ $("#line1").empty();
 			legend : ["Student Login","Class Avg.Login","Student Interaction","Class.Avg Interaction","Student Time Spent","Class Time Spent"],
 			legendColor: ['#00ffff','#00ffff','#4fb6f2','#4fb6f2','#ffa500','#ffa500']
 			}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart42=$("#line1").stocCharts(textStyleConfg);
 		stocChart42.multiAxisChartAnalysis(data);
 	});
@@ -1724,26 +1721,14 @@ $("#line1").empty();
 						"country": "Italy",
 						"visits": 516,
 						"color": "#999999"
-						},/* {
-						"country": "Australia",
-						"visits": 484,
-						"color": "#DDDDDD"
-						}, {
-						"country": "Taiwan",
-						"visits": 458,
-						"color": "#333333"
-						}, {
-						"country": "Poland",
-						"visits": 408,
-						"color": "#000000"
-						}*/],  
+						}],  
 				
 				xAxisLabel : "Country",
 				yAxisLabel :"Visit(in Millons)",
 				unit : ""		
 			}
 		
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart43=$("#line1").stocCharts(textStyleConfg);
 		stocChart43.roundedThreeDBarAnalysis(data);
 	});
@@ -1762,7 +1747,7 @@ $("#line1").empty();
 			unit : "%",
 			factor :"Students"
 		}
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
 		var stocChart43=$("#line1").stocCharts(textStyleConfg);
 		stocChart43.threeDDountChartAnalysis(data);
 	});
@@ -1781,7 +1766,7 @@ $("#line1").empty();
 			unit : "%",
 			factor :"Students"
 		}
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
 		var stocChart44=$("#line1").stocCharts(textStyleConfg);
 		stocChart44.threeDPieChartAnalysis(data);
 	});
@@ -1838,7 +1823,7 @@ $("#line1").empty();
 				 }
 					
 		}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
 		var stocChart45=$("#line1").stocCharts(textStyleConfg);
 		stocChart45.arcWithCylinderChartAnalysis(data);
 	});
@@ -1863,7 +1848,7 @@ $("#line1").empty();
 						legendArray : ['Estimate Data','Actual Data']
 		    }
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
 		var stocChart46=$("#line1").stocCharts(textStyleConfg);
 		stocChart46.ThreeDComparisionAnalysis(data);
 	});
