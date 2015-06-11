@@ -5076,7 +5076,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (width*.18) + "," + (-height*.02) + ")");
+											.attr("transform", "translate(" + (width*.13) + "," + (-height*.02) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -5701,7 +5701,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (width*.15) + "," + (-height*.05) + ")");
+											.attr("transform", "translate(" + (width*.1) + "," + (-height*.05) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -12539,10 +12539,10 @@ var threeDBarChart = {
 				var yLabelTop=height/2+yTotalPixcel/2;
 				
 				var yLabelLeft;
-				if(width<400){
-					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*1.8;
+				if(width<501){
+					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2;
 				}else{
-					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*0.7;
+					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*0.8;
 				}
 				
 				axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);	
@@ -14310,7 +14310,7 @@ var threeDBarChart = {
 			
 			svgElement=svgElement
 						.append("g")
-						.attr("transform","translate("+width*0.07+","+margin.top+")");
+						.attr("transform","translate("+margin.left+","+margin.top+")");
 						//.attr("transform","translate("+widthOfBarRegion*0.05+","+height*0.03+")");
 			
 		
@@ -14679,7 +14679,7 @@ var threeDBarChart = {
 					largestStringLngth = (xAxisTicksArray[counter].toString()).length;
 				}
 			}
-			xAxis.tickValues(tickController.getXTickArray(0,(xAxisTicksArray.length),largestStringLngth, (width-(startX+leftBarMargin))));
+			xAxis.tickValues(tickController.getXTickArray(0,(xAxisTicksArray.length),(largestStringLngth+1), (width-(startX+leftBarMargin))));
 			var xAxisRef = svgContainer.append("g")
                     .attr("class", "axis")
 					.attr('fill',"none")
@@ -14710,10 +14710,10 @@ var threeDBarChart = {
 			var yLabelTop=scaleHeight/2+yTotalPixcel/2;
 			
 			var yLabelLeft;
-			if(width<400){
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2.1;
+			if(width<501){
+				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2.3;
 			}else{
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma));
+				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2;
 			}
 			
 			axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);
