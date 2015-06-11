@@ -2,10 +2,10 @@ var isTriggeringClick=false;
 var selectedChartIndex=1;
 
 var jsFiddleLinkMap={
-"1" : "http://jsfiddle.net/ycevhobo/4/",
-"2" : "http://jsfiddle.net/vk04sohw/3/",
-"3" : "http://jsfiddle.net/Lj2bsdnr/4/",
-"4" : "http://jsfiddle.net/ogy6uoco/4/",
+"1" : "http://jsfiddle.net/PAXCEL/ycevhobo/3/",
+"2" : "http://jsfiddle.net/PAXCEL/vk04sohw/2/",
+"3" : "http://jsfiddle.net/PAXCEL/Lj2bsdnr/3/",
+"4" : "http://jsfiddle.net/PAXCEL/ogy6uoco/3/",
 "5" : "http://jsfiddle.net/PAXCEL/75331cub/2/",
 "6" : "http://jsfiddle.net/PAXCEL/1o2d6yxj/2/",
 "7" : "http://jsfiddle.net/PAXCEL/ndgww2n3/3/",
@@ -1646,6 +1646,7 @@ $("#line1").empty();
 			title:"V/S Chart",
 			xAxisData : ["Jan","Feb","Mar","Apr","May","June","July"],
 			unit:"Student's",
+			xAxisLabel : "Month",
 			legend : ["Student Login","Class Avg.Login","Student Interaction","Class.Avg Interaction","Student Time Spent","Class Time Spent"],
 			legendColor: ['#00ffff','#00ffff','#4fb6f2','#4fb6f2','#ffa500','#ffa500']
 			}

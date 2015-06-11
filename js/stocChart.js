@@ -5076,7 +5076,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (width*.25) + "," + (-height*.02) + ")");
+											.attr("transform", "translate(" + (width*.18) + "," + (-height*.02) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -5701,7 +5701,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (width*.25) + "," + (-height*.05) + ")");
+											.attr("transform", "translate(" + (width*.15) + "," + (-height*.05) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -11978,7 +11978,7 @@ var threeDBarChart = {
 			  var plot = svg
 			  .append("g")
 			  .attr("class", "arc");
-			  var imageElement=svg.append("g").attr("transform", "translate( "+ (width/2-radius)+" , "+ (height/4) +")");	
+			  var imageElement=svg.append("g").attr("transform", "translate( "+ (width/2-(radius))+" , "+ (height/4) +")");	
 			  drawMeter.image =imageElement.append("svg:image")
 			  .attr('x',0)
 			  .attr('y',0)
@@ -12540,7 +12540,7 @@ var threeDBarChart = {
 				
 				var yLabelLeft;
 				if(width<400){
-					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*1.5;
+					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*1.8;
 				}else{
 					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*0.7;
 				}
@@ -14242,8 +14242,9 @@ var threeDBarChart = {
                     }
                 }
 
-               
-			var margin = {top: 0.1*height, right: 0.05*width, bottom: 0.13*height, left: 0.05*width};					
+            var margin;
+			
+			var margin = {top: 0.1*height, right: 0.05*width, bottom: 0.13*height, left: 0.1*width};					
 			var xAxisTicksArray=options.xAxisTickArray;
 			
 			var scaleWidth  = width - margin.left - margin.right;
@@ -14710,9 +14711,9 @@ var threeDBarChart = {
 			
 			var yLabelLeft;
 			if(width<400){
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2;
+				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2.1;
 			}else{
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*0.95
+				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma));
 			}
 			
 			axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);
@@ -15289,6 +15290,7 @@ var threeDBarChart = {
 				var legendColor = data.legendColor;
 				var legend = data.legend;
 				var title = data.title;
+				var xAxisLabel = data.xAxisLabel;
 				
 				var multiAxisAnalChart={left:width*0.05,right:width*0.05,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=(width)-multiAxisAnalChart.left-multiAxisAnalChart.right;
@@ -15336,6 +15338,17 @@ var threeDBarChart = {
 										verticalLineRef.attr('display','none')
 										toolTipManager.hideTooTip();
 									});
+			
+		
+						   
+			//xAxis label here	
+				
+			var pixcelPerChar=6;
+			var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
+			var xIndicationLabelTop=scaleHeight+(scaleHeight*0.12);
+			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
+			axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,multiAxisMAinGroup,textStyleConfg.xLabelColor,600);			   							
+																	
 			
 				//vertical line here	
 
@@ -15478,7 +15491,7 @@ var threeDBarChart = {
 
 			var xAxisGroup = multiAxisMAinGroup.append("g")
 								.attr("class","x axis")
-								.attr("transform","translate("+0+","+(scaleHeight)+")")
+								.attr("transform","translate("+0+","+(scaleHeight-5)+")")
 								.attr('fill','none')
 								//.style('display','none')
 								.call(xAxis)
@@ -16197,7 +16210,7 @@ var threeDBarChart = {
 				var title = data.title;
 				var unit = data.unit;
 				var threeDAnalChart;
-				if(width<551)
+				if(width<601)
 				{
 					threeDAnalChart={left:width*0.2,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}
@@ -16234,7 +16247,7 @@ var threeDBarChart = {
 				//xAxis label here			
 				var pixcelPerChar=7;
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=scaleHeight+(scaleHeight*0.13);
+				var xIndicationLabelTop=scaleHeight+(scaleHeight*0.15);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,threeDBarMainGroup,textStyleConfg.xLabelColor,600);			   							
 							
@@ -17987,7 +18000,7 @@ var meterChart={
 						.attr("width", width)
 						.attr("height", height)
 						.append("g")
-						.attr("transform","translate("+(width/4)+","+0+")");
+						.attr("transform","translate("+((width/2)-160)+","+0+")");
 						
 						//Path inner and outer radius is adjusted
 						this.arc = d3.svg.arc()

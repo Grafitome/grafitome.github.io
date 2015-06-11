@@ -1646,6 +1646,7 @@ $("#line1").empty();
 			title:"V/S Chart",
 			xAxisData : ["Jan","Feb","Mar","Apr","May","June","July"],
 			unit:"Student's",
+			xAxisLabel : "Month",
 			legend : ["Student Login","Class Avg.Login","Student Interaction","Class.Avg Interaction","Student Time Spent","Class Time Spent"],
 			legendColor: ['#00ffff','#00ffff','#4fb6f2','#4fb6f2','#ffa500','#ffa500']
 			}
