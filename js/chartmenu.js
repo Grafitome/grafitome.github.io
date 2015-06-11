@@ -304,7 +304,7 @@ $(document).ready(function(){
 						legendOrient : "left"
 					};
 		   
-		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"black"};	
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":30"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
 		var stocChart5=$("#line1").stocCharts(textStyleConfg);
 		//var colorPieArray=["#7cb5ec","#434348","#90ed7d","orange","green","cyan"];
 		stocChart5.drawPieChartWithTransition(dataSet);
