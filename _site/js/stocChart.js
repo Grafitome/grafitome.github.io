@@ -13010,7 +13010,7 @@ var threeDBarChart = {
 
 				  // Enter any new nodes at the parent's previous position.
 				  var nodeEnter = node.enter().append("g")
-					  .attr("class", "legend")
+					  .attr("class", "node legend")
 					  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
 					  .on("click", click);
 
@@ -13109,6 +13109,7 @@ var threeDBarChart = {
 
 				// Toggle children on click.
 				function click(d) {
+					
 				  if (d.SubRoot) {
 					d._children1 = d.SubRoot;
 					d.SubRoot = null;
@@ -14825,7 +14826,7 @@ var threeDBarChart = {
 	             
                 var yAxisGroup = barMainGroup.append("g")
 									.attr("class","y axis")
-									.attr("transform","translate("+(-barAnalChart.left*0.2)+","+0+")")
+									.attr("transform","translate("+(-barAnalChart.left*0.4)+","+0+")")
 						       	    .attr('fill','none')
 									.call(yAxis)
 									.selectAll('text')

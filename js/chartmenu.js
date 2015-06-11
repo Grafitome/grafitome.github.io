@@ -304,14 +304,13 @@ $(document).ready(function(){
 						legendOrient : "left"
 					};
 		   
-		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":30,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
 		var stocChart5=$("#line1").stocCharts(textStyleConfg);
 		//var colorPieArray=["#7cb5ec","#434348","#90ed7d","orange","green","cyan"];
 		stocChart5.drawPieChartWithTransition(dataSet);
 		
 	});
   
-            
     $("#radarChartMenu").click(function(){
 		selectedChartIndex=$(this).attr("index");
 		updateJsfiddleLink(selectedChartIndex);
@@ -614,7 +613,7 @@ $(document).ready(function(){
       
 					}
   
-      var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"red","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
+      var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"#a7a7a7","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
 	  var stockChart14=$("#line1").stocCharts(textStyleConfg);
 	  stockChart14.drawFunnelChart(data)
 	});
