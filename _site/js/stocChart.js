@@ -170,7 +170,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
      obj.x=xPos;
      obj.y=yPos;
      obj.endPos=xEndPos;
-     obj.textPos=xPos+legendWidth+textSeparator;
+     obj.textPos=xPos+legendWidth+textSeparator-5;
      
      legendPositionArray.push(obj);
     }
@@ -191,9 +191,9 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 			var legendPositionArray = [];
 			var obj={"x":0,"y":0,"textXPos":0};
 			var seprator = 5;	
-			var xPositionOfLegend = scaleWidth*.1;
+			var xPositionOfLegend = scaleWidth*.07;
 			var temp,flag = scaleWidth*.1;
-			var legendRow = Math.round((scaleWidth*.8)/(seprator+legendSize+largestStringLngth));
+			var legendRow = Math.round((scaleWidth*.9)/(seprator+legendSize+largestStringLngth));
 			
 			for(var counter = 0 ; counter<legendArray.length ; counter++)
 			{
@@ -210,7 +210,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 				if(counter%legendRow == 0  && counter!=0)
 				{
-					yPositionOfLegend = (yPositionOfLegend)+(2*legendSize);
+					yPositionOfLegend = (yPositionOfLegend)+(1.5*legendSize);
 				}
 				obj.y = yPositionOfLegend;
 				
@@ -2470,7 +2470,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 				//title here
 				var pixcelPerChar = 9;
-				var leftIndicator = (width/2) - ((options.title.length*pixcelPerChar)/2)
+				var leftIndicator = ((width + marginSvg + margin.left)/2) - ((options.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 					
@@ -2552,16 +2552,16 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                     return "translate(0," + (10 + i * 20) + ")";
                 });
 
-                var rectWidth = 18;
-                var textGap = 10;
+                var rectWidth = 10;
+                var textGap = 5;
                 var xRectLegend = 0;
                 var xTextLegend = xRectLegend + rectWidth + textGap;
                 var hideLegendList = {};
 
                 stackChartLegend.append("rect")
                     .attr("x", xRectLegend)
-                    .attr("width", 18)
-                    .attr("height", 18)
+                    .attr("width", 10)
+                    .attr("height", 10)
                     .style("fill", function (d, i) {
                     return options.colors[d];
                 })
@@ -2709,7 +2709,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 
                 stackChartLegend.append("text")
                     .attr("x", xTextLegend)
-                    .attr("y", 9)
+                    .attr("y", 4)
                     .attr("dy", ".35em")
                     .style("text-anchor", "start")
                     .attr("class", function (d) {
@@ -2974,7 +2974,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 				//title here
 				var pixcelPerChar = 9;
-				var leftIndicator = (width/2) - ((options.title.length*pixcelPerChar)/2)
+				var leftIndicator = ((width+marginSvg + margin.left)/2) - ((options.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 					
@@ -3059,7 +3059,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                     return "translate(0," + (10 + i * 20) + ")";
                 });
 
-                var rectWidth = 18;
+                var rectWidth = 10;
                 var textGap = 10;
                 var xRectLegend = 0;
                 var xTextLegend = xRectLegend + rectWidth + textGap;
@@ -3067,8 +3067,8 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 
                 stackChartLegend.append("rect")
                     .attr("x", xRectLegend)
-                    .attr("width", 18)
-                    .attr("height", 18)
+                    .attr("width", 10)
+                    .attr("height", 10)
                     .style("fill", function (d, i) {
                     return options.colors[d];
                 })
@@ -3289,7 +3289,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 
                 stackChartLegend.append("text")
                     .attr("x", xTextLegend)
-                    .attr("y", 9)
+                    .attr("y", 4)
                     .attr("dy", ".35em")
                     .style("text-anchor", "start")
                     .attr("class", function (d) {
@@ -4298,7 +4298,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				axisLabelController.appendLabel(cnfg.xLabel,xLabelLeft,xLabelTop,0,xAxisRef,textStyleConfg.xLabelColor,600);
 				
 				//title here
-				var pixcelPerChar = 9;
+				var pixcelPerChar = 8;
 				var leftIndicator = (scaleWidth/2) - ((cnfg.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
@@ -4370,8 +4370,15 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 					.attr('viewBox','0 0 '+Math.max(width,height) +' '+Math.min(width,height) )
 					.attr('preserveAspectRatio','xMinYMin')
 					
-				
-				var marginCrickedAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.05,top:height*0.07,chartSeparator:5};
+				var marginCrickedAnalChart;
+				if(width<551)
+				{
+					marginCrickedAnalChart={left:width*0.15,right:width*0.1,bottom:height*0.05,top:height*0.07,chartSeparator:5};
+				}
+				else
+				{
+					marginCrickedAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.05,top:height*0.07,chartSeparator:5};
+				}
 				
 				var scaleWidth=width-marginCrickedAnalChart.left-marginCrickedAnalChart.right;
 				var scaleHeight=height-marginCrickedAnalChart.top-marginCrickedAnalChart.bottom;
@@ -4438,8 +4445,8 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				yScale.domain([0,maxYScale]);
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,height*0.06,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -4453,7 +4460,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var pixcelPerChar = 7;
 				var totalYLabelPixcel=yIndicationLabel.toString().length*pixcelPerChar;			
 				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-				var yIndicationLabelLeft=(-marginCrickedAnalChart.left/2);
+				var yIndicationLabelLeft=(-marginCrickedAnalChart.left/1.7);
 				axisLabelController.appendLabel(yIndicationLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,svgElement,textStyleConfg.yLabelColor,600);			   													   					
 					
 				xAxis = d3.svg.axis().scale(xScale)
@@ -5017,9 +5024,9 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 			},
 			draw3DPyramidSliceChart:function(cfg){
+				
 				var jsonData = DataConverter.getValueToPercentageArray(cfg.data);
-								
-					
+				
 				//height = 100;
 				//width = 300;
 				var outFactorInitial = ( width < height ? width : height);
@@ -5047,6 +5054,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var labelYPoints = [];
 				var xNew=0;
 				var yNew=0;
+
 				if(width>height){
 					xNew=(width-outFactor)/2;
 					yNew=(0);
@@ -5068,7 +5076,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (xNew-outFactor*.4) + "," + (yNew-outFactor*.15) + ")");
+											.attr("transform", "translate(" + (width*.25) + "," + (-height*.02) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -5693,7 +5701,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				 
 				var svgContainer = svgElement
 											.append("g")
-											.attr("transform", "translate(" + (xNew-outFactor*.4) + "," + (yNew-outFactor*.2) + ")");
+											.attr("transform", "translate(" + (width*.25) + "," + (-height*.05) + ")");
 
 				//var transitionFator={"x":(width-getWidthOfPyramid())/2,"y":0};			
 			
@@ -6649,7 +6657,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 			
 			
 			//set font here
-			//setTextStyleAndSvgBackGround(svgElement);
+				setTextStyleAndSvgBackGround(svgElement);
 			
 			
 			
@@ -6694,7 +6702,15 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				legendSize = 12;
 			}		
 			
-		  var margin = {top: height*.10, right: width*.10, bottom: height*.12, left: width*.10};
+		  var margin;
+		  if(width<501)
+		  {
+			margin = {top: height*.10, right: width*.10, bottom: height*.12, left: width*.2};
+		  }
+		  else
+		  {
+			margin = {top: height*.10, right: width*.10, bottom: height*.12, left: width*.10};
+		  }
 		  var scaleWidth = width - margin.left - margin.right;
 		  var scaleHeight = height - margin.top - margin.bottom;
 		  var divSelection = d3.select("#"+divId);
@@ -6751,8 +6767,8 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		
 	
 		//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((data.title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((data.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 					
@@ -6768,7 +6784,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		
 		var totalYLabelPixcel=data.yLabel.toString().length*pixcelPerChar;
 		var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;        
-		var yIndicationLabelLeft=(-margin.left/2);
+		var yIndicationLabelLeft=(-margin.left/1.7);
 		axisLabelController.appendLabel(data.yLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,combinationalGroup,textStyleConfg.yLabelColor,600);
 		
 		
@@ -7618,7 +7634,16 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 		{
 				variationAnalysis:function(cnfg)
 				{
-				var variationAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.15,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				
+				var variationAnalChart;
+				if(width<551)
+				{
+					variationAnalChart={left:width*0.16,right:width*0.1,bottom:height*0.15,top:height*0.15,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					variationAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.15,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var title = cnfg.data.title;
 				var subTitle =cnfg.data.subTitle;
 				var titleColor = cnfg.data.titleColor;
@@ -7629,12 +7654,14 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				var scaleWidth=width-variationAnalChart.left-variationAnalChart.right;
 				var scaleHeight=height-variationAnalChart.top-variationAnalChart.bottom;
 				var fontSize,rectangleSize,rectangleTextSize,titleFontSize,gridFactor;
+				
+				rectangleSize = scaleHeight/(2*yAxisData.length)
 				if(width<501)
 				{
 						titleFontSize = 18
 						gridFactor = 8;
 						fontSize = 11;
-						rectangleSize = 9;
+					//	rectangleSize = 9;
 						rectangleTextSize =9;
 				}
 				else
@@ -7642,7 +7669,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 						titleFontSize = 20;
 						gridFactor = 12;
 						fontSize = 14;
-						rectangleSize = 10;
+					//	rectangleSize = 10;
 						rectangleTextSize =10;
 				}
 				
@@ -7667,17 +7694,20 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
                     .attr("transform", "translate(" + variationAnalChart.left + "," + variationAnalChart.top + ")");
 								
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2);
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2);
 				var titleGroup = svgElement.append("g")
-										   .attr('class','title')
+										   .attr('class','title');
+										   
+				var subTitleGroup = svgElement.append("g")
+							   .attr('class','sub-title');						   
 					
 				axisLabelController.appendLabel(title,leftIndicator,variationAnalChart.top/3,0,titleGroup,textStyleConfg.chartTitleColor,800);			   
 
 				//subTitle label here	
 
-				 leftIndicator = (scaleWidth/2) - ((subTitle.length*pixcelPerChar)/2)
-				 axisLabelController.appendLabel(subTitle,leftIndicator,((-variationAnalChart.top/2.6)),0,variationMainGroup,textStyleConfg.chartTitleColor,600);
+				 leftIndicator = (width/2) - ((subTitle.length*pixcelPerChar)/2)
+				 axisLabelController.appendLabel(subTitle,leftIndicator,((variationAnalChart.top/1.7)),0,subTitleGroup,textStyleConfg.chartTitleColor,600);
 				 
 				 var gridManager = {
             init: function (svg, height, width, left, top) {
@@ -7730,7 +7760,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				var pixcelPerChar = 8;
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
 				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-				var yIndicationLabelLeft=(-variationAnalChart.left/2)
+				var yIndicationLabelLeft=(-variationAnalChart.left/1.6)
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,variationMainGroup,textStyleConfg.yLabelColor,600);
 				   
 								
@@ -7788,7 +7818,7 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 											  .append('rect')
 											  .attr('value',function(d,i){return i})
 											  .attr('x',function(d,i){return xScale(midValue);})
-											  .attr('y',function(d,i){return yScale(i)})
+											  .attr('y',function(d,i){return yScale(i)-(rectangleSize/2)})
 											  .attr('width',function(d,i){return 0;})
 											  .attr('height',rectangleSize)
 											  .attr('fill',"url(#rectangleGradient)");
@@ -7805,7 +7835,7 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 											  .enter()
 											  .append('text')
 											  .attr('x',function(d,i){return xScale(lowValue[i])-((lowValue[i].toString().length+xAxisLabel.length)*(pixcelPerChar))})
-											  .attr('y',function(d,i){return yScale(i)+pixcelPerChar})
+											  .attr('y',function(d,i){return yScale(i)+(rectangleSize/2)})
 											  .attr('font-size',rectangleTextSize)
 							                  .attr('font-family',fontFamily)
 											  .attr('fill',textStyleConfg.yLabelColor)
@@ -7821,7 +7851,7 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 											  .enter()
 											  .append('text')
 											  .attr('x',function(d,i){return xScale(highValue[i])+5})
-											  .attr('y',function(d,i){return yScale(i)+pixcelPerChar})
+											  .attr('y',function(d,i){return yScale(i)+(rectangleSize/2)})
 											  .attr('font-size',rectangleTextSize)
 							                  .attr('font-family',fontFamily)
 											  .attr('fill',textStyleConfg.yLabelColor)
@@ -7839,204 +7869,286 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 		};
 		
         var pieChartWithTransition = {
-		drawPieChartWithTransition: function (options) {
-                var options = $.extend({
-
-                    'data': []
-                }, options);
-
-                var dataset=options.value;
+		drawPieChartWithTransition: function (data) {
+					
+				var key = data.key;
+				var value = data.value;
+				var label = data.label;
+				var color = data.color;
+				var legendOrient = data.legendOrient;
+					  
 				
-				var factor = options.label;
-				/*
-                if (options.data.length == 0) {
-                    dataset = chartData;
-                } else {
-                    dataset = options.data;
-                }
-				*/
-                var legendsArray = options.key;
-				var legendTextLength = 0;
-				for(var index = 0;index<legendsArray.length;index++)
+				var grad = Math.PI/180;
+				var legendSize = width * 0.02;
+			 
+				var legendAndTextSize;
+				var pixcelPerChar=7;
+				var largestStringLength=0;
+				var seprator = 4;
+				for(var counter =0 ;counter<key.length;counter++)
 				{
-					if(legendTextLength<legendsArray[index].length)
+					if(largestStringLength<(key[counter].toString()).length)
 					{
-						legendTextLength = legendsArray[index].length;
+						largestStringLength = (key[counter].toString()).length;
 					}
+				}
+				var radius ,innerRadius=0;
+				largestStringLength = largestStringLength * pixcelPerChar;
+				legendAndTextSize = largestStringLength + legendSize + seprator;
+				var dountPieGroup;
+				if(legendOrient == "left")
+				{
+					console.log('left');
+					dountPieGroup = svgElement.append("g")
+										.attr('class','dountPie')
+										.attr("transform", "translate(" + ((width/2)+(legendAndTextSize*.5)) + "," + (height/2) + ")");
+					
+					radius = (height/2) < ((width/2)-legendAndTextSize) ? (height/2) : ((width/2)-legendAndTextSize);
+					radius = radius * .9;
+				}
+				else if(legendOrient == "right")
+				{
+					console.log('right');
+					dountPieGroup = svgElement.append("g")
+										.attr('class','dountPie')
+										.attr("transform", "translate(" + ((width/2)-(legendAndTextSize*.5)) + "," + (height/2) + ")");
+					radius = (height/2) < ((width/2)-legendAndTextSize) ? (height/2) : ((width/2)-legendAndTextSize);
+					radius = radius * .9;
+				}
+				else if(legendOrient == "top")
+				{
+					console.log('top');
+					dountPieGroup = svgElement.append("g")
+										.attr('class','dountPie')
+										.attr("transform", "translate(" + ((width/2)) + "," + ((height/2)+(legendSize*2)) + ")");
+					radius = (height-(legendSize*4)) < (width) ? ((height-(legendSize*4))) : (width);
+					radius = radius * .45;					
+				}
+				else
+				{
+					console.log('bottom');
+					dountPieGroup = svgElement.append("g")
+										.attr('class','dountPie')
+										.attr("transform", "translate(" + ((width/2)) + "," + ((height/2)-(legendSize*2)) + ")");
+					radius = (height-(legendSize*4)) < (width) ? ((height-(legendSize*4))) : (width);
+					radius = radius * .45;					
 				}
 				
 				
+				var arc = d3.svg.arc()
+						.innerRadius(0)
+						.outerRadius(radius);
 				
+				var arcOver = d3.svg.arc().innerRadius(0)
+								.outerRadius(radius + 14);
 				
-			//	alert(legendTextLength);
-				var legendWidth=18;
-                var curwidth = height > width ? width : height;
-                var marginArc = curwidth * .10;
-                var curMarginLeft = width * .25;
-                var outerRadius = (curwidth - (marginArc))/2;
-                outerRadius = outerRadius - legendTextLength*5-legendWidth*2;
-				var innerRadius = 0;
-                var radius = 100;
-				var grad = Math.PI / 180;
-
-
-                var pie = d3.layout.pie().sort(null).startAngle(0 * grad).endAngle(360 * grad);
-                var arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
-                var arcOver = d3.svg.arc().innerRadius(innerRadius)
-                    .outerRadius(outerRadius + 14);
-
-                var color = "";
-                if (options.color == null) {
-                    color = d3.scale.category20b();
-                } else {
-                    color = function (i) {
-                        return options.color[i];
-                    }
-                }
-
-                var svg = svgElement.append("g")
-								.attr("transform", "translate(" +(-width*0.1) + "," + 0 + ")")
-                  
-				  //  .attr("width", width)
-                  //  .attr("height", height);
-
-                var arcs = svg.selectAll("g.arc")
-                    .data(pie(dataset))
-                    .enter()
-                    .append("g")
-                    .attr("class", "slice")
-                    .attr("stroke", "white")
-                    .attr("stroke-width", 0)
-                    .attr("transform", "translate(" + (width/2) + "," + (height/3) + ")")
-                    .on("mouseover", function (d, i) {
-
-                    var json = JSON.parse('{"' + factor + '":' + d.value + "}");
-				//	alert(legendsArray[i].replace(/ /g, "") + 'text')
-                    d3.select('#' + legendsArray[i].replace(/ /g, "") + 'text')
-                        .transition()
-                        .attr("x", 24 + 10)
-                        .style('font-weight', 'bold')
-                        .style('fill', 'bold');
-                    svg.select('#' + legendsArray[i].replace(/ /g, "") + 'path')
-                        .attr("stroke", "white")
-                        .transition()
-                        .duration(500)
-                        .attr("d", arcOver)
-                        .attr("stroke-width", 1);
+				var pie = d3.layout.pie()
+								.sort(null)
+								.value(function(d) { return d;});
+				
+				var pieRef = dountPieGroup.selectAll(".arc")
+								.data(pie(value))
+								.enter()
+								.append("g")
+								.attr('value',function(d,i) {return i;})
+								.attr("fill",function(d,i){return color[i];} )
+								.on("mouseover", function()
+								{
+									var index= d3.select(this).attr('value');
+									d3.select(this).transition().duration(500).ease('bounce')
+									.attr('transform', function (d) 
+									 {
+										var dist = 15;
+										d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
+										var x = Math.sin(d.midAngle) * dist;
+										var y = -Math.cos(d.midAngle) * dist;
+										return 'translate(' + x + ',' + y + ')';
+									 })
+									 .attr('stroke','white');
+								//	var x = parseInt(d3.select("#text"+index).attr('x'));
+								//	 d3.select("#text"+index).transition().duration(500).attr('x',function(){ return x+10;})
+								//		 return tooltip.style("visibility", "visible");
+								})
+								.on("mousemove",function(){
+									var index= d3.select(this).attr('value');
+									var heading=key[index];
+									var pieValue = value[index];
+									var yHeadingValueMap=[{"headingName":label,"headingVal":pieValue}							
+														];
+												
+									toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
+								})
+								.on("mouseout", function(){	d3.select(this).transition().duration(500).ease('bounce')
+												  .attr('transform', 'translate(0,0)')
+												  .attr('stroke','none');
+										toolTipManager.hideTooTip();
+								//	var index= d3.select(this).attr('value');
+								//	var x = parseInt(d3.select("#text"+index).attr('x'));
+								//	d3.select("#text"+index).transition().duration(500).attr('x',function(){ return x-10;})
+								//     	return tooltip.style("visibility", "hidden");
+								});
+								
+				pieRef.append("path")
+				.attr("d",arc)
+				.transition().duration(1500).attrTween("d", sweep);
+				var legendGroup;
+				var xPosition;
+				var yPosition;
+				if(legendOrient=="left")
+				{
+					xPosition = ((width/2)+legendAndTextSize)-(legendAndTextSize+(radius*2));
+					yPosition = (height/2)-((key.length/2)*legendSize*2);
+					legendGroup = svgElement.append("g")
+										.attr('class','legend')
+										.attr("transform", "translate(" + (xPosition) + "," + (yPosition) + ")");
+					drawLegendLeftOrRight(key,color,legendSize,legendGroup);
 					
-					var yHeadingValueMap=[{"headingName":(factor) ,"headingVal":d.value}];
+				}else if(legendOrient=="right")
+				{
+					xPosition = ((width/2)-legendAndTextSize)+(radius*2);
+					yPosition = (height/2)-((key.length/2)*legendSize*2);
+					legendGroup = svgElement.append("g")
+										.attr('class','legend')
+										.attr("transform", "translate(" + (xPosition) + "," + (yPosition) + ")");
+					
+					drawLegendLeftOrRight(key,color,legendSize,legendGroup);
+				}else if(legendOrient=="top")
+				{
+					xPosition = width*.15;
+					yPosition = 5;
+					legendGroup = svgElement.append("g")
+										.attr('class','legend')
+										.attr("transform", "translate(" + (xPosition) + "," + (yPosition) + ")");
+					
+					
+					var legendPositionArray = showHorizontalLegend(width*.7,0,key,legendSize)
+					var legendRef = legendGroup.selectAll('.rect')
+														.data(legendPositionArray)
+														.enter()
+														.append('rect')
+														.attr('width',legendSize)
+														.attr('height',legendSize)
+														.attr('x',function(d,i){ return legendPositionArray[i].x;})
+														.attr('y',function(d,i){return legendPositionArray[i].y;})
+														.attr('fill',function(d,i){return color[i]});
+							
+							var legendTextRef = legendGroup.selectAll('.text')
+														.data(legendPositionArray)
+														.enter()
+														.append('text')
+														.attr('id',function(d,i){ return 'text'+i})
+														.attr('x',function(d,i){return legendPositionArray[i].textXPos;})
+														.attr('y',function(d,i){return legendPositionArray[i].y + legendSize;})
+														.text(function(d,i){return key[i];});
+					
+				}
+				else
+				{
+							xPosition = width*.15;
+							yPosition = ((height/2)-(legendSize*2))+radius+4;
+							legendGroup = svgElement.append("g")
+										.attr('class','legend')
+										.attr("transform", "translate(" + (xPosition) + "," + (yPosition) + ")");						
+					
+							var legendPositionArray = showHorizontalLegend(width*.7,0,key,legendSize)
+							var legendRef = legendGroup.selectAll('.rect')
+																.data(legendPositionArray)
+																.enter()
+																.append('rect')
+																.attr('width',legendSize)
+																.attr('height',legendSize)
+																.attr('x',function(d,i){ return legendPositionArray[i].x;})
+																.attr('y',function(d,i){return legendPositionArray[i].y;})
+																.attr('fill',function(d,i){return color[i]});
+							
+							var legendTextRef = legendGroup.selectAll('.text')
+														.data(legendPositionArray)
+														.enter()
+														.append('text')
+														.attr('id',function(d,i){ return 'text'+i})
+														.attr('x',function(d,i){return legendPositionArray[i].textXPos;})
+														.attr('y',function(d,i){return legendPositionArray[i].y + legendSize;})
+														.text(function(d,i){return key[i];});
+					
+
+				}
+
+				function drawLegendLeftOrRight(key,color,legendSize,legendGroup)
+				{
+					legendGroup.selectAll('.rect')
+							   .data(key)
+							   .enter()
+							   .append('rect')
+							   .attr('y',function(d,i){ return i*2*legendSize})
+							   .attr('width',legendSize)
+							   .attr('height',legendSize)
+							   .attr('fill',function(d,i){ return color[i]});
+							 
+					legendGroup.selectAll('.text')
+							   .data(key)
+							   .enter()
+							   .append('text')
+							   .attr('id',function(d,i){ return 'text'+i})
+							   .attr('x',legendSize+4)
+							   .attr('y',function(d,i){return (i*2*legendSize)+(legendSize/1.5)})
+							   .text(function(d,i){return d;})
+				}
+				
+				function showHorizontalLegend(scaleWidth,yPositionOfLegend,legendArray,legendSize)
+				{			
+						var largestStringLngth=0;
+								for(var counter =0 ;counter<legendArray.length;counter++)
+								{
+									if(largestStringLngth<(legendArray[counter].toString()).length)
+									{
+										largestStringLngth = (legendArray[counter].toString()).length;
+									}
+								}		
+						largestStringLngth = largestStringLngth * 7;
+						var legendPositionArray = [];
+						var obj={"x":0,"y":0,"textXPos":0};
+						var seprator = 5;	
+						var xPositionOfLegend = scaleWidth*.1;
+						var temp,flag = scaleWidth*.1;
+						var legendRow = Math.round((scaleWidth*.8)/(seprator+legendSize+largestStringLngth));
 						
-					toolTipManager.showToolTip(d3.event,"",(legendsArray[i]), false,yHeadingValueMap);	
-					//toolTipManager.showToolTip(d3.event,d.value,legendsArray[i], false,factor );	
-                    //toolTipManager.showToolTipForBarWithMultipleLine(d3.event, json, legendsArray[i], false, null, false);
-                })
-                    .on("mouseleave", function (d, i) {
-					
-                    d3.select('#' + legendsArray[i].replace(/ /g, "") + 'text')
-                        .transition()
-                        .attr("x", 24)
-                        .style('font-weight', textStyleConfg["font-weight"])
-                      
-                    svg.select('#' + legendsArray[i].replace(/ /g, "") + 'path')
-                        .transition()
-                        .attr("d", arc)
-                        .attr("stroke-width", 0);
-					toolTipManager.hideTooTip();	
-                    //toolTipManager.hideMulitpleLineBarToolTip();
-                });
-
-
-
-                arcs.append("path")
-                    .attr("fill", function (d, i) {
-                    return color(i);
-                })
-                    .attr('id', function (d, i) {
-                    return legendsArray[i].replace(/ /g, "") + 'path';
-                })
-                .attr("d", arc)
-                .on("click", function (d, i) {
-                    svg.select('#' + legendsArray[i].replace(/ /g, "") + 'text')
-                        .transition()
-                        .attr("x", 24 + 10)
-                        .style('font-weight', 'bold')
-                        .style('fill', 'bold');
-                    d3.select(this)
-                        .attr("stroke", "white")
-                        .transition()
-                        .duration(500)
-                        .attr("d", arcOver)
-                        .attr("stroke-width", 1);
-                })
-				/*
-                .on("mouseleave", function (d, i) {
-					
-                    svg.select('#' + legendsArray[i].replace(/ /g, "") + 'text')
-                        .transition()
-                        .attr("x", 24)
-                        .style('font-weight', textStyleConfg["font-weight"])
-                        .style('fill', textStyleConfg["legendTextColor"]);
-					
-						
-                    d3.select(this).transition()
-                        .attr("d", arc)
-                        .attr("stroke-width", 0);
-                })*/
-                .transition().duration(1500).attrTween("d", sweep);
-
-                function sweep(a) {
-                    var i = d3.interpolate({
-                        startAngle: -180 * grad,
-                        endAngle: -180 * grad
-                    }, a);
-                    return function (t) {
-                        return arc(i(t));
-                    };
-                }
+						for(var counter = 0 ; counter<legendArray.length ; counter++)
+						{
+							var obj={};
+							if(counter%legendRow == 0)
+							{
+								xPositionOfLegend = scaleWidth*.1;
+							}
+							else
+							{
+								xPositionOfLegend = xPositionOfLegend+seprator+legendSize+largestStringLngth;
+							}
+							obj.x = xPositionOfLegend;
+							
+							if(counter%legendRow == 0  && counter!=0)
+							{
+								yPositionOfLegend = (yPositionOfLegend)+(2*legendSize);
+							}
+							obj.y = yPositionOfLegend;
+							
+							obj.textXPos = xPositionOfLegend+seprator + legendSize;
+							
+							legendPositionArray.push(obj);
+								
+						}	
+						return legendPositionArray;
+				} 
 				
-				var legend = svgElement
+				function sweep(d) {
+				   var i = d3.interpolate({startAngle: -180*grad, endAngle: -180*grad},d);
+				 return function (call) {
+				  //console.log(call);
+				  return arc(i(call));
+				 };
+				}
 				
-				/*		
-				append("svg")
-                    .attr("class", "legend")
-                    .attr("width", width)
-                    .attr("height", height)
-					*/
-                    .selectAll("g.legendGrouping")
-                    .data(legendsArray)
-                    .enter().append("g")
-					.attr("class","legend")
-                    .attr("transform", function (d, i) {
-                    return "translate(" + (10) + "," + (10 + i * 20) + ")";
-                });
-
-                legend.append("rect")
-                    .attr("width",legendWidth)
-                    .attr("height", 18)
-                    .style("fill", function (d, i) {
-
-                    return color(i);
-                });
-
-                legend.append("text")
-                    .attr('id', function (d, i) {
-                    return legendsArray[i].replace(/ /g, "") + 'text';
-                })
-                    .attr("x", 233)
-                    .transition()
-                    .duration(function (d, i) {
-                    return i * 400;
-                })
-                    .attr("x", 24)
-                    .attr("y", 9)
-                    .attr("dy", ".35em")
-                    .text(function (d, i) {
-                    return legendsArray[i];
-                });
-					
 				setTextStyleAndSvgBackGround(svgElement);
             
-			
 			},
 			dountChartWithLegend:function(cnfg)
 			{
@@ -8153,13 +8265,12 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 						 //  .attr('x',function(d, i){ return ((i*(width*.20))+20);})
 						   .attr("x", function(d, i){ if(i>3){return ((parseInt(i/4)-1)+(positionText++)*(widthOfDount*.3))+rectSize+3}else{return (i*(widthOfDount*.3))+rectSize+3};})
 						   .attr("y",function(d,i) { if(i>3){return (3*rectSize) }else{return rectSize}   })
-						   .style('font-size',textSize)
 						   .style('font-family','calibri')
 						   .style('font-style','italic')
 						 //  .attr('y',10)
 						   .text(function(d,i) { return data.key[i]; });
 				
-				setTextStyleAndSvgBackGround(legendGroup);	
+				setTextStyleAndSvgBackGround(svgElement);	
 				
 				legendText.style("fill",textStyleConfg["legendTextColor"]);
 				
@@ -8732,8 +8843,8 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 							
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((data.title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((data.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(data.title,leftIndicator,dountAnalChart.top,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -9785,11 +9896,11 @@ function sweep(d) {
 				
 				
 				//y indicaton label
-				var pixcelPerChar=7;
+				var pixcelPerChar=8;
 				var totalPixcel=yIndicationLabel.toString().length*pixcelPerChar;
 				var yLabelTop=height/2+totalPixcel/2;
 				
-				axisLabelController.appendLabel(yIndicationLabel,-left*0.8,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);
+				axisLabelController.appendLabel(yIndicationLabel,-left*0.9,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);
 				
 				//x indication label
 				var xLabelPixcel=xIndicationLabel.toString().length*pixcelPerChar;
@@ -9799,7 +9910,7 @@ function sweep(d) {
 				
 
 				var pixcelPerChar = 9;
-				var leftIndicator = (width/2) - ((chartTitle.length*pixcelPerChar)/2)
+				var leftIndicator = (width/1.6) - ((chartTitle.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 					
@@ -10174,8 +10285,8 @@ var threeDBarChart = {
 					  else if(sideno==2){
 					  
 
-						//var factor=parseInt(width*.33) + 1;
-						var factor = 15;
+						var factor=parseInt(width*.33) + 1;
+					//	var factor = 15;
 						var xHit=0;
 						var yHit=0;
 						y = yScale(y); 
@@ -10216,8 +10327,8 @@ var threeDBarChart = {
 						
 					}
 					else if(sideno==3){
-						//var factor=parseInt(width*.33) + 1;
-						factor = 15;
+						var factor=parseInt(width*.33) + 1;
+					//	factor = 15;
 						var xHit=0;
 						var yHit=0;
 						for(var i=0;i<4;i++){
@@ -10314,7 +10425,7 @@ var threeDBarChart = {
 			
 			//title here
 			var pixcelPerChar = 9;
-			var leftIndicator = (widthOfBarRegion/2) - ((cfg.title.length*pixcelPerChar)/2)
+			var leftIndicator = (width/2) - ((cfg.title.length*pixcelPerChar)/2)
 			var titleGroup = svgElement.append("g")
 									   .attr('class','title')
 				
@@ -10709,92 +10820,75 @@ var threeDBarChart = {
                 }
 
 
-                var legend = svg.append("g")
-                    .attr("class", "legend")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .attr('transform', 'translate(' + width / actualData.length + ',50)');
+			// legend here
+			var legendGroup = svg.append('g')
+									 .attr('class','legend')
+									 .attr("transform", "translate(" + margin.left + "," +0+ ")")
+
+			var legendSize = 10;
+			var yPositionOfLegend = margin.top*1.3;
+			var legendNameArray=[];
+			for(var i=0;i<actualData.length;i++){
+				legendNameArray.push(actualData[i].Name);
+			}
+			
+			var legendPositionArray = legendController.showHorizontalLegend(width,yPositionOfLegend,legendNameArray,legendSize);
+
+			var legendRef = legendGroup.selectAll('.rect')
+										.data(actualData)
+										.enter()
+										.append("rect")
+										.attr("width",legendSize)
+										.attr("height",legendSize)
+										.attr('x',function(d,i){ return legendPositionArray[i].x;})
+										.attr('y',function(d,i){return legendPositionArray[i].y;})
+										.style("fill", function (d, i) {return d.color;})
+										.on("click", function (d) {
+											var state = d3.selectAll("." +d.legendName+"dot").style("display");
+											if (state == "none") {
+
+												var selectedPath = svgElement.selectAll("." + d.legendName + "line");
+												selectedPath.transition()
+													.duration(1000)
+													.ease("linear")
+													.attr("stroke-dashoffset", 0);
+												d3.selectAll("." + d.legendName+"dot."+d.Shape).style("display", "block");
+												console.log(d.legendName+"dot"+d.Shape);
+												d3.select("#" + d.legendName + "text").style("text-decoration", "none");
+											} else {
+
+
+												var selectedPath = svgElement.selectAll("." + d.legendName + "line");
+												var lineLen = selectedPath.node().getTotalLength();
+												selectedPath.transition()
+													.duration(1000)
+													.ease("linear")
+													.attr("stroke-dashoffset", lineLen);
+													
+													
+												d3.selectAll("." + d.legendName+"dot."+d.Shape).style("display", "none");
+												console.log(d.legendName+"dot"+d.Shape);
+												
+												d3.select("#" + d.legendName + "text").style("text-decoration", "line-through");
+											}
+
+
+										});
+								
+									
 				
-				
-				var legendHeight=10,legendWidth=10;
-				var legendNameArray=[];
-				for(var i=0;i<actualData.length;i++){
-					legendNameArray.push(actualData[i].Name);
-				}
-				var legendPositionArray=legendController.getLegendPositionArray(legendNameArray,(width*0.98),height);
-				
-                legend.selectAll('rect')
-                    .data(actualData)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function (d, i) {
-						//return i * ((100 / 500) * width);
-						return legendPositionArray[i].x;
-                })
-                    .attr("y",function(d,i){
-						return legendPositionArray[i].y;
-					})
-                    .attr("width",legendWidth)
-                    .attr("height",legendHeight)
-                    .style("fill", function (d, i) {
-                    return d.color;
-                })
-                    .on("click", function (d) {
-                    var state = d3.selectAll("." +d.legendName+"dot").style("display");
-                    if (state == "none") {
+					
+					
+				var legendTextRef = legendGroup.selectAll('.text')
+											.data(actualData)
+											.enter()
+											.append("text")
+											.attr('id', function (d) { return d.legendName + "text";})
+											.attr('x',function(d,i){return legendPositionArray[i].textXPos;})
+											.attr('y',function(d,i){return legendPositionArray[i].y + legendSize;})
+											.text(function (d, i) { return d.Name; });
+											//.style("fill",textStyleConfg["legendTextColor"]);				
 
-                        var selectedPath = svgElement.selectAll("." + d.legendName + "line");
-                        selectedPath.transition()
-                            .duration(1000)
-                            .ease("linear")
-                            .attr("stroke-dashoffset", 0);
-                        d3.selectAll("." + d.legendName+"dot."+d.Shape).style("display", "block");
-						console.log(d.legendName+"dot"+d.Shape);
-						d3.select("#" + d.legendName + "text").style("text-decoration", "none");
-                    } else {
-
-
-                        var selectedPath = svgElement.selectAll("." + d.legendName + "line");
-                        var lineLen = selectedPath.node().getTotalLength();
-                        selectedPath.transition()
-                            .duration(1000)
-                            .ease("linear")
-                            .attr("stroke-dashoffset", lineLen);
-							
-							
-                        d3.selectAll("." + d.legendName+"dot."+d.Shape).style("display", "none");
-						console.log(d.legendName+"dot"+d.Shape);
-						
-                        d3.select("#" + d.legendName + "text").style("text-decoration", "line-through");
-                    }
-
-
-                });
-				
-				
-                legend.selectAll('text')
-                    .data(actualData)
-                    .enter()
-                    .append("text")
-
-                    .attr('id', function (d) {
-                    return d.legendName + "text";
-                })
-                    .attr("x", function (d, i) {
-						//return i * ((100 / 500) * width);
-						return legendPositionArray[i].textPos;
-                })
-                    .attr("y",function(d,i){
-						return legendPositionArray[i].y+legendHeight/2;
-					})
-                    .attr("width", (15 / 500) * width)
-                    .attr("height", (15 / 500) * height)
-                    .attr("font-size", (12 / 500) * (width + height) / 2)
-                    //.attr("dx", "1.50em")
-                    .attr("dy", ".50em")
-                    .text(function (d, i) {
-                    return d.Name;
-                });
 				
 				
 				var largestStringLngth=((xScaleTicksArray[0].toString()).length);
@@ -10830,7 +10924,7 @@ var threeDBarChart = {
                     .call(yAxis);
 					
                 var yLabelTop = ((height / 2) + (cfg.yAxisfactor.length / 2) * 5);
-                var yLabelLeft = margin.left * .20 - margin.left;
+                var yLabelLeft = margin.left * .08 - margin.left;
 				/*
                 yAxisElem.append("text")
                     .text(function () {
@@ -11035,260 +11129,271 @@ var threeDBarChart = {
 									 .y(function(d,i) {return funnelYCoordinateOfBelowPath[i]; }) 
 									 .interpolate("basis-closed");
 			 
-var transitionXData = [scaleWidth/2,scaleWidth/2,scaleWidth/2,scaleWidth/2];
-var transitionYData = [scaleHeight+40,scaleHeight+40,scaleHeight+40,scaleHeight+40];
-var ProductSum = 0;
-var heightOfProduct = 0;
-var rectXPosition; 
-var rectYPosition;
-var rectWidth; 
-var funnelPathXCoordinate = [];
-var funnelPathYCoordinate = [];
+	var transitionXData = [scaleWidth/2,scaleWidth/2,scaleWidth/2,scaleWidth/2];
+	var transitionYData = [scaleHeight+40,scaleHeight+40,scaleHeight+40,scaleHeight+40];
+	var ProductSum = 0;
+	var heightOfProduct = 0;
+	var rectXPosition; 
+	var rectYPosition;
+	var rectWidth; 
+	var funnelPathXCoordinate = [];
+	var funnelPathYCoordinate = [];
 
-var funnelXCoordinateOfBelowPath = [];
-var funnelYCoordinateOfBelowPath = [];
-var scaleWidthForFunnel = (scaleWidth*.6);
-var x1 = ((scaleWidth/2)-(scaleWidthForFunnel/2));
-var y1 = 0;
-var x4;
-for(var i = 0 ; i<funnelData.length; i++)
-{
-	ProductSum = ProductSum + funnelData[i];
-}
-var scaleHeightWithSeparator = (scaleHeight+(funnelData.length*FunnelAnalChart.chartSeparator));
-var rad = (scaleHeightWithSeparator/(scaleWidthForFunnel/2));
-var degree = Math.atan(rad) * (180 / Math.PI);		
-
-var angleValue = Math.tan(toRadians(degree));
-
-function toRadians (angle) 
-{
-  return angle * (Math.PI / 180);
-}			
-
-var JsonXArray = {};
-var JsonYArray = {};				
-for(var index = 0 ; index<funnelData.length; index++)
-{
-	
-	funnelPathXCoordinate = [];      
-	funnelPathYCoordinate = []; 
-	funnelXCoordinateOfBelowPath = [];
-	funnelYCoordinateOfBelowPath = [];
-	heightOfProduct = (funnelData[index]/ProductSum);
-  
-	var x2;
-	 if(index!=funnelData.length-1)
-	 {
-		x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/angleValue));
-	 }
-	 else
-	 {
-		x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/2)/angleValue);
-	 }
-	 x4 = (((scaleWidth/2)-x1)*2)+x1;
-	 
-	 //set Coordinate of linear path
-	 funnelPathXCoordinate.push(x1);
-	 funnelPathXCoordinate.push(x1+x2);
-	 funnelPathXCoordinate.push(x4-(funnelPathXCoordinate[1]-x1));
-	 funnelPathXCoordinate.push(x4); 
-	 
-	 funnelPathYCoordinate.push(y1);
-	 if(index!=funnelData.length-1)
-	 {
-		funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
-		funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
-	 }
-	 else
-	 {
-		funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
-		funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
-	 }
-	 funnelPathYCoordinate.push(y1);
-	 
-	 funnelChartMainGroup.append("linearGradient")				
-        .attr("id", "gradient")			
-        .attr("gradientUnits", "userSpaceOnUse")	
-        .attr("x1",funnelPathXCoordinate[0])
-		.attr("y1",funnelPathYCoordinate[0])			
-        .attr("x2",funnelPathXCoordinate[3])
-		.attr("y2", funnelPathYCoordinate[2])		
-        .selectAll("stop")						
-        .data([								
-            {offset: "15%", color: colorArray[index]},		
-        //    {offset: "40%", color: colorArrayLinearPath[index]},	
-       //     {offset: "40%", color: "#ffffff"},		
-            {offset: "62%", color: "#eaeaea"},		
-       //     {offset: "62%", color: colorArrayLinearPath[index]},	
-            {offset: "85%", color: colorArray[index]}	
-        ])					
-		.enter().append("stop")			
-        .attr("offset", function(d) { return d.offset; })	
-        .attr("stop-color", function(d) { return d.color; });
-
-	 var lineGraph1 = funnelChartMainGroup.selectAll(".path")
-						 .data([transitionXData])
-						 .enter()   
-						 .append("path")
-						 .attr("d", transitionPath)
-						 .attr("value",index)
-						 .attr("stroke-width", 1)
-						 .attr("fill","url(#gradient)")
-						 .on("mouseover",function(){
-							 
-							   var keyIndex = d3.select(this).attr('value');
-							   var sum = 0;
-							   for(var index = 0;index<funnelData.length;index++)
-							   {
-								sum = sum + funnelData[index];
-							   }
-							   var percentage = Math.round(((funnelData[keyIndex])/sum)*100);
-							   var yHeadingValueMap=[{"headingName":label,"headingVal":percentage + " " +unit}];
-								  
-							    toolTipManager.showToolTip(d3.event,"",(funnelKey[keyIndex]), false,yHeadingValueMap,d3.event.pageY*.90); 
-						   })
-						  .on("mouseleave",function(){
-								  toolTipManager.hideTooTip();
-						   });
-						   
-		lineGraph1.transition().duration(1000).ease("linear")
-						 .attr("d", funnelPath(funnelPathXCoordinate))
-						  
-						 
-						 
-	// set horizontal Line here
-		funnelChartMainGroup.append('line')
-							.attr('class','horizontalLine')
-							.attr('x1',function(){return ((funnelPathXCoordinate[3]+funnelPathXCoordinate[2])/2)+5})
-							.attr('y1',function(){
-							if(index!=funnelData.length-1)
-							{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)}
-							else
-							{
-								return funnelPathYCoordinate[2];
-							}})
-							.attr('x2',function(){return ((scaleWidth/2)+(scaleWidthForFunnel/2))})
-							.attr('y2',function(){
-							if(index!=funnelData.length-1)
-							{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)}
-							else
-							{
-								return funnelPathYCoordinate[2];
-							}})
-							.style("stroke","#a7a7a7");
-		
-	// set text here
-	 funnelChartMainGroup.append('text')
-							.attr('class','text')
-							.attr('x',function(){return ((scaleWidth/2)+(scaleWidthForFunnel/2))+5})
-							.attr('y',function(){
-							if(index!=funnelData.length-1)
-							{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)+3}
-							else
-							{
-								return funnelPathYCoordinate[2]+3;
-							}})
-							.text(funnelKey[index])
-							.attr("fill","#a7a7a7")
-							.style("font-family","calibri");
-							
-	x1 = funnelPathXCoordinate[1]+2;  
-	y1 = funnelPathYCoordinate[1]+FunnelAnalChart.chartSeparator;
-	
-	//set cordinate for lower closed path
-	funnelXCoordinateOfBelowPath[0] = funnelPathXCoordinate[1];
-	funnelXCoordinateOfBelowPath[2] = funnelPathXCoordinate[2]; 
-	funnelXCoordinateOfBelowPath[1] = (funnelPathXCoordinate[1] + funnelPathXCoordinate[2])/2;
-	funnelXCoordinateOfBelowPath[3]= funnelXCoordinateOfBelowPath[1];
-	var closedPathSharinkValue1 = (funnelXCoordinateOfBelowPath[1]-funnelXCoordinateOfBelowPath[0])/2;
-	funnelXCoordinateOfBelowPath[0] = funnelXCoordinateOfBelowPath[0] - closedPathSharinkValue1;
-	funnelXCoordinateOfBelowPath[2] = funnelXCoordinateOfBelowPath[2] + closedPathSharinkValue1;
-	
-	funnelYCoordinateOfBelowPath[0] = funnelPathYCoordinate[1];
-	funnelYCoordinateOfBelowPath[1] = funnelYCoordinateOfBelowPath[0]-10;
-	funnelYCoordinateOfBelowPath[2] = funnelPathYCoordinate[1];
-	funnelYCoordinateOfBelowPath[3] = funnelYCoordinateOfBelowPath[0]+10;
-	
-	//store Value of Lower closed path
-	JsonXArray[index] = funnelXCoordinateOfBelowPath;
-	JsonYArray[index] = funnelYCoordinateOfBelowPath;
-
-	rectXPosition = funnelPathXCoordinate[1];
-	rectYPosition = funnelPathYCoordinate[1]
-	rectWidth = funnelPathXCoordinate[2]-funnelPathXCoordinate[1];
-	//set cordinate for upper closed path
-	funnelPathXCoordinate[2] = funnelPathXCoordinate[3];
-	funnelPathXCoordinate[1] = (funnelPathXCoordinate[0] + funnelPathXCoordinate[2])/2;  
-	funnelPathXCoordinate[3] = funnelPathXCoordinate[1];
-	var closedPathSharinkValue2 = (funnelPathXCoordinate[1]-funnelPathXCoordinate[0])/2;
-	funnelPathXCoordinate[0] = funnelPathXCoordinate[0] - closedPathSharinkValue2;
-	funnelPathXCoordinate[2] = funnelPathXCoordinate[2] + closedPathSharinkValue2;
-	
-	funnelPathYCoordinate[1] = funnelPathYCoordinate[0]-10;
-	funnelPathYCoordinate[2] = funnelPathYCoordinate[0];
-	funnelPathYCoordinate[3] = funnelPathYCoordinate[0]+10; 
-
-	var lineGraph3 = funnelChartMainGroup.selectAll(".path")
-						 .data([funnelPathXCoordinate])
-						 .enter()
-						 .append("path")
-						 .attr("d", funnelClosedPath)	  
-						 .attr("stroke-width", 1)
-						 .attr("fill", function(){return colorArray[index]});
-//		lineGraph3.transition().duration(1000).ease("linear")
-	//					 .attr("d", funnelClosedPath(funnelPathXCoordinate));			
-	 
-
-	 
-}
-
-for(var index = 0;index<funnelData.length;index++)
-{
-	funnelXCoordinateOfBelowPath = JsonXArray[index];
-	funnelYCoordinateOfBelowPath = JsonYArray[index];
-	
- funnelChartMainGroup.append("linearGradient")				
-        .attr("id", "gradient1")	
-		.attr("gradientUnits", "userSpaceOnUse")	
-        .attr("x1",funnelXCoordinateOfBelowPath[0])
-		.attr("y1",funnelYCoordinateOfBelowPath[1])			
-        .attr("x2",funnelXCoordinateOfBelowPath[2])
-		.attr("y2", funnelYCoordinateOfBelowPath[3])		
-        .selectAll("stop")						
-        .data([								
-            {offset: "15%", color: colorArray[index]},		
-        //    {offset: "40%", color: colorArrayLinearPath[index]},	
-       //     {offset: "40%", color: "#ffffff"},		
-            {offset: "62%", color: "#eaeaea"},		
-       //     {offset: "62%", color: colorArrayLinearPath[index]},	
-            {offset: "85%", color: colorArray[index]}	
-        ])					
-		.enter().append("stop")			
-        .attr("offset", function(d) { return d.offset; })	
-        .attr("stop-color", function(d) { return d.color; });
-	
-	if(index!=funnelData.length-1)
+	var funnelXCoordinateOfBelowPath = [];
+	var funnelYCoordinateOfBelowPath = [];
+	var scaleWidthForFunnel = (scaleWidth*.6);
+	var x1 = ((scaleWidth/2)-(scaleWidthForFunnel/2));
+	var y1 = 0;
+	var x4;
+	for(var i = 0 ; i<funnelData.length; i++)
 	{
-		var lineGraph2 = funnelChartMainGroup.selectAll(".path")
-						 .data([funnelXCoordinateOfBelowPath])
-						 .enter()
-						 .append("path")
-						 .attr("d", funnelLowerClosedPath)	  
-						 .attr("stroke-width", 0)
-						 .attr("fill","url(#gradient1)");
-					//	 .attr("fill", function(){return colorArrayLinearPath[index]})
-					//	 .attr("opacity",0.8);
+		ProductSum = ProductSum + funnelData[i];
 	}
-}
+	var scaleHeightWithSeparator = (scaleHeight+(funnelData.length*FunnelAnalChart.chartSeparator));
+	var rad = (scaleHeightWithSeparator/(scaleWidthForFunnel/2));
+	var degree = Math.atan(rad) * (180 / Math.PI);		
 
-					funnelChartMainGroup.append('rect')
-										.attr('x',rectXPosition)
-										.attr('y',rectYPosition)
-										.attr('width',rectWidth)
-										.attr('height',((scaleHeightWithSeparator*heightOfProduct)/2))
-										.attr('fill',colorArray[index-1])
+	var angleValue = Math.tan(toRadians(degree));
+
+	function toRadians (angle) 
+	{
+	  return angle * (Math.PI / 180);
+	}			
+
+	var JsonXArray = {};
+	var JsonYArray = {};				
+	for(var index = 0 ; index<funnelData.length; index++)
+	{
+		
+		funnelPathXCoordinate = [];      
+		funnelPathYCoordinate = []; 
+		funnelXCoordinateOfBelowPath = [];
+		funnelYCoordinateOfBelowPath = [];
+		heightOfProduct = (funnelData[index]/ProductSum);
+	  
+		var x2;
+		 if(index!=funnelData.length-1)
+		 {
+			x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/angleValue));
+		 }
+		 else
+		 {
+			x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/2)/angleValue);
+		 }
+		 x4 = (((scaleWidth/2)-x1)*2)+x1;
+		 
+		 //set Coordinate of linear path
+		 funnelPathXCoordinate.push(x1);
+		 funnelPathXCoordinate.push(x1+x2);
+		 funnelPathXCoordinate.push(x4-(funnelPathXCoordinate[1]-x1));
+		 funnelPathXCoordinate.push(x4); 
+		 
+		 funnelPathYCoordinate.push(y1);
+		 if(index!=funnelData.length-1)
+		 {
+			funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
+			funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
+		 }
+		 else
+		 {
+			funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
+			funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
+		 }
+		 funnelPathYCoordinate.push(y1);
+		 
+		 funnelChartMainGroup.append("linearGradient")				
+			.attr("id", "gradient")			
+			.attr("gradientUnits", "userSpaceOnUse")	
+			.attr("x1",funnelPathXCoordinate[0])
+			.attr("y1",funnelPathYCoordinate[0])			
+			.attr("x2",funnelPathXCoordinate[3])
+			.attr("y2", funnelPathYCoordinate[2])		
+			.selectAll("stop")						
+			.data([								
+				{offset: "15%", color: colorArray[index]},		
+			//    {offset: "40%", color: colorArrayLinearPath[index]},	
+		   //     {offset: "40%", color: "#ffffff"},		
+				{offset: "62%", color: "#eaeaea"},		
+		   //     {offset: "62%", color: colorArrayLinearPath[index]},	
+				{offset: "85%", color: colorArray[index]}	
+			])					
+			.enter().append("stop")			
+			.attr("offset", function(d) { return d.offset; })	
+			.attr("stop-color", function(d) { return d.color; });
+
+		 var lineGraph1 = funnelChartMainGroup.selectAll(".path")
+							 .data([transitionXData])
+							 .enter()   
+							 .append("path")
+							 .attr("d", transitionPath)
+							 .attr("value",index)
+							 .attr("stroke-width", 1)
+							 .attr("fill","url(#gradient)")
+							 .on("mouseover",function(){
+								 
+								   var keyIndex = d3.select(this).attr('value');
+								   var sum = 0;
+								   for(var index = 0;index<funnelData.length;index++)
+								   {
+									sum = sum + funnelData[index];
+								   }
+								   var percentage = Math.round(((funnelData[keyIndex])/sum)*100);
+								   var yHeadingValueMap=[{"headingName":label,"headingVal":percentage + " " +unit}];
+									  
+									toolTipManager.showToolTip(d3.event,"",(funnelKey[keyIndex]), false,yHeadingValueMap,d3.event.pageY*.90); 
+							   })
+							  .on("mouseleave",function(){
+									  toolTipManager.hideTooTip();
+							   });
+							   
+			lineGraph1.transition().duration(1000).ease("linear")
+							 .attr("d", funnelPath(funnelPathXCoordinate))
+							  
+							 
+							 
+		// set horizontal Line here
+			funnelChartMainGroup.append('line')
+								.attr('class','horizontalLine')
+								.attr('x1',function(){return ((funnelPathXCoordinate[3]+funnelPathXCoordinate[2])/2)+5})
+								.attr('y1',function(){
+								if(index!=funnelData.length-1)
+								{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)}
+								else
+								{
+									return funnelPathYCoordinate[2];
+								}})
+								.attr('x2',function(){return ((scaleWidth/2)+(scaleWidthForFunnel/2))})
+								.attr('y2',function(){
+								if(index!=funnelData.length-1)
+								{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)}
+								else
+								{
+									return funnelPathYCoordinate[2];
+								}})
+								.style("stroke","#a7a7a7");
+			
+			
+		var legend = svgElement.append("g")
+				   .attr('class','legend')
+				   .attr("transform", "translate(" + FunnelAnalChart.left + "," + FunnelAnalChart.top + ")")
+	
+			
+		// set text here
+		 legend.append('text')
+								.attr('class','text')
+								.attr('x',function(){return ((scaleWidth/2)+(scaleWidthForFunnel/2))+5})
+								.attr('y',function(){
+								if(index!=funnelData.length-1)
+								{return ((funnelPathYCoordinate[3]+funnelPathYCoordinate[2])/2)+3}
+								else
+								{
+									return funnelPathYCoordinate[2]+3;
+								}})
+								.text(funnelKey[index])
+								.style("font-family","calibri");
+								
+		x1 = funnelPathXCoordinate[1]+2;  
+		y1 = funnelPathYCoordinate[1]+FunnelAnalChart.chartSeparator;
+		
+		//set cordinate for lower closed path
+		funnelXCoordinateOfBelowPath[0] = funnelPathXCoordinate[1];
+		funnelXCoordinateOfBelowPath[2] = funnelPathXCoordinate[2]; 
+		funnelXCoordinateOfBelowPath[1] = (funnelPathXCoordinate[1] + funnelPathXCoordinate[2])/2;
+		funnelXCoordinateOfBelowPath[3]= funnelXCoordinateOfBelowPath[1];
+		var closedPathSharinkValue1 = (funnelXCoordinateOfBelowPath[1]-funnelXCoordinateOfBelowPath[0])/2;
+		funnelXCoordinateOfBelowPath[0] = funnelXCoordinateOfBelowPath[0] - closedPathSharinkValue1;
+		funnelXCoordinateOfBelowPath[2] = funnelXCoordinateOfBelowPath[2] + closedPathSharinkValue1;
+		
+		funnelYCoordinateOfBelowPath[0] = funnelPathYCoordinate[1];
+		funnelYCoordinateOfBelowPath[1] = funnelYCoordinateOfBelowPath[0]-10;
+		funnelYCoordinateOfBelowPath[2] = funnelPathYCoordinate[1];
+		funnelYCoordinateOfBelowPath[3] = funnelYCoordinateOfBelowPath[0]+10;
+		
+		//store Value of Lower closed path
+		JsonXArray[index] = funnelXCoordinateOfBelowPath;
+		JsonYArray[index] = funnelYCoordinateOfBelowPath;
+
+		rectXPosition = funnelPathXCoordinate[1];
+		rectYPosition = funnelPathYCoordinate[1]
+		rectWidth = funnelPathXCoordinate[2]-funnelPathXCoordinate[1];
+		//set cordinate for upper closed path
+		funnelPathXCoordinate[2] = funnelPathXCoordinate[3];
+		funnelPathXCoordinate[1] = (funnelPathXCoordinate[0] + funnelPathXCoordinate[2])/2;  
+		funnelPathXCoordinate[3] = funnelPathXCoordinate[1];
+		var closedPathSharinkValue2 = (funnelPathXCoordinate[1]-funnelPathXCoordinate[0])/2;
+		funnelPathXCoordinate[0] = funnelPathXCoordinate[0] - closedPathSharinkValue2;
+		funnelPathXCoordinate[2] = funnelPathXCoordinate[2] + closedPathSharinkValue2;
+		
+		funnelPathYCoordinate[1] = funnelPathYCoordinate[0]-10;
+		funnelPathYCoordinate[2] = funnelPathYCoordinate[0];
+		funnelPathYCoordinate[3] = funnelPathYCoordinate[0]+10; 
+
+		var lineGraph3 = funnelChartMainGroup.selectAll(".path")
+							 .data([funnelPathXCoordinate])
+							 .enter()
+							 .append("path")
+							 .attr("d", funnelClosedPath)	  
+							 .attr("stroke-width", 1)
+							 .attr("fill", function(){return colorArray[index]});
+	//		lineGraph3.transition().duration(1000).ease("linear")
+		//					 .attr("d", funnelClosedPath(funnelPathXCoordinate));			
+		 
+
+		 
+	}
+
+		for(var index = 0;index<funnelData.length;index++)
+		{
+			funnelXCoordinateOfBelowPath = JsonXArray[index];
+			funnelYCoordinateOfBelowPath = JsonYArray[index];
+			
+		 funnelChartMainGroup.append("linearGradient")				
+				.attr("id", "gradient1")	
+				.attr("gradientUnits", "userSpaceOnUse")	
+				.attr("x1",funnelXCoordinateOfBelowPath[0])
+				.attr("y1",funnelYCoordinateOfBelowPath[1])			
+				.attr("x2",funnelXCoordinateOfBelowPath[2])
+				.attr("y2", funnelYCoordinateOfBelowPath[3])		
+				.selectAll("stop")						
+				.data([								
+					{offset: "15%", color: colorArray[index]},		
+				//    {offset: "40%", color: colorArrayLinearPath[index]},	
+			   //     {offset: "40%", color: "#ffffff"},		
+					{offset: "62%", color: "#eaeaea"},		
+			   //     {offset: "62%", color: colorArrayLinearPath[index]},	
+					{offset: "85%", color: colorArray[index]}	
+				])					
+				.enter().append("stop")			
+				.attr("offset", function(d) { return d.offset; })	
+				.attr("stop-color", function(d) { return d.color; });
+			
+			if(index!=funnelData.length-1)
+			{
+				var lineGraph2 = funnelChartMainGroup.selectAll(".path")
+								 .data([funnelXCoordinateOfBelowPath])
+								 .enter()
+								 .append("path")
+								 .attr("d", funnelLowerClosedPath)	  
+								 .attr("stroke-width", 0)
+								 .attr("fill","url(#gradient1)");
+							//	 .attr("fill", function(){return colorArrayLinearPath[index]})
+							//	 .attr("opacity",0.8);
+			}
+		}
+
+		funnelChartMainGroup.append('rect')
+							.attr('x',rectXPosition)
+							.attr('y',rectYPosition)
+							.attr('width',rectWidth)
+							.attr('height',((scaleHeightWithSeparator*heightOfProduct)/2))
+							.attr('fill',colorArray[index-1])
+	
+			//set font here
+			
+			setTextStyleAndSvgBackGround(svgElement);
+				
 				}
+				
 
 		}
 		
@@ -11739,8 +11844,8 @@ for(var index = 0;index<funnelData.length;index++)
 					
 			
 					//title here
-					var pixcelPerChar = 9;
-					var leftIndicator = (width/2.5) - ((options.title.length*pixcelPerChar)/2)
+					var pixcelPerChar = 8;
+					var leftIndicator = ((width + marginSvg)/2) - ((options.title.length*pixcelPerChar)/2)
 					var titleGroup = svgElement.append("g")
 											   .attr('class','title')
 						
@@ -12001,7 +12106,7 @@ for(var index = 0;index<funnelData.length;index++)
 						topMargin: 5,
 						rightMargin: 30,
 						bottomMargin: 0,
-						leftMargin: 10,
+						leftMargin: 20,
 						color: d3.scale.category20(),
 						toolTipLabelForYAxis: "Profit(in Crores)",
 						axisTextColor:'black',
@@ -12416,7 +12521,7 @@ for(var index = 0;index<funnelData.length;index++)
 
 				var yAxisRef=svgElement.append("g")
 						.attr("class", "axis")
-						.attr("transform", "translate(" + (width*0.08) + ","+ (yScale(1.5 * maxHeight))  +")")
+						.attr("transform", "translate(" + (width*0.1) + ","+ (yScale(1.5 * maxHeight))  +")")
 						.call(yAxis);
 				/*
 				d3.selectAll('.axis text')
@@ -12449,12 +12554,12 @@ for(var index = 0;index<funnelData.length;index++)
 				axisLabelController.appendLabel(cfg.xLabel,xLabelLeft,xLabelTop,0,xAxisRef,textStyleConfg.xLabelColor,600);	
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (threeDBarXRegion/2) - ((cfg.title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((cfg.title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 					
-				axisLabelController.appendLabel(cfg.title,leftIndicator,height*0.03,0,titleGroup,textStyleConfg.chartTitleColor,800);			   
+				axisLabelController.appendLabel(cfg.title,leftIndicator,height*0.05,0,titleGroup,textStyleConfg.chartTitleColor,800);			   
 
 				
 				
@@ -12630,7 +12735,7 @@ for(var index = 0;index<funnelData.length;index++)
 				}	
 
 				//title here
-				var pixcelPerChar = 9;
+				var pixcelPerChar = 8;
 				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
@@ -12905,7 +13010,7 @@ for(var index = 0;index<funnelData.length;index++)
 
 				  // Enter any new nodes at the parent's previous position.
 				  var nodeEnter = node.enter().append("g")
-					  .attr("class", "node")
+					  .attr("class", "legend")
 					  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
 					  .on("click", click);
 
@@ -12928,8 +13033,7 @@ for(var index = 0;index<funnelData.length;index++)
 					  .attr("dy", ".35em")
 					  .attr("text-anchor", function(d) { return d._children1 || d._children1 ? "end" : "start"; })
 					  .text(function(d) { return d.Element || d.Element || d.Root; })
-					  .style("fill-opacity", 1e-6)
-					  .attr('fill','white');
+					  .style("fill-opacity", 1e-6);
 
 				  // Transition nodes to their new position.
 				  var nodeUpdate = node.transition()
@@ -13037,8 +13141,15 @@ for(var index = 0;index<funnelData.length;index++)
 							var conditionArrayAboveMidPoint = cnfg.data.conditionArrayAboveMidPoint;
 							var conditionArrayBelowMidPoint = cnfg.data.conditionArrayBelowMidPoint;
 							
-						
-							var areaAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+							var areaAnalChart;
+							if(width<501)
+							{
+								areaAnalChart={left:width*0.2,right:width*0.15,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+							}
+							else
+							{
+								areaAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+							}
 							var scaleWidth=width-areaAnalChart.left-areaAnalChart.right;
 				            var scaleHeight=height-areaAnalChart.top-areaAnalChart.bottom;
 							
@@ -13088,8 +13199,8 @@ for(var index = 0;index<funnelData.length;index++)
 		
 			
 		//title here
-		var pixcelPerChar = 9;
-		var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+		var pixcelPerChar = 8;
+		var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 		var titleGroup = svgElement.append("g")
 								   .attr('class','title')
 		axisLabelController.appendLabel(title,leftIndicator,areaAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -13137,7 +13248,7 @@ for(var index = 0;index<funnelData.length;index++)
 	// xAxis label here
 	var pixcelPerChar = 6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.15);
+	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.16);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 	axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,areaChartMainGroup,textStyleConfg.xLabelColor,600);												
 
@@ -13162,7 +13273,7 @@ for(var index = 0;index<funnelData.length;index++)
 			//yAxis label here
 			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;		
 			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-			var yIndicationLabelLeft=(-areaAnalChart.left/2);
+			var yIndicationLabelLeft=(-areaAnalChart.left/1.5);
 			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
 								   
 		// y mid label here
@@ -13422,8 +13533,16 @@ for(var index = 0;index<funnelData.length;index++)
 							var midPointLabel = cnfg.data.midPointLabel;
 							
 							height=height*0.9;
+							var areaAnalChart;
+							if(width<501)
+							{
+								areaAnalChart={left:width*0.2,right:width*0.15,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+							}
+							else
+							{
+								areaAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+							}
 							
-							var areaAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 							var scaleWidth=width-areaAnalChart.left-areaAnalChart.right;
 				            var scaleHeight=height-areaAnalChart.top-areaAnalChart.bottom;
 							
@@ -13464,8 +13583,8 @@ for(var index = 0;index<funnelData.length;index++)
 
 		
 		//title here
-		var pixcelPerChar = 9;
-		var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+		var pixcelPerChar = 8;
+		var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 		var titleGroup = svgElement.append("g")
 								   .attr('class','title')
 		axisLabelController.appendLabel(title,leftIndicator,areaAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -13517,7 +13636,7 @@ for(var index = 0;index<funnelData.length;index++)
 	//xAxis label here
 	var pixcelPerChar = 6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.15);
+	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.16);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
     axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,areaChartMainGroup,textStyleConfg.xLabelColor,600);
 		
@@ -13540,8 +13659,8 @@ for(var index = 0;index<funnelData.length;index++)
 	//yAxis label here
 	var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
 	var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;					
-	var yIndicationLabelLeft=(-areaAnalChart.left/2);
-		axisLabelController.appendLabel(yAxisLabel,(-areaAnalChart.left/2),(scaleHeight/1.5),-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
+	var yIndicationLabelLeft=(-areaAnalChart.left/1.5);
+		axisLabelController.appendLabel(yAxisLabel,(yIndicationLabelLeft),(scaleHeight/1.5),-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
 		
 			//y mid label here		
 					var midPointLabelArray = midPointLabel.split(' ');
@@ -13652,8 +13771,15 @@ for(var index = 0;index<funnelData.length;index++)
 				var titleColor = cnfg.data.titleColor;
 				var yAxisEstimateDataUnit = cnfg.data.yAxisEstimateDataUnit;
 				var yAxisActualDataUnit = cnfg.data.yAxisActualDataUnit;
-				
-				var compareAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var compareAnalChart;
+				if(width<601)
+				{
+					compareAnalChart={left:width*0.2,right:width*0.12,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					compareAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
 				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 					
@@ -13677,8 +13803,8 @@ for(var index = 0;index<funnelData.length;index++)
 				
 	
 			//title here
-			var pixcelPerChar = 9;
-			var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+			var pixcelPerChar = 7;
+			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 			var titleGroup = svgElement.append("g")
 									   .attr('class','title')
 			axisLabelController.appendLabel(title,leftIndicator,compareAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -13731,7 +13857,7 @@ for(var index = 0;index<funnelData.length;index++)
 		
 	var pixcelPerChar=6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.13);
+	var xIndicationLabelTop=scaleHeight+(scaleHeight*0.14);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 	axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);			   							
 													
@@ -13887,8 +14013,15 @@ for(var index = 0;index<funnelData.length;index++)
 				var xAxisLabel = cnfg.data.xAxisLabel;
 				var yAxisUnit = cnfg.data.yAxisUnit;
 				
-				
-				var spikesAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var spikesAnalChart;
+				if(width<601)
+				{
+					spikesAnalChart={left:width*0.2,right:width*0.2,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					spikesAnalChart={left:width*0.12,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-spikesAnalChart.left-spikesAnalChart.right;
 				var scaleHeight=height-spikesAnalChart.top-spikesAnalChart.bottom;
 					
@@ -13925,8 +14058,8 @@ for(var index = 0;index<funnelData.length;index++)
 		
 					
 		//title here
-		var pixcelPerChar = 9;
-		var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+		var pixcelPerChar = 8;
+		var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 		var titleGroup = svgElement.append("g")
 								   .attr('class','title')
 		axisLabelController.appendLabel(title,leftIndicator,spikesAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -13998,7 +14131,7 @@ for(var index = 0;index<funnelData.length;index++)
 				//yAxis Label here				   
 			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
 			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-			var yIndicationLabelLeft=(-spikesAnalChart.left/2);	
+			var yIndicationLabelLeft=(-spikesAnalChart.left/1.5);	
 			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,spikesChartMainGroup,textStyleConfg.yLabelColor,600);	
 				
 				var barWidth =  (scaleWidth/(2*yAxisData.length)) ;	
@@ -14590,7 +14723,7 @@ for(var index = 0;index<funnelData.length;index++)
 			axisLabelController.appendLabel(cfg.xLabel,xLabelLeft,xLabelTop,0,xAxisRef,textStyleConfg.xLabelColor,600);
 			
 			//title here
-			var pixcelPerChar = 9;
+			var pixcelPerChar = 8;
 			var leftIndicator = (scaleWidth/2) - ((cfg.title.length*pixcelPerChar)/2)
 			var titleGroup = svgElement.append("g")
 									   .attr('class','title')
@@ -14617,8 +14750,15 @@ for(var index = 0;index<funnelData.length;index++)
 				var averageValue = data.averageValue;
 				var unit = data.unit
 				var title = data.title;
-				
-				var barAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var barAnalChart;
+				if(width<501)
+				{
+					barAnalChart={left:width*0.2,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					barAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-barAnalChart.left-barAnalChart.right;
 				var scaleHeight=height-barAnalChart.top-barAnalChart.bottom;
 				var legendSize = 10;
@@ -14637,8 +14777,8 @@ for(var index = 0;index<funnelData.length;index++)
                     .attr("transform", "translate(" + (barAnalChart.left) + "," + barAnalChart.top + ")")
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 7;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,barAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -14807,8 +14947,8 @@ for(var index = 0;index<funnelData.length;index++)
 				var elementPerRow=Math.ceil(imageArray.length/maxRows);
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,margin.top,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -15154,8 +15294,8 @@ for(var index = 0;index<funnelData.length;index++)
 				var scaleHeight=height-multiAxisAnalChart.top-multiAxisAnalChart.bottom;
 				
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,multiAxisAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -15495,7 +15635,21 @@ for(var index = 0;index<funnelData.length;index++)
 				var colorArray = data.colorArray;
 				var unit = data.unit;
 				var factor = data.factor;
-				var pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var pieAnalChart;
+				var fontSize;
+				var pixcelPerChar;
+				if(width<500)
+				{
+					pixcelPerChar = 5.5;
+					fontSize = 10;
+					pieAnalChart={left:60,right:60,bottom:35,top:35,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					pixcelPerChar = 7;
+					fontSize = 12;
+					pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}	
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
 				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
@@ -15509,7 +15663,6 @@ for(var index = 0;index<funnelData.length;index++)
 
 				var grad = Math.PI/180;							
 				var dist = 0;
-				var pixcelPerChar=8;
 				
 				var dountDataSum = 0
 				for(var index = 0;index<dountData.length;index++)
@@ -15635,10 +15788,10 @@ for(var index = 0;index<funnelData.length;index++)
 					xCoordinate[0] = ((radiusX*.98) * (Math.cos(tempTheta * (Math.PI / 180))));		
 					yCoordinate[0] = ((radiusY*.98) * (Math.sin(tempTheta * (Math.PI / 180))));
 				
-					xCoordinate[1] = ((radiusX*1.4) * (Math.cos(tempTheta * (Math.PI / 180))));
-					yCoordinate[1] = ((radiusY*1.4) * (Math.sin(tempTheta * (Math.PI / 180))));
+					xCoordinate[1] = ((radiusX*1.2) * (Math.cos(tempTheta * (Math.PI / 180))));
+					yCoordinate[1] = ((radiusY*1.2) * (Math.sin(tempTheta * (Math.PI / 180))));
 					
-					xCoordinate[2] = xCoordinate[1] + ((radiusX*.2) * (Math.cos(tempTheta * (Math.PI / 180))));
+					xCoordinate[2] = xCoordinate[1] + ((radiusX*.15) * (Math.cos(tempTheta * (Math.PI / 180))));
 					yCoordinate[2] = yCoordinate[1];
 				
 					dountPieGroup.selectAll(".path")
@@ -15658,6 +15811,7 @@ for(var index = 0;index<funnelData.length;index++)
 								 })
 								 .attr('y',yCoordinate[2]+3)
 								 .attr('fill',colorArray[index])
+								 .style('font-size',fontSize+'px')
 								 .text(function(){ return dountKey[index];})
 					
 				}
@@ -15749,6 +15903,9 @@ for(var index = 0;index<funnelData.length;index++)
 			  return pieOuter(i(call),radiusX,radiusY,h);
 			 };
 			}
+			
+				//set font here
+					setTextStyleAndSvgBackGround(svgElement);	
 		}
 	}
 	
@@ -15761,8 +15918,21 @@ for(var index = 0;index<funnelData.length;index++)
 				var colorArray = data.colorArray;
 				var unit = data.unit;
 				var factor = data.factor;
-				
-				var pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var pieAnalChart;
+				var fontSize;
+				var pixcelPerChar;
+				if(width<500)
+				{
+					pixcelPerChar = 5.5;
+					fontSize = 10;
+					pieAnalChart={left:60,right:60,bottom:35,top:35,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					pixcelPerChar = 7;
+					fontSize = 12;
+					pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
 				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
@@ -15777,7 +15947,6 @@ for(var index = 0;index<funnelData.length;index++)
 				var leftMarginOfSvg = $(selectorElement).offset().left;
 				var grad = Math.PI/180;							
 				var dist = 0;
-				var pixcelPerChar=8;
 				
 				var dountDataSum = 0
 				for(var index = 0;index<dountData.length;index++)
@@ -15903,10 +16072,10 @@ for(var index = 0;index<funnelData.length;index++)
 					xCoordinate[0] = ((radiusX*.98) * (Math.cos(tempTheta * (Math.PI / 180))));		
 					yCoordinate[0] = ((radiusY*.98) * (Math.sin(tempTheta * (Math.PI / 180))));
 				
-					xCoordinate[1] = ((radiusX*1.4) * (Math.cos(tempTheta * (Math.PI / 180))));
-					yCoordinate[1] = ((radiusY*1.4) * (Math.sin(tempTheta * (Math.PI / 180))));
+					xCoordinate[1] = ((radiusX*1.2) * (Math.cos(tempTheta * (Math.PI / 180))));
+					yCoordinate[1] = ((radiusY*1.2) * (Math.sin(tempTheta * (Math.PI / 180))));
 					
-					xCoordinate[2] = xCoordinate[1] + ((radiusX*.2) * (Math.cos(tempTheta * (Math.PI / 180))));
+					xCoordinate[2] = xCoordinate[1] + ((radiusX*.1) * (Math.cos(tempTheta * (Math.PI / 180))));
 					yCoordinate[2] = yCoordinate[1];
 				
 					dountPieGroup.selectAll(".path")
@@ -15926,6 +16095,7 @@ for(var index = 0;index<funnelData.length;index++)
 								 })
 								 .attr('y',yCoordinate[2]+3)
 								 .attr('fill',colorArray[index])
+							//	 .style('font-size',fontSize+'px')
 								 .text(function(){ return getpercentage(index)+" "+dountKey[index];})
 					
 				}
@@ -16010,6 +16180,9 @@ for(var index = 0;index<funnelData.length;index++)
 			  return pieOuter(i(call),radiusX,radiusY,h);
 			 };
 			}
+			
+		//set font here
+					setTextStyleAndSvgBackGround(svgElement);	
 		}
 	}
 	var roundedThreeDBarGraph = 
@@ -16022,8 +16195,15 @@ for(var index = 0;index<funnelData.length;index++)
 				var yAxisLabel = data.yAxisLabel;
 				var title = data.title;
 				var unit = data.unit;
-
-				var threeDAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var threeDAnalChart;
+				if(width<551)
+				{
+					threeDAnalChart={left:width*0.2,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					threeDAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
 				var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
 					
@@ -16044,8 +16224,8 @@ for(var index = 0;index<funnelData.length;index++)
 								   .attr("transform", "translate(" + threeDAnalChart.left + "," + threeDAnalChart.top + ")")
 		
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,threeDAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -16060,7 +16240,7 @@ for(var index = 0;index<funnelData.length;index++)
 				//yAxis label here					
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;			
 				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-				var yIndicationLabelLeft=(-threeDAnalChart.left/1.3);
+				var yIndicationLabelLeft=(-threeDAnalChart.left/1.2);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,threeDBarMainGroup,textStyleConfg.yLabelColor,600);			   													   
 				
 				
@@ -16098,10 +16278,21 @@ for(var index = 0;index<funnelData.length;index++)
 								.range([scaleHeight,0]);
 						
 		//x axis
+				var largestStringLngth=0;
+					for(var counter =0 ;counter<barData.length;counter++)
+					{
+						if(largestStringLngth<(barData[counter].country.toString()).length)
+						{
+							largestStringLngth = (barData[counter].country.toString()).length;
+						}
+					}
+					
 				var xAxis = d3.svg.axis()
 							.scale(xScale)
 							.orient("bottom")
-							.tickValues(xAxisTimeIndex);
+						//	.tickValues()
+							.tickValues(tickController.getXTickArray(0,(barData.length-1),largestStringLngth, (scaleWidth)));
+				
 				var xAxisTextRef = threeDBarMainGroup.append("g")
 										.attr('id','xAxis')
 										.attr("class", "x axis")
@@ -16236,8 +16427,16 @@ for(var index = 0;index<funnelData.length;index++)
 				var color = data.color;
 				var subData = data.subData;
 				var title = data.title;
-						
-				var arcAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				
+				var arcAnalChart;
+				if(width < 500)
+				{
+					arcAnalChart={left:50,right:50,bottom:35,top:35,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					arcAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-arcAnalChart.left-arcAnalChart.right;
 				var scaleHeight=height-arcAnalChart.top-arcAnalChart.bottom;
 				
@@ -16452,10 +16651,20 @@ for(var index = 0;index<funnelData.length;index++)
 								.range([scaleHeight,0]);
 						
 				//x axis
-						var xAxis = d3.svg.axis()
-									.scale(xScale)
-									.orient("bottom")
-									.tickValues(xAxisTimeIndex);
+						var largestStringLngth=0;
+						for(var counter =0 ;counter<subData[index].label.length;counter++)
+						{
+							if(largestStringLngth<(subData[index].label[counter].toString()).length)
+							{
+								largestStringLngth = (subData[index].label[counter].toString()).length;
+							}
+						}
+						
+					    var xAxis = d3.svg.axis()
+								.scale(xScale)
+								.orient("bottom")
+								.tickValues(tickController.getXTickArray(0,(subData[index].label.length),largestStringLngth, (scaleWidth*.5)));
+						
 						var xAxisTextRef = mainGroupForBar.append("g")
 												.attr('id','xAxis')
 												.attr("class", "x axis")
@@ -16607,8 +16816,15 @@ for(var index = 0;index<funnelData.length;index++)
 				var yAxisActualDataUnit = data.yAxisActualDataUnit;
 				var yAxisEstimateDataUnit = data.yAxisEstimateDataUnit;
 				var legendArray = data.legendArray;
-				
-				var compareAnalChart={left:width*0.13,right:width*0.05,bottom:height*0.1,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var compareAnalChart;
+				if(width < 551)
+				{
+					compareAnalChart={left:width*0.2,right:width*0.05,bottom:height*0.1,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
+				else
+				{
+					compareAnalChart={left:width*0.13,right:width*0.05,bottom:height*0.1,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				}
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
 				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 				var leftMarginOfSvg = $(selectorElement).offset().left;	
@@ -16632,8 +16848,8 @@ for(var index = 0;index<funnelData.length;index++)
 								   .attr("transform", "translate(" + compareAnalChart.left + "," + compareAnalChart.top + ")")
 		
 				// title label here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 7;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,compareAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -16644,7 +16860,7 @@ for(var index = 0;index<funnelData.length;index++)
 				// YAxis Label here
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
 				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-				var yIndicationLabelLeft=(-compareAnalChart.left/1.3);
+				var yIndicationLabelLeft=(-compareAnalChart.left/1.2);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
@@ -16688,10 +16904,21 @@ for(var index = 0;index<funnelData.length;index++)
 								.range([scaleHeight,0]);
 						
 		//x axis
+				var largestStringLngth=0;
+					for(var counter =0 ;counter<xAxisData.length;counter++)
+					{
+						if(largestStringLngth<(xAxisData[counter].toString()).length)
+						{
+							largestStringLngth = (xAxisData[counter].toString()).length;
+						}
+					}
+					
 				var xAxis = d3.svg.axis()
 							.scale(xScale)
-							.orient("bottom");
-						//	.ticks(10);
+							.orient("bottom")
+						//	.tickValues()
+							.tickValues(tickController.getXTickArray(0,(xAxisData.length),largestStringLngth, (scaleWidth)));
+				
 				var xAxisTextRef = compareChartMainGroup.append("g")
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
@@ -16699,10 +16926,8 @@ for(var index = 0;index<funnelData.length;index++)
 										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis);
 							 xAxisTextRef.selectAll('text')
-							             .text(function(d){return xAxisData[d];})
-										 .style('font-size',fontSize)
-										 .attr('font-family',fontFamily)
-										 .attr('fill','black');
+							             .text(function(d){return xAxisData[d];});
+										 
 
 				var yTickArray = tickController.getTickArray(yMin,yMax,8);							
 												
@@ -16723,11 +16948,11 @@ for(var index = 0;index<funnelData.length;index++)
 								.attr('fill','black');
 								
 				var lineFunction = d3.svg.line()
-							.x(function(d,i) {return xCoordinate[i]; })
+							.x(function(d,i) {return d; })
 							.y(function(d,i) {return yCoordinate[i]; })
 				
 				var temp = d3.svg.line()
-							.x(function(d,i) {return d; })
+							.x(function(d,i) {  return d; })
 							.y(function(d,i) {return scaleHeight; })
 				
 				// grid line here
@@ -17001,7 +17226,7 @@ for(var index = 0;index<funnelData.length;index++)
 				var xAxisLabel = cnfg.data.xAxisLabel;
 				var leftYAxisColor = cnfg.data.leftYAxisColor;
 				var rightYAxisColor = cnfg.data.rightYAxisColor;
-				var detailAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.13,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				var detailAnalChart={left:width*0.12,right:width*0.1,bottom:height*0.13,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-detailAnalChart.left-detailAnalChart.right;
 				var scaleHeight=height-detailAnalChart.top-detailAnalChart.bottom;
 				
@@ -17058,8 +17283,8 @@ for(var index = 0;index<funnelData.length;index++)
 					});
 			
 				//title here
-				var pixcelPerChar = 9;
-				var leftIndicator = (scaleWidth/2) - ((title.length*pixcelPerChar)/2)
+				var pixcelPerChar = 8;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 				var titleGroup = svgElement.append("g")
 										   .attr('class','title')
 				axisLabelController.appendLabel(title,leftIndicator,detailAnalChart.top,0,titleGroup,textStyleConfg.chartTitleColor,800);
@@ -17075,7 +17300,7 @@ for(var index = 0;index<funnelData.length;index++)
 				// left YAxis Label here
 				var totalYLabelPixcel=leftYAxisLabel.toString().length*pixcelPerChar;
 				var rightYIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-				var rightYIndicationLabelLeft=(-detailAnalChart.yScalePaddingLeft/2);
+				var rightYIndicationLabelLeft=(-detailAnalChart.yScalePaddingLeft/1.7);
 				axisLabelController.appendLabel(leftYAxisLabel,rightYIndicationLabelLeft,rightYIndicationLabelTop,-90,scoredMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
@@ -17401,7 +17626,7 @@ for(var index = 0;index<funnelData.length;index++)
 						  
 					
 					//title here
-					var pixcelPerChar = 9;
+					var pixcelPerChar = 8;
 					var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
 					var titleGroup = svgElement.append("g")
 											   .attr('class','title')
@@ -17411,14 +17636,14 @@ for(var index = 0;index<funnelData.length;index++)
 					//xAxis Label here
 					var pixcelPerChar = 6;
 					var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-					var xIndicationLabelTop=(height-margin.top)+((height-margin.top)*0.13);
+					var xIndicationLabelTop=(height-margin.top)+((height-margin.top)*0.15);
 					var xIndicationLabelLeft=(width - margin.right)/2-totalXLabelPixcel/2;
 					axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,vis,textStyleConfg.xLabelColor,600);
 					
 					//yAxis Label here	  
 					var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
 					var yIndicationLabelTop=(height)/2+totalYLabelPixcel/2;
-					var yIndicationLabelLeft=(margin.left/2);
+					var yIndicationLabelLeft=(margin.left/3);
 					axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,vis,textStyleConfg.yLabelColor,600);
 					
 					var colorGradientArray = ["#aaaa00","#75c200","#006bd5"];
