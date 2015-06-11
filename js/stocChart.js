@@ -12538,14 +12538,9 @@ var threeDBarChart = {
 				var yTotalPixcel=cfg.yLabel.toString().length*pixcelPerChar;
 				var yLabelTop=height/2+yTotalPixcel/2;
 				
-				var yLabelLeft;
-				if(width<501){
-					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2;
-				}else{
-					yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*0.8;
-				}
+				var yLabelLeft = -width*.04;
 				
-				axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);	
+				axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,svgContainer,textStyleConfg.yLabelColor,600);	
 				
 				//x indication label
 				var xTotalPixcel=cfg.xLabel.toString().length*pixcelPerChar;
@@ -14244,7 +14239,7 @@ var threeDBarChart = {
 
             var margin;
 			
-			var margin = {top: 0.1*height, right: 0.05*width, bottom: 0.13*height, left: 0.1*width};					
+			var margin = {top: 0.1*height, right: 0.05*width, bottom: 0.13*height, left: 0.08*width};					
 			var xAxisTicksArray=options.xAxisTickArray;
 			
 			var scaleWidth  = width - margin.left - margin.right;
@@ -14702,6 +14697,8 @@ var threeDBarChart = {
 			yAxisRef.selectAll("path").style("display",'none');	
 			
 			//y indicationa label
+			
+			
 			var indexOfParaenthesis=yAxisRef.attr("transform").indexOf("(")+1;
 			var indexOfComma=yAxisRef.attr("transform").indexOf(",");
 			 
@@ -14709,14 +14706,9 @@ var threeDBarChart = {
 			var yTotalPixcel=cfg.yLabel.toString().length*pixcelPerChar;
 			var yLabelTop=scaleHeight/2+yTotalPixcel/2;
 			
-			var yLabelLeft;
-			if(width<501){
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2.3;
-			}else{
-				yLabelLeft=-parseInt(yAxisRef.attr("transform").substring(indexOfParaenthesis,indexOfComma))*2;
-			}
-			
-			axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,yAxisRef,textStyleConfg.yLabelColor,600);
+			var yLabelLeft = -margin.left*.7;
+		
+			axisLabelController.appendLabel(cfg.yLabel,yLabelLeft,yLabelTop,-90,svgElement,textStyleConfg.yLabelColor,600);
 			
 			//x indication label
 			var xLabelPixcel=cfg.xLabel.length*pixcelPerChar;
