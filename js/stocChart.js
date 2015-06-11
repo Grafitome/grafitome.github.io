@@ -7904,16 +7904,16 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 										.attr("transform", "translate(" + ((width/2)+(legendAndTextSize*.5)) + "," + (height/2) + ")");
 					
 					radius = (height/2) < ((width/2)-legendAndTextSize) ? (height/2) : ((width/2)-legendAndTextSize);
-					radius = radius * .9;
+					radius = radius * .8;
 				}
 				else if(legendOrient == "right")
 				{
 					console.log('right');
 					dountPieGroup = svgElement.append("g")
 										.attr('class','dountPie')
-										.attr("transform", "translate(" + ((width/2)-(legendAndTextSize*.5)) + "," + (height/2) + ")");
+										.attr("transform", "translate(" + ((width/2)-(legendAndTextSize*.8)) + "," + (height/2) + ")");
 					radius = (height/2) < ((width/2)-legendAndTextSize) ? (height/2) : ((width/2)-legendAndTextSize);
-					radius = radius * .9;
+					radius = radius * .8;
 				}
 				else if(legendOrient == "top")
 				{
@@ -7996,16 +7996,16 @@ var rectangleGradient = rectangleGroup.append("svg:defs")
 				var yPosition;
 				if(legendOrient=="left")
 				{
-					xPosition = ((width/2)+legendAndTextSize)-(legendAndTextSize+(radius*2));
+					xPosition = ((width/2)+(legendAndTextSize))-(legendAndTextSize+(radius*1.3));
 					yPosition = (height/2)-((key.length/2)*legendSize*2);
 					legendGroup = svgElement.append("g")
 										.attr('class','legend')
-										.attr("transform", "translate(" + (xPosition) + "," + (yPosition) + ")");
+										.attr("transform", "translate(" + (10) + "," + (yPosition) + ")");
 					drawLegendLeftOrRight(key,color,legendSize,legendGroup);
 					
 				}else if(legendOrient=="right")
 				{
-					xPosition = ((width/2)-legendAndTextSize)+(radius*2);
+					xPosition = ((width/2)-legendAndTextSize)+(radius*1.5);
 					yPosition = (height/2)-((key.length/2)*legendSize*2);
 					legendGroup = svgElement.append("g")
 										.attr('class','legend')

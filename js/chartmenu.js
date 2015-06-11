@@ -2,10 +2,10 @@ var isTriggeringClick=false;
 var selectedChartIndex=1;
 
 var jsFiddleLinkMap={
-"1" : "http://jsfiddle.net/PAXCEL/ycevhobo/3/",
-"2" : "http://jsfiddle.net/PAXCEL/vk04sohw/2/",
-"3" : "http://jsfiddle.net/PAXCEL/Lj2bsdnr/3/",
-"4" : "http://jsfiddle.net/PAXCEL/ogy6uoco/3/",
+"1" : "http://jsfiddle.net/ycevhobo/4/",
+"2" : "http://jsfiddle.net/vk04sohw/3/",
+"3" : "http://jsfiddle.net/Lj2bsdnr/4/",
+"4" : "http://jsfiddle.net/ogy6uoco/4/",
 "5" : "http://jsfiddle.net/PAXCEL/75331cub/2/",
 "6" : "http://jsfiddle.net/PAXCEL/1o2d6yxj/2/",
 "7" : "http://jsfiddle.net/PAXCEL/ndgww2n3/3/",
