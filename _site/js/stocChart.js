@@ -16,7 +16,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                selectorElement.parent().css('background-position', 'bottom right');
             }
         }
-        var selectorElement =  $(this);
+        var selectorElement = $(this);
 		var selectedElementId=$(selectorElement).attr("id");
 
         WM.attachWaterMark(selectorElement);
