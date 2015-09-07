@@ -2,7 +2,7 @@ var isTriggeringClick=false;
 var selectedChartIndex=1;
 
 var jsFiddleLinkMap={
-"1" : "http://jsfiddle.net/ycevhobo/4/",
+"1" : "http://.net/ycevhobo/4/",
 "2" : "http://jsfiddle.net/vk04sohw/3/",
 "3" : "http://jsfiddle.net/Lj2bsdnr/4/",
 "4" : "http://jsfiddle.net/ogy6uoco/4/",
@@ -14,7 +14,6 @@ var jsFiddleLinkMap={
 "10" : "http://jsfiddle.net/3fwtgp6h/4/",
 "11" : "http://jsfiddle.net/4nb73yvx/4/",
 "12" : "http://jsfiddle.net/6xke3jct/3/",
-
 "13" : "http://jsfiddle.net/ns715wcv/4/",
 "14" : "http://jsfiddle.net/5xnj5e9v/6/",
 "15" : "http://jsfiddle.net/6degx86y/3/",
@@ -48,8 +47,8 @@ var jsFiddleLinkMap={
 "43" : "http://jsfiddle.net/856jwvvw/1/",
 "44" : "http://jsfiddle.net/09cefcuo/1/",
 "45" : "http://jsfiddle.net/3w4f6zmz/1/",
-"46" : "http://jsfiddle.net/csw25fcw/1/"
-
+"46" : "http://jsfiddle.net/csw25fcw/1/",
+"57" : "http://jsfiddle.net/csw25fcw/1/"
 }
 function updateJsfiddleLink(index){
 	var linkPath=jsFiddleLinkMap[index];
@@ -57,10 +56,12 @@ function updateJsfiddleLink(index){
 	$(jsfiddleBtn).attr("href",linkPath);
 }
 
-
 $(document).ready(function(){
   
- var textStyleConfg={"font-family":"'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":300,"xLabelColor":"#a7a7a7","yLabelColor":"white","chartTitleColor":"white"};
+ var textStyleConfg={"font-family":"'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":300,"xLabelColor":"#a7a7a7","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
+ 
+   
+ 
   $("#basicLineChartMenu").click(function(){
 	
 	 selectedChartIndex=$(this).attr("index");
@@ -79,32 +80,33 @@ $(document).ready(function(){
 				yAxisfactor : "Sold Quantity",
 				yLabelColor:"red",
 				xAxisfactor : "Indexes(in whole number)",
-				xLabelColor:"green"	,
-				padding:30,	
+				xLabelColor:"green",
+				padding:30,
+				lineStrokeWidth:1,
 				yAxisData:
 				[{				
 					"Name" : "Angel",
 					"Shape" : "circle",
 					"color": "#00ff7e",
-					"data" : [12345,42345.23,30234,22345,72345,22345,32345,70345,52345,78345]
+					"data" : [123,423,302,223,723,223,323,703,523,783]
 				},
 				{
 					"Name" : "Venture",
 					"Shape" : "square",
 					"color": "orange",
-					"data" : [90234,90234.34,12034,22394,72934,62394,32374,9234,5234,56034]			
+					"data" : [902,902,120,223,729,623,323,923,523,560]			
 				},
 				{
 					"Name" : "Micro",
 					"Shape" : "triangle",
 					"color": "#4fb6f2",
-					"data" : [33340,62304,67214,6734,90734,12034,43240,42340,15234,100034]			
+					"data" : [333,623,672,673,907,120,432,423,152,100]			
 				},
 				{
 					"Name" : "Capital",
 					"Shape" : "circle",
 					"color": "cyan",
-					"data" : [68333,23304,90314,9734,19734,90834,67240,82340,51234,97034]			
+					"data" : [683,233,903,973,197,908,672,823,512,970]			
 				}]
 				
 		};
@@ -113,7 +115,7 @@ $(document).ready(function(){
 		$("#basicLineChart").show();
 		
 		setTimeout(function(){
-			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
+			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};	
 			var stocChart1=$("#line1").stocCharts(textStyleConfg);
 			stocChart1.drawBasicLineChart('#line1', basicLineData);	
 		},50);
@@ -167,7 +169,7 @@ $(document).ready(function(){
 	var xAxisTickArray=["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14","Nov'14","Dec'14","Jan'15","Feb'15","Mar'15","Apr'15","May'15","Jun'15"];
 	
 	$("#scatterPlotChart").show();
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 	var stocChart2=$("#line1").stocCharts(textStyleConfg);
 	stocChart2.drawScatterPlotChart('#line1', scatterPlotData);	
 	
@@ -209,7 +211,7 @@ $(document).ready(function(){
 		}
 		
 		$("#drillDownChart").show();
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart3=$("#line1").stocCharts(textStyleConfg);
 		stocChart3.drawDrillDownChart("#line1", barData,cfgDrillDown);
 	
@@ -301,10 +303,12 @@ $(document).ready(function(){
 						value : [12000,8850,10000,4234,10234,12134],
 						label : 'Cost',
 						color : ['#e67a77','#95d7bb','#aec785','#fcb322','#6d788e','#a48ad4'],
-						legendOrient : "left"
+						innerRadius:0,
+						legendOrient : "right"
+						
 					};
 		   
-		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":10,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7","gridLineColor":"#353b37"};	
 		var stocChart5=$("#line1").stocCharts(textStyleConfg);
 		//var colorPieArray=["#7cb5ec","#434348","#90ed7d","orange","green","cyan"];
 		stocChart5.drawPieChartWithTransition(dataSet);
@@ -345,7 +349,7 @@ $(document).ready(function(){
 		  ExtraWidthX: 100
 		}
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart6=$("#line1").stocCharts(textStyleConfg);
 		stocChart6.drawRadarChart("#line1", d, mycfg);
 		
@@ -385,14 +389,14 @@ $(document).ready(function(){
 		var groupedChartData=generateDataForStackChart();
 		groupedChartData=groupedChartData.slice(0,groupedChartData.length-3);
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var colorJson={"pending":"#00FFFF","approved":"#00FF7E","rejected":"#FFA500","halted":"#4FB6F2"};
 		var stocChart8=$("#line1").stocCharts(textStyleConfg);
 		
 		//var colorJson={"pending":"#3e99f0","approved":"rgb(237, 128, 250)","rejected":"#fe8625","halted":"#5fe9e4"};
 		
 		
-		
+		console.log(JSON.stringify(groupedChartData));
 		var colorArray=["#7cb5ec","#434348","#90ed7d","red"];
 		stocChart8.groupedBarChart({'data':groupedChartData,'xFieldName':'doj','widthOfBar':'',
 		'showAllTicks':true,'colors':colorJson,yAxisfactor : "Orders Quantity",title:"Orders Analysis Of Last 11 Month's",
@@ -412,27 +416,22 @@ $(document).ready(function(){
 	  $(".3DBarChartMenu").show();
 		$("#3DBarChart").show();
 		
-		var barData = [15, 80, 120, 280, 50, 65, 900, 40, 23, 98];
+		var data =  {
+						title : "Last 10 year sales",
+						yAxisLabel : "Sales",
+						yAxisUnit : "Crores",
+						toolTipUnit : "Year",
+						yAxisData : [275,300,320,250,230,270,140,190,300,370],
+						xAxisLabel : "Years",
+						xAxisData : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
+						barColor : "#68aad1"
+		    }
 		
-		var cfg3DBarChart = {
-		
-			topMargin: 5,
-			rightMargin: 0,
-			bottomMargin: 40,
-			leftMargin: 40,
-			toolTipLabelForYAxis: "Sales(in Crores)",
-			color: "#92e2dd",
-			xAxisTickArray:[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019],
-			xLabel:"Year",
-			yLabel:"Sales(in Crores)",
-			title : "Last 10 Year Sales"
-		}
-		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart10=$("#line1").stocCharts(textStyleConfg);
-	    stocChart10.drawThreeDBarChart("#line1", barData, cfg3DBarChart);
+	    stocChart10.drawThreeDBarChart(data);
 		
-	});
+	}); 
 	
 	$("#3DGroupedBarChartMenu").click(function(){
 		selectedChartIndex=$(this).attr("index");
@@ -443,24 +442,19 @@ $(document).ready(function(){
 		$(".chartDetails").hide();
 	  $(".3DGroupedBarChartMenu").show();
 		
-		var barDataOne = [15, 80, 120, 280, 50, 65, 900, 40, 23, 98, 634];
+		var barDataOne = [15, 80, 120, 280, 0, 65, 900, 40, 23, 98, 634];
 		var barDataTwo = [150, 180, 20, 20, 90, 650, 300, 400, 230, 308, 434];
 		
 		var cfg3DBarChart = {
-		
-			topMargin: 5,
-			rightMargin: 0,
-			bottomMargin: 40,
-			leftMargin: 40,
 			toolTipLabelForYAxis: "Sales(in Crores)",
-			colorArray:["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"],
 			xAxisTickArray:[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019, 2020],
 			barColorArray : ['#16ffb5','#869cb3'],
+			lagendArray:["bar1","bar2"],
 			xLabel:"Year",
 			yLabel:"Sales(in Crores)",
 			title : "Comparision Of Sale OF Two Item's in Last 10 years"
 		}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart38=$("#line1").stocCharts(textStyleConfg);
 	    stocChart38.drawThreeDGroupedBarChart("#line1", barDataOne, barDataTwo, cfg3DBarChart);
 		
@@ -476,8 +470,7 @@ $(document).ready(function(){
 	$("#line1").empty();
 		$("#3DStackedBarChart").show();
 		
-		var heightOfBarOne = [15, 80, 120, 180, 50, 65, 30];
-		var heightOfBarTwo = [60, 20, 70, 40, 100, 95, 500];
+		
 		
 		var threeDStackedBarsData = [{
 				'key': 'Barclays',
@@ -509,19 +502,17 @@ $(document).ready(function(){
 			bottomMargin: 40,
 			leftMargin: 40,
 			toolTipLabelForYAxis: "Sales(in Crores)",
-			colorArray: ["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"],
 			title:"Sale Comparision Of Companies In Respective Year",
 			xLabel:"Year",
 			yLabel : "Sales(in Crores)",
-			axisTextColor:'purple',
-			legendTextColor:'purple'
+			toolTipUnit:""
 		}
-		var gridLineColor = "#4d4d4d";
+	//	var gridLineColor = "#4d4d4d";
 		var textColor = "Grey";
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart27=$("#line1").stocCharts(textStyleConfg);
 		var xAxisArray = ['1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006'];
-	    stocChart27.drawThreeDStackedBarChart("#line1", heightOfBarOne, heightOfBarTwo, threeDStackedBarsData, cfg3DBarChart, colorArray, gridLineColor, textColor, xAxisArray);
+	    stocChart27.drawThreeDStackedBarChart("#line1", threeDStackedBarsData, cfg3DBarChart, colorArray, textColor, xAxisArray);
 		
 	});
 	  
@@ -560,7 +551,7 @@ $(document).ready(function(){
 			color: d3.scale.category20c(),
 			xLabel:"Time"
 		}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};	
 		var stocChart11=$("#line1").stocCharts(textStyleConfg);
 	    stocChart11.drawStackedAreaChart("#line1", stackedAreaData, cfgStackedAreaChart);
 		
@@ -588,7 +579,7 @@ $(document).ready(function(){
 			
 			
 			var colorArray={"settledAmount":"#FFA500","unsettledAmount":"#4FB6F2"};
-			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+			var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 			var stockChart12=$("#line1").stocCharts(textStyleConfg);
 			stockChart12.stackedBarChart({'data':sdata,'colorArray':colorArray,'xFieldName':'timeIndex','widthOfBar':20,'showAllTicks':true,'columnHeadingArray':treeData.columnHeading,'xAxisIndicationLabel':'Company','yAxisIndicationLabel':'Amount'});
 		});
@@ -613,7 +604,7 @@ $(document).ready(function(){
       
 					}
   
-      var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"#a7a7a7","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};	
+      var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"#a7a7a7","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};	
 	  var stockChart14=$("#line1").stocCharts(textStyleConfg);
 	  stockChart14.drawFunnelChart(data)
 	});
@@ -625,10 +616,15 @@ $(document).ready(function(){
 	  $(".guageGraphMenu").show();
 	$("#line1").empty();
 		$("#guageGraph").show();
-		
-		var dataA=generateData(100,10000);
-		var stockChart15=$("#line1").stocCharts();
-		stockChart15.gaugeGraph({'dataA':[{"maxSpeedVal":200,"speedVal":80}],"id":"#line15",'arcStartIndLabel':'No Risk','arcMiddleIndLabel':'Meter','arcEndIndLabel':'Total', 'textColor':'#000'});
+		var gaugeChartData =  {
+				"data" :[{"totalValue":100,"valAchieve":40.34}],
+				"colorArray" : ["#a70328","#c1e0f7"],
+				"toolTipMsg":"speed",
+				"meterLabel" : ["Min","Max"]
+		}
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"#a7a7a7","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};	
+		var stockChart15=$("#line1").stocCharts(textStyleConfg);
+		stockChart15.gaugeGraph(gaugeChartData);
 		
 	});
 	  
@@ -641,7 +637,7 @@ $(document).ready(function(){
 		$("#areaChart1").show();
 		
 		var data=generateData(100,500);
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stockChart=$("#line1").stocCharts(textStyleConfg);
 		stockChart.areaChart({'data':data,'xFieldName':'doj',"yFieldName":'id','title':'Profit Analysis Chart','xAxisIndicationLabel':'Time Index','yAxisIndicationLabel':'Money','axisColor':'#222222','attachBrushEvent':true,'redraw':false});
 		stockChart.circleChart({'color':"#fff953",'r':3,'data':data});
@@ -742,7 +738,7 @@ $(document).ready(function(){
 		$(".chartDetails").hide();
 	  $(".meterChartMenu").show();
 		
-		try{
+	/*	try{
 		  
 		  meterChart.init('line1','',380,320);
 		  meterChart.turnNeedle(-90);
@@ -753,7 +749,19 @@ $(document).ready(function(){
 		}
 		catch(err){
 			console.log("error meter chart ");
-		}	
+		}
+	*/	var meterChartData =  {
+				"data" :[0,20,40,60,80,100,120,140,160,180,200,220],
+				"dataLeft":[0,1,2,3,4,5,6,7],
+				"colorArray" : ["#2ec7c9","#5ab1ef","#d87a80"],
+				"meterLabel" : "Km/h"
+		}
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+		var stocChart43=$("#line1").stocCharts(textStyleConfg);
+		stocChart43.meterChartAnalysis(meterChartData);
+		
 	});
 	
 	$("#groupedBar2DMenu").click(function(){
@@ -769,7 +777,7 @@ $(document).ready(function(){
 		var groupedChartData=generateDataForStackChart(-20);
 		groupedChartData=groupedChartData.slice(0,groupedChartData.length-3)
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var colorJson={"pending":"#00FFFF","approved":"#00FF7E","rejected":"#FFA500","halted":"#4FB6F2"};
 		
 		var stocChart19=$("#line1").stocCharts(textStyleConfg);
@@ -779,7 +787,7 @@ $(document).ready(function(){
 		stocChart19.groupedBar2DChart({'data':groupedChartData,'xFieldName':'doj','widthOfBar':'',
 		'showAllTicks':true,'colors':colorJson,yAxisfactor : "Sales Percentage","title":"Sale Analysis Of Last 11 Month's",
 			yLabelColor:"grey",
-			xAxisfactor : "Indexes(in whole number)",
+			xAxisfactor : "Month",
 			xLabelColor:"green"
 			
 			},midVal);
@@ -840,7 +848,7 @@ $(document).ready(function(){
 				color : ['#e67a77','#95d7bb','#fcb322','#6d788e','#aec785','#a48ad4']
 		   };
 		
-		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"green","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};	
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"green","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7","gridLineColor":"#353b37"};	
 		var cnfg={"data":data,"divId":"line1"}
 		var stocChart21=$("#line1").stocCharts(textStyleConfg);
 		stocChart21.dountChartWithLegend(cnfg);
@@ -874,7 +882,7 @@ $(document).ready(function(){
 				}; 
 		
 		var legendTextColor="purple";	
-		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"#333333","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7"};
+		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":12,"background":"none","font-color":"#333333","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7","gridLineColor":"#353b37"};
 		var cnfg={"data":data,"divId":"line1","subDataArray":subDataArray}
 		var stocChart23=$("#line1").stocCharts(textStyleConfg);
 		stocChart23.drawDountWithBarChart(cnfg);
@@ -888,15 +896,19 @@ $(document).ready(function(){
 	  $(".BulletBarChartMenu").show();
 		$("#BulletBarChart").show();
 		
-		var data1=[{"population":100,'year':2007},{"population":50,'year':2008},{"population":150,'year':2009},{"population":100,'year':2010},{"population":200,'year':2011},{"population":150,'year':2012},{"population":250,'year':2013},{"population":300,'year':2014}];
-		var data2=[{"population":200,'year':2007},{"population":50,'year':2008},{"population":150,'year':2009},{"population":100,'year':2010},{"population":200,'year':2011},{"population":150,'year':2012},{"population":400,'year':2013},{"population":700,'year':2014}];
-		
-		var colorArray=["#90ed7d","#5fe9e4"];
-		var xFieldName="population";
-		var yFieldName="year";
-		var axisColor="#a7a7a7";
-		var cnfg={"data1":data1,"data2":data2,"colorArray":colorArray,"xFieldName":xFieldName,"yFieldName":yFieldName,"axisColor":axisColor,"xLabel":"Population","yLabel":"Year","title":"Sales Comparisons Chart Of Last 8 Years"};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var cnfg = {
+				"title" : "Sales Comparisons Chart Of Last 8 Years",
+				"yAxisLabel" : "Year",
+				"yAxisData" : ["2000","2001","2002","2003","2004","2005","2006","2007","2008"],
+				"xAxisLabel" : "Population",
+				"xAxisLabelData1" : "Male",
+				"xAxisData1" : [23,45,56,43,23,55,33,22,55],
+				"colorOfData1" :"#90ed7d",
+				"xAxisLabelData2" : "Female",
+				"xAxisData2" : [33,15,46,43,53,25,23,32,15,],
+				"colorOfData2" :"#5fe9e4",
+					}
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart24=$("#line1").stocCharts(textStyleConfg);
 		stocChart24.bulletBar(cnfg);
 	});	
@@ -980,7 +992,7 @@ $("#line1").empty();
 								,	
 					clickedSybmol :'./img/N.png'
 	           };
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart26=$("#line1").stocCharts(textStyleConfg);
 		stocChart26.drawCombinationalChart(data);
 		
@@ -1017,7 +1029,7 @@ $("#line1").empty();
 										    [-13.5, 9.8]
 									      ],
 							}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var cnfg={"data":variationData};
 		var stocChart28=$("#line1").stocCharts(textStyleConfg);
 		stocChart28.variationAnalysis(cnfg);
@@ -1088,7 +1100,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":globData};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"gray","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"gray","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart29=$("#line1").stocCharts(textStyleConfg);
 		stocChart29.globChartAnalysis(cnfg);
 	});	
@@ -1126,7 +1138,7 @@ $("#line1").empty();
 		var yFieldName="run";
 		var axisColor="black";
 
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var cnfg={"data":AdvancedBarData};
 		var stocChart30=$("#line1").stocCharts(textStyleConfg);
 		stocChart30.barWithLogo(cnfg);
@@ -1164,7 +1176,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart31=$("#line1").stocCharts(textStyleConfg);
 		stocChart31.detailAnalysis(cnfg);
 	});	
@@ -1172,12 +1184,12 @@ $("#line1").empty();
 	$("#3DbubbleChartMenu").click(function(){
 		selectedChartIndex=$(this).attr("index");
 		updateJsfiddleLink(selectedChartIndex);
-	$("#line1").empty();
-	$("#3DBubbleChart").show();
-	
-	$(".chartDetails").hide();
-	  $(".3DbubbleChartMenu").show();
-	
+		$("#line1").empty();
+		$("#3DBubbleChart").show();
+		
+		$(".chartDetails").hide();
+		$(".3DbubbleChartMenu").show();
+		
 	
 	var series= [{
 		data: [[97, 36, 79], [94, 74, 60], [68, 76, 58], [64, 87, 56], [68, 27, 73], [74, 99, 42], [17, 93, 87], [151, 69, 40], [138, 123, 33], [57, 86, 31]]
@@ -1219,7 +1231,7 @@ $("#line1").empty();
 					}
 	
 	var cnfg={"data":bubbleData};
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 	var stocChart32=$("#line1").stocCharts(textStyleConfg);
 	stocChart32.threeDBubbleChart(cnfg);
 });	
@@ -1334,7 +1346,7 @@ $("#line1").empty();
     
    ]};
 			
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 		var stocChart33=$("#line1").stocCharts(textStyleConfg);
 		var cfg={"data":data,"link-color":"#ccc","node-color":"#fff"};
 		stocChart33.treeChart(cfg);
@@ -1363,7 +1375,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart34=$("#line1").stocCharts(textStyleConfg);
 		stocChart34.areaChartWithVaryColorAnalysis(cnfg);
 	});	
@@ -1392,7 +1404,7 @@ $("#line1").empty();
 					}
 		
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart35=$("#line1").stocCharts(textStyleConfg);
 		stocChart35.areaChartWithNegativeValueAnalysis(cnfg);
 	});
@@ -1417,7 +1429,7 @@ $("#line1").empty();
 				   }
 
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart36=$("#line1").stocCharts(textStyleConfg);
 		stocChart36.musicSpikesAnalysis(cnfg);
 	});
@@ -1445,7 +1457,7 @@ $("#line1").empty();
 					}
 
 		var cnfg={"data":data};
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
 		var stocChart37=$("#line1").stocCharts(textStyleConfg);
 		stocChart37.comparisonAnalysis(cnfg);
 	});
@@ -1533,7 +1545,7 @@ $("#line1").empty();
 			}
 		
 
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart39=$("#line1").stocCharts(textStyleConfg);
 		stocChart39.multipleDountChartAnalysis(data);
 	});
@@ -1560,7 +1572,7 @@ $("#line1").empty();
 						unit : "%"
 						
 					}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
 		var stocChart40=$("#line1").stocCharts(textStyleConfg);
 		stocChart40.barWithLabelAnalysis(data);
 	});
@@ -1585,7 +1597,8 @@ $("#line1").empty();
 				textColor : ["#00ff79","#ffa500"],
 				legendArray:["Above Average","Below Average","Improving","Worsening"],
 				legendImageArray:['#00ff79','#ffa500','#00ff79','#ffa500'],
-				unit : "%"
+				unit : "%",
+				circleStrokeWidth : 8
 				
 				/*
 				nameArray: ['John','Mark','Steev','Hussy','John'],
@@ -1606,7 +1619,7 @@ $("#line1").empty();
 				*/
 			}
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart41=$("#line1").stocCharts(textStyleConfg);
 		stocChart41.logoChart(data);
 	});
@@ -1631,7 +1644,6 @@ $("#line1").empty();
 							yAxisColor : "#00ffff"
 				},
 				{
-						
 							yAxisData : [240,250,160,295,160,180,170],
 							yAixsAvgData : [35,25,20,45,30,20,55],
 							yAxisColor : "#4fb6f2"
@@ -1650,7 +1662,7 @@ $("#line1").empty();
 			legend : ["Student Login","Class Avg.Login","Student Interaction","Class.Avg Interaction","Student Time Spent","Class Time Spent"],
 			legendColor: ['#00ffff','#00ffff','#4fb6f2','#4fb6f2','#ffa500','#ffa500']
 			}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart42=$("#line1").stocCharts(textStyleConfg);
 		stocChart42.multiAxisChartAnalysis(data);
 	});
@@ -1659,8 +1671,7 @@ $("#line1").empty();
 		selectedChartIndex=$(this).attr("index");
 		updateJsfiddleLink(selectedChartIndex);
 		$("#line1").empty();
-//		$("#multiAxisChart").show();	
-			$(".chartDetails").hide();
+		$(".chartDetails").hide();
 	    $(".roundedThreeDBarMenu").show();
 
 		var data =
@@ -1729,10 +1740,11 @@ $("#line1").empty();
 				unit : ""		
 			}
 		
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart43=$("#line1").stocCharts(textStyleConfg);
 		stocChart43.roundedThreeDBarAnalysis(data);
 	});
+	
 	
 	$("#threeDDountChartMenu").click(function(){
 		selectedChartIndex=$(this).attr("index");
@@ -1748,7 +1760,7 @@ $("#line1").empty();
 			unit : "%",
 			factor :"Students"
 		}
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 		var stocChart43=$("#line1").stocCharts(textStyleConfg);
 		stocChart43.threeDDountChartAnalysis(data);
 	});
@@ -1767,18 +1779,18 @@ $("#line1").empty();
 			unit : "%",
 			factor :"Students"
 		}
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 		var stocChart44=$("#line1").stocCharts(textStyleConfg);
 		stocChart44.threeDPieChartAnalysis(data);
 	});
 	
 	
 	$("#arcWithCylinderMenu").click(function(){
-		selectedChartIndex=$(this).attr("index");
-		updateJsfiddleLink(selectedChartIndex);
-		$("#line1").empty();	
-			$(".chartDetails").hide();
-	    $(".arcWithCylinderMenu").show();
+//		selectedChartIndex=$(this).attr("index");
+//		updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();	
+	//		$(".chartDetails").hide();
+	//    $(".arcWithCylinderMenu").show();
 		var data = 
 		{
 			title : "JAMES ANDERSON",
@@ -1824,8 +1836,8 @@ $("#line1").empty();
 				 }
 					
 		}
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16};
-		var stocChart45=$("#line1").stocCharts(textStyleConfg);
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart45=$("#advanceChartContainer").stocCharts(textStyleConfg);
 		stocChart45.arcWithCylinderChartAnalysis(data);
 	});
 	
@@ -1849,10 +1861,1352 @@ $("#line1").empty();
 						legendArray : ['Estimate Data','Actual Data']
 		    }
 		
-		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
 		var stocChart46=$("#line1").stocCharts(textStyleConfg);
 		stocChart46.ThreeDComparisionAnalysis(data);
 	});
+	
+	
+	$("#brushingChart").click(function(){
+//		selectedChartIndex=$(this).attr("index");
+//		updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();	
+//			$(".chartDetails").hide();
+//	    $(".brushingChart").show();
+		
+		var data =  {
+						"title" : "Sold Quantity in Last 10 Month ",
+						"xAxisTickArray" :["Jan'11","Feb'11","Mar'11","Apr'11","May'11","Jun'11","Jul'11","Aug'11","Sept'11","Oct'11","Nov'11","Dec'11","Jan'12","Feb'12","Mar'12","Apr'12","May'12","Jun'12","Jul'12","Aug'12","Sept'12","Oct'12","Nov'12","Dec'12","Jan'13","Feb'13","Mar'13","Apr'13","May'13","Jun'13","Jul'13","Aug'13","Sept'13","Oct'13","Nov'13","Dec'13"
+						,"Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14","Nov'14","Dec'14","Jan'15","Feb'15","Mar'15","Apr'15","May'15","Jun'15","Jul'15","Aug'15","Sept'15","Oct'15","Nov'15","Dec'15"],
+						"yAxisUnit" : "Million",
+						"xAxisLabel" : "Month",	
+						"yAxisData1" : [330,450,320,250,270,140,190,300,370,330,450,320,250,230,270,140,300,370,330,450,320,250,230,270,330,450,320,250,270,140,190,300,370,330,450,320,250,230,270,140,300,370,330,450,320,250,230,270,250,230,270,140,300,370,330,450,320,250,230,270],
+						"yAxisLabel1" : "Profit",
+						"yAxisData2" : [80,37,40,90,75,45,30,35,25,20,45,30,20,55,80,37,40,90,75,45,30,35,25,20,45,30,20,55,80,37,40,90,75,45,30,35,25,20,45,30,20,55,90,75,45,30,35,25,40,90,75,45,30,35,25,20,45,30,20,55],
+						"yAxisLabel2" : "Volume",
+						"dataColor" : "#76bee0"
+		    }
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15};
+		var stocChart47=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		stocChart47.brushingChartAnalysis(data);
+	});	
+
+	$("#angularMeterChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".angularMeterChart").show();
+		
+		var meterChartData =  {
+				"data" :[0,20,40,60,80,100,120,140,160,180,200,220],
+				"colorArray" : ["#2ec7c9","#5ab1ef","#d87a80"],
+				"meterLabel" : "Km/h"
+		}
+		
+		var textStyleConfg={};
+		var stocChart47=$("#line1").stocCharts(textStyleConfg);
+		stocChart47.angularMeterChartAnalysis(meterChartData);
+	});
+
+	$("#comparisionAreaChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".comparisionAreaChart").show();
+		
+		var data =  {
+					"title" : "Product Status",
+					"xAxisData" : ["1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"],
+					"xAxisLabel" : "Years",
+					"yAxisLabel" : "sssssss",
+					"yDataObj" : [
+									{
+										"yAxisData" : [330,450,320,250,270,140,190,300,370,330,450],
+										"legend" : "Complete",
+										"color" : "#90e0dc"
+									},
+									{
+										"yAxisData" : [230,432,267,272,188,299,388,255,299,466,133],
+										"legend" : "Total",
+										"color" : "#2ab298"
+									},
+									{
+										"yAxisData" : [344,234,321,123,432,123,322,266,166,211,356],
+										"legend" : "Approved",
+										"color" : "#d9d66d"
+									},
+									{
+										"yAxisData" : [453,234,378,212,367,234,321,378,211,111,324],
+										"legend" : "Active",
+										"color" : "#e56969"
+									}
+								]
+					
+		}
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart48=$("#line1").stocCharts(textStyleConfg);
+		stocChart48.comparisionAreaChartAnalysis(data);
+	});
+	
+	
+	$("#newDountChartWithBar").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".newDountChartWithBar").show();
+		
+		var data =  {
+				"title":"Product Distribution",
+				"obj" :[{
+							"key" : "chips",
+							"color" : "#c4a7ff",
+							"data" : 45,
+							"subData" : [56,23,78,43,56]
+						},
+						{
+							"key" : "soft drinks",
+							"color" : "#c799ff",
+							"data" : 42,
+							"subData" : [78,43,23,56,67]
+						},
+						{
+							"key" : "oats",
+							"color" : "#9bc8ff",
+							"data" : 48,
+							"subData" : [45,45,32,67,45]
+						},
+						{
+							"key" : "Product 1",
+							"color" : "#8faeff",
+							"data" : 40,
+							"subData" : [45,78,45,23,56]
+						},
+						{
+							"key" : "Product 2",
+							"color" : "#9999ff",
+							"data" : 50,
+							"subData" : [45,65,23,56,43]
+						},
+						],
+				"subDataColor" : ["#5bc0de","#f0ad4e","#5cb85c","#d9534f","#428bca"],
+				"subDataKey" : ["amazon","snapdeal","flipkart","local banya","big basket"],
+				"unit" : "%"	
+			}
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart48=$("#line1").stocCharts(textStyleConfg);
+		stocChart48.newDountChartWithBarAnalysis(data);
+	});
+	
+	$("#threeDPieChartWithLegend").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".threeDPieChartWithLegend").show();
+		var data = 
+		{
+			dountData : [231,123,184,155,55],
+			dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+		    colorArray : ['#a7a7a7','#95d7bb','#fcb322','#e67a77','#aec785'],
+			unit : "%",
+			factor :"Students"
+		}
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
+		var stocChart49=$("#line1").stocCharts(textStyleConfg);
+		stocChart49.threeDPieChartWithLegendAnalysis(data);
+	});
+	
+	$("#threeDDountChartWithLegend").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".threeDDountChartWithLegend").show();
+		var data = 
+		{
+			dountData : [231,123,184,155,55],
+			dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+		    colorArray : ['#a7a7a7','#95d7bb','#fcb322','#e67a77','#aec785'],
+			unit : "%",
+			factor :"Students"
+		}
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
+		var stocChart49=$("#line1").stocCharts(textStyleConfg);
+		stocChart49.threeDDountChartWithLegendAnalysis(data);
+	});
+	
+	
+	
+	$("#dountChartWithMapping").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+	//		$(".chartDetails").hide();
+	//    $(".dountChartWithMapping").show();
+		data = {
+		 "key1":{
+				"Feb 14 2015" :{
+								"Match":["New Zeland","Sri Lanka","Australia","England"],
+								"Venue":["Hagley Oval","Melbourne"],
+								"Group":["Pool A","Pool B"]
+								
+							},
+				"Feb 15 2015" :{
+								"Match":["South Africa","Zimbabwe","India","Pakistan"],
+								"Venue":["Seddon Park","Adelaide Oval"],
+								"Group":["Pool B","Pool B"]
+							
+							},
+				"Feb 16 2015" :{
+								"Match":["Ireland","West Indies"],
+								"Venue":["Adelaide Oval"],
+								"Group":["Pool B"]
+								
+							},
+				"Feb 17 2015" :{
+								"Match":["New Zealand","Scotland"],
+								"Venue":["University Oval"],
+								"Group":["Pool A"]
+								
+							},
+				"Feb 18 2015" :{
+								"Match":["Afghanistan","Bangladesh"],
+								"Venue":["Manuka Oval"],
+								"Group":["Pool A"]
+								
+							},
+				"Feb 19 2015" :{
+								"Match":["UAE","Zimbabwe"],
+								"Venue":["Saxton Oval"],
+								"Group":["Pool B"]
+								
+							},
+				"Feb 20 2015" :{
+								"Match":["New Zealand","England"],
+								"Venue":["Westpac Stadium"],
+								"Group":["Pool A"]
+								
+							},
+				"Feb 21 2015" :{
+								"Match":["Australia","Bangladesh"],
+								"Venue":["Brisbane"],
+								"Group":["Pool A"]
+								
+							},
+				"Feb 22 2015" :{
+								"Match":["Afghanistan","Sri Lanka","India","South Africa"],
+								"Venue":["University Oval","Melbourne"],
+								"Group":["Pool A","Pool B"]
+								
+							},
+				"Feb 23 2015" :{
+								"Match":["England","Scotland"],
+								"Venue":["Hagley Oval"],
+								"Group":["Pool A"]
+								
+							},
+				"Feb 24 2015" :{
+								"Match":["West Indies","Zimbabwe"],
+								"Venue":["Manuka Oval"],
+								"Group":["Pool B"]
+								
+							},
+				
+				"Feb 25 2015" :{
+								"Match":["Ireland","UAE"],
+								"Venue":["Brisbane"],
+								"Group":["Pool B"]
+								
+						},
+				"Feb 26 2015" :{
+								"Match":["Afghanistan","Scotland","Bangladesh","Sri Lanka"],
+								"Venue":["University Oval","Melbourne"],
+								"Group":["Pool A"]
+								
+						},
+				"Feb 27 2015" :{
+								"Match":["South Africa","West Indies"],
+								"Venue":["Sydney"],
+								"Group":["Pool B"]
+							
+						},
+				"Feb 28 2015" :{
+								"Match":["India","UAE"],
+								"Venue":["WACA"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 01 2015" :{
+								
+								"Match":["England","Sri Lanka","Pakistan","Zimbabwe"],
+								"Venue":["Westpac Stadium","Brisbane"],
+								"Group":["Pool B","Pool A"]
+								
+						},
+				"Mar 03 2015" :{
+								"Match":["Ireland","South Africa"],
+								"Venue":["Manuka Oval"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 04 2015" :{
+								"Match":["Pakistan","UAE","Australia","Afghanistan"],
+								"Venue":["McLean Park","WACA"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 05 2015" :{
+								"Match":["Bangladesh","Scotland"],
+								"Venue":["Saxton Oval"],
+								"Group":["Pool A"]
+								
+						},
+				"Mar 06 2015" :{
+								"Match":["India","West Indies"],
+								"Venue":["WACA"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 07 2015" :{
+								"Match":["Ireland","Zimbabwe","Pakistan","South Africa"],
+								"Venue":["Eden Park","Bellerive Oval"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 08 2015" :{
+								"Match":["NewZealand","Afghanistan","Australia","Sri Lanka"],
+								"Venue":["McLean Park","Sydney"],
+								"Group":["Pool A"]
+								
+						},
+				"Mar 09 2015" :{
+								"Match":["England","Bangladesh"],
+								"Venue":["Adelaide Oval"],
+								"Group":["Pool A"]
+								
+						},
+				"Mar 10 2015" :{
+								"Match":["India","Ireland"],
+								"Venue":["Seddon Park"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 11 2015" :{
+								"Match":["Scotland","Sri Lanka"],
+								"Venue":["Bellerive Oval"],
+								"Group":["Pool A"]
+								
+						},
+				"Mar 12 2015" :{
+								"Match":["South Africa","UAE"],
+								"Venue":["Westpac Stadium"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 13 2015" :{
+								"Match":["NewZealand","Bangladesh","Afghanistan","England"],
+								"Venue":["Seddon Park","Sydney"],
+								"Group":["Pool A"]
+								
+						},
+				"Mar 14 2015" :{
+								"Match":["India","Zimbabwe","Australia","Scotland"],
+								"Venue":["Eden Park","Bellerive Oval"],
+								"Group":["Pool B","Pool A"]
+								
+						},
+				"Mar 15 2015" :{
+								"Match":["UAE","West Indies","Ireland","Pakistan"],
+								"Venue":["McLean Park","Adelaide Oval"],
+								"Group":["Pool B"]
+								
+						},
+				"Mar 18 2015" :{
+								"Match":["Sri Lanka","South Africa"],
+								"Venue":["Sydney"],
+								"Group":["Quarter Finals"]
+								
+							},
+				"Mar 19 2015" :{
+								"Match":["India","Bangladesh"],
+								"Venue":["Melbourne"],
+								"Group":["Quarter Finals"]
+								
+							},
+				"Mar 20 2015" :{
+								"Match":["Australia","Pakistan"],
+								"Venue":["Adelaide Oval"],
+								"Group":["Quarter Finals"]
+								
+							},
+				"Mar 21 2015" :{
+								"Match":["New zealand","West Indies"],
+								"Venue":["Westpac Stadium"],
+								"Group":["Quarter Finals"]
+								
+							},
+				"Mar 24 2015" :{
+								"Match":["New Zealand","South Africa"],
+								"Venue":["Eden Park,Auckland"],
+								"Group":["Semi Finals"]
+								
+						},
+				"Mar 26 2015" :{
+								"Match":["Australia","India"],
+								"Venue":["Sydney"],
+								"Group":["Semi Finals"]
+								
+							},
+				"Mar 29 2015" :{
+								"Match":["New Zealand","Australia"],
+								"Venue":["Melbourne"],
+								"Group":["Final"]
+								
+							}
+			},
+		"key2" :{
+				"Adelaide Oval":{
+								"Match":["India","Pakistan","Ireland","West Indies","England","Bangladesh","Australia"],
+								"Group":["Pool A","Pool B","Quarter Finals"],
+								"Date":["Feb 15 2015","Feb 16 2015","Mar 9 2015","Mar 15 2015","Mar 20 2015"]
+							},
+				"Eden Park":{
+								"Match":["India","Pakistan","New Zealand","South Africa","Australia","Zimbabwe"],
+								"Group":["Pool A","Pool B","Semi Finals"],
+								"Date":["Feb 28 2015","Mar 07 2015","Mar 14 2015","Mar 24 2015"]
+							},
+				"Brisbane Stadium":{
+								"Match":["Ireland","UAE","Australia","Zimbabwe","Bangladesh","Pakistan"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Feb 21 2015","Feb 25 2015","Mar 01 2015"]
+							},
+				"Hagley Oval":{
+								"Match":["New Zeland","Sri Lanka","Pakistan","West Indies","England vs Scotland"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Feb 14 2015","Feb 21 2015","Feb 23 2015"]
+							},
+				"Manuka Oval":{
+								"Match":["Afghanistan","Bangladesh","West Indies","Zimbabwe","Ireland","South Africa"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Feb 18 2015","Feb 24 2015","Mar 03 2015"]
+							},
+				"University Oval":{
+								"Match":["New Zealand","Scotland","Afghanistan","Sri Lanka","Afghanistan","Scotland"],
+								"Group":["Pool A"],
+								"Date":["Feb 17 2015","Feb 22 2015","Feb 26 2015"]
+							},
+				"Seddon Park" :{
+								"Match":["South Africa","Zimbabwe","India","Ireland","NewZealand","Bangladesh"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Feb 15 2015","Mar 10 2015","Mar 13 2015"]
+							},
+				"Melbourne":{
+								"Match":["Australia","England","India","South Africa","Bangladesh","Sri Lanka","New Zealand"],
+								"Group":["Pool A","Pool B","Quarter Finals","Final"],
+								"Date":["Feb 14 2015","Feb 22 2015","Feb 26 2015","Mar 19 2015","Mar 29 2015"]
+							},
+				"McLean Park":{
+								"Match":["Pakistan","UAE","NewZealand","Afghanistan","West Indies"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Mar 04 2015","Mar 08 2015","Mar 15 2015"]
+							
+							},
+				"Saxton Oval":{
+								"Match":["Zimbabwe","UAE","Bangladesh","Scotland"],
+								"Group":["Pool A","Pool B"],
+								"Date":["Feb 19 2015","Mar 05 2015"]
+							},
+				"WACA":{
+								"Match":["India","UAE","Australia","Afghanistan","West Indies"],
+								"Group":["Pool B"],
+								"Date":["Feb 28 2015","Mar 04 2015","Mar 06 2015"]
+						},
+				"Sydney":{
+								"Match":["South Africa","West Indies","Australia","Sri Lanka","Afghanistan","England"],
+								"Group":["Pool B","Pool A","Quarter Finals","Semi Finals"],
+								"Date":["Feb 27 2015","Mar 08 2015","Mar 13 2015","Mar 18 2015","Mar 26 2015"]
+						},
+				"Westpac Stadium":{
+								"Match":["New Zealand","England","Sri Lanka","South Africa","UAE","West Indies"],
+								"Group":["Pool B","Pool A","Quarter Finals"],
+								"Date":["Feb 20 2015","Mar 01 2015","Mar 12 2015","Mar 21 2015"]
+						}
+				},
+			"key3":{			
+				"Pool A" :{ 
+								"Teams":["Australia","England","Bangladesh","Afghanistan","New Zealand","Sri Lanka","Scotland"]
+						},
+				"Pool B" :{
+								"Team":["India","South Africa","Pakistan","West Indies","Zimbabwe","Ireland","UAE"]
+						},
+				"Quarter Finals":{
+								"Teams":["India","South Africa","Pakistan","West Indies","Australia","New Zealand","Sri Lanka","Bangladesh"]
+								},
+				"Semi Finals":{
+								"Teams":["India","South Africa","Australia","New Zealand"]
+							},
+				"Final":{
+								"Teams":["Australia","New Zealand"]
+					}
+						
+			},
+			"key4":{
+							//	"Teams":["Australia","England","Bangladesh","Afghanistan","New Zealand","Sri Lanka","Scotland","India","South Africa","Pakistan","West Indies","Zimbabwe","Iraland","UAE"],
+				"Australia":{
+								"Group":["Pool A","Quarter Finals","Semi Finals","Final"],
+								"Date":["Feb 14 2015","Feb 21 2015","Feb 28 2015","Mar 04 2015","Mar 08 2015","Mar 14 2015","Mar 20 2015","Mar 26 2015","Mar 29 2015"],
+								"Venue":["Melbourne","Brisbane","Eden Park","WACA","Sydney","Bellerive Oval","Adelaide Oval"]
+						},
+				"England":{
+								"Group":["Pool A"],
+								"Date":["Feb 14 2015","Feb 20 2015","Feb 23 2015","Mar 01 2015","Mar 09 2015","Mar 13 2015"],
+								"Venue":["Melbourne","Westpac Stadium","Hagley Oval","Sydney","Adelaide Oval"]
+						},
+				"Bangladesh":{
+								"Group":["Pool A","Quarter Finals"],
+								"Date":["Feb 18 2015","Feb 21 2015","Feb 26 2015","Mar 05 2015","Mar 09 2015","Mar 13 2015","Mar 19 2015"],
+								"Venue":["Melbourne","Brisbane","Seddon Park","Saxton Oval","Manuka Oval","Adelaide Oval"]
+							},
+				"Afghanistan":{
+								"Group":["Pool A"],
+								"Date":["Feb 18 2015","Feb 22 2015","Feb 26 2015","Mar 04 2015","Mar 08 2015","Mar 13 2015"],
+								"Venue":["WACA","Sydney ","McLean Park","Manuka Oval","University Oval"]
+							},
+				"New Zealand":{
+								"Group":["Pool A","Quarter Finals","Semi Finals","Final"],
+								"Date":["Feb 14 2015","Feb 17 2015","Feb 20 2015","Feb 28 2015","Mar 08 2015","Mar 13 2015","Mar 21 2015","Mar 24 2015","Mar 29 2015"],
+								"Venue":["Melbourne","Seddon Park","Eden Park","McLean Park","Hagley Oval","University Oval","Westpac Stadium"]
+							},
+				"Sri Lanka":{
+								"Group":["Pool A","Quarter Finals"],
+								"Date":["Feb 14 2015","Feb 22 2015","Feb 26 2015","Mar 01 2015","Mar 08 2015","Mar 11 2015","Mar 18 2015"],
+								"Venue":["Melbourne","Sydney","Bellerive Oval","Hagley Oval","University Oval","Westpac Stadium"]
+						},
+				"Scotland":{
+								"Group":["Pool A"],
+								"Date":["Feb 17 2015","Feb 23 2015","Feb 26 2015","Mar 05 2015","Mar 11 2015","Mar 14 2015"],
+								"Venue":["University Oval","Saxton Oval","Hagley Oval","Bellerive Oval","Adelaide Oval"]
+						},
+				"India":{
+								"Group":["Pool B","Quarter Finals","Semi Finals"],
+								"Date":["Feb 15 2015","Feb 22 2015","Feb 28 2015","Mar 06 2015","Mar 10 2015","Mar 14 2015","Mar 19 2015","Mar 26 2015"],
+								"Venue":["Melbourne","Seddon Park","Eden Park","WACA","Sydney","Adelaide Oval"]
+						},
+				"South Africa":{
+								"Group":["Pool B","Quarter Finals","Semi Finals"],
+								"Date":["Feb 15 2015","Feb 22 2015","Feb 27 2015","Mar 03 2015","Mar 07 2015","Mar 12 2015","Mar 18 2015","Mar 24 2015"],
+								"Venue":["Melbourne","Seddon Park","Eden Park","Manuka Oval","Sydney","Westpac Stadium"]
+							},
+				"Pakistan":{
+								"Group":["Pool B","Quarter Finals"],
+								"Date":["Feb 15 2015","Feb 21 2015","Mar 01 2015","Mar 04 2015","Mar 07 2015","Mar 15 2015","Mar 20 2015"],
+								"Venue":["Eden Park","Adelaide Oval","Hagley Oval","Brisbane","McLean Park"]
+						},
+				"West Indies":{
+								"Group":["Pool B","Quarter Finals"],
+								"Date":["Feb 16 2015","Feb 21 2015","Feb 24 2015","Feb 27 2015","Mar 06 2015","Mar 15 2015","Mar 21 2015"],
+								"Venue":["Sydney","Adelaide Oval","Hagley Oval","Manuka Oval","McLean Park","Westpac Stadium","WACA"]
+							},
+				"Zimbabwe":{
+								"Group":["Pool B"],
+								"Date":["Feb 15 2015","Feb 19 2015","Feb 24 2015","Mar 01 2015","Mar 07 2015","Mar 14 2015"],
+								"Venue":["Seddon Park","Saxton Oval","Brisbane","Manuka Oval","Bellerive Oval","Eden Park"]
+						},
+				"UAE":{
+								"Group":["Pool B"],
+								"Date":["Feb 19 2015","Feb 25 2015","Feb 28 2015","Mar 04 2015","Mar 12 2015","Mar 15 2015"],
+								"Venue":["Westpac Stadium","Saxton Oval","Brisbane","McLean Park","WACA"]
+					},
+				"Ireland":{
+								"Group":["Pool B"],
+								"Date":["Feb 16 2015","Feb 25 2015","Mar 03 2015","Mar 07 2015","Mar 10 2015","Mar 15 2015"],
+								"Venue":["Seddon Park","Adelaide Oval","Brisbane","Manuka Oval","Bellerive Oval"]
+						}
+			}
+			
+			
+		}
+	var data2={
+					"color":["#4f85bb","#2c539e"],
+					"title":["Date","Venue","Group","Team"],
+					"textColor":"white",
+					"key4":{
+								"Australia":"img/Australia.png",
+								"England":"img/england.png",
+								"Bangladesh":"img/Bangladesh.png",
+								"Afghanistan":"img/Afghanistan.jpg",
+								"New Zealand":"img/zealand.png",
+								"Sri Lanka":"img/Lanka.png",
+								"Scotland":"img/Scotland.jpg",
+								"India":"img/india.png",
+								"South Africa":"img/Africa.jpg",
+								"Pakistan":"img/Pakistan.png",
+								"West Indies":"img/Indies.jpg",
+								"Zimbabwe":"img/Zimbabwe.png",
+								"UAE":"img/UAE.jpeg",
+								"Ireland":"img/Ireland.png"
+						}
+			}
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
+		var stocChart50=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		stocChart50.dountChartWithMappingAnalysis(data,data2);
+	});
+	
+	$("#smoothLineChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".smoothLineChart").show();
+		
+		var data ={
+				xAxisLabel :"Years",
+				yAxisLabel :"Sale",
+				title : "Product Sale",
+				yAxisData: [10,60,32,20,44,70,50,20,70,10,25,30,28,33,65,77,50,58,40,20,15],
+				xAxisData :["1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010"],
+				lineColor : ["#2c539e","#7d011d"],
+				average : 40,
+				circleBoundaryColor : "white"
+				}
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart51=$("#line1").stocCharts(textStyleConfg);
+		stocChart51.smoothLineChartAnalysis(data);
+	});	
+	
+	$("#activeAreaChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".activeAreaChart").show();
+		
+		var data ={
+				xAxisLabel :"Years",
+				yAxisLabel :"Sale",
+				title : "Product Sale",
+				yAxisData: [100,200,800,600,700,400,500],
+				xAxisData :["2008","2009","2010","2011","2012","2013","2014"],
+				lineStrokeColor : "#0e3ab2",
+				areaColor : "#4866ba"
+				}
+		//'#95d7bb','#fcb322','#e67a77','#aec785'],
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart52=$("#line1").stocCharts(textStyleConfg);
+		stocChart52.activeAreaChartAnalysis(data);
+	});	
+	
+	$("#treeMapChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();	
+			$(".chartDetails").hide();
+	    $(".treeMapChart").show();
+		
+		var treeData = {
+				factor : "Asset Value",
+				unit : "%",
+				range : [-40,40],
+				name: "tree",
+				children:[
+					{ name: "Portfolio 1", size: 45, portfolioId:"Portfolio1"},
+					{ name: "Portfolio 2", size: 40, portfolioId:"Portfolio2"},
+					{ name: "PortFolio 3", size: 35, portfolioId:"Portfolio3"},
+					{ name: "Portfolio 4", size: 30, portfolioId:"Portfolio4"},
+					{ name: "Portfolio 5", size: 25, portfolioId:"Portfolio5"},
+					{ name: "Portfolio 6", size: 20, portfolioId:"Portfolio6"}
+
+				]
+			};
+
+		 var colorCombination = {
+		  colorLow: 'red',
+		   colorMed: 'yellow',
+		   colorHigh: 'green',
+		 }
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart53=$("#line1").stocCharts(textStyleConfg);
+		stocChart53.treeMapChartAnalysis(treeData,colorCombination);
+	});	
+	
+	$("#drillDownDountChart").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();	
+	//		$(".chartDetails").hide();
+//	    $(".drillDownDountChart").show();
+		
+		var data=  {
+        "factor":"Data",
+		"unit":"",
+        "key":{
+			"India":{
+				"data":44,
+				"color":"#006BB2",
+					"key":{
+						"Punjab":{
+							"data":20,
+							"color":"#008AE6",
+							"key":{
+								"Barnala":{
+									"data":50,
+									"color":"#19A3FF",
+									"key":{
+										"Bhaini Fatta":{
+											"data":50,
+											"color":"#66C2FF"
+										},
+										"Nangal":{
+											"data":75,
+											"color":"#B2E0FF"
+										},
+										"Uppli":{
+											"data":75,
+											"color":"#E6F5FF"
+										},
+										"Bhaini Mehraj":{
+											"data":75,
+											"color":"#CCEBFF"
+										},
+										"Kothe Akalgarh":{
+											"data":20,
+											"color":"#99CCFF"
+										}
+									}
+								},
+								"Firozepur":{
+									"data":75,
+									"color":"#7A1F99",
+									"key":{
+										"Ghuriana":{
+											"data":50,
+											"color":"#CC33FF"
+										},
+										"Abohar":{
+											"data":75,
+											"color":"#D65CFF"
+										},
+										"Rajpura":{
+											"data":75,
+											"color":"#E699FF"
+										},
+										"Gobindgarh":{
+											"data":75,
+											"color":"#F0C2FF"
+										}
+									}
+								},
+								"Ludhiana":{
+									"data":20,
+									"color":"#5C7A99",
+									"key":{
+										"Boparai Kalan":{
+										
+											"data":50,
+											"color":"#336699"
+										},
+										"Raqba":{
+											"data":75,
+											"color":"#5C85AD"
+										},
+										"Sudhar":{
+											"data":75,
+											"color":"#85A3C2"
+										},
+										"Mullanpur":{
+											"data":75,
+											"color":"#ADC2D6"
+										},
+										"Pandori":{
+											"data":20,
+											"color":"#D6E0EB"
+										}
+									}
+								}
+							}
+						},
+						"Rajasthan":{
+							"data":40,
+							"color":"#009999",
+							"key":{
+								"Ajmer":{
+									"data":90,
+									"color":"#00CCCC",
+									"key":{
+										"Vijainagar":{
+											"data":50,
+											"color":"#00FFFF"
+										},
+										"Pushkar":{
+											"data":75,
+											"color":"#80FFFF"
+										},
+										"Nasirabad dsdsa dsdfsd sfasfa adsfas":{
+											"data":75,
+											"color":"#CCFFFF"
+										},
+										"Kishangarh":{
+											"data":75,
+											"color":"#E6FFFF"
+										},
+										"Kiranipura":{
+											"data":20,
+											"color":"#D1FFFF"
+										}
+									}
+								},
+								"Bikaner":{
+									"data":30,
+									"color":"#DBFFFF"
+								},
+								"Jodhpur":{
+									"data":200,
+									"color":"#F0FFFF"
+								}
+							}
+						},
+						"Himachal Pradesh":{
+							"data":20,
+							"color":"#7A7ACC",
+							"key":{
+								"Chamba":{
+									"data":300,
+									"color":"#A3A3FF"
+								},
+								"Kangra":{
+									"data":105,
+									"color":"#C2C2FF"
+								},
+								"Shimla":{
+									"data":98,
+									"color":"#E0E0FF"
+								}
+							}
+						}
+					}
+			},
+			"Pakistan":{
+				"data":20,
+				"color":"#754719",
+					"key":{
+						"Balochistan":{
+							"data":500,
+							"color":"#855C33",
+							"key":{
+								"Quetta":{
+									"data":30,
+									"color":"#94704D"
+								},
+								"Khuzdar":{
+									"data":65,
+									"color":"#A38566"
+								},
+								"Kadha":{
+									"data":20,
+									"color":"#C2AD99"
+								}
+							}
+						},
+						"Sindh":{
+							"data":100,
+							"color":"#949470"
+						},
+						"Islamabad":{
+							"data":300,
+							"color":"#B2B299"
+						}
+					}
+			},
+			"Aus":{
+				"data":60,
+				"color":"#CC0066",	
+				"key":{
+					"New South Wales":{
+						"data":20,
+						"color":"#E680B2"
+					},
+					"Victoria":{
+						"data":20,
+						"color":"#EB99C2"
+					},
+					"South Australia":{
+						"data":20,
+						"color":"#F5CCE0"
+					}
+				}
+			}
+		}
+	}	
+		
+		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
+		var stocChart54=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		stocChart54.drillDownDountChartAnalysis(data);
+	});	
+	
+	$("#LineChartWithReverseYAxis").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".LineChartWithReverseYAxis").show();
+		  var data =
+		{
+				title : "Sold Quantity in Last 10 Month ",
+				xAxisData:["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14"],
+				yAxisLabel : "Sold Quantity",
+				xAxisLabel : "Month",
+				lineStrokeWidth : 1,
+				circleRadius : 3,
+				yAxisData:
+				[{				
+					"name" : "Angel",
+					"color": "#00ff7e",
+					"data" : [123,423,302,223,723,223,323,703,523,783]
+				},
+				{
+					"name" : "Venture",
+					"color": "red",
+					"data" : [850,870,120,223,729,623,323,832,523,800]			
+				},
+				{
+					"name" : "Micro",
+					"color": "#4fb6f2",
+					"data" : [333,623,672,673,850,120,432,423,152,100]			
+				}
+				]
+				
+		}
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#line1").stocCharts(textStyleConfg);
+		stocChart55.LineChartWithReverseYAxisAnalysis(data);
+	});
+	
+	$("#performanceChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".performanceChart").show();
+		
+		var performanceChartData=
+		{
+		  "title" : "Class Performence",
+		  "yLabel" : "subject(class vise)",
+          "xLabel" : "activity",
+		  "legendArray":["legend1","legend2","legend3"],
+		  "legendColor":["cyan","#f7f7f7","yellow"],
+		  "data": [
+			{
+			  "class_name": "7th-B Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData":[45,34,67,34,56,20],
+			  "xDataColor":["#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#f7f7f7",
+			  "color-recall": "#f7f7f7",
+			  "color-understanding": "#f7f7f7"
+			},
+			{
+			  "class_name": "7th-A Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [34,56,43,23,43,45],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			},
+			{
+			  "class_name": "6th-A Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [54,63,36,23,25,49],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			},
+			{
+			  "class_name": "6th-B Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [54,23,"fsy",43,35,39],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			}
+		  ],
+		  "differentActivity" : ["activity","recall","understanding","aaaaa","bbbb","cccc"],
+		  "maxValue" : 67,
+		  "minValue" : 20,
+          "lineColor" : "gray"		  
+		}
+		
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#line1").stocCharts(textStyleConfg);
+		stocChart55.performanceChartAnalysis(performanceChartData);
+	});
+	
+		
+	$("#horizontalStackedBarChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".horizontalStackedBarChart").show();
+		
+		var data = {
+					title : "Product Sale(Brand wise)",
+					xAxisLabel :"Current Status",
+					yAxisLabel :"Product",
+					yAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
+					key: [
+							{
+								name: 'Zara',
+								data: [50, 30, 40, 37, 20,30],
+								color : "#00FFFF"
+							},
+							{
+								name: 'Levis',
+								data: [58, 40, 32, 25, 50,20],
+								color : "#DCDCDC"
+							}, 
+							{
+								name: 'Woodland',
+								data: [30, 43, 74, 22, 55,35],
+								color : "#7FFFD4"
+							}
+							
+						]
+				}  
+		
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#line1").stocCharts(textStyleConfg);
+		stocChart55.horizontalStackedBarChartAnalysis(data);
+	});
+	
+	$("#multiGroupedBarChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".multiGroupedBarChart").show();
+		
+	var data = {
+					title : "Comparison Of Sale",
+					xAxisLabel :"Years",
+					yAxisLabel :"Sales(In Crores)",
+					xAxisData : ["2010","2011","2012","2013","2014"],
+					toolTipUnit: "Year",
+					key: [
+							{
+								name: 'Zara',
+								data: [50, 30, 40, 37, 20],
+								color : "#EBD6CC"
+							},
+							{
+								name: 'Levis',
+								data: [58, 70, 95, 25, 50],
+								color : "#00FFFF"
+							}, 
+							{
+								name: 'Woodland',
+								data: [30, 40, 74, 22, 55],
+								color : "#7FFFD4"
+							}
+							
+						]
+				}  
+		
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#line1").stocCharts(textStyleConfg);
+		stocChart55.multiGroupedBarChartAnalysis(data);
+	});
+	
+	
+	$("#mapOfIndianPopulation").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".mapOfIndianPopulation").show();
+		
+		
+ 
+		 var colorRange = ["#add8e6", "#9acd32", "#9acd32", "#d2b48c", "#98fb98", "#3cb371"];
+
+		 var labelDomain = [0,10000000,25000000 ,50000000 ,75000000 ,100000000];
+
+
+		 var style = {
+			 "colorRange" :colorRange,
+			 "labelDomain" : labelDomain,
+			 "toolTipLabel" : "population"
+			};  
+		 var indiaStatesData = { 
+			 "Andhra Pradesh"  :{"population" : 84580777 , "growthRate" : 10.98  , "area": 275045, "density":308 , "sex Ratio":993 ,"Literacy":67.02},
+			 "Andhra Pradesh"  :{"population" : 84580777 , "growthRate" : 10.98  , "area": 275045, "density":308 , "sex Ratio":993 ,"Literacy":67.02},
+			 "Arunachal Pradesh"  :{"population": 1383727  , "growthRate":26.03 , "area":83743, "density":17, "sex Ratio":938, "Literacy":65.38},
+			 "Assam"     :{"population" : 31205576,"growthRate": 17.07 , "area":78438, "density":398, "sex Ratio":958, "Literacy":72.19},
+			 "Bihar"     :{"population" : 104099452 ,"growthRate": 25.42 , "area":94163, "density":1106, "sex Ratio":918, "Literacy":61.80},
+			 "Chhattisgarh"   :{"population" :25545198 ,"growthRate": 22.61  , "area":135192, "density":189, "sex Ratio":991, "Literacy":70.28},
+			 "Delhi"     :{"population" : 16787941,"growthRate": 21.21 , "area":1483, "density":11320, "sex Ratio":868, "Literacy":86.21},
+			 "Goa"      :{"population" : 1458545,"growthRate":8.23  , "area":3702, "density":394, "sex Ratio":973, "Literacy":88.70},
+			 "Gujarat" :  {"population" :60439692 ,"growthRate":19.28  , "area":196244, "density":308, "sex Ratio":919, "Literacy":78.03},   
+			 "Haryana" :  {"population" :25351462 ,"growthRate":19.90  , "area":44212, "density":573, "sex Ratio":879, "Literacy":75.55},
+			 "Himachal Pradesh" :{"population" : 6864602,"growthRate":12.94  , "area":55673, "density":123, "sex Ratio":972, "Literacy":82.80},
+			 "Jammu and Kashmir" :{"population" :12541302 ,"growthRate":23.64  , "area":222236, "density":56, "sex Ratio":889, "Literacy":67.16},
+			 "Jharkhand" : {"population" :32988134 ,"growthRate": 22.42 , "area":79716, "density":414, "sex Ratio":948, "Literacy":66.41},
+			 "Karnataka" : {"population" :61095297 ,"growthRate":15.60  , "area":191791, "density":319, "sex Ratio":973, "Literacy":75.36},
+			 "Kerala" :  {"population" :33406061 ,"growthRate": 4.91 , "area":38852, "density":860, "sex Ratio":1084, "Literacy":94.00},   
+			 "Madhya Pradesh" :{"population" : 72626809,"growthRate": 20.35 , "area": 308252, "density": 236, "sex Ratio": 931, "Literacy": 69.32},
+			 "Maharashtra" : {"population" : 112374333, "growthRate": 15.99 , "area": 307713, "density": 365, "sex Ratio": 929, "Literacy":82.34},
+			 "Manipur" :  {"population" : 2570390,"growthRate":12.05  , "area":22327, "density":115, "sex Ratio":992, "Literacy":79.21}   ,
+			 "Meghalaya" : {"population" : 2966889,"growthRate":27.95  , "area":22429, "density":132, "sex Ratio":989, "Literacy":74.43},
+			 "Mizoram" :  {"population" :1097206 ,"growthRate":23.48  , "area":21081, "density":52, "sex Ratio":976, "Literacy":91.33},
+			 "Nagaland" : {"population" : 1978502,"growthRate":-0.58  , "area":16579, "density":119, "sex Ratio":931, "Literacy":79.55},     
+			 "Orissa" :  {"population" : 41974218,"growthRate": 14.05 , "area":155707, "density":270, "sex Ratio":979, "Literacy":72.87},
+			 "Punjab" :  {"population" : 27743338,"growthRate":13.89  , "area":50362, "density":551, "sex Ratio":895, "Literacy":75.84},
+			 "Rajasthan" : {"population" : 68548437 ,"growthRate":21.31  , "area":342239, "density":200, "sex Ratio":928, "Literacy":66.11},
+			 "Sikkim" :  {"population" :610577 ,"growthRate":12.89  , "area":7096, "density":86, "sex Ratio":890, "Literacy":81.42},
+			 "Tamil Nadu" : {"population" :72147030 ,"growthRate":15.61  , "area":130060, "density":555, "sex Ratio":996, "Literacy":80.09},
+			 "Tripura" :  {"population" : 3673917,"growthRate":14.84  , "area":10486, "density":350, "sex Ratio":960, "Literacy":87.22},   
+			 "Uttar Pradesh":{"population" :199812341 ,"growthRate":20.23  , "area":240928, "density":829, "sex Ratio":912, "Literacy":67.68}, 
+			 "Uttarakhand" : {"population" : 10086292,"growthRate": 18.81 , "area":53483, "density":189, "sex Ratio":963, "Literacy":78.82},
+			 "West Bengal" : {"population" :91276115 ,"growthRate": 13.84 , "area":88752, "density":1028, "sex Ratio":950, "Literacy":76.26}
+			 };
+			 
+			 
+		var stocMap1 = $("#line1").stocMaps();
+		  stocMap1.indiaStates("line1",indiaStatesData,style);
+	});
+	
+	
+		$("#zoomableMapOfIndiaChart").click(function(){
+
+		$("#advanceChartContainer").empty();
+		
+		var colorRange = ["#CCFFFF", "#E6E6E6", "#B8DBFF", "#B2FFB2", "#FFFF94", "#FFCCCC","#B2F0D1", "#B2CCCC", "#EBAD99", "#C28585", "#D1D1E0", "#E0E0D1","#D6EBE0", "#CCD6E0", "#CCFFE6",  "#E6E6E6",  "#CCD6CC",  "#00ff7e",  "#333385"];
+
+		var stocMap1 = $("#advanceChartContainer").stocMaps();
+		  stocMap1.zoomableIndiaStates("advanceChartContainer",colorRange);
+	});
+	
+	
+	
+	$("#mapOfUSAUnemployement").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".mapOfUSAUnemployement").show();
+		
+	var labelDomain =[0,.02, .04, .06, .08, .10];
+	var colorRange =  ["#f2f0f7", "#dadaeb", "#bcbddc", "#9e9ac8", "#756bb1", "#54278f"];
+ 
+		var style = {
+			"colorRange" :colorRange,
+			"labelDomain" : labelDomain,
+			"toolTipLabel" : "unemployement Rate"
+		};
+ var usa = USA.unemployement; 
+ 
+
+  var stocMap1 = $("#line1").stocMaps();
+  stocMap1.usaUnemployement("line1",usa,style);
+		
+		
+
+	});
+	
+	
+		$("#mapOfUSAAgricultureTrend").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".mapOfUSAAgricultureTrend").show();
+		
+var colorRange =["#cc8e79", "#4fb845", "#fef200",  "#a46db0",  "#5ebfea",  "#00ff7e",  "#88cf8d"];
+ var labelDomain =[0,100,250,500, 1500,2500,3000];
+ var usa = USA.dataUsaAgri;
+ var style = {
+     "colorRange" :colorRange,
+     "labelDomain" : labelDomain,
+     "toolTipLabel" : "independent Farms"
+    };
+
+  var stocMap1 = $("#line1").stocMaps();
+  stocMap1.usaAgriculture("line1",usa,style);
+		
+		
+	
+	});
+	
+	
+	
+	
+		
+	$("#mapOfIndiaWithChart").click(function(){
+
+		$("#advanceChartContainer").empty();
+		 var container = $('#advanceChartContainer');
+		 
+		 var template  = '<div><span class="map-chart-heading">LOK SABHA ELECTION RESULTS 2014</span> <button class="btn btn-warning btn-sm" style="position : absolute; left :'+ '30px;z-index :999999999" id="chartResetButton">Reset</button><div id="advanceChartDivision"><div style="width : 50%; margin-top:-60px;'+
+		 'height:90%;position:absolute;left:0"'+
+		'id="indiaMapWithChartInnerLeft"></div><span class="stateName" id="stateName">ALL INDIA STATES</span><div style="width : 50%;height:90%;'+
+		'padding-top: 100px;position:absolute ; margin-top:-60px; right:0;"'+
+		'id="indiaMapWithChartInnerRight"></div></div></div>';
+		 
+		 container.append(template);
+		 
+		 var colorRange = ["#CCFFFF", "#E6E6E6", "#B8DBFF", "#B2FFB2", "#FFFF94", "#FFCCCC","#B2F0D1", "#B2CCCC", "#EBAD99", "#C28585", "#D1D1E0", "#E0E0D1","#D6EBE0", "#CCD6E0", "#CCFFE6",  "#E6E6E6",  "#CCD6CC",  "#00ff7e",  "#333385"];
+					
+
+		 var style = {
+			 "colorRange" :colorRange,
+			 "toolTipLabel" : "total seats"
+		 };  
+			 
+		var stocMap1 = $("#indiaMapWithChartInnerLeft").stocMaps();
+		  stocMap1.advanceIndiaStates("indiaMapWithChartInnerLeft",style,100);
+		  /*
+		  	 var data = {
+					title : "",
+					xAxisLabel :"Potitical Parties",
+					yAxisLabel :"No of Seat's",
+					
+					xAxisData : ["BJP","INC","SAD","AAP","total"],
+					key: [
+							{
+								name: 'Punjab',
+								data: [2, 3, 4, 4, 13],
+								color : "#EBD6CC"
+							}						
+						]
+				}  
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#indiaMapWithChartInnerRight").stocCharts(textStyleConfg);
+		stocChart55.multiGroupedBarChartAnalysis(data);
+		
+		  */
+		 var data = {
+								title : "",
+								xAxisLabel : "Political Parties",
+								yAxisLabel :"Seats",
+								unit : "",
+								barData: [{
+									"country": "BJP",
+									"visits": 280,
+									"color": "#f97d09"
+									}, {
+									"country": "INC",
+									"visits": 44,
+									"color": "#148708"
+									},{
+									"country": "AIADMK",
+									"visits": 37,
+									"color": "#000000"
+									},{
+									"country": "Total Seat's",
+									"visits": 542,
+									"color": "#8aabcc"
+									}]  
+							};
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+						 var stocChart43=$("#indiaMapWithChartInnerRight").stocCharts(textStyleConfg);
+						 stocChart43.roundedThreeDBarAnalysis(data);
+		  
+		  
+	});
+	
+$("#twoDStackedBarChart").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+		
+		 var data = {
+					title : "Web performance today",
+					xAxisLabel :"Websites",
+					yAxisLabel :"performance Rate",
+					xAxisData : ["Abebooks.com","Amozon.com","Adpost.com","walgreens.com","Amazon.co.uk","Netflix.com","Zppos.com","Barnesandnoble.com","CDuniverse.com","Wiley"],
+					key: [
+							{
+								name: 'Time To Interact(TTI)',
+								data: [1.0, 6.4, 1.5, 3 , 2.3 , 2.4 , 2.4 , 2.4 , 2.5 , 5.5],
+								color : "#ccdb4b"
+							},
+							{
+								name: 'Total Load Time',
+								data: [2.0, 4.7, 4.5, 2.5 , 4.3 , 13.3 , 7.3 , 6.2 , 3.6 , 1.0],
+								color : "#de4943"
+							},
+							{
+								name: 'Total Load Time',
+								data: [2.0, 1.9, 4.5, 2.5 , 4.3 , 13.3 , 7.3 , 6.2 , 3.6 , 5.0],
+								color :"#8ad4e2"
+							}
+							
+						]
+				}  
+		
+
+ 		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+						 var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
+						 stocChart43.twoDStackedBarChartAnalysis(data);
+		
+		
+	
+	});
+	
+	
+	
+	$(document).on('click','#chartResetButton',function(){
+		$('#mapOfIndiaWithChart').trigger('click');
+	});
+	
+	
 	
 	$('.chartMenuList ul li a').click(function() {
 		$('.chartMenuList ul li.active').removeClass('active');
