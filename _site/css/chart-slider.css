@@ -1,0 +1,77 @@
+
+
+
+ul.chart-list{ box-shadow:0 10px 30px; width:100%; margin:0px 0 20px 0; padding:0px; position:absolute; bottom:0;
+ border:solid 1px #919daa; }
+
+ul.chart-list.display{ z-index:9999;}
+ 
+ul.chart-list li{ cursor:pointer; display:inline; width:7%; float:left; margin:0px; padding:0px;
+transition: width 0.5s ease 0s, height 0.5s ease 0s; border-right:solid 1px #919daa;  height:180px; position:relative; }
+
+ul.chart-list li img{ width:100%; height:180px;}
+ul.chart-list li:hover{ width:30%;  height:180px; }
+ul.chart-list li.first-child{ width:30%;  height:180px;}
+
+
+
+
+.scrollMouse {
+    background-position: -120px -36px;
+    bottom:10px;
+    height: 59px;
+    left: 50%;
+    margin-left: -13px;
+    position: absolute;
+    text-align: center;
+    width: 26px;
+    z-index: 1;
+	display:none;
+}
+
+.scrollMouse.display{ display:block !important;}
+.scrollMouse .scrollline {
+    animation: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s normal none infinite running aniMouse;
+    background: #00c6ff none repeat scroll 0 0;
+    border-radius: 5px;
+    bottom: 0;
+    display: block;
+    height: 10px;
+    margin: 10px auto;
+    position: relative;
+    width: 4px;
+    z-index: 11;
+}
+
+
+.chart-outer-box{ position:absolute; height:100%; width:100%; margin-top:-70px; z-index:999; background-color:#000; opacity:0.9; display: none;}
+.chart-outer-box.display-block{ display:block;}
+
+@keyframes aniMouse {
+1% {
+    bottom: 10px;
+}
+50% {
+    bottom: -20px;
+}
+100% {
+    bottom: 7px;
+}
+}
+@keyframes aniMouse {
+1% {
+    bottom: 10px;
+}
+50% {
+    bottom: -20px;
+}
+100% {
+    bottom: 7px;
+}
+}
+
+.headerfooter-sprite {
+    background: url(../img/header-footer-sprite.png) no-repeat;}
+	
+	.expand{ position:absolute !important; top:0; height:100% !important;}
+.chartBox-inner{ height:80%; }
