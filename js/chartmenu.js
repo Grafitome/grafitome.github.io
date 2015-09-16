@@ -1,5 +1,7 @@
 var isTriggeringClick=false;
+var flagForPrimeToolTip =  false;
 var selectedChartIndex=1;
+
 
 var jsFiddleLinkMap={
 "1" : "http://.net/ycevhobo/4/",
@@ -13,15 +15,15 @@ var jsFiddleLinkMap={
 "9" : "http://jsfiddle.net/g7sujqLr/3/",
 "10" : "http://jsfiddle.net/3fwtgp6h/4/",
 "11" : "http://jsfiddle.net/4nb73yvx/4/",
-"12" : "http://jsfiddle.net/6xke3jct/3/",
-"13" : "http://jsfiddle.net/ns715wcv/4/",
+"12" : "http://jsfiddle.net/6xke3jct/4/",
+"13" : "http://jsfiddle.net/ns715wcv/5/",
 "14" : "http://jsfiddle.net/5xnj5e9v/6/",
-"15" : "http://jsfiddle.net/6degx86y/3/",
+"15" : "http://jsfiddle.net/6degx86y/4/",
 "16" : "http://jsfiddle.net/tgLh5t6w/3/",
 "17" : "http://jsfiddle.net/2kLky6t0/3/",
 "18" : "http://jsfiddle.net/uo9oL6v1/3/",
 "19" : "http://jsfiddle.net/3whv97g8/3/",
-"20" : "http://jsfiddle.net/nh2yfehp/2/",
+"20" : "http://jsfiddle.net/nh2yfehp/3/",
 "21" : "http://jsfiddle.net/u62v8k9m/3/", 
 "22" : "http://jsfiddle.net/9qy6jbj9/3/",
 "23" : "http://jsfiddle.net/f4pez9be/3/",
@@ -41,14 +43,24 @@ var jsFiddleLinkMap={
 "37" : "http://jsfiddle.net/w0qkv82g/5/",
 "38" : "http://jsfiddle.net/fzp00bg3/3/",
 "39" : "http://jsfiddle.net/6njfewoy/3/",
-"40" : "http://jsfiddle.net/4o9cku73/4/",
+"40" : "http://jsfiddle.net/4o9cku73/5/",
 "41" : "http://jsfiddle.net/d7nvk1ub/4/",
 "42" : "http://jsfiddle.net/fkd4af81/3/",
 "43" : "http://jsfiddle.net/856jwvvw/1/",
-"44" : "http://jsfiddle.net/09cefcuo/1/",
-"45" : "http://jsfiddle.net/3w4f6zmz/1/",
-"46" : "http://jsfiddle.net/csw25fcw/1/",
-"57" : "http://jsfiddle.net/csw25fcw/1/"
+"44" : "http://jsfiddle.net/09cefcuo/32/",
+"45" : "http://jsfiddle.net/csw25fcw/1/",
+"46" : "http://jsfiddle.net/csw25fcw/7/",
+"47" : "http://jsfiddle.net/4ydw5fe2/5/",
+"48" : "http://jsfiddle.net/4ydw5fe2/4/",
+"49" : "http://jsfiddle.net/4ydw5fe2/3/",
+"50" : "http://jsfiddle.net/4ydw5fe2/2/",
+"51" : "http://jsfiddle.net/4ydw5fe2/1/",
+"52" : "http://jsfiddle.net/4ydw5fe2/",
+"53" : "http://jsfiddle.net/csw25fcw/6/",
+"54" : "http://jsfiddle.net/csw25fcw/5/",
+"55" : "http://jsfiddle.net/csw25fcw/4/",
+"56": "http://jsfiddle.net/csw25fcw/3/",
+"57" : "http://jsfiddle.net/csw25fcw/2/"
 }
 function updateJsfiddleLink(index){
 	var linkPath=jsFiddleLinkMap[index];
@@ -192,9 +204,7 @@ $(document).ready(function(){
 					'Opera':{data:20,color:"#6d788e","subData":{},subDataColorArray:[]},
 					'Not Known':{data:10,color:"#FF78AF","subData":{},subDataColorArray:[]},
 					'Chrome':{data:50,color:"#61b7E8","subData":{},subDataColorArray:[]},
-					"Netscape Navigator":{data:25,color:"#05908D","subData":{},subDataColorArray:[]}
-				
-				
+					"Netscape Navigator":{data:25,color:"#05908D","subData":{},subDataColorArray:[]}		
 				};
 		
 		var cfgDrillDown = {
@@ -470,49 +480,40 @@ $(document).ready(function(){
 	$("#line1").empty();
 		$("#3DStackedBarChart").show();
 		
+		var data = {
+					"title" : "Sale Comparision Of Companies In Respective Year",
+					"xAxisLabel" :"Years",
+					"yAxisLabel" :"Sales(In Crores)",
+					"toolTipUnit":"Year",
+					"xAxisData" : ["1994", "1995", "1996", "1997", "1998", "1999","2000","2001","2002","2003", "2004", "2005", "2006"],
+					"color" : ["#39ec6e","#ff9811","#4f85bb","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"],
+					"yAxisData": [{
+							
+							"key": "Barclays",
+							"data": [15, 80, 120, 180, 50, 65, 30, 109, 210,13, 123,210, 210]
+						}, {
+							"key": "Morgan Stanley",
+							"data": [60, 20, 70, 40, 100, 95, 230, 123, 100,24, 231, 210, 210]
+						}, {
+							"key": "SBI",
+							"data": [40, 28, 79, 100, 40, 195, 20, 78, 321,45, 109, 210, 210]
+						}, {
+							"key": "American Express Bank",
+							"data": [140, 280, 179, 200, 109, 95, 300, 86, 123,56, 290, 210, 210]
+						}, {
+							"key": "Indusland Bank",
+							"data": [120, 34, 50, 100, 400, 65, 30, 34, 310,76, 19, 210, 210]
+						}, {
+							"key": "Yes Bank",
+							"data": [80, 180, 179, 300, 40, 109, 89, 120, 230,89, 99, 210, 210]
+						}]
+				}  
 		
 		
-		var threeDStackedBarsData = [{
-				'key': 'Barclays',
-				'data': [15, 80, 120, 180, 50, 65, 30, 109, 210,13, 123,210, 210]
-			}, {
-				'key': 'Morgan Stanley',
-				'data': [60, 20, 70, 40, 100, 95, 230, 123, 100,24, 231, 210, 210]
-			}, {
-				'key': 'SBI',
-				'data': [40, 28, 79, 100, 40, 195, 20, 78, 321,45, 109, 210, 210]
-			}, {
-				'key': 'American Express Bank',
-				'data': [140, 280, 179, 200, 109, 95, 300, 86, 123,56, 290, 210, 210]
-			}, {
-				'key': 'Indusland Bank',
-				'data': [120, 34, 50, 100, 400, 65, 30, 34, 310,76, 19, 210, 210]
-			}, {
-				'key': 'Yes Bank',
-				'data': [80, 180, 179, 300, 40, 109, 89, 120, 230,89, 99, 210, 210]
-			}];
-
-		
-		
-		var colorArray=["#39ec6e","#ff9811","#63deff","#59bde5","#16c54a","#e7969c", "#e7cb94", "#7f7f7f", "#bcbd22"];
-		var cfg3DBarChart = {
-		
-			topMargin: 5,
-			rightMargin: 0,
-			bottomMargin: 40,
-			leftMargin: 40,
-			toolTipLabelForYAxis: "Sales(in Crores)",
-			title:"Sale Comparision Of Companies In Respective Year",
-			xLabel:"Year",
-			yLabel : "Sales(in Crores)",
-			toolTipUnit:""
-		}
-	//	var gridLineColor = "#4d4d4d";
-		var textColor = "Grey";
 		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart27=$("#line1").stocCharts(textStyleConfg);
-		var xAxisArray = ['1994', '1995', '1996', '1997', '1998', '1999','2000','2001','2002','2003', '2004', '2005', '2006'];
-	    stocChart27.drawThreeDStackedBarChart("#line1", threeDStackedBarsData, cfg3DBarChart, colorArray, textColor, xAxisArray);
+		
+	    stocChart27.drawThreeDStackedBarChart(data);
 		
 	});
 	  
@@ -738,7 +739,7 @@ $(document).ready(function(){
 		$(".chartDetails").hide();
 	  $(".meterChartMenu").show();
 		
-	/*	try{
+		try{
 		  
 		  meterChart.init('line1','',380,320);
 		  meterChart.turnNeedle(-90);
@@ -750,7 +751,7 @@ $(document).ready(function(){
 		catch(err){
 			console.log("error meter chart ");
 		}
-	*/	var meterChartData =  {
+	/*	var meterChartData =  {
 				"data" :[0,20,40,60,80,100,120,140,160,180,200,220],
 				"dataLeft":[0,1,2,3,4,5,6,7],
 				"colorArray" : ["#2ec7c9","#5ab1ef","#d87a80"],
@@ -761,7 +762,7 @@ $(document).ready(function(){
 						
 		var stocChart43=$("#line1").stocCharts(textStyleConfg);
 		stocChart43.meterChartAnalysis(meterChartData);
-		
+		*/
 	});
 	
 	$("#groupedBar2DMenu").click(function(){
@@ -3200,7 +3201,227 @@ $("#twoDStackedBarChart").click(function(){
 	
 	});
 	
+	$("#areaChartWithRange").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+		
+		var data =  {
+					"title" : "Product Status",
+					"xAxisData" : ["2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"],
+					"xAxisLabel" : "Years",
+					"yAxisLabel" : "Range Value",
+					"averageValue" : 0,
+					"yDataObj" : [
+									{
+										"yAxisDataUpper" : [20,100,20,120,35,150,60,115,-70,55,105],
+										"yAxisDataLower" : [-40,60,-40,60,-15,90,0,70,-120,-15,75],
+										"legend" : "Complete",
+										"color" : "#90e0dc"
+									},
+									{
+										"yAxisDataUpper" : [10,-80,0,-50,50,100,-10,-25,125,15,45],
+										"yAxisDataLower" : [-40,-130,-50,-100,0,50,-60,-75,75,-35,14],
+										"legend" : "Approved",
+										"color" : "#c6c2ea"
+									},
+									{
+										"yAxisDataUpper" : [40,-10,30,-20,70,-30,-10,-25,50,15,45],
+										"yAxisDataLower" : [-10,-60,-20,-80,20,-80,-60,-75,0,-35,14],
+										"legend" : "Total",
+										"color" : "#919199"
+									},
+									{
+										"yAxisDataUpper" : [10,70,10,50,15,100,60,95,-10,55,-15],
+										"yAxisDataLower" : [-40,20,-50,0,-35,50,0,45,-40,-15,-65],
+										"legend" : "Active",
+										"color" : "#DCFBDA"
+									}
+								]
+					
+					}		
+		
+
+ 		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+						 var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
+						 stocChart43.areaChartWithRangeAnalysis(data);
+		
+		
 	
+	});
+	
+	
+	$("#primeChart").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+		
+		
+		$(document).ready(function(){
+			flagForPrimeToolTip = true;
+			initialiseChartPrime();
+		});
+
+ 		
+/*	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+		 var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		 stocChart43.twoDStackedBarChart1Analysis();
+
+	*/	
+	
+	});
+	
+	$("#threeDStackedDountChart").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+	var data = [
+				{
+					"dountData" : [77,86,65],
+					"dountKey" : ["Maths Avg.","Science Avg.","English Avg."],
+					"colorArray" : ["#61d376","#966161","#436199"],
+					"unit" : "%",
+					"legendColor":"#b0b0ba",
+					"heading" :"8th Class"
+				},
+				{
+					"dountData" : [33,95,87],
+					"dountKey" : ["Maths Avg.","Science Avg.","English Avg."],
+					"colorArray" : ["#61d376","#966161","#436199"],
+					"unit" : "%",
+					"legendColor":"#dcfbda",
+					"heading" :"9th Class"
+				},
+				{
+					"dountData" : [35,75,68],
+					"dountKey" : ["Maths Avg.","Science Avg.","English Avg."],
+					"colorArray" : ["#61d376","#966161","#436199"],
+					"unit" : "%",
+					"legendColor":"#de4943",
+					"heading" :"10th Class"
+				},
+				{
+					"dountData" : [99],
+					"dountKey" : ["Passing Avg."],
+					"colorArray" : ["#61d376"],
+					"unit" : "%",
+					"legendColor":"#356aa0",
+					"heading" :"Total pass percentage"
+				}/*,
+				{
+					"dountData" : [82,59,77,92],
+					"dountKey" : ["Maths Avg.","Science Avg.","English Avg.","Hindi Avg."],
+					"colorArray" : ["#436199","#b1d3a0","cyan","#7a5344","#aec785"],
+					"unit" : "%",
+					"legendColor":"blue",
+					"heading" :"9th Class"
+				},
+				{
+					"dountData" : [52,69,78,62],
+					"dountKey" : ["Maths Avg.","Science Avg.","English Avg.","Hindi Avg."],
+					"colorArray" : ["#c6c2ea","#dcfbda","#ccdb4b","#c3e3eb","#aec785"],
+					"unit" : "%",
+					"legendColor":"blue",
+					"heading" :"9th Class"
+				}*/
+			]
+
+ 		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+		 var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		 stocChart43.threeDStackedDountChartAnalysis(data);
+
+		
+	
+	});
+	
+	$("#threeDRoundedBarChart").click(function(){
+	//	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+	
+ 	var data = {
+				"title" : "Monthly Profit",
+				"xAxisLabel" : "Month's",
+				"yAxisLabel" : "Profit Percentage",
+				"xAxisData" : ["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14"/*,"Aug'14","Sept'14","Oct'14"*/],
+				"yAxisData" : [60,90,80,58,86,55,77],
+				"lowerColorArray":["#ed1e79","#fbb03b","#666666","#92278f","#0071bd","#cc886d","#356aa0"],
+				"upperColor":"#e6e6e6",
+				"imagesArray" :["img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png","img/icon/icon4.png","img/icon/icon5.png","img/icon/icon1.png","img/icon/icon2.png"],
+				"threeDPathColor":"#f7fbf4",
+				"description" : ["biaxially oriented df polypropyleneeeeeeee","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation"],
+				"unit" : "%"
+			}
+			
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":10,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+						
+	var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
+		 stocChart43.threeDRoundedBarChartAnalysis(data);
+
+		
+	
+	});
+	
+ $("#threeDShutterStack").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+  
+ var data =
+   {
+     title : "Foreign Visitors Rate",
+     barData: [{
+      "yTick": "USA",
+      "yData": 151,
+      "color": "#FF0F00"
+      }, {
+      "yTick": "China",
+      "yData": 198,
+      "color": "#FF6600"
+      }, {
+      "yTick": "Japan",
+      "yData": 221,
+      "color": "#FF9E01"
+      }, {
+      "yTick": "Germany",
+      "yData": 262,
+      "color": "#FCD202"
+      }, {
+      "yTick": "pakistan",
+      "yData": 302,
+      "color": "#F8FF01"
+      }, {
+      "yTick": "France",
+      "yData": 340,
+      "color": "#B0DE09"
+      }, {
+      "yTick": "India",
+      "yData": 388,
+      "color": "#04D215"
+      }, {
+      "yTick": "Spain",
+      "yData": 425,
+      "color": "#0D8ECF"
+      }],  
+    commonColor : "#ffffff", 
+    upperEclipsColor : "gray",
+    xAxisLabel : "Country",
+    yAxisLabel :"Visit(in Millons)",
+    upperPathHeight : 40,
+	"imagesArray" :["img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png","img/icon/icon4.png","img/icon/icon5.png","img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png"],
+    unit : "%"  
+   }  
+  
+  
+ var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.threeDShutterStackAnalysis(data);
+ });
 	
 	$(document).on('click','#chartResetButton',function(){
 		$('#mapOfIndiaWithChart').trigger('click');

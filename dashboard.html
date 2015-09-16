@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grafitome</title>
+<title>StocCharts</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="shortcut icon"  href="img/favicon.ico"/>
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -19,14 +19,18 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/chartmenu.js"></script>
 <script src="js/stocChart.js"></script>
 <script src="js/CommonUtil.js"></script>
 <script src="js/canvasHandler.js"></script>
+<script src="js/topojson.v1.min.js"></script>
+ <script src="js/d3.geo.projection.v0.min.js"></script>
+<script src="js/dataUSA.js"></script>
+<script src="js/stocMaps.js"></script>
 </head>
 
 <body style="background-color:#eff0f4;" >
@@ -35,10 +39,10 @@
 <div class="pullRight" ><img src="img/nav-arrow.png" alt="nav-arrow"/></div>
 <div class="chartNavContainor  ">
 
-<div class="container " >
-  <div class="chartList ">
+<div class="container " style="width:100%;" >
+<div class="chartList ">
 <div class="row">
-<div class="col-lg-4 col-md-4 col-sm-12 animation fadeInLeft" ><ul class="chartListGrup animated fadeInLeft" >
+<div class="col-lg-3 col-md-3 col-sm-12 animation fadeInLeft" ><ul class="chartListGrup animated fadeInLeft" >
 
 <li><a id="basicLineChartMenu" index="1" href="#"> <i class="arrow"></i>  Basic Line Chart </a> </li>
 <li> <a  href="#" index="2" id="scatterPlotChartMenu" ><i class="arrow"></i>
@@ -83,27 +87,27 @@ Donut Chart with Bars</a>  </li>
   <li> <a  href="#" index="15" id="BulletBarChartMenu"><i class="arrow"></i>
  Bullet Bar Chart</a>  </li> 
  
+
+</ul></div>
+<div class="col-lg-3 col-md-3 col-sm-12 animation fadeInLeft" > <ul class="chartListGrup animated fadeInLeft">
+
+
+ 
+
+ 
  <li> <a  href="#" index="16" id="CricketAnalChartMenu"><i class="arrow"></i>
  Rounded Bar with special labels</a>  </li> 
  
-
-</ul></div>
-<div class="col-lg-4 col-md-4 col-sm-12 animation fadeInLeft" > <ul class="chartListGrup animated fadeInLeft">
-
-
- 
-
- 
-
-
- 
- <li> <a  href="#" index="17" id="stackedAreaChartMenu"><i class="arrow"></i>
+<li> <a  href="#" index="17" id="stackedAreaChartMenu"><i class="arrow"></i>
 Stacked Area Chart</a>  </li> 
 
   <li> <a  href="#" index="18" id="stackedBarChartMenu"><i class="arrow"></i>
 Stacked Bar Chart</a>  </li> 
   <li> <a  href="#" index="19" id="funnelChartMenu"><i class="arrow"></i>
 Funnel Chart</a>  </li> 
+
+ 
+ 
   <li> <a  href="#" index="20" id="guageGraphMenu"><i class="arrow"></i>
 Guage Graph </a>  </li> 
 
@@ -136,21 +140,18 @@ Network Chart</a>  </li>
  
  <li> <a  href="#" index="30" id="barWithLogoMenu"><i class="arrow"></i>
 Bar With Logo</a>  </li> 
+
+
+    </ul>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-12  animation fadeInLeft" >   <ul class="chartListGrup animated fadeInLeft">
+
+
  <li> <a  href="#" index="31" id="detailChartMenu"><i class="arrow"></i>
 Detail Chart</a>  </li>
 
 <li> <a  href="#" index="32" id="3DbubbleChartMenu"><i class="arrow"></i>
 3D Bubbles Chart </a>  </li> 
-
-    </ul>
-</div>
-<div class="col-lg-4 col-md-4 col-sm-12  animation fadeInLeft" >   <ul class="chartListGrup animated fadeInLeft">
-
-
-
-
-
-
 
 <li> <a  href="#" index="33" id="treeChartMenu"><i class="arrow"></i>
 Tree Chart </a>  </li> 
@@ -170,6 +171,7 @@ Comparison Chart </a></li>
 <li> <a  href="#" index="38" id="multipleDountChartMenu"><i class="arrow"></i>
 Multiple Dount Chart </a></li>
 
+
 <li> <a  href="#" index="39" id="barWithLabelChartMenu"><i class="arrow"></i>
 Bar With Label Chart </a></li>
 
@@ -182,28 +184,104 @@ Multiple Axis </a>
 </li>
 
 <li> <a  href="#" index="42" id="roundedThreeDBarMenu"><i class="arrow"></i>
-Rounded 3 D Bar </a>
+Rounded 3 D Bar
 </li>
 
 <li> <a  href="#" index="43" id="threeDDountChartMenu"><i class="arrow"></i>
-3 D Dount Chart </a>
+3 D Dount Chart
 </li>
 
 
 <li> <a  href="#" index="44" id="threeDPieChartMenu"><i class="arrow"></i>
-3 D Pie Chart </a>
+3 D Pie Chart
 </li>
 
-
+	<!--
 <li> <a  href="#" index="45" id="arcWithCylinderMenu"><i class="arrow"></i>
-Arc With Cylinder </a>
+Arc With Cylinder
+</li>
+	-->
+<li> <a  href="#" index="45" id="threeDComparisionChartMenu"><i class="arrow"></i>
+Three D Comarison Chart
+</li>
+	<!--
+<li> <a  href="#" index="47" id="brushingChart"><i class="arrow"></i>
+Brushing Chart
+</li>  
+	-->
+
+
+ </ul></div>
+ 
+ 
+ <div class="col-lg-3 col-md-3 col-sm-12  animation fadeInLeft" >   <ul class="chartListGrup animated fadeInLeft">
+ <li> <a  href="#" index="46" id="angularMeterChart"><i class="arrow"></i>
+Angular Meter Chart
 </li>
 
-<li> <a  href="#" index="46" id="threeDComparisionChartMenu"><i class="arrow"></i>
-Three D Comarison Chart </a>
+<li> <a  href="#" index="47" id="comparisionAreaChart"><i class="arrow"></i>
+Comparision Area Chart
 </li>
 
- </ul></div></div></div>
+<li> <a  href="#" index="48" id="newDountChartWithBar"><i class="arrow"></i>
+New Dount Chart With Bar
+</li>
+
+<li> <a  href="#" index="49" id="threeDPieChartWithLegend"><i class="arrow"></i>
+3 D Pie Chart With Legend
+</li>
+
+<li> <a  href="#" index="50" id="smoothLineChart"><i class="arrow"></i>
+Smooth Line Chart 
+</li>
+
+<li> <a  href="#" index="51" id="activeAreaChart"><i class="arrow"></i>
+Active Area Chart 
+</li>
+
+<li> <a  href="#" index="52" id="treeMapChart"><i class="arrow"></i>
+Tree Map 
+</li>
+
+
+<li> <a  href="#" index="53" id="threeDDountChartWithLegend"><i class="arrow"></i>
+3 D Dount Chart With Legend
+</li>
+
+<li> <a  href="#" index="54" id="LineChartWithReverseYAxis"><i class="arrow"></i>
+Line Chart With Reverse Y-Axis
+</li>
+
+<li> <a  href="#" index="55" id="performanceChart"><i class="arrow"></i>
+Performance Chart
+</li>
+
+<li> <a  href="#" index="56" id="horizontalStackedBarChart"><i class="arrow"></i>
+Horizontal Stacked Bar Chart
+</li>
+
+<li> <a  href="#" index="57" id="multiGroupedBarChart"><i class="arrow"></i>
+Multigrouped Bar Chart
+</li>
+
+
+<li > <a  href="#" index="58" id="mapOfIndianPopulation"><i class="arrow"></i>
+Map Of Indian Population
+</li>
+
+<li > <a  href="#" index="59" id="mapOfUSAUnemployement"><i class="arrow"></i>
+Map Of USA Unemployement
+</li>
+
+<li > <a  href="#" index="60" id="mapOfUSAAgricultureTrend"><i class="arrow"></i>
+Map Of USA Farming Trends
+</li>
+
+ </ul></div>
+ 
+
+ 
+ </div></div>
 </div>
 
 
@@ -221,7 +299,7 @@ Three D Comarison Chart </a>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-         <a href="index.html" class="navbar-brand"><img src="img/grafitome.png" alt="StocCharts"/></a>
+         <a href="index.html" class="navbar-brand"><img src="img/stocChart-logo.png" alt="StocCharts"/></a>
           </div>
       
 
@@ -230,7 +308,20 @@ Three D Comarison Chart </a>
             <ul class="nav navbar-nav navbar-right ">
               <li ><a  href="index.html"> Home </a></li>
               <li><a href="features.html">Features </a></li>
-              <li class="active"><a href="#">  Demo     </a></li>
+              <li class="active"><a href="#">  Basic Charts     </a></li>
+                <li ><a href="advanced-charts.html">  Advanced Charts     </a></li>
+                <li class="dropdown drop-down"><a href="#"  data-toggle="dropdown">  <i class="fa fa-puzzle-piece"></i> </a> 
+               <ul class="dropdown-menu">
+               <li><a href="#" data-toggle="modal" data-target="#popup" >Send you Qhffg uyiuouo<br>
+ bvfyegd vfgbf fhfgffs<br>
+ laksqoj nbota
+</a></li>
+               <li><a href="#">Send you Qhffg uyiuouo<br>
+ bvfyegd vfgbf fhfgffs <br>
+laksqoj nbota</a></li>
+             
+               </ul>
+               </li>
             <!--  <li><a href="#"> Business model   </a></li>
               <li><a href="pricing.html"> Pricing  </a></li> -->
             </ul>
@@ -873,7 +964,7 @@ var cnfg={"data":data,"divId":"line22"}<br>
 </p></div></div> 
  <div class="chartDetails dountWithBarChartMenu"><h2>  Donut Chart with Bars :
 </h2>
-<p >A doughnut chart displays data as percentage of the whole. Categories are represented by every slice. Doughnut charts are functionally identical to pie charts. Additionally, the bar chart is also embedded to show data.
+<p >A donut chart displays data as percentage of the whole. Categories are represented by every slice. Donut charts are functionally identical to pie charts. Additionally, the bar chart is also embedded to show data.
 </p>
 <h3><strong>Steps of making Donut Chart with Legend:-</strong><br>
 <br>
@@ -1346,6 +1437,308 @@ A bar chart or bar graph is a chart with rectangular bars with lengths proportio
 
 </div>
  </div> 
+  
+<div class="chartDetails multiGroupedBarChart">
+<h2>Multigrouped Bar Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+Multigrouped Bar Chart is represent a groupe of bars which represent some kind of data(for example in this chart group represent a year and each bars in these group represent 
+ a product sale in that year)
+
+
+</p>
+ <h3><strong>Steps of making Multigrouped bar Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:- title of chart<br>
+
+xAxisLabel:- Label represent x-axis<br>
+
+yAxisLabel:- Label represent y-axis<br>
+
+xAxisData:- Data for x-axis<br>
+
+toolTipUnit:- For tool tip heading<br>
+
+key array:- Represent data for Product name,y-axis data and color<br>
+			
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				title : "Comparison Of Sale",
+					xAxisLabel :"Years",
+					yAxisLabel :"Sales(In Crores)",
+					xAxisData : ["2010","2011","2012","2013","2014"],
+					toolTipUnit: "Year",
+					key: [
+							{
+								name: 'Zara',
+								data: [50, 30, 40, 37, 20],
+								color : "#EBD6CC"
+							},
+							{
+								name: 'Levis',
+								data: [58, 70, 95, 25, 50],
+								color : "#00FFFF"
+							}, 
+							{
+								name: 'Woodland',
+								data: [30, 40, 74, 22, 55],
+								color : "#7FFFD4"
+							}
+							
+						]
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+ 
+  
+<div class="chartDetails mapOfIndianPopulation">
+<h2> Map Of Indian Population:</h2>
+<p><strong>Introduction:</strong><br>
+
+This Map represents Population of india in each state.
+
+
+</p>
+ <h3><strong>Steps of making Map Of Indian Population:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+
+	indiaStatesData :- JSON that has population, growthRate,area,density,sex Ratio, Literacy<br> 		
+	colorRange:- color range
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+<p class="padding-md">var colorRange =  
+			{
+			 </p>
+             <p class="padding-lg">
+			["#add8e6", "#9acd32", "#9acd32", "#d2b48c", "#98fb98", "#3cb371"];
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+
+<p class="padding-md">var indiaStatesData =  
+			{
+			 </p>
+             <p class="padding-lg">
+				"Andhra Pradesh"  :{"population" : 84580777 , "growthRate" : 10.98  , "area": 275045, "density":308 , "sex Ratio":993 ,"Literacy":67.02},
+			 "Andhra Pradesh"  :{"population" : 84580777 , "growthRate" : 10.98  , "area": 275045, "density":308 , "sex Ratio":993 ,"Literacy":67.02},
+			 "Arunachal Pradesh"  :{"population": 1383727  , "growthRate":26.03 , "area":83743, "density":17, "sex Ratio":938, "Literacy":65.38},
+			 "Assam"     :{"population" : 31205576,"growthRate": 17.07 , "area":78438, "density":398, "sex Ratio":958, "Literacy":72.19},
+			 "Bihar"     :{"population" : 104099452 ,"growthRate": 25.42 , "area":94163, "density":1106, "sex Ratio":918, "Literacy":61.80},
+			 "Chhattisgarh"   :{"population" :25545198 ,"growthRate": 22.61  , "area":135192, "density":189, "sex Ratio":991, "Literacy":70.28},
+			 "Delhi"     :{"population" : 16787941,"growthRate": 21.21 , "area":1483, "density":11320, "sex Ratio":868, "Literacy":86.21},
+			 "Goa"      :{"population" : 1458545,"growthRate":8.23  , "area":3702, "density":394, "sex Ratio":973, "Literacy":88.70},
+			 "Gujarat" :  {"population" :60439692 ,"growthRate":19.28  , "area":196244, "density":308, "sex Ratio":919, "Literacy":78.03},   
+			 "Haryana" :  {"population" :25351462 ,"growthRate":19.90  , "area":44212, "density":573, "sex Ratio":879, "Literacy":75.55},
+			 "Himachal Pradesh" :{"population" : 6864602,"growthRate":12.94  , "area":55673, "density":123, "sex Ratio":972, "Literacy":82.80},
+			 "Jammu and Kashmir" :{"population" :12541302 ,"growthRate":23.64  , "area":222236, "density":56, "sex Ratio":889, "Literacy":67.16},
+			 "Jharkhand" : {"population" :32988134 ,"growthRate": 22.42 , "area":79716, "density":414, "sex Ratio":948, "Literacy":66.41},
+			 "Karnataka" : {"population" :61095297 ,"growthRate":15.60  , "area":191791, "density":319, "sex Ratio":973, "Literacy":75.36},
+			 "Kerala" :  {"population" :33406061 ,"growthRate": 4.91 , "area":38852, "density":860, "sex Ratio":1084, "Literacy":94.00},   
+			 "Madhya Pradesh" :{"population" : 72626809,"growthRate": 20.35 , "area": 308252, "density": 236, "sex Ratio": 931, "Literacy": 69.32},
+			 "Maharashtra" : {"population" : 112374333, "growthRate": 15.99 , "area": 307713, "density": 365, "sex Ratio": 929, "Literacy":82.34},
+			 "Manipur" :  {"population" : 2570390,"growthRate":12.05  , "area":22327, "density":115, "sex Ratio":992, "Literacy":79.21}   ,
+			 "Meghalaya" : {"population" : 2966889,"growthRate":27.95  , "area":22429, "density":132, "sex Ratio":989, "Literacy":74.43},
+			 "Mizoram" :  {"population" :1097206 ,"growthRate":23.48  , "area":21081, "density":52, "sex Ratio":976, "Literacy":91.33},
+			 "Nagaland" : {"population" : 1978502,"growthRate":-0.58  , "area":16579, "density":119, "sex Ratio":931, "Literacy":79.55},     
+			 "Orissa" :  {"population" : 41974218,"growthRate": 14.05 , "area":155707, "density":270, "sex Ratio":979, "Literacy":72.87},
+			 "Punjab" :  {"population" : 27743338,"growthRate":13.89  , "area":50362, "density":551, "sex Ratio":895, "Literacy":75.84},
+			 "Rajasthan" : {"population" : 68548437 ,"growthRate":21.31  , "area":342239, "density":200, "sex Ratio":928, "Literacy":66.11},
+			 "Sikkim" :  {"population" :610577 ,"growthRate":12.89  , "area":7096, "density":86, "sex Ratio":890, "Literacy":81.42},
+			 "Tamil Nadu" : {"population" :72147030 ,"growthRate":15.61  , "area":130060, "density":555, "sex Ratio":996, "Literacy":80.09},
+			 "Tripura" :  {"population" : 3673917,"growthRate":14.84  , "area":10486, "density":350, "sex Ratio":960, "Literacy":87.22},   
+			 "Uttar Pradesh":{"population" :199812341 ,"growthRate":20.23  , "area":240928, "density":829, "sex Ratio":912, "Literacy":67.68}, 
+			 "Uttarakhand" : {"population" : 10086292,"growthRate": 18.81 , "area":53483, "density":189, "sex Ratio":963, "Literacy":78.82},
+			 "West Bengal" : {"population" :91276115 ,"growthRate": 13.84 , "area":88752, "density":1028, "sex Ratio":950, "Literacy":76.26}
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+
+            
+ </div>
+
+
+
+ 
+</div>
+ 
+   
+<div class="chartDetails mapOfUSAUnemployement">
+<h2>Map Of USA Unemployement :</h2>
+<p><strong>Introduction:</strong><br>
+
+This Map represent Unemployement rate of USA 
+
+
+</p>
+ <h3><strong>Steps of making Map Of USA Unemployement:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json File
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+	data through JSON 
+			
+</p> 
+
+
+            
+ </div>
+
+
+
+ 
+</div>
+ 
+   
+<div class="chartDetails mapOfUSAAgricultureTrend">
+<h2>Map Of USA Farming Trends :</h2>
+<p><strong>Introduction:</strong><br>
+
+This Map represent Farming Trends of USA.
+
+
+</p>
+ <h3><strong>Steps of making Map Of USA Farming Trends:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json File
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+
+  Data Through JSON 
+
+</p> 
+            
+ </div>
+
+</div>
+ 
+ 
+<div class="chartDetails horizontalStackedBarChart">
+<h2>Horizontal Stacked Bar Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+It is a type of chart in which Horizontal Bars represent product wise data(for example in this chart each bar represent product sale of each individual brand ) 
+
+
+</p>
+ <h3><strong>Steps of making Horizontal Stacked Bar Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:- Title for chart<br>
+
+xAxisLabel:- Label represent x-axis<br>
+
+yAxisLabel:- Label represent y-axis<br>
+
+yAxisData:- Data for y-axis<br>
+
+key:- Array for product name,x-axis data and color<br>
+			
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				title : "Product Sale(Brand wise)",
+					xAxisLabel :"Current Status",
+					yAxisLabel :"Product",
+					yAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
+					key: [
+							{
+								name: 'Zara',
+								data: [50, 30, 40, 37, 20,30],
+								color : "#00FFFF"
+							},
+							{
+								name: 'Levis',
+								data: [58, 40, 32, 25, 50,20],
+								color : "#DCDCDC"
+							}, 
+							{
+								name: 'Woodland',
+								data: [30, 43, 74, 22, 55,35],
+								color : "#7FFFD4"
+							}
+							
+						]
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+ 
+ 
+ 
  <div class="chartDetails 3DStackedBarChartMenu">
 <h2>3D Stacked Bar Chart :
 
@@ -4650,7 +5043,7 @@ unit:- label unit<br>
  
 </div>
 
-
+<!--
 
 <div class="chartDetails arcWithCylinderMenu">
 <h2>Arc With Cylinder Chart :</h2>
@@ -4766,7 +5159,7 @@ key:- key <br>
 
  
 </div>
-
+ -->
 <div class="chartDetails threeDComparisionChartMenu">
 <h2>Three D Comparison Chart :</h2>
 <p><strong>Introduction:</strong><br>
@@ -4829,7 +5222,744 @@ c) var xAxisData :- It represents the value(here it is year).
 
  
 </div>
+	<!--
+<div class="chartDetails brushingChart">
+<h2>Three D Comparison Chart :</h2>
+<p><strong>Introduction:</strong><br>
 
+A 3D comparison chart is a simple bullet chart . It is used for comparison between the estimated value and actual result(for e.g it can be used for checking last decade trend of actual profit and estimated profit yearly).
+
+
+</p>
+ <h3><strong>Steps of making Three D Comparison Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+a) var yAxisEstimateData :- It represents the values in gray color, which are representing estimated value.<br>
+
+b) var yAxisActualData :- It represents the bars in centre of every block , which are representing actual values.<br>
+
+c) var xAxisData :- It represents the value(here it is year).
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+  title : "Last 16 Year Data , Estimated v/s Actual Profit",<br>
+
+						yAxisLabel : "Profit",<br>
+
+						yAxisUnit : "Million",<br>
+
+						yAxisEstimateData : [325,250,340,230,250,290,100,220,350,300],<br>
+
+						yAxisEstimateDataUnit : 'Estimated',<br>
+
+						yAxisActualData : [275,300,320,250,230,270,140,190,300,370],<br>
+
+						yAxisActualDataUnit : 'Actual',<br>
+
+						xAxisLabel : "Years",<br>
+
+						xAxisData : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],<br>
+
+						legendArray : ['Estimate Data','Actual Data']
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+ -->
+<div class="chartDetails angularMeterChart">
+<h2>Angular Meter Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+This chart represent speed in km/hr
+
+</p>
+ <h3><strong>Steps of making Angular Meter Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+data:- data for meter chart<br>
+colorArray:-color of meter chart<br>
+meterLabel:-label for meter chart<br> 
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var meterChartData =  {
+    </p>
+             <p class="padding-lg">
+
+				"data" :[0,20,40,60,80,100,120,140,160,180,200,220],
+				"colorArray" : ["#2ec7c9","#5ab1ef","#d87a80"],
+				"meterLabel" : "Km/h"
+		
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails comparisionAreaChart">
+<h2>Comparison Area Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+A comparison area chart is a simple area chart representing multiple areas for data . It is used for comparison between data.
+.
+
+
+</p>
+ <h3><strong>Steps of making Comparison Area Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:-Title of Chart<br>
+xAxisData:-Data for x-axis<br>
+xAxisLabel:-Label for x-axis<br>
+yAxisLabel:-Label for y-axis<br>
+yDataObj:-Array of JSON object<br>
+yAxisData:- Data for y-axis<br>
+legend:- legend name<br>
+color:- color value
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+					"title" : "Product Status",
+					"xAxisData" : ["1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"],
+					"xAxisLabel" : "Years",
+					"yAxisLabel" : "sssssss",
+					"yDataObj" : [
+									{
+										"yAxisData" : [330,450,320,250,270,140,190,300,370,330,450],
+										"legend" : "Complete",
+										"color" : "#90e0dc"
+									},
+									{
+										"yAxisData" : [230,432,267,272,188,299,388,255,299,466,133],
+										"legend" : "Total",
+										"color" : "#2ab298"
+									},
+									{
+										"yAxisData" : [344,234,321,123,432,123,322,266,166,211,356],
+										"legend" : "Approved",
+										"color" : "#d9d66d"
+									},
+									{
+										"yAxisData" : [453,234,378,212,367,234,321,378,211,111,324],
+										"legend" : "Active",
+										"color" : "#e56969"
+									}
+								]
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+<div class="chartDetails LineChartWithReverseYAxis">
+<h2>Line Chart with Reverse Y-Axis :</h2>
+<p><strong>Introduction:</strong><br>
+
+This is a simple Line chart that has Reverse Y Axis
+
+
+</p>
+ <h3><strong>Steps of making Three D Pie Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+dountData:- dount data array<br>
+
+dountKey:- dount key array<br>
+
+colorArray:- dount color array<br>
+
+unit:- label unit<br>
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				dountData : [231,123,184,155,55],
+				dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+				colorArray : ['pink','#95d7bb','#fcb322','#e67a77','#aec785'],
+				unit : "%"
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails performanceChart">
+<h2>Performance chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+Performance chart represent performance  of data(for eg, performance of each class  according to to subject). 
+
+
+</p>
+ <h3><strong>Steps of making Performance Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:- Title for chart<br>
+
+xLabel:- Label represent x-axis<br>
+
+yLabel:- Label represent y-axis<br>
+
+legendArray:- Array for represent Legends<br>
+
+legendColor:- color for Legends<br>
+
+differentActivity:- activities represent x-axis<br>	
+
+maxValue:- maximum value  <br>
+minValue:- minimum value <br>
+LineColor:- color of line <br>
+data:-Array of JSON object represent data <br>
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var performanceChartData =  
+			{
+			 </p>
+             <p class="padding-lg">
+				"title" : "Class Performence",
+		  "yLabel" : "subject(class vise)",
+          "xLabel" : "activity",
+		  "legendArray":["legend1","legend2","legend3"],
+		  "legendColor":["cyan","#f7f7f7","yellow"],
+		  "data": [
+			{
+			  "class_name": "7th-B Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData":[45,34,67,34,56,20],
+			  "xDataColor":["#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7","#f7f7f7"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#f7f7f7",
+			  "color-recall": "#f7f7f7",
+			  "color-understanding": "#f7f7f7"
+			},
+			{
+			  "class_name": "7th-A Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [34,56,43,23,43,45],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			},
+			{
+			  "class_name": "6th-A Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [54,63,36,23,25,49],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			},
+			{
+			  "class_name": "6th-B Maths",
+			  "class_url": "http://example.com",
+			  "activity": 12,
+			  "recall": 24,
+			  "understanding": 36,
+			  "xData" : [54,23,"fsy",43,35,39],
+			  "xDataColor" : ["#fcb322","#fcb322","#fcb322","#fcb322","#fcb322","#fcb322"],
+			  "toolTipActivities":["Good","Very Good","Brilient","Good","Very Good","Brilient"],
+			  "tip-activity": "Lorem Ipsum activity",
+			  "tip-recall": "Lorem Ipsum recall",
+			  "tip-understanding": "Lorem Ipsum understanding",
+			  "color-activity": "#fcb322",
+			  "color-recall": "#fcb322",
+			  "color-understanding": "#fcb322"
+			}
+		  ],
+		  "differentActivity" : ["activity","recall","understanding","aaaaa","bbbb","cccc"],
+		  "maxValue" : 67,
+		  "minValue" : 20,
+          "lineColor" : "gray"	
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+<div class="chartDetails threeDDountChartWithLegend">
+<h2>Three D Donut Chart With Legend :</h2>
+<p><strong>Introduction:</strong><br>
+
+It is a type of graph in which a donut is divided into sectors, and each sector represents a some fraction of the whole. Here, donut is shown in 3D.
+
+
+</p>
+ <h3><strong>Steps of making Three D Donut Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+dountData:- dount data array<br>
+
+dountKey:- dount key array<br>
+
+colorArray:- dount color array<br>
+
+unit:- label unit<br>
+
+factor:- represent data   
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				{
+			dountData : [231,123,184,155,55],
+			dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+		    colorArray : ['#a7a7a7','#95d7bb','#fcb322','#e67a77','#aec785'],
+			unit : "%",
+			factor :"Students"
+			}
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+
+<div class="chartDetails treeMapChart">
+<h2>Tree Map:</h2>
+<p><strong>Introduction:</strong><br>
+
+This chart represent herarical structure of data 
+
+</p>
+ <h3><strong>Steps of making Tree Map:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+children:- Array of JSON with name,Size and Id<br>
+range:- color range<br>
+unit:- represent unit for data<br>    
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var treeData =  {
+    </p>
+             <p class="padding-lg">
+				factor : "Asset Value",
+				unit : "%",
+				range : [-40,40],
+				name: "tree",
+				children:[
+					{ name: "Portfolio 1", size: 45, portfolioId:"Portfolio1"},
+					{ name: "Portfolio 2", size: 40, portfolioId:"Portfolio2"},
+					{ name: "PortFolio 3", size: 35, portfolioId:"Portfolio3"},
+					{ name: "Portfolio 4", size: 30, portfolioId:"Portfolio4"},
+					{ name: "Portfolio 5", size: 25, portfolioId:"Portfolio5"},
+					{ name: "Portfolio 6", size: 20, portfolioId:"Portfolio6"}
+
+				]
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+
+<div class="chartDetails activeAreaChart">
+<h2> Active Area Chart :</h2>
+<p><strong>Introduction:</strong><br>
+
+Active Area chart is combination of Area chart and Line chart. This chart shows the total sale of product according to years.
+
+
+</p>
+ <h3><strong>Steps of making Active Area Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+yAxisData:- y axis data<br>
+xAxisData:- X axis data<br>
+areaColor:- Color of shaded area<br>
+lineStrokeColor:- Color of Line<br>
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+  title : "Product Sale",<br>
+
+						yAxisLabel : "Sale",<br>
+
+						yAxisData: [100,200,800,600,700,400,500],<br>
+
+						xAxisLabel :"Years",<br>
+
+						xAxisData :["2008","2009","2010","2011","2012","2013","2014"],<br>
+
+						lineStrokeColor : "#0e3ab2",<br>
+						
+						areaColor : "#4866ba"
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+
+<div class="chartDetails smoothLineChart">
+<h2>Smooth Line Chart:</h2>
+<p><strong>Introduction:</strong><br>
+
+A Smooth Line Chart is a advance Line Chart to show data with the partition on average value.The larger data values from average value show different color then Lowest values 
+
+
+</p>
+ <h3><strong>Steps of making Smooth Line Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+	yAxisData :- Data for Y Axis <br>
+	xAxisData :- Data for X Axis<br>
+	lineColor :- Give two different color for line <br> 
+	circleBoundaryColor :- Boundary color for circle <br>
+	average :- Average value of data for partition <br>
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+  title : "Product Sale",<br>
+
+						yAxisLabel :"Sale",<br>
+
+						yAxisData: [10,60,32,20,44,70,50,20,70,10,25,30,28,33,65,77,50,58,40,20,15],<br>
+
+						xAxisLabel :"Years",<br>
+
+						xAxisData :["1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010"],<br>
+
+						lineColor : ["#2c539e","#7d011d"],<br>
+						
+						circleBoundaryColor : "white",<br>
+						
+						average : 40
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+<div class="chartDetails threeDPieChartWithLegend">
+<h2>Three D Pie Chart With Legend :</h2>
+<p><strong>Introduction:</strong><br>
+
+It is a type of graph in which a circle/pie is divided into sectors, and each sector represents a some fraction of the whole. Here, pie is shown in 3D.
+
+
+</p>
+ <h3><strong>Steps of making Three D Pie Chart:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+dountData:- dount data array<br>
+
+dountKey:- dount key array<br>
+
+colorArray:- dount color array<br>
+
+unit:- label unit<br>
+			
+
+
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  
+			{
+			 </p>
+             <p class="padding-lg">
+				dountData : [231,123,184,155,55],
+				dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
+				colorArray : ['pink','#95d7bb','#fcb322','#e67a77','#aec785'],
+				unit : "%"
+			 </p>
+<p class="padding-lg">   
+			    }</p>
+            
+ </div>
+
+
+
+ 
+</div>
+
+
+
+<div class="chartDetails newDountChartWithBar">
+<h2>New Donut Chart With Bar :</h2>
+<p><strong>Introduction:</strong><br>
+
+A donut chart displays data as percentage of the whole. Categories are represented by every slice. Donut charts are functionally identical to pie charts. Additionally, the bar chart is also embedded to show data.
+
+
+</p>
+ <h3><strong>Steps of making New Donut Chart with Bar:
+
+
+
+</strong><br><br>
+ 1) Data format to be used: Json Array
+
+
+
+
+</h3>
+ <div class="chartCode">
+  <p class="padding-xs">
+title:-Title for chart<br>
+obj:- Array of JSON Object<br>
+key:- product Name<br>
+color:-color of product<br>
+data:- data of product<br>
+subData:- sub data represent product<br>  
+subDataColor:-color for sub data<br>
+subDataKey:- subData Names<br>
+unit:-unit of data<br>
+</p> 
+
+<p class="padding-sm">eg) </p> 
+
+<p class="padding-md">var data =  {
+    </p>
+             <p class="padding-lg">
+				"title":"Product Distribution",
+				"obj" :[{
+							"key" : "chips",
+							"color" : "#c4a7ff",
+							"data" : 45,
+							"subData" : [56,23,78,43,56]
+						},
+						{
+							"key" : "soft drinks",
+							"color" : "#c799ff",
+							"data" : 42,
+							"subData" : [78,43,23,56,67]
+						},
+						{
+							"key" : "oats",
+							"color" : "#9bc8ff",
+							"data" : 48,
+							"subData" : [45,45,32,67,45]
+						},
+						{
+							"key" : "Product 1",
+							"color" : "#8faeff",
+							"data" : 40,
+							"subData" : [45,78,45,23,56]
+						},
+						{
+							"key" : "Product 2",
+							"color" : "#9999ff",
+							"data" : 50,
+							"subData" : [45,65,23,56,43]
+						},
+						],
+				"subDataColor" : ["#5bc0de","#f0ad4e","#5cb85c","#d9534f","#428bca"],
+				"subDataKey" : ["amazon","snapdeal","flipkart","local banya","big basket"],
+				"unit" : "%"	
+    </p>
+<p class="padding-lg">   
+       }</p>
+            
+ </div>
+
+
+
+ 
+</div>
 </div>
   </div></div></div>
        <div class="col-lg-9 col-md-9 col-sm-12 cssAnimation divPadding" id="chartOuter" ><div class="chartOuter" id="line1"></div></div>
@@ -4986,7 +6116,54 @@ $(".chartDetails").hover(
 
 
 
+<div class="modal fade submit-advice " id="popup" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Seeking a different visualization?</h4>
+        </div>
+        <div class="modal-body">
+         
+         <div class="row" style="padding:10px 10px 0 10px;">
+         <div class="col-sm-5"><H3>Heading text</H3>
+         <div class="list">
+         <ul>
+         <li>Lorem isne den esin</li>
+         <li>Lorem ismen one den esin</li>
+         <li>Lorem ismen dne den esin</li>
+         <li>Lorem ismen done den esin</li>
+         
+         </ul>
+         </div></div>
+         <div class="col-sm-7"><form >
+         <div class="form-group">
+         <input class="form-control" placeholder="Name of your visulization...">
+         </div>
+         
+         <div class="form-group">
+         <input class="form-control" placeholder="Email Address">
+         </div>
+         
+         
+         <div class="form-group">
+        <textarea class="form-control" placeholder="Detailed Description..."></textarea>
+         </div>
+          <div class="form-group text-right">
+   <span class="btn btn-info btn-sm btn-file">
+    Browse <input type="file">
+</span>
 
+  <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Submit</button>
+         </div>
+   
+         </form></div>
+         </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
     
     
 </body>
