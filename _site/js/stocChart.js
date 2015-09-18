@@ -25933,16 +25933,48 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										  .style("cursor","pointer")
 										  .style("border","solid 2px")
 										  .call(init)
+			
+			function init(){
+            /*var mapProp = {
+                center:new google.maps.LatLng(31.508742,-0.120850),
+                zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              map=new google.maps.Map(document.getElementById("googleMap"), mapProp);*/
+              /*myCenter=new google.maps.LatLng(31.508742,-0.120850);*/
+               geocoder = new google.maps.Geocoder();
+           /*   if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(success, error);
+                } else {
+                }
+				
+				*/
+
+//               function success(position) 
+				{
+                  myCenter=new google.maps.LatLng(31.508742,-0.120850);
+                  var mapProp = {
+                    center:new google.maps.LatLng(31.508742,-0.120850),
+                    zoom:12,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);  
+                }
+
+        }
+			
+			
+			
+			
 	
-	
-			function init()
+		/*	function init()
 			{
 				  geocoder = new google.maps.Geocoder();
               if (navigator.geolocation) {
                   navigator.geolocation.getCurrentPosition(success, error);
                 } else {
                 }
-
+			
                 function success(position) {
                   myCenter=new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
                   var mapProp = {
@@ -25962,7 +25994,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
               map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
                 }
 			}
-		
+		*/
 				var map;
 		var myCenter=new google.maps.LatLng(22.546329, 78.640733);
 		var markers=[];	
