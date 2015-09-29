@@ -3377,11 +3377,11 @@ $("#twoDStackedBarChart").click(function(){
      title : "Foreign Visitors Rate",
      barData: [{
       "yTick": "USA",
-      "yData": 151,
+      "yData": 80,
       "color": "#FF0F00"
       }, {
       "yTick": "China",
-      "yData": 198,
+      "yData": 148,
       "color": "#FF6600"
       }, {
       "yTick": "Japan",
@@ -3389,23 +3389,23 @@ $("#twoDStackedBarChart").click(function(){
       "color": "#FF9E01"
       }, {
       "yTick": "Germany",
-      "yData": 262,
+      "yData": 300,
       "color": "#FCD202"
       }, {
       "yTick": "pakistan",
-      "yData": 302,
+      "yData": 380,
       "color": "#F8FF01"
       }, {
       "yTick": "France",
-      "yData": 340,
+      "yData": 460,
       "color": "#B0DE09"
       }, {
       "yTick": "India",
-      "yData": 388,
+      "yData": 550,
       "color": "#04D215"
       }, {
       "yTick": "Spain",
-      "yData": 425,
+      "yData": 680,
       "color": "#0D8ECF"
       }],  
     commonColor : "#ffffff", 
@@ -3421,6 +3421,94 @@ $("#twoDStackedBarChart").click(function(){
  var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
   var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
   stocChart55.threeDShutterStackAnalysis(data);
+ });
+	
+$("#racingVisualization").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+	  var data =
+		{
+			
+				"xAxisData":["0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888",
+				"0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888",
+				"0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888"],
+				"lineStrokeWidth" : 1,
+				"largeValueLines" :[
+										{				
+											"name" : "Angel",
+											"color": "#de1a19",
+											"data" : [123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723]
+										},
+										{
+											"name" : "Venture",
+											"color": "#b6ca16",
+											"data" : [850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729]			
+										}
+									],
+				
+				"yAxisData":
+				[
+					{				
+						"name" : "Angel",
+						"color": "#249f19",
+						"data" : [13,13,13,13,13,13,13,13,13,13,13,13,12,13,13,13,13,12,11,13,13,13,12,11,13,13,13,12,13,13]
+					},
+					{
+						"name" : "Venture",
+						"color": "#d08c0c",
+						"data" : [12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29]			
+					},
+					{
+						"name" : "Micro",
+						"color": "#acc8cd",
+						"data" : [33,32,33,33,34,34,34,34,34,35,35,35,35,35,35,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38]			
+					},
+					{
+						"name" : "Micro",
+						"color": "#c932c0",
+						"data" : [53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30]			
+					},
+					{
+						"name" : "Micro",
+						"color": "#8f7031",
+						"data" : [43,43,43,43,44,43,43,45,45,40,43,43,42,43,40,43,43,42,43,40,43,43,42,43,40,43,43,42,43,40]			
+					},
+					{
+						"name" : "Micro",
+						"color": "#156d12",
+						"data" : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]			
+					}
+					
+				]
+				
+		}
+		var dataLeft = 
+		{
+			"rectColorArray" : ["#de1a19","#b6ca16","#249f19","#d08c0c","#acc8cd","#c932c0","#8f7031","#156d12"],
+			"units" : ["mm","mm","rpm","m","km/hr","km/hr","",""],
+			"textArray" : ["GPS_LAT","GPS_LON","RPM","ODOMT","GPS_SPEED","SPEED","GEAR_SPEED","TH20"],
+			"rectBackColor": "#757575"
+		}
+		
+		
+		var positionArray=[{"lat": 50.8284, "lon":4.71969},{"lat": 50.828, "lon":4.7217},{"lat": 50.828, "lon":4.72407}
+			,{"lat": 50.828, "lon":4.72407},{"lat": 50.828, "lon":4.7252},{"lat": 50.826, "lon":4.72938}
+			,{"lat": 50.8286, "lon":4.71969},{"lat": 50.8286 , "lon":4.71952},{"lat": 50.8286, "lon":4.71938},
+			{"lat": 50.8284, "lon":4.71979},{"lat": 50.8284, "lon":4.72969},{"lat": 50.8284, "lon":4.72979},
+			{"lat": 50.8284, "lon":4.73969},{"lat": 50.8284, "lon":4.73979},{"lat": 50.8284, "lon":4.72379},
+			{"lat": 50.8284, "lon":4.71969},{"lat": 50.828, "lon":4.7217},{"lat": 50.828, "lon":4.72407}
+			,{"lat": 50.828, "lon":4.72407},{"lat": 50.828, "lon":4.7252},{"lat": 50.826, "lon":4.72938}
+			,{"lat": 50.8286, "lon":4.71969},{"lat": 50.8286 , "lon":4.71952},{"lat": 50.8286, "lon":4.71938},
+			{"lat": 50.8284, "lon":4.71979},{"lat": 50.8284, "lon":4.72969},{"lat": 50.8284, "lon":4.72979},
+			{"lat": 50.8284, "lon":4.73969},{"lat": 50.8284, "lon":4.73979},{"lat": 50.8284, "lon":4.72379}
+			
+			
+			];
+			
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.racingVisualizationAnalysis(data,dataLeft,positionArray);
  });
 	
 	$(document).on('click','#chartResetButton',function(){
