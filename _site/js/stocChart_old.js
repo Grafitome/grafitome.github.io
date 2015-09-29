@@ -11,7 +11,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		$.fn.stocCharts = function (styleConfg) {
         var WM = {
             attachWaterMark: function (id) {
-      //         selectorElement.parent().css('background-image', 'url(http://www.stocinn.com/stoccharts/img/stoc-chart-logo.png)');
+				selectorElement.parent().css('background-image', 'url(http://www.stocinn.com/stoccharts/img/stoc-chart-logo.png)');
                 selectorElement.parent().css('background-repeat', ' no-repeat');
                selectorElement.parent().css('background-position', 'bottom right');
             }
@@ -188,7 +188,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				}			 
 		
 		
-		var legendController={
+	var legendController={
      getLegendPositionArray:function(legendArray,width,height){
    
     var pixcelPerChar=6,widthLimit=width*0.7,textSeparator=10,nextLineSeparator=(height*0.05),endPos=0,legendPositionArray=[],legendWidth=10,nextLineCounter=0,yPos=0;
@@ -849,7 +849,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                     return height;
                 })
                     .style("stroke", color)
-					.style("stroke-width",.1)
+					.style("stroke-width",.3)
                     .attr("transform", "translate(" + left + "," + top + ")");
             }
 
@@ -3489,10 +3489,10 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var marginCrickedAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.2,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.1,yScalePaddingLeft:width*0.08};
 				
 				var scaleWidth=width-marginCrickedAnalChart.left-marginCrickedAnalChart.right;
-				var yScale(0)=height-marginCrickedAnalChart.top-marginCrickedAnalChart.bottom;
+				var scaleHeight=height-marginCrickedAnalChart.top-marginCrickedAnalChart.bottom;
 				
 				//var chartWidth=(scaleWidth)-marginCrickedAnalChart.chartSeparator;
-				var overAxisStartPos=yScale(0)+marginCrickedAnalChart.chartSeparator;
+				var overAxisStartPos=scaleHeight+marginCrickedAnalChart.chartSeparator;
 				var heightOverAxis=(marginCrickedAnalChart.bottom/3);
 				
 				var wicketAxisStartPos=overAxisStartPos+heightOverAxis +marginCrickedAnalChart.chartSeparator;
@@ -3558,7 +3558,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				xScale.domain([0,maxX]);
 				
 				yScale =d3.scale.linear()
-                    .range([(yScale(0)),5.5]);
+                    .range([(scaleHeight),5.5]);
 				
 				var minYScale=d3.min(data,function(d){
 								return d["y"];
@@ -3599,7 +3599,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 			/*	GridLineLImage.append("image")
 							  .attr('x',-marginCrickedAnalChart.yScalePaddingLeft)
 							  .attr('width',scaleWidth+marginCrickedAnalChart.yScalePaddingLeft+15)
-						      .attr('height',yScale(0))
+						      .attr('height',scaleHeight)
 						      .attr("xlink:href",'graph-base.png');*/
 			
 				var titalGroupOfTeam = svgElement.append("g")
@@ -3831,7 +3831,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				         .attr("x",0)
 						 .attr("y",0)
 						 .style("stroke",'none')
-						 .attr("height",yScale(0))
+						 .attr("height",scaleHeight)
 						 .attr("width",marginCrickedAnalChart.yScalePaddingLeft)
 						 .attr("xlink:href",'left-side-pattern.png');*/
 			var gradientYAxis = yAxisElem.append("svg:defs")
@@ -3862,7 +3862,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 						 .attr("x",0)
 						 .attr("y",0)
 						 .style("stroke",'none')
-						 .attr("height",yScale(0))
+						 .attr("height",scaleHeight)
 						 .attr("width",marginCrickedAnalChart.yScalePaddingLeft)
 						 .attr("fill","url(#gradientYAxis)");
 				
@@ -3873,7 +3873,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                     .attr("transform", "translate(" + (-marginCrickedAnalChart.yScalePaddingLeft*2) + "," + 2*marginCrickedAnalChart.bottom + ")");
 				yAxisLabel.append("text")
 						  .attr("x",(0))
-						  .attr("y",(yScale(0)/2.25))
+						  .attr("y",(scaleHeight/2.25))
 						  .text(yLabel)
 						  .style("font-size",'20')
 						  .attr("transform","rotate(-90)")
@@ -3893,7 +3893,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
                     return 0;
                 })
                     .attr("y2", function (d) {
-                    return yScale(0);
+                    return scaleHeight;
                 })
                     .attr("x1", function (d) {
                     return 0;
@@ -3935,14 +3935,14 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 								.attr("x",0)
 								.attr("y",0)
 								.style("stroke",'none')
-								.attr("height",yScale(0))
+								.attr("height",scaleHeight)
 								.attr("width",scaleWidth+15)
 								.attr("fill","url(#gradientBar)");
 			/*	barGrouping.append("image")
 							.attr("x",-20)
 								.attr("y",0)
 								.style("stroke",'none')
-								.attr("height",yScale(0))
+								.attr("height",scaleHeight)
 								.attr("width",scaleWidth+55)
 								.attr("xlink:href",'graph-base.png');*/
 					
@@ -3972,7 +3972,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 
         };
 				
-				gridManager.init(svgElement, yScale(0), scaleWidth, marginCrickedAnalChart.xScalePaddingLeft, marginCrickedAnalChart.xScalePaddingTop,"#353b37");
+				gridManager.init(svgElement, scaleHeight, scaleWidth, marginCrickedAnalChart.xScalePaddingLeft, marginCrickedAnalChart.xScalePaddingTop,"#353b37");
 				
 				//draw Legend of powerPlay
 				var legendGroup = svgElement.append("g")
@@ -4108,16 +4108,16 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var leftMargin = marginController.leftMarginController(yAxisData);
 				var bulletAnalChart={left:leftMargin,right:leftMargin,bottom:45,top:height*0.1,chartSeparator:10,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-bulletAnalChart.left-bulletAnalChart.right;
-				var yScale(0)=height-bulletAnalChart.top-bulletAnalChart.bottom;
+				var scaleHeight=height-bulletAnalChart.top-bulletAnalChart.bottom;
 								
-				var barHeight = yScale(0)/data1.length*.5;	
+				var barHeight = scaleHeight/data1.length*.5;	
 				var yAxisTimeIndex = [];
 				for(var counter = 0;counter<yAxisData.length ;counter++)
 				{
 					yAxisTimeIndex[counter] = counter;
 				}
 				
-				gridManager.init(svgElement, yScale(0), scaleWidth, bulletAnalChart.left, bulletAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, bulletAnalChart.left, bulletAnalChart.top,textStyleConfg.gridLineColor);
 				
 				var bulletChartMainGroup = svgElement.append("g")
 								   .attr('class','main-group')
@@ -4164,7 +4164,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + (yScale(0)) + ")")
+										.attr("transform", "translate("+0+"," + (scaleHeight) + ")")
 										.call(leftXAxis);
 							 leftAxisRef.selectAll('text')
 										 .style('font-size',13)
@@ -4183,7 +4183,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + (yScale(0)) + ")")
+										.attr("transform", "translate("+0+"," + (scaleHeight) + ")")
 										.call(rightXAxis);
 							 rightAxisRef.selectAll('text')
 										 .style('font-size',13)
@@ -4192,7 +4192,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 
 				var leftYScale = d3.scale.linear()
 								.domain([0,yAxisData.length-1])
-								.range([yScale(0)-(barHeight*.5),barHeight*.5]);
+								.range([scaleHeight-(barHeight*.5),barHeight*.5]);
 				var leftYAxis = d3.svg.axis()
 								.scale(leftYScale)
 								.orient("left")
@@ -4208,7 +4208,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 								.text(function(d,i){return yAxisData[d]});		
 				var rightYScale = d3.scale.linear()
 								.domain([0,yAxisData.length-1])
-								.range([yScale(0)-(barHeight*.5),barHeight*.5]);
+								.range([scaleHeight-(barHeight*.5),barHeight*.5]);
 				var rightYAxis = d3.svg.axis()
 								.scale(rightYScale)
 								.orient("left")
@@ -4287,7 +4287,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 				var pixcelPerChar=6;
 				var yTotalPixcel=yLabel.length*pixcelPerChar;
-				var yLabelTop=((yScale(0)/2)+yTotalPixcel/2);
+				var yLabelTop=((scaleHeight/2)+yTotalPixcel/2);
 				var yLabelLeft=-(bulletAnalChart.left) + 15;
 				var yLabelLeft1=scaleWidth + (bulletAnalChart.left)*.7;
 				
@@ -4299,7 +4299,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var xLabelLeft1=scaleWidth/4-xLabelLength1/2;
 				var xLabelLength2=xAxisLabelData2.length*pixcelPerChar;
 				var xLabelLeft2=(scaleWidth*(3/4))-xLabelLength2/2;
-				var xLabelTop= yScale(0) + (bulletAnalChart.bottom-5);
+				var xLabelTop= scaleHeight + (bulletAnalChart.bottom-5);
 				axisLabelController.appendLabel(xAxisLabelData1,xLabelLeft1,xLabelTop,0,bulletChartMainGroup,textStyleConfg.xLabelColor,600);
 				axisLabelController.appendLabel(xAxisLabelData2,xLabelLeft2,xLabelTop,0,bulletChartMainGroup,textStyleConfg.xLabelColor,600);
 				
@@ -4388,7 +4388,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				var marginCrickedAnalChart={left:leftMargin,right:width*0.05,bottom:height*0.05,top:height*0.07,chartSeparator:5};
 				
 				var scaleWidth=width-marginCrickedAnalChart.left-marginCrickedAnalChart.right;
-				var yScale(0)=height-marginCrickedAnalChart.top-marginCrickedAnalChart.bottom;
+				var scaleHeight=height-marginCrickedAnalChart.top-marginCrickedAnalChart.bottom;
  	
 			    var barWidth=(scaleWidth/yData.length)*0.5;
 				//make Array of data
@@ -4411,7 +4411,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				xScale.domain([0,maxX]);
 				
 				yScale =d3.scale.linear()
-                    .range([(yScale(0)),0]);
+                    .range([(scaleHeight),0]);
 
 				minYScale = minMaxController.getMin(yData);
 				maxYScale = minMaxController.getMax(yData);
@@ -4432,7 +4432,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				//yAxis label here		
 				var pixcelPerChar = 7;
 				var totalYLabelPixcel=yIndicationLabel.toString().length*pixcelPerChar;			
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-marginCrickedAnalChart.left + 15);
 				axisLabelController.appendLabel(yIndicationLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,svgElement,textStyleConfg.yLabelColor,600);			   													   					
 					
@@ -4446,7 +4446,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 				
 				var xAxisElm=svgElement.append("g")
 				.attr('class', 'x axis')
-                .attr("transform", "translate(" + (0) + "," + (yScale(0)) + ")");
+                .attr("transform", "translate(" + (0) + "," + (scaleHeight) + ")");
 				
 				var yAxisElm=svgElement.append("g")
 				.attr('class', 'y axis')
@@ -5648,8 +5648,6 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 										  .y(function(d) { return d.y; })
 										 .interpolate("linear");
 				
-				 
-				 
 				var svgContainer = svgElement
 											.append("g")
 											.attr("transform", "translate(" + (width*.1) + "," + (-height*.05) + ")");
@@ -5709,9 +5707,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 												return colorArray[k]
 												//return color20(i)
 											});
-					
-					
-						
+											
 					var lineGraph = svgContainer.append("path")
 											.attr("d", lineFunction(lowerData2))
 											.style("opacity", 0.0)
@@ -6646,7 +6642,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		  var margin = {top: height*.1, right: width*.05, bottom:45, left: leftMargin};
 		 
 		  var scaleWidth = width - margin.left - margin.right;
-		  var yScale(0) = height - margin.top - margin.bottom;
+		  var scaleHeight = height - margin.top - margin.bottom;
 		  var divSelection = d3.select("#"+divId);
 		  var i=0,maxGDP,minGDP,lineIndex,radius,innerRadius,selectedYear=data.xAxisData[0];
 		  var grad = Math.PI/180;
@@ -6668,7 +6664,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		
 		var scaleOfCountry = d3.scale.linear()
 							.domain([minGDP,maxGDP])
-							.range([yScale(0),0]); 
+							.range([scaleHeight,0]); 
 
 		  var divSelection = d3.select("#"+divId);
 		  var checkSVGCicked =0;
@@ -6677,7 +6673,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		
 		
 		//show grid view
-		gridManager.init(svgElement, yScale(0), scaleWidth, margin.left, margin.top,textStyleConfg.gridLineColor);
+		gridManager.init(svgElement, scaleHeight, scaleWidth, margin.left, margin.top,textStyleConfg.gridLineColor);
 		
 		
 		var combinationalGroup = svgSelection.append("g")
@@ -6710,14 +6706,14 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		//xAxis label here
 		var pixcelPerChar = 6;
 		var totalXLabelPixcel=data.xAxisLabel.toString().length*pixcelPerChar;
-		var xIndicationLabelTop=yScale(0)+(margin.bottom - 5);
+		var xIndicationLabelTop=scaleHeight+(margin.bottom - 5);
 		var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;    
 		axisLabelController.appendLabel(data.xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,combinationalGroup,textStyleConfg.xLabelColor,600);
 
 		//yAxis label here
 		
 		var totalYLabelPixcel=data.yLabel.toString().length*pixcelPerChar;
-		var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;        
+		var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;        
 		var yIndicationLabelLeft=(-margin.left + 15);
 		axisLabelController.appendLabel(data.yLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,combinationalGroup,textStyleConfg.yLabelColor,600);
 		
@@ -6777,7 +6773,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 							.attr("class", "x axis")
 							.attr('fill','none')
 						//	.attr('font-size',textSizeOfAxis)
-							.attr("transform", "translate("+0+"," + (yScale(0)) + ")")
+							.attr("transform", "translate("+0+"," + (scaleHeight) + ")")
 							.call(xAxis);					
 			
 		xAxisTextRef.selectAll('text')
@@ -7594,10 +7590,10 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				var topMarginOfSvg = $(selectorElement).offset().top;
 				
 				var scaleWidth=width-variationAnalChart.left-variationAnalChart.right;
-				var yScale(0)=height-variationAnalChart.top-variationAnalChart.bottom;
+				var scaleHeight=height-variationAnalChart.top-variationAnalChart.bottom;
 				var fontSize,rectangleSize,rectangleTextSize,titleFontSize,gridFactor;
 				
-				rectangleSize = yScale(0)/(2*yAxisData.length)
+				rectangleSize = scaleHeight/(2*yAxisData.length)
 				
 				if(width<501)
 				{
@@ -7678,12 +7674,12 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 
         };
 				
-		  gridManager.init(variationMainGroup, yScale(0), scaleWidth, 0, 0,textStyleConfg.gridLineColor);		
+		  gridManager.init(variationMainGroup, scaleHeight, scaleWidth, 0, 0,textStyleConfg.gridLineColor);		
 				
 				
 				var yScale = d3.scale.linear()
 							   .domain([0,yAxisData.length-1])
-                               .range([rectangleSize*.5,yScale(0)-(rectangleSize*.5)]);
+                               .range([rectangleSize*.5,scaleHeight-(rectangleSize*.5)]);
 	            
 				var yAxis = d3.svg.axis()
                                   .scale(yScale)
@@ -7702,7 +7698,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 		    //y axis label here
 				var pixcelPerChar = 7;
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-variationAnalChart.left + 15)
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,variationMainGroup,textStyleConfg.yLabelColor,600);
 				   
@@ -7729,7 +7725,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
                                   .orient("bottom");						  
                 var xAxisGroup = variationMainGroup.append("g")
 									.attr("class","x axis")
-									.attr("transform","translate("+0+","+(yScale(0))+")")
+									.attr("transform","translate("+0+","+(scaleHeight)+")")
 						         	 
 							         .attr('font-size',fontSize)
 									 .attr('fint-family',fontFamily)
@@ -7740,7 +7736,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 			
 		//xAxis label here
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(variationAnalChart.bottom -5);
+				var xIndicationLabelTop=scaleHeight+(variationAnalChart.bottom -5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,variationMainGroup,textStyleConfg.xLabelColor,600);
 				
@@ -8405,7 +8401,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				var grad = Math.PI/180;
 				var margin={left:width*0.02,right:width*0.02,bottom:height*0.04,top:height*0.04,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-margin.left-margin.right;
-				var yScale(0)=height-margin.top-margin.bottom;
+				var scaleHeight=height-margin.top-margin.bottom;
 				
 				var largestStringLngth=0;
 				for(var counter =0 ;counter<dountKey.length;counter++)
@@ -8427,15 +8423,15 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 										   
 				var dountGroup = 	mainGroup.append("g")
 											.attr('class','dountGroup')
-											.attr("transform", "translate(" + (leftPositionOfDount) + "," + (yScale(0)/2) + ")");
+											.attr("transform", "translate(" + (leftPositionOfDount) + "," + (scaleHeight/2) + ")");
 											
-				var outerRadius =  (leftPositionOfDount)<(yScale(0)/2)?(leftPositionOfDount):(yScale(0)/2);
+				var outerRadius =  (leftPositionOfDount)<(scaleHeight/2)?(leftPositionOfDount):(scaleHeight/2);
 				outerRadius = outerRadius*.9
 				var innerRadius = outerRadius * .6;	
 				
 				var rectWidth = scaleWidth*.45;
 				var rectHeight = ((2*outerRadius)/subDataKey.length)*.5;
-				var topPosition = (yScale(0)/2)-(outerRadius);
+				var topPosition = (scaleHeight/2)-(outerRadius);
 				var fixBarGroup = 	mainGroup.append("g")
 											.attr('class','fixBarGroup')
 											.attr("transform", "translate(" + (scaleWidth*.55) + "," + (topPosition) + ")");
@@ -9054,7 +9050,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				
 				var dountAnalChart={left:width*0.05,right:width*0.05,bottom:height*0.05,top:height*0.05,chartSeparator:10,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-dountAnalChart.left-dountAnalChart.right;
-				var yScale(0)=height-dountAnalChart.top-dountAnalChart.bottom;			
+				var scaleHeight=height-dountAnalChart.top-dountAnalChart.bottom;			
 				var group,arcs;
 				var totalClasses = data.data.length;
 				var dountCenter = 1;
@@ -9063,7 +9059,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 				var legendSize = scaleWidth * 0.015;
 				var legendFontSize = legendSize*1.3;
 				var arc12;
-				radius = (((scaleWidth*.8)/Math.round(totalClasses/2))/2)<(yScale(0)/2)?(((scaleWidth*.8)/Math.round(totalClasses/2))/2):(yScale(0)/2);
+				radius = (((scaleWidth*.8)/Math.round(totalClasses/2))/2)<(scaleHeight/2)?(((scaleWidth*.8)/Math.round(totalClasses/2))/2):(scaleHeight/2);
 				radius = radius*.4;
 				innerRadius = radius * .75;
 							
@@ -9089,16 +9085,16 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 						group = svgElement.append('g')
 							  .attr('id','dount-main-group')
 							  .attr('class','legend')
-							  .attr("transform", "translate(" + ((scaleWidth*.8)/2) + "," + (yScale(0)*.5) + ")");
+							  .attr("transform", "translate(" + ((scaleWidth*.8)/2) + "," + (scaleHeight*.5) + ")");
 							
-							radius = ((scaleWidth*.8))<(yScale(0))?(scaleWidth*.8):(yScale(0));
+							radius = ((scaleWidth*.8))<(scaleHeight)?(scaleWidth*.8):(scaleHeight);
 							radius = radius*.4;
 							innerRadius = radius * .75;
 										
 					}
 					else if(counter<Math.round(totalClasses/2))
 					{
-						setHorizontalDistance = (yScale(0)*.3);
+						setHorizontalDistance = (scaleHeight*.3);
 						group = svgElement.append('g')
 							  .attr('id','dount-main-group'+counter)
 							  .attr('class','legend')
@@ -9193,7 +9189,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 	//legend here		
 	var legendGroup = svgElement.append('g')
 					   .attr('class','legend')
-					   .attr("transform","translate(" +scaleWidth*.8 +","+yScale(0)*.3+")");
+					   .attr("transform","translate(" +scaleWidth*.8 +","+scaleHeight*.3+")");
 			
 	
     var recrRef = legendGroup.selectAll('rect')
@@ -9203,7 +9199,7 @@ toolTipManager.showToolTip(event,"",(data.xAxisData[keyName]), false,yHeadingVal
 			   .attr('width',legendSize)
 			   .attr('height',legendSize)
 			   .attr('x',function(){return -scaleWidth*.78})
-			   .attr('y',function(d,i){return yScale(0)})
+			   .attr('y',function(d,i){return scaleHeight})
 			   .attr('fill',function(d,i){return data.legendColor[i]});
 			   
 		recrRef.transition().duration(1500)
@@ -10199,11 +10195,12 @@ var threeDBarChart = {
 				var xAxisLabel = data.xAxisLabel;
 				var title = data.title;
 				var barColor = data.barColor;
+				var toolTipUnit = data.toolTipUnit;
 				
 				var leftMargin = marginController.leftMarginController(yAxisData);
 				var compareAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
-				var yScale(0)=height-compareAnalChart.top-compareAnalChart.bottom;
+				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 				var leftMarginOfSvg = $(selectorElement).offset().left;	
 				var barWidth =  (scaleWidth/(1.8*xAxisData.length));
 				var upperPath;
@@ -10234,17 +10231,17 @@ var threeDBarChart = {
 				var pixcelPerChar = 7;
 				// YAxis Label here
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-compareAnalChart.left +13);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(compareAnalChart.bottom - 5);
+				var xIndicationLabelTop=scaleHeight+(compareAnalChart.bottom - 5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);
 		
-				var horizontalLine = parseInt(yScale(0)/barWidth);
+				var horizontalLine = parseInt(scaleHeight/barWidth);
 				
 				var xScale = d3.scale.linear()
                                      .domain([0,xAxisData.length-1])
@@ -10255,7 +10252,7 @@ var threeDBarChart = {
 				
 				var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 		//x axis
 				var largestStringLngth=0;
@@ -10277,7 +10274,7 @@ var threeDBarChart = {
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + yScale(0) + ")")
+										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis);
 							 xAxisTextRef.selectAll('text')
 							             .text(function(d){return xAxisData[d];});
@@ -10307,7 +10304,7 @@ var threeDBarChart = {
 				
 				var temp = d3.svg.line()
 							.x(function(d,i) {  return d; })
-							.y(function(d,i) {return yScale(0); })
+							.y(function(d,i) {return scaleHeight; })
 				
 				// grid line here
 				var pathRef;
@@ -10340,11 +10337,11 @@ var threeDBarChart = {
 					
                         return totalLength + "," + totalLength;
                 })
-                    .attr("stroke-dashoffset", totalLength)
-                    .transition()
-                    .duration(1500)
-                    .ease("linear")
-                    .attr("stroke-dashoffset", 0);		 
+				.attr("stroke-dashoffset", totalLength)
+				.transition()
+				.duration(1500)
+				.ease("linear")
+				.attr("stroke-dashoffset", 0);		 
 				}
 				
 				var upperPathColor = ColorLuminance(barColor,-0.11);
@@ -10501,7 +10498,7 @@ var threeDBarChart = {
 					var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":yAxisEstimateVal}
 										  ];
 					
-					toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.95);	
+					toolTipManager.showToolTip(d3.event,"",toolTipUnit+" "+(heading), false,yHeadingValueMap,d3.event.pageY*.95);	
 					
 				})
 				.on("mouseleave",function(){
@@ -11213,10 +11210,10 @@ var threeDBarChart = {
 				
 				var FunnelAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:10,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-FunnelAnalChart.left-FunnelAnalChart.right;
-				var yScale(0)=height-FunnelAnalChart.top-FunnelAnalChart.bottom;
+				var scaleHeight=height-FunnelAnalChart.top-FunnelAnalChart.bottom;
 					
 				
-				var funnelRadius = yScale(0) *.035
+				var funnelRadius = scaleHeight *.035
 				var funnelChartMainGroup = svgElement.append("g")
 								   .attr('class','main-group')
 								   .attr("transform", "translate(" + FunnelAnalChart.left + "," + FunnelAnalChart.top + ")")
@@ -11269,14 +11266,14 @@ var threeDBarChart = {
 	var y1 = 0;
 	var x4;
 	var transitionXData = [centerOfFunnel/2,centerOfFunnel/2,centerOfFunnel/2,centerOfFunnel/2];
-	var transitionYData = [yScale(0)+40,yScale(0)+40,yScale(0)+40,yScale(0)+40];
+	var transitionYData = [scaleHeight+40,scaleHeight+40,scaleHeight+40,scaleHeight+40];
 	
 	for(var i = 0 ; i<funnelData.length; i++)
 	{
 		ProductSum = ProductSum + funnelData[i];
 	}
-	var yScale(0)WithSeparator = (yScale(0)+(funnelData.length*FunnelAnalChart.chartSeparator));
-	var rad = (yScale(0)WithSeparator/(scaleWidthForFunnel/2));
+	var scaleHeightWithSeparator = (scaleHeight+(funnelData.length*FunnelAnalChart.chartSeparator));
+	var rad = (scaleHeightWithSeparator/(scaleWidthForFunnel/2));
 	var degree = Math.atan(rad) * (180 / Math.PI);		
 
 	var angleValue = Math.tan(toRadians(degree));
@@ -11300,11 +11297,11 @@ var threeDBarChart = {
 		var x2;
 		 if(index!=funnelData.length-1)
 		 {
-			x2 = Math.abs(((yScale(0)WithSeparator*heightOfProduct)/angleValue));
+			x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/angleValue));
 		 }
 		 else
 		 {
-			x2 = Math.abs(((yScale(0)WithSeparator*heightOfProduct)/2)/angleValue);
+			x2 = Math.abs(((scaleHeightWithSeparator*heightOfProduct)/2)/angleValue);
 		 }
 		 x4 = (((centerOfFunnel/2)-x1)*2)+x1;
 		 
@@ -11317,13 +11314,13 @@ var threeDBarChart = {
 		 funnelPathYCoordinate.push(y1);
 		 if(index!=funnelData.length-1)
 		 {
-			funnelPathYCoordinate.push(y1+(yScale(0)*heightOfProduct));
-			funnelPathYCoordinate.push(y1+(yScale(0)*heightOfProduct));
+			funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
+			funnelPathYCoordinate.push(y1+(scaleHeight*heightOfProduct));
 		 }
 		 else
 		 {
-			funnelPathYCoordinate.push(y1+((yScale(0)*heightOfProduct)/2));
-			funnelPathYCoordinate.push(y1+((yScale(0)*heightOfProduct)/2));
+			funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
+			funnelPathYCoordinate.push(y1+((scaleHeight*heightOfProduct)/2));
 		 }
 		 funnelPathYCoordinate.push(y1);
 		 
@@ -11500,7 +11497,7 @@ var threeDBarChart = {
 							.attr('x',rectXPosition)
 							.attr('y',rectYPosition)
 							.attr('width',rectWidth)
-							.attr('height',((yScale(0)WithSeparator*heightOfProduct)/2))
+							.attr('height',((scaleHeightWithSeparator*heightOfProduct)/2))
 							.attr('fill',colorArray[index-1])
 	
 			//set font here
@@ -11534,7 +11531,7 @@ var drawGauageGraph={
 		var margin={left:width*0.002,right:width*0.002,bottom:height*0.002,top:height*0.002};
 				
 		var scaleWidth=width-margin.left-margin.right;
-		var yScale(0)=height-margin.top-margin.bottom;
+		var scaleHeight=height-margin.top-margin.bottom;
 		
 		var grad = Math.PI/180,fontSize=14;
 		
@@ -11545,12 +11542,12 @@ var drawGauageGraph={
 										   
 		var centerArcGroup = 	mainGroup.append("g")
 										.attr('class','centerArcGroup')
-										.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)*.85) + ")");
+										.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.85) + ")");
 											
 		var lagendGroup = 	mainGroup.append("g")
 										.attr('class','label')
-										.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)*.85) + ")");						
-		var radius = yScale(0)*.75 < (scaleWidth*.5) ? yScale(0)*.75: (scaleWidth*.5);
+										.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.85) + ")");						
+		var radius = scaleHeight*.75 < (scaleWidth*.5) ? scaleHeight*.75: (scaleWidth*.5);
 		radius = radius;
 		
 		
@@ -12278,661 +12275,475 @@ var drawGauageGraph={
 			
 		}
 		
-	var threeDStackedBarChart = {
-				drawThreeDStackedBarChart: function (id, threeDStackedBarsData, options, colorArray, textColor, xAxisArray) {
-         //   var width = 218;
-		//	var	height =300;
-				var cfg = {
-						topMargin: 5,
-						rightMargin: 30,
-						bottomMargin: 0,
-						leftMargin: 20,
-						color: d3.scale.category20(),
-						toolTipLabelForYAxis: "Profit(in Crores)",
-						axisTextColor:'black',
-						legendTextColor:'black'
-					};
-
-					if ('undefined' !== typeof options) {
-						for (var i in options) {
-							if ('undefined' !== typeof options[i]) {
-								cfg[i] = options[i];
-							}
-						}
-					}		   
-		
-				var widthOfBars = (0.9 * width) / (threeDStackedBarsData[0].data.length* 2);
-				var spacingFactorInBars = 10;
-				var rightMargin = 5;
-				var ySpacingFactor = 5;	
-				var maxValueArray = threeDStackedBarsData[0].data,minValueArray =threeDStackedBarsData[0].data ;
+	var threeDStackedBarChart = 
+	{
+		drawThreeDStackedBarChart: function (data) 
+		{
 				
-				for(var i =0 ;i<threeDStackedBarsData.length;i++)
-				{
-					maxValueArray = d3.max(threeDStackedBarsData[i].data) > d3.max(maxValueArray) ? threeDStackedBarsData[i].data : maxValueArray;
-					minValueArray =d3.min(threeDStackedBarsData[i].data) < d3.min(maxValueArray) ? threeDStackedBarsData[i].data : minValueArray;
-				}
-				var xAxisIndex=[];
-				for(var i=0;i<xAxisArray.length;i++)
-					{
-						xAxisIndex[i]=i;
-					}
-				var yMin = d3.min(minValueArray);
-				var yMax = d3.max(maxValueArray);
+			var title = data.title;		
+			var	xAxisLabel = data.xAxisLabel;
+			var yAxisLabel = data.yAxisLabel;
 			
-				var leftMargin = marginController.leftMarginController(maxValueArray);
-				var margin = {top: 0.1*height, right: 0.05*width, bottom: 45, left:leftMargin};
-				var scaleWidth = width -margin.left - margin.right;
-				var yScale(0) = height - margin.top-margin.bottom;
-				
-				
-				
-				var newXSpacingInBars = (0.3*width) / threeDStackedBarsData.length;
-				spacingFactorInBars=widthOfBars*.6;		
-				var newWidthOfBars = (width) / (threeDStackedBarsData[0].data.length* 2);
-				widthOfBars = newWidthOfBars;
-				
-				var xSpacingInBars = newWidthOfBars + spacingFactorInBars;
-				
-				var maxArrayForBars = [];
-				var sumOfMaxInEachBar = 0;
-				var legendArray=[];
-				var legendNameMap={};
-				for(var k = 0 ; k < threeDStackedBarsData.length ; k++)
-				{					
-					var max = d3.max(threeDStackedBarsData[k].data, function(d,i){ return d;});
-					sumOfMaxInEachBar = sumOfMaxInEachBar + max;
-					maxArrayForBars.push(max);	
-					legendArray.push(threeDStackedBarsData[k].key);	
-					legendNameMap[threeDStackedBarsData[k].key]="legend-"+k;	
+			var toolTipUnit = data.toolTipUnit;
+			var xAxisData = data.xAxisData;
+			var	yAxisData = data.yAxisData;
+			var color = data.color;
+			var sumOfYData,yMaxData = 0,yMinArray = yAxisData[0]["data"],xAxisIndex =[],xLargestStringLngth=0,saveKey = [],gapFactor=20,legendArray =[],legendDisplayValue=[],gridPathX =[],gridPathY =[];
+			
+			for(var i=0;i<xAxisData.length;i++)
+			{
+				sumOfYData=0;
+				for(var j=0;j<yAxisData.length;j++)
+				{
+					sumOfYData = sumOfYData + yAxisData[j]["data"][i];
+				}
+				if(yMaxData<sumOfYData)
+				{
+					yMaxData=sumOfYData;
+				}
+			}
+			
+			for(var j=0;j<yAxisData.length;j++)
+				{
+					legendArray[j] = yAxisData[j]["key"];
+					legendDisplayValue[j] = 1;
+					d3.min(yMinArray)>d3.min(yAxisData[j].data) ? yMinArray=yAxisData[j].data : yMinArray=yMinArray;
 				}
 				
-				var maxHeight =sumOfMaxInEachBar;
-				var leftBarMargin = 0;
-				var leftMargins	= marginController.leftMarginController(maxHeight.toString().length*6);
-				var padding = 0;
-				var bottomMargins = 0;
-				var spacingInHorizontalLines = 40;
+			for(var i=0;i<xAxisData.length;i++)
+			{
+				saveKey[i]=0;
+				xAxisIndex[i]=i;
+				if(xLargestStringLngth<xAxisData[i].toString().length)
+				xLargestStringLngth =xAxisData[i].toString().length;
+			}
+			
+			yMaxData = yMaxData + gapFactor*yAxisData.length;
+			var yMin = minMaxController.getMin(yMinArray);
+			var yMax = minMaxController.getMax([yMaxData,yMaxData-10]);
+			var yTickArray = tickController.getTickArray(yMin,yMax,8);
+			var margin={left:marginController.leftMarginController([yMaxData,yMaxData-10]),right:width*0.04,bottom:45,top:height*.1};
+			
+			var scaleWidth = width - margin.left - margin.right;
+			var scaleHeight = height - margin.top - margin.bottom;
+			
+			var widthOfBar = scaleWidth/ (1.75*xAxisData.length);
+			
+			var lineFunction = d3.svg.line()
+				.x(function(d) { return d.x; })
+				.y(function(d) { return d.y; })
+				.interpolate("closed");
+			
+			
+			var gridLineFunction = d3.svg.line()
+				.x(function(d) { return d; })
+				.y(function(d,i) { return gridPathY[i]; })
+				.interpolate("linear");
 				
-				var sum = 1;				
-				for(k=0;k<(''+maxHeight).length - 1;k++)
-				{
-					sum = sum+"0";				
-				}		
-				
-				var lineFunction = d3.svg.line()
-										  .x(function(d) { return d.x; })
-										  .y(function(d) { return d.y; })
-										 .interpolate("linear");
-				
-				
-				var threeDBarXRegion=(threeDStackedBarsData[0].data.length* xSpacingInBars) + widthOfBars/2;
-				var xScale = d3.scale.linear()
-						.domain([0, threeDStackedBarsData[0].data.length])
-						.range([widthOfBars/1.5,threeDBarXRegion ]);
-						
-				
-				var largestStringLngth=0;
-					for(var counter =0 ;counter<xAxisArray.length;counter++)
-					{
-						if(largestStringLngth<(xAxisArray[counter].toString()).length)
-						{
-							largestStringLngth = (xAxisArray[counter].toString()).length;
-						}
-					}	
-
-	
-				var yScale = d3.scale.linear()
-						.domain([0, 1.55 * maxHeight])
-						.range([height - 0.15 *height, 0]);             
-				 
-				var xAxis = d3.svg.axis()
-						.scale(xScale)
-						.orient("bottom")					
-						.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),largestStringLngth, (threeDBarXRegion-widthOfBars/1.5)));	
-						
-
-				var yAxis = d3.svg.axis()
-						.scale(yScale)						
-						.orient("left")
-						.tickSize(0)
-						.ticks(6);
-				
-				var formatAsPercentage = d3.format("1");		
 			
 
-		       
-				//xAxis.tickValues(d3.range(0, xAxisArray.length , 1));
-				yAxis.tickValues(d3.range(0, 1.5* maxHeight, ((1.5* maxHeight)/10)));
-				
-				var maxYScale =	maxHeight + 100*(''+maxHeight).length;			
-				var nextY = yScale(1.5*maxHeight);			
-				
-				var leftTranslation;
-				if(width<400){
-					leftTranslation=50;
-				}else{
-					leftTranslation=threeDBarXRegion*0.02;
-				}
-				svgElement=svgElement.append("g")
-						  .attr("transform","translate("+(-40)+",0)");//leftTranslation
-				
-				threeDBarXRegion=threeDBarXRegion+threeDBarXRegion*.1;	
-		/*		function drawHorizontalLines(startX, startY, widthOfBars, maxHeight, nextY)
-				{
-					maxHeight = yScale(maxHeight);
-					startY = yScale(startY);
-					
-					
-					var scaleLine=[];				
-							for(l=0; l<3; l++)
-							{
-								if(l==0)
-								{
-									
-									x = startX-threeDBarXRegion*0.07;
-									y = (startY-nextY) + 0.03 * width;
-									
-								}	
-								else if(l==1)
-								{
-									x=startX-20;
-									y=(startY-nextY);
-								}
-								else if(l==2)
-								{
-									x=threeDBarXRegion;
-									y=(startY-nextY);														
-								}
-							
-								scaleLine.push(JSON.parse('{"x":'+x+',"y":'+y+'}'));                      
-							}
-							return scaleLine;					
-				}
-			*/	
-				var startX= width  - width * 0.89;
-				var startY= height - height * 0.90;					
-				
-				
-				var svgContainer = svgElement.append("g")
-											  .attr("transform","translate("+width*0.04+","+0+")")	;
-		/*		for(j=0;j<10;j++)
-				{
-				
-					var lineGraph = svgContainer.append("path")
-										.attr("d", lineFunction(drawHorizontalLines(startX, startY, widthOfBars, maxHeight, nextY)))
-										.attr("class","horizontalGridLine")				
-										.attr("stroke",textStyleConfg.gridLineColor)
-										.attr("stroke-width", 0.5)
-										.attr("fill", "none");	
-					
-					var lineGraphLength= lineGraph.node().getTotalLength();
+			var xScale = d3.scale.linear()
+				.domain([0,xAxisIndex.length-1])
+				.range([widthOfBar+5,scaleWidth-widthOfBar]);
 
-										lineGraph
-										  .attr("stroke-dasharray", lineGraphLength + " " + lineGraphLength)
-										  .attr("stroke-dashoffset", lineGraphLength)
-										  .transition()
-										  .duration(2000)
-										  .ease("linear")
-										  .attr("stroke-dashoffset", 1)
-										  .attr("stroke",textStyleConfg.gridLineColor)
-										  .attr("stroke-width", 0.5)
-										  .attr("fill", "none");
+										 
+			var yScale = d3.scale.linear()
+				.domain([yMin,yMax])
+				.range([scaleHeight,0]); 
+
+			for(var i=0;i<yTickArray.length-1;i++)
+			{
+				gridPathX=[margin.left,(margin.left+widthOfBar*.4),width-(margin.right/2)];
+				gridPathY=[yScale(yTickArray[i])-10,yScale(yTickArray[i]),yScale(yTickArray[i])];
+				pathRef =svgElement.append("path")
+					.attr("d", gridLineFunction(gridPathX))	
+					.attr("class","gridLines")
+					.attr("fill","none")
+					.attr("stroke","black")
+					.attr("stroke-width",.2)
 				
-							nextY=nextY + (yScale(0) - yScale((1.5* maxHeight)/10));						
-				}
-				*/
-				
-				var pathRef;
-				
-				var yTickArray =d3.range(0, 1.5* maxHeight, ((1.5* maxHeight)/10));	
-				var xCoordinate=[],yCoordinate=[];
-					var lineFunctionGrid = d3.svg.line()
-							.x(function(d,i) {return d; })
-							.y(function(d,i) {return yCoordinate[i]; })
-				for(var i = 0;i<yTickArray.length-1;i++)
-				{
-					xCoordinate[0] = startX-threeDBarXRegion*0.07+20;
-					yCoordinate[0] =yScale(yTickArray[i])-20;
-					
-					xCoordinate[1] =startX-threeDBarXRegion*0.07+35;
-					yCoordinate[1] =yScale(yTickArray[i]);
-					
-					xCoordinate[2] = width - 20;
-					yCoordinate[2] =yCoordinate[1];
-					
-				pathRef = svgContainer.selectAll(".path")
-							 .data([xCoordinate])
-							 .enter()
-							 .append("path")
-							 .attr("class","groupedBarChartGrid")
-							 .attr("d", lineFunctionGrid)	  
-							 .attr("fill",'none')
-							 .attr("stroke",textStyleConfg.gridLineColor)
-							 
-					//transition
 				var totalLength = pathRef.node().getTotalLength();
 
-                pathRef.attr("stroke-dasharray", function (d) {
+				pathRef.attr("stroke-dasharray", function (d) 
+					{
+					return totalLength + "," + totalLength;
+					})
+					.attr("stroke-dashoffset", totalLength)
+					.transition()
+					.duration(2500)
+					.ease("linear")
+					.attr("stroke-dashoffset", 0);		 
 				
-					
-                        return totalLength + "," + totalLength;
-                })
-                    .attr("stroke-dashoffset", totalLength)
-                    .transition()
-                    .duration(1500)
-                    .ease("linear")
-                    .attr("stroke-dashoffset", 0);		 
-				}
-				
-				
-				
-			var startX= width  - width * 0.89;
-		
-			var startY = yScale(0);
-			
-			var topYSideOne = 0;
-			var topYSideTwo = 0;
-			var topYSideThree = 0;
-				
-				
-			
-            var elementLengthInData=threeDStackedBarsData[0].data.length;
-			var totalElementsType = threeDStackedBarsData.length;
-		
-			for(var q=0; q<elementLengthInData; q++){
-				
-				var startY1 = yScale(0); 
-				var currentHeight=0;
-				
-				for(var w=0; w<totalElementsType; w++){
-				
-					var currentData = threeDStackedBarsData[w].data;
-					
-					var lineGraph1 = svgContainer.append("path")	
-									.attr("class","lineGraphClass " + legendNameMap[threeDStackedBarsData[w].key])
-									.attr("d", lineFunction(getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars, currentData[q], 1, currentData[q], 1 )))			
-									.attr('val',function(){
-										var cordinateArray=getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars, currentData[q], 1, currentData[q], 1);
-										return cordinateArray[0].height;
-									})
-									.attr("stroke", "grey")
-									.attr("fill", colorArray[w])
-									.attr("xVal",threeDStackedBarsData[w].key)		
-									.on("mousemove",function(){
-									   //toolTipManager.showToolTip(d3.event, null, null, false, cfg.toolTipLabelForYAxis + " :- " + d3.select(this).attr('val'));
-									   var yHeadingValueMap=[{"headingName":cfg.toolTipLabelForYAxis,"headingVal":d3.select(this).attr('val')}];
-						
-										toolTipManager.showToolTip(d3.event,"",(d3.select(this).attr('xVal')), false,yHeadingValueMap,d3.event.pageY*.95);
-									})
-									.on("mouseleave", function (d, i) {
-										var targetElement = d3.select(this);
-										toolTipManager.hideTooTip();
-									})
-									.style("display","none");
-						
-					
-					var lineGraph2 = svgContainer.append("path")
-									.attr("class","lineGraphClass " + legendNameMap[threeDStackedBarsData[w].key])
-									.attr("d", lineFunction(getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars,currentData[q], 2, currentData[q], 1 )))
-									.attr('val',function(){
-											var cordinateArray=getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars, currentData[q], 2, currentData[q], 1 );
-											return cordinateArray[0].height;
-										})
-										.attr("stroke", "white")
-									.attr("fill",function(){return ColorLuminance(colorArray[w],-0.4);})
-									.attr("stroke", "grey")
-									.attr("xVal",threeDStackedBarsData[w].key)		
-									.on("mousemove",function(){
-									   //toolTipManager.showToolTip(d3.event, null, null, false, cfg.toolTipLabelForYAxis + " :- " + d3.select(this).attr('val'));
-									   var yHeadingValueMap=[{"headingName":cfg.toolTipLabelForYAxis,"headingVal":d3.select(this).attr('val')}];
-						
-										toolTipManager.showToolTip(d3.event,"",(d3.select(this).attr('xVal')), false,yHeadingValueMap,d3.event.pageY*.95);
-									})
-									.on("mouseleave", function (d, i) {
-
-										var targetElement = d3.select(this);
-										toolTipManager.hideTooTip();
-									})
-									.style("display","none");
-				
-					var lineGraph3 = svgContainer.append("path")
-									.attr("class","lineGraphClass " + legendNameMap[threeDStackedBarsData[w].key])
-									.attr("d", lineFunction(getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars, currentData[q], 3, currentData[q], 1 )))
-									.attr('val',function(){
-											var cordinateArray=getSidesCordinates(startX+leftBarMargin, startY1, widthOfBars, currentData[q], 3, currentData[q], 1 );
-											return cordinateArray[0].height;
-										})
-										.attr("stroke", "grey")
-									.attr("fill",function(){return ColorLuminance(colorArray[w],-0.3);})
-									.attr("xVal",threeDStackedBarsData[w].key)		
-									.on("mousemove",function(){
-									   //toolTipManager.showToolTip(d3.event, null, null, false, cfg.toolTipLabelForYAxis + " :- " + d3.select(this).attr('val'));
-									   var yHeadingValueMap=[{"headingName":cfg.toolTipLabelForYAxis,"headingVal":d3.select(this).attr('val')}];
-						
-										toolTipManager.showToolTip(d3.event,"",(d3.select(this).attr('xVal')), false,yHeadingValueMap,d3.event.pageY*.95);
-									})
-									.on("mouseleave", function (d, i) {
-
-										var targetElement = d3.select(this);
-										toolTipManager.hideTooTip();
-									})
-									.style("display","none");
-						
-				        currentHeight+=currentData[q] ;
-						startY1 = yScale(currentHeight) - ySpacingFactor * (w+1);						
-						
-				}			  
-					
-				leftBarMargin=leftBarMargin+xSpacingInBars;		
-				startY1 = yScale(0);
 			}
 			
+			var mainGroup = svgElement.append("g").attr("class","mainGroup")
+				.attr("transform","translate("+margin.left+","+margin.top+")")
+				
+				
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),xLargestStringLngth,(scaleWidth-widthOfBar*.5)));
+									  
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickValues(yTickArray);
+				  
+					// Group for X Axis	
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("transform","translate("+(widthOfBar*.3)+","+(scaleHeight)+")")
+				.call(xAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black")
+				.text(function(d){return xAxisData[d]});
 			
-			var eleArray=$(".lineGraphClass").hide();
-				for(var m=0; m<eleArray.length; m++){
+
+			// Group for Y Axis						  
+			var yAxisGroup = mainGroup.append("g")
+				.attr("class","yAxisGroup")
+				.attr("transform","translate("+0+","+0+")")
+				.call(yAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black");		
+
+			var firstPath = 1,secondPath = 2,thirdPath = 3,factor; 	
+			var delay=50;
+			var duration = 50;
+			ease = "linear";
+			for(var i=0;i<xAxisData.length;i++)
+			{
+				saveKey[i]=0;
+				for(j=0;j<yAxisData.length;j++)
+				{	
+					pathRef1 = mainGroup.append("path")
+						.attr("d", lineFunction(getDummyCoordinates(firstPath,i,j,height,widthOfBar)))	
+						.attr("class","threeDStackedPath"+j)
+						.attr("id","threeDPath")
+						.attr("key",j)
+						.attr("value",i)
+						.attr("fill",function(){return ColorLuminance(color[j],0.1)})
+				/*		 .attr("fill",function()
+						 {
+
+							var rectangleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rectangleGradient"+j+""+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(-45)");
+
+							rectangleGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(color[j], 0.1)});
+										
+							rectangleGradient.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color", function(){return ColorLuminance(color[j], -0.3)});
+									
+							return "url(#rectangleGradient"+j+""+i+")";
+						 })	*/
+						.attr("stroke",color[j])
+						.attr("stroke-width",.2)
+						.attr("display","none")
+						.transition().duration(duration)
+						.delay(delay).ease(ease)
+						.attr("d", lineFunction(getSideCoordinates(firstPath,i,j,height,widthOfBar)))
+						.attr("display","block");
+						
+					pathRef2 = mainGroup.append("path")
+						.attr("d", lineFunction(getDummyCoordinates(secondPath,i,j,height,widthOfBar)))	
+						.attr("class","threeDStackedPath"+j)
+						.attr("id","threeDPath")
+						.attr("key",j)
+						.attr("value",i)
+						.attr("fill",function(){return ColorLuminance(color[j],-0.05)})
+					/*	 .attr("fill",function()
+						 {
+
+							var rectangleGradientPath2 = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rectangleGradientPath2"+j+""+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(-45)");
+
+							rectangleGradientPath2.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(color[j], -0.3)});
+										
+										
+							rectangleGradientPath2.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color", function(){return ColorLuminance(color[j], 0.1)});
+									
+							return "url(#rectangleGradientPath2"+j+""+i+")";
+						 })	*/
+						.attr("stroke",color[j])
+						.attr("stroke-width",.2)
+						.attr("display","none")
+						.transition().duration(duration)
+						.delay(delay).ease(ease)
+						.attr("d", lineFunction(getSideCoordinates(secondPath,i,j,height,widthOfBar)))
+						.attr("display","block");
 					
-					$(eleArray[m]).slideUp(m * 100).delay(m *20).fadeIn();					
+					pathRef3 = mainGroup.append("path")
+						.attr("d", lineFunction(getDummyCoordinates(thirdPath,i,j,height,widthOfBar)))	
+						.attr("class","threeDStackedPath"+j)
+						.attr("id","threeDPath")
+						.attr("key",j)
+						.attr("value",i)
+						.attr("fill",function(){return ColorLuminance(color[j],-0.1)})
+						.attr("stroke",color[j])
+						.attr("stroke-width",.2)
+						.attr("display","none")
+						.transition().duration(duration)
+						.delay(delay).ease(ease)
+						.attr("d", lineFunction(getSideCoordinates(thirdPath,i,j,height,widthOfBar)))
+						.attr("display","block");
+						
+						delay = delay + 50;
+						saveKey[i]=saveKey[i] + yAxisData[j].data[i]+gapFactor;
 				}
+			}
 			
+			svgElement.selectAll("#threeDPath")
+				.on("mousemove",function(d,i){
+					var  jIndex = d3.select(this).attr("key");
+					var iIndex = d3.select(this).attr("value");
+					 var yHeadingValueMap=[{"headingName":yAxisData[jIndex].key,"headingVal":yAxisData[jIndex].data[iIndex]}];
+					 toolTipManager.showToolTip(d3.event,"",toolTipUnit+" "+xAxisData[iIndex], false,yHeadingValueMap,d3.event.pageY*.95);
+				})
+				.on("mouseleave", function (d, i) 
+				{
+					toolTipManager.hideTooTip();
+				})
+			
+			function getSideCoordinates(path,xIndex,yIndex,height,widthOfBar)
+			{
+				var lineData = [],nextX,nextY,factor =10;
+				if(path == 1)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY = yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+				if(path == 2)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-heightOfBar-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+				if(path == 3)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-heightOfBar-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)-widthOfBar*.3+widthOfBar;
+					nextY = yScale(saveKey[xIndex])-heightOfBar-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY =  yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex])-heightOfBar;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+			}
+			function getDummyCoordinates(path,xIndex,yIndex,height,widthOfBar)
+			{
+				var lineData = [],nextX,nextY,factor =10;
+				if(path == 1)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+				if(path == 2)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+				if(path == 3)
+				{	
+					heightOfBar = yScale(0)-yScale(yAxisData[yIndex].data[xIndex])
+					nextX = xScale(xIndex);
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
+					nextX = xScale(xIndex)-widthOfBar*.3;
+					nextY = yScale(saveKey[xIndex])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)-widthOfBar*.3+widthOfBar;
+					nextY = yScale(saveKey[xIndex])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex)+widthOfBar;
+					nextY =  yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					nextX = xScale(xIndex);
+					nextY = yScale(saveKey[xIndex]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
+					
+					return lineData;	
+				}
+			}
+		// *********Title,X Axis label,Y Axis Lable
+			
+			// X Axis Lable				
+			var pixcelPerChar=7;
+			var xLabelTotalPixcel=xAxisLabel.toString().length*pixcelPerChar;
+			var xLabelTop=height-5;
+			var xLabelLeft=width/2-	xLabelTotalPixcel/2;
+			axisLabelController.appendLabel(xAxisLabel,xLabelLeft,xLabelTop,0,svgElement,textStyleConfg.xLabelColor,600);
+			
+
+			// Y Axis Lable
+			// yAxis Lable Left Align
+			var yLabelTotalPixcel=yAxisLabel.toString().length*pixcelPerChar;;
+			var yLabelTop=height/2+yLabelTotalPixcel/2;
+			var yLabelLeft=15;
+			axisLabelController.appendLabel(yAxisLabel,yLabelLeft,yLabelTop,-90,svgElement,textStyleConfg.xLabelColor,600);	
+			
+			// For Title
+			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
+			var titleTopPosition = 15;
+			axisLabelController.appendLabel(title,leftIndicator,titleTopPosition,0,svgElement,textStyleConfg.xLabelColor,800);	
+			
+			// ******* Legend Logic******
+
+			var lagendRectWidth = 10;
+			var lagendRectHeight = 10; 
+			var yPosition = 25;
+			var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPosition,legendArray,lagendRectWidth+20,lagendRectHeight);
+			
+			var legendGroup = svgElement.append("g").attr("class","legendGroup")
+				.attr("transform","translate("+margin.left+","+(0)+")");
+		//	!isNaN(xScale(xAxisData[i].data[j]))?xScale(xAxisData[i].data[j]):0;
+			var legendRef = legendGroup.selectAll('.rect')
+				.data(legendPositionArray)
+				.enter()
+				.append('rect')
+				.attr("id","legendRectangle")
+				.attr("value",function(d,i){return i;})
+				.attr('width',lagendRectWidth)
+				.attr('height',lagendRectHeight)
+				.attr('x',function(d,i){ return legendPositionArray[i].x;})
+				.attr('y',function(d,i){return legendPositionArray[i].y;})
+				.attr('fill',function(d,i){return color[i]})
+				.on("click", function (d,i) {
+						max=0;
+						var val = parseInt(d3.select(this).attr("value"));
+						if(legendDisplayValue[val]==1)
+						{
+							d3.select(this).attr('fill',"grey");
+							svgElement.selectAll("#legend-text"+val).style("text-decoration","line-through");
+							legendDisplayValue[val]=0;
+							$(".threeDStackedPath"+val).slideDown(400).delay(400).fadeOut(1000);
+						}
+						else
+						{
+							d3.select(this).attr('fill',function(d,i){return color[val]});
+							svgElement.selectAll("#legend-text"+val).style("text-decoration","none");
+							legendDisplayValue[val]=1;
+							$(".threeDStackedPath"+val).slideUp(400).delay(400).fadeIn(1000);
+						}
+
+				  });	
+									
+			var legendTextRef = legendGroup.selectAll('.text')
+				.data(legendPositionArray)
+				.enter()
+				.append('text')
+				.attr('id',function(d,i){ return 'legend-text'+i})
+				.attr('x',function(d,i){return legendPositionArray[i].textXPos-20;})
+				.attr('y',function(d,i){return legendPositionArray[i].y;})
+				.text(function(d,i){return yAxisData[i].key;}).attr("dy",".6em")
+				.attr("font-family","calibri")
+				.attr("fill",textStyleConfg.legendTextColor);
+				
+		// ******* End Legend Logic******
+						
+			//hide axis path
 			hideAxisPath(svgElement);
-		
-			function getSidesCordinates(x,y,width,height,sideno,heightOfBar, dataNumber){
-	
-						height = yScale(0)-yScale(height) ;
-					
-						var lineData=[];
-					
-						if(sideno==1){
-							var factor=parseInt(width*.33) + 1;
-							var xHit=0;
-							var yHit=0;
-							for(var i=0;i<5;i++){
-										
-							   if(i==0)
-							   {
-									y = y;
-														
-							   }
-							   else if(i==1)
-							   {
-								   y = y - height;	
-							   }
-							   else if(i==2)
-							   {
-								   x=x+width;   
-							   }
-							   else if(i==3)
-							   {
-								   y=y+height;    
-							   }     
-								else if(i==4)
-							   {
-								  x=x-width;    
-							   }
-								
-								var nextY=y;
-								var nextX=x;
-								   
-								lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+',"height":'+heightOfBar+'}'));                      
-							}                               
-						}
-					 else if(sideno==2){
-						 
-							//var factor = *(15/380);
-							var factor=parseInt(width*.33) + 1;
-							//alert(height);
-							
-							for(var i=0;i<4;i++){
-										
-							   if(i==0)
-							   {								   
-								   y = y;											   
-							   }
-							   else if(i==1)
-							   {
-								   x=x-factor;
-								   y=y-factor;								 
-							   }
-							   else if(i==2)
-							   { 								
-								   y=y-height;									
-							   }
-							   else if(i==3)
-							   {
-								   x=x+factor;
-								   y=y+factor;  
-							   }     
-								   
-								var nextY=y;
-								var nextX=x;
-								lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+',"height":'+heightOfBar+'}'));  
-							}                               
-							
-						}
-						else if(sideno==3){
-							
-							var factor=parseInt(width*.33) + 1;
-							
-							for(var i=0;i<4;i++){
-										
-							   if(i==0)
-							   {
-									topYSideThree = y + height;
-									y = y - height;
-									//topYSideThree = y;		
-							   }
-							   else if(i==1)
-							   {
-								   x=x-factor;
-								   y=y-factor;
-									 
-							   }
-							   else if(i==2)
-							   {
-								   x=x+width;   
-							   }
-							   else if(i==3)
-							   {
-								   x=x+factor;
-								   y=y+factor;    
-							   }     
-								   
-								var nextY=y;
-								var nextX=x;
-								   
-								lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+',"height":'+heightOfBar+'}')); 											   
-							}                              							
-						}					
-						return lineData;						
-					}
-			
-				
-				function mMove(){
-
-					 var m = d3.mouse(this);
-					 console.log(m);
-					 d3.select(this).select("title").text(yScale(m[1]));
-				}
-				
-
-				var xAxisRef=svgContainer.append("g")
-						.attr("class", "axis")
-						.attr("transform", "translate("+startX+"," + (height - height * 0.15 + yScale(1.5 * maxHeight)) + ")")						
-						.call(xAxis)
-						.attr("fill","none")
-						.selectAll("text")
-						.attr("fill","black")
-						.text(function(d){return xAxisArray[d]});
-						//alert(xAxisArray);
-		/*		xAxisRef.selectAll('text').text(function(d,i){
-							
-						 return xAxisArray[i];
-						})
-						//.attr("transform","rotate(30)")
-						.style("fill",textColor+" !important");
-*/
-
-				var yAxisRef=svgElement.append("g")
-						.attr("class", "axis")
-						.attr("transform", "translate(" + (width*0.1) + ","+ (yScale(1.5 * maxHeight))  +")")
-						.call(yAxis);
-				
-				//y indication label
-				var pixcelPerChar=6;
-				var indexOfParaenthesis=yAxisRef.attr("transform").indexOf("(")+1;
-				var indexOfComma=yAxisRef.attr("transform").indexOf(",");
-				
-				var yTotalPixcel=cfg.yLabel.toString().length*pixcelPerChar;
-				var yLabelTop=height/2+yTotalPixcel/2;
-				
-				var yLabelLeft = -width*.04;
-				
-				axisLabelController.appendLabel(cfg.yLabel,yLabelLeft+60,yLabelTop,-90,svgContainer,textStyleConfg.yLabelColor,600);	
-				
-				//x indication label
-				var xTotalPixcel=cfg.xLabel.toString().length*pixcelPerChar;
-				var xLabelLeft=threeDBarXRegion/2-xTotalPixcel;
-				var xLabelTop=height*0.1;
-				axisLabelController.appendLabel(cfg.xLabel,xLabelLeft,xLabelTop,0,xAxisRef,textStyleConfg.xLabelColor,600);	
-				
-				//title here
-				var pixcelPerChar = 8;
-				var leftIndicator = (width/2) - ((cfg.title.length*pixcelPerChar)/2)
-				var titleGroup = svgElement.append("g")
-										   .attr('class','title')
-					
-				axisLabelController.appendLabel(cfg.title,leftIndicator,height*0.05,0,titleGroup,textStyleConfg.chartTitleColor,800);			   
-
-				
-				
-				var legend = svgContainer.append("g")
-                    .attr("class", "legend")
-                    .attr("width", width)
-                    .attr("height", height)
-                    .attr('transform', 'translate(' +startX + ','+(height * 0.08)+')')
-					
-				  
-				  var legendWidth = 0;
-				  var legendHeight = 0;
-				
-				  if(width > 300)
-				  {
-					  legendWidth = 12;
-					  legendHeight = 12;
-				  }
-				  else
-				  {
-					  legendWidth = 10;
-					  legendHeight = 10;
-				  }
-				 
-				  var maxLengthOfKeys = d3.max(threeDStackedBarsData, function(d,i){  return d.key.length;});
-				  
-					
-					
-				   var newXCord=0;
-				   var CordBean={
-					   
-						getX:function(){
-							
-							return newXCord;
-						},
-						setX:function(val){
-							newXCord=val;
-						}
-				   }
-				   
-				   
-				  
-				  
-				  
-				   
-				   var legendPositionArray=legendController.getLegendPositionArray(legendArray,width,maxHeight*0.25);
-                    legend.selectAll('rect')
-							.data(legendArray)
-                            .enter()
-                            .append("rect")
-							.attr("value",function(d,i){return i;})
-							.attr("class",function(d,i){return "rect"+i;})
-                            .attr("x", function (d, i) {
-								
-								return legendPositionArray[i].x;
-                        })
-                            .attr("y", function(d,i){
-								
-								return legendPositionArray[i].y;
-							})
-							.attr("width", legendWidth)
-                            .attr("height", legendHeight)
-                            .style("fill", function (d, i) {
-							return colorArray[i];
-                            
-                        })
-						.on("click", function (d,i) {
-						
-						 var val = parseInt(d3.select(this).attr("value"));
-						
-                           
-                            var state = svgElement.selectAll("." + legendNameMap[d]).style("display");
-                            if (state == "none") {
-
-								$("#"+selectedElementId).find("path."+legendNameMap[d]).slideUp(400).delay(400).fadeIn();
-								d3.select(this).style("fill",colorArray[val]);	
-								svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","none");
-                              
-                            } else {
-
-                                var selectedPath = svgElement.selectAll("." + legendNameMap[d]);
-								$("#"+selectedElementId).find("path."+legendNameMap[d]).slideDown(400).delay(400).fadeOut();
-								d3.select(this).style("fill","gray");								
-								svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","line-through");
-                            }
-							
-							
-                        });	
-                           
-                    
-                    legend.selectAll('text')
-                            .data(legendArray)
-                            .enter()
-                            .append("text")
-							.attr("class",function(d){
-								return "legend-text "+legendNameMap[d];
-							})
-                            .attr("x", function (d, i) {
-								/*
-								var x=positionXArray[i]+textSeparator;
-								return x;
-								*/
-								return legendPositionArray[i].textPos;
-							})
-                            .attr("y",function(d,i){
-								/*
-								var y=positionYArray[i]+textSeparator-legendHeight;
-								return y;
-								*/
-								return legendPositionArray[i].y+legendHeight;
-							})
-							.attr("width", legendWidth)
-                            .attr("height", legendHeight)
-                            .attr("font-size", 12)
-                           //.attr("dx", "1.50em")
-                           .attr("dy", ".08em")
-                            .text(function (d, i) {
-                            return d;
-                        });
-						
-				//set axistextColor
-				//svgElement.selectAll(".axis").selectAll("text").style("fill",cfg.axisTextColor);
-				
-				//set legendColor
-				//legend.selectAll("text").style("fill",cfg.legendTextColor);
-				
-				//set font here
-				setTextStyleAndSvgBackGround(svgElement);	
-			}
-		};
+			//set font here
+			setTextStyleAndSvgBackGround(svgElement);
+	}
+}
 		
 		
 		/*Network Connection Chart*/
@@ -13397,7 +13208,7 @@ var drawGauageGraph={
 							var areaAnalChart={left:leftMargin,right:largeLabel,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 							
 							var scaleWidth=width-areaAnalChart.left-areaAnalChart.right;
-				            var yScale(0)=height-areaAnalChart.top-areaAnalChart.bottom;
+				            var scaleHeight=height-areaAnalChart.top-areaAnalChart.bottom;
 							
 							var fontSize =12,fontFamily = "calibri";
 							//create array of x axis time index
@@ -13407,7 +13218,7 @@ var drawGauageGraph={
 								xAxisTimeIndex[counter] = counter;
 							}
 							//grid view here
-				gridManager.init(svgElement, yScale(0), scaleWidth, areaAnalChart.left, areaAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, areaAnalChart.left, areaAnalChart.top,textStyleConfg.gridLineColor);
 				
 						var leftMarginOfSvg = $(selectorElement).offset().left;
 		
@@ -13432,7 +13243,7 @@ var drawGauageGraph={
 					 
 		var yScale = d3.scale.linear()
                     .domain([yMin,yMax])
-                    .range([yScale(0),0]);
+                    .range([scaleHeight,0]);
 					
 			var largestStringLngth=0;
 			for(var counter =0 ;counter<xAxisArray.length;counter++)
@@ -13452,7 +13263,7 @@ var drawGauageGraph={
 						.attr('id','xAxis')
 						.attr("class", "x axis")
 						.attr('fill',"none")
-						.attr("transform", "translate("+0+"," + yScale(0) + ")")
+						.attr("transform", "translate("+0+"," + scaleHeight + ")")
 						.call(xAxis);
 	
 			
@@ -13469,7 +13280,7 @@ var drawGauageGraph={
 	// xAxis label here
 	var pixcelPerChar = 6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=yScale(0)+(areaAnalChart.bottom -5);
+	var xIndicationLabelTop=scaleHeight+(areaAnalChart.bottom -5);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 	axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,areaChartMainGroup,textStyleConfg.xLabelColor,600);												
 
@@ -13493,7 +13304,7 @@ var drawGauageGraph={
 		
 			//yAxis label here
 			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;		
-			var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 			var yIndicationLabelLeft=(-areaAnalChart.left +15);
 			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
 								   
@@ -13783,7 +13594,7 @@ var drawGauageGraph={
 							
 							
 							var scaleWidth=width-areaAnalChart.left-areaAnalChart.right;
-				            var yScale(0)=height-areaAnalChart.top-areaAnalChart.bottom;
+				            var scaleHeight=height-areaAnalChart.top-areaAnalChart.bottom;
 							
 							var fontSize =14,fontFamily = "calibri";
 							//create array of x axis time index
@@ -13793,7 +13604,7 @@ var drawGauageGraph={
 								xAxisTimeIndex[counter] = counter;
 							}
 				//grid view here
-				gridManager.init(svgElement, yScale(0), scaleWidth, areaAnalChart.left, areaAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, areaAnalChart.left, areaAnalChart.top,textStyleConfg.gridLineColor);
 
 				var leftMarginOfSvg = $(selectorElement).offset().left;
 				var areaChartMainGroup = svgElement.append("g")
@@ -13818,7 +13629,7 @@ var drawGauageGraph={
 		
 		var yScale = d3.scale.linear()
                     .domain([yMin,yMax])
-                    .range([yScale(0),0]);
+                    .range([scaleHeight,0]);
 						
 		var largestStringLngth=0;
 					for(var counter =0 ;counter<xAxisArray.length;counter++)
@@ -13841,7 +13652,7 @@ var drawGauageGraph={
 						.attr('id','xAxis')
 						.attr("class", "x axis")
 						.attr('fill',"none")
-						.attr("transform", "translate("+0+"," + yScale(0) + ")")
+						.attr("transform", "translate("+0+"," + scaleHeight + ")")
 						.call(xAxis);
 	
 			
@@ -13856,7 +13667,7 @@ var drawGauageGraph={
 	//xAxis label here
 	var pixcelPerChar = 6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=yScale(0)+(areaAnalChart.bottom -5);
+	var xIndicationLabelTop=scaleHeight+(areaAnalChart.bottom -5);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
     axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,areaChartMainGroup,textStyleConfg.xLabelColor,600);
 		
@@ -13878,9 +13689,9 @@ var drawGauageGraph={
 					    .attr('font-family',fontFamily);
 	//yAxis label here
 	var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-	var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;					
+	var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;					
 	var yIndicationLabelLeft=(-areaAnalChart.left + 15);
-		axisLabelController.appendLabel(yAxisLabel,(yIndicationLabelLeft),(yScale(0)/1.5),-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
+		axisLabelController.appendLabel(yAxisLabel,(yIndicationLabelLeft),(scaleHeight/1.5),-90,areaChartMainGroup,textStyleConfg.yLabelColor,600);
 		
 			//y mid label here		
 					var midPointLabelArray = midPointLabel.split(' ');
@@ -14013,7 +13824,7 @@ var drawGauageGraph={
 				
 				var compareAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
-				var yScale(0)=height-compareAnalChart.top-compareAnalChart.bottom;
+				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 					
 				var estimateDataBarWidth =  (scaleWidth/(1.5*xAxisData.length));
 				
@@ -14024,7 +13835,7 @@ var drawGauageGraph={
 					xAxisTimeIndex[counter] = counter;
 				}
 
-				gridManager.init(svgElement, yScale(0), scaleWidth, compareAnalChart.left-(estimateDataBarWidth/2), compareAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, compareAnalChart.left-(estimateDataBarWidth/2), compareAnalChart.top,textStyleConfg.gridLineColor);
 				
 				var leftMarginOfSvg = $(selectorElement).offset().left;
 				
@@ -14056,7 +13867,7 @@ var drawGauageGraph={
 				
 				var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 		//x axis
 		
@@ -14078,7 +13889,7 @@ var drawGauageGraph={
 										.attr('id','xAxis')
 										.attr("class", "x axis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + yScale(0) + ")")
+										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis);
 						xAxisTextRef.selectAll('text')
 							             .text(function(d){return xAxisData[d];})
@@ -14091,7 +13902,7 @@ var drawGauageGraph={
 		
 	var pixcelPerChar=6;
 	var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-	var xIndicationLabelTop=yScale(0)+(compareAnalChart.bottom-5);
+	var xIndicationLabelTop=scaleHeight+(compareAnalChart.bottom-5);
 	var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 	axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);			   							
 													
@@ -14114,7 +13925,7 @@ var drawGauageGraph={
 		
 		//yAxis label here					
 		var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;			
-		var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+		var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
         var yIndicationLabelLeft=(-compareAnalChart.left+15);
 		axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);			   													   
 					
@@ -14126,7 +13937,7 @@ var drawGauageGraph={
 											.attr('width',estimateDataBarWidth)
 											.attr('height',0)
 											.attr('x',function(d,i){return xScale(i)-(estimateDataBarWidth/2)})
-											.attr('y',yScale(0))
+											.attr('y',scaleHeight)
 											.attr('fill','#000000')
 											.attr("opacity",0.2)
 											.on("mousemove",function()
@@ -14190,7 +14001,7 @@ var drawGauageGraph={
 											.attr('width',actualDataBarWidth)
 											.attr('height',0)
 								            .attr('x',function(d,i){return xScale(i)-(actualDataBarWidth/2)})                               
-								            .attr('y',yScale(0))
+								            .attr('y',scaleHeight)
 										//	.attr('fill','#ff7f0e');
 											.attr('fill',"url(#gradient)")
 											.on("mouseover",function()
@@ -14251,7 +14062,7 @@ var drawGauageGraph={
 				var spikesAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				
 				var scaleWidth=width-spikesAnalChart.left-spikesAnalChart.right;
-				var yScale(0)=height-spikesAnalChart.top-spikesAnalChart.bottom;
+				var scaleHeight=height-spikesAnalChart.top-spikesAnalChart.bottom;
 					
 				var barWidth =  (scaleWidth/(2*yAxisData.length));
 				var fontSize =12,fontFamily = "calibri";	
@@ -14301,7 +14112,7 @@ var drawGauageGraph={
 		
 		var yScale = d3.scale.linear()
 						.domain([yMin,yMax])
-						.range([yScale(0),0]);
+						.range([scaleHeight,0]);
 				
 		//x axis
 		var largestStringLngth=0;
@@ -14323,7 +14134,7 @@ var drawGauageGraph={
 								.attr('id','xAxis')
 								.attr("class", "x axis")
 								.attr('fill',"none")
-								.attr("transform", "translate("+0+"," + yScale(0) + ")")
+								.attr("transform", "translate("+0+"," + scaleHeight + ")")
 								.call(xAxis);
 					 xAxisTextRef.selectAll('text')
 								 .text(function(d){return xAxisData[d];})
@@ -14335,7 +14146,7 @@ var drawGauageGraph={
 			// xAxis label here
 			var pixcelPerChar = 6;
 			var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-			var xIndicationLabelTop=yScale(0)+(spikesAnalChart.bottom-5);
+			var xIndicationLabelTop=scaleHeight+(spikesAnalChart.bottom-5);
 			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 
 			axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,spikesChartMainGroup,textStyleConfg.xLabelColor,600);										
@@ -14358,7 +14169,7 @@ var drawGauageGraph={
 				
 				//yAxis Label here				   
 			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-			var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 			var yIndicationLabelLeft=(-spikesAnalChart.left+15);	
 			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,spikesChartMainGroup,textStyleConfg.yLabelColor,600);	
 				
@@ -14400,7 +14211,7 @@ var drawGauageGraph={
 										return ((xScale(timeIndexValue))-(barWidth/2));
 									 })
 									 .attr("y",function(d,i)
-									 {return yScale(0)})
+									 {return scaleHeight})
 									 .attr('width',barWidth)
 									 .attr('height',function(d)
 									 {
@@ -14438,7 +14249,7 @@ var drawGauageGraph={
 											yArrayIndex++;
 										}
 										return ((yScale(yAxisData[yArrayIndex]))+((YPositionOfRect++)*7));
-										return yScale(0);
+										return scaleHeight;
 									 });
 									 
 					//hide axis path
@@ -14476,7 +14287,7 @@ var drawGauageGraph={
 			var xAxisTicksArray=options.xAxisTickArray;
 			
 			var scaleWidth  = width - margin.left - margin.right;
-			var yScale(0) = height - margin.top - margin.bottom;
+			var scaleHeight = height - margin.top - margin.bottom;
 			var spacingFactorInBars = (0.9*width) /  (2*heightOfBarOne.length);
 			
 			var widthOfBars = (0.9 * width) / (1.5 * (heightOfBarOne.length + heightOfBarTwo.length));
@@ -14519,7 +14330,7 @@ var drawGauageGraph={
 
             var yScale = d3.scale.linear()
                     .domain([yMin,yMax])
-                    .range([yScale(0), 0]);             
+                    .range([scaleHeight, 0]);             
 			 
             var xAxis = d3.svg.axis()
                     .scale(xScale)
@@ -14935,7 +14746,7 @@ var drawGauageGraph={
 			var xAxisRef = svgContainer.append("g")
                     .attr("class", "axis")
 					.attr('fill',"none")
-                    .attr("transform", "translate("+(0)+"," + (yScale(0)) + ")")
+                    .attr("transform", "translate("+(0)+"," + (scaleHeight) + ")")
                     .call(xAxis);
 					
 			xAxisRef.selectAll("text")
@@ -14961,7 +14772,7 @@ var drawGauageGraph={
 			 
 			var pixcelPerChar=6;
 			var totalYLabelPixcel=cfg.yLabel.toString().length*pixcelPerChar;
-			var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 			var yIndicationLabelLeft=(-margin.left+15);	
 			axisLabelController.appendLabel(cfg.yLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,svgElement,textStyleConfg.yLabelColor,600);	
 		
@@ -14969,7 +14780,7 @@ var drawGauageGraph={
 			//x indication label
 	
 			var totalXLabelPixcel=cfg.xLabel.toString().length*pixcelPerChar;
-			var xIndicationLabelTop=yScale(0)+(margin.bottom-5);
+			var xIndicationLabelTop=scaleHeight+(margin.bottom-5);
 			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 			axisLabelController.appendLabel(cfg.xLabel,xIndicationLabelLeft,xIndicationLabelTop,0,svgElement,textStyleConfg.xLabelColor,600);										
 				
@@ -15038,14 +14849,14 @@ var drawGauageGraph={
 				var leftMargin = marginController.leftMarginController(yAxisData);
 				var barAnalChart={left:leftMargin,right:width*0.05,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-barAnalChart.left-barAnalChart.right;
-				var yScale(0)=height-barAnalChart.top-barAnalChart.bottom;
+				var scaleHeight=height-barAnalChart.top-barAnalChart.bottom;
 				var legendSize = 10;
 				var leftMarginOfSvg = $(selectorElement).offset().left;
 				var topMarginOfSvg = $(selectorElement).offset().top;
 				
 				
 				
-				gridManager.init(svgElement, yScale(0), scaleWidth, barAnalChart.left, barAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, barAnalChart.left, barAnalChart.top,textStyleConfg.gridLineColor);
 			
 				var dataBarWidth =  (scaleWidth/(2*xAxisData.length));
 				var xAxisTimeIndex = [];
@@ -15078,7 +14889,7 @@ var drawGauageGraph={
 	   
                 var xAxisGroup = barMainGroup.append("g")
 									.attr("class","x-axis")
-									.attr("transform","translate("+0+","+(yScale(0))+")")
+									.attr("transform","translate("+0+","+(scaleHeight)+")")
 
 						       	    .attr('fill','none')
 									//.style('display','none')
@@ -15101,7 +14912,7 @@ var drawGauageGraph={
 				
 				var yScale = d3.scale.linear()
 							         .domain([yMin,yMax])
-                                     .range([yScale(0),0]);
+                                     .range([scaleHeight,0]);
 	            
 				var yAxis = d3.svg.axis()
                                   .scale(yScale)
@@ -15193,7 +15004,7 @@ var drawGauageGraph={
 					.attr('class','legend')
                     .attr("transform", "translate(" + (barAnalChart.left) + "," + barAnalChart.top + ")")
 					
-					var yPositionOfLegend = yScale(0)+yScale(0)*0.02;
+					var yPositionOfLegend = scaleHeight+scaleHeight*0.02;
 					var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPositionOfLegend,xAxisData,legendSize,legendSize);
 					
 				var legendRef = legendGroup.selectAll('.rect')
@@ -15238,7 +15049,7 @@ var drawGauageGraph={
 				var margin={left:width*0.05,right:width*0.05,bottom:height*0.1,top:height*0.05,chartSeparator:5};
 				
 				var scaleWidth=width-margin.left-margin.right;
-				var yScale(0)=height-margin.top-margin.bottom;
+				var scaleHeight=height-margin.top-margin.bottom;
 				
 				var title = cnfg.title; 
 			
@@ -15278,7 +15089,7 @@ var drawGauageGraph={
 				var maxX=imageArray.length-1;
 				
 				yScale =d3.scale.linear()
-                    .range([(yScale(0)-margin.top),margin.bottom]);
+                    .range([(scaleHeight-margin.top),margin.bottom]);
 			
 				
 				var maxColumns;
@@ -15365,7 +15176,7 @@ var drawGauageGraph={
                              .orient("left");
 							 
 				svgElement.append("g")
-				.attr("transform", "translate(" + (margin.left) + "," + (yScale(0)) + ")")
+				.attr("transform", "translate(" + (margin.left) + "," + (scaleHeight) + ")")
 				.call(xAxis);	
                 
 				svgElement.append("g")
@@ -15393,7 +15204,7 @@ var drawGauageGraph={
 				                  .attr("transform", "translate(" + (margin.left) + "," + (margin.top) + ")");
 				
 					var radius = 5;
-					var yPositionOfLegend = yScale(0) ;
+					var yPositionOfLegend = scaleHeight ;
 					var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPositionOfLegend,legendArray,radius*1.5,radius*1.5);
 					
 					var circleLegendPosition=[];
@@ -15635,7 +15446,7 @@ var drawGauageGraph={
 		
 				var multiAxisAnalChart={left:20,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=(width)-multiAxisAnalChart.left-multiAxisAnalChart.right;
-				var yScale(0)=height-multiAxisAnalChart.top-multiAxisAnalChart.bottom;
+				var scaleHeight=height-multiAxisAnalChart.top-multiAxisAnalChart.bottom;
 				
 				//title here
 				var pixcelPerChar = 8;
@@ -15686,7 +15497,7 @@ var drawGauageGraph={
 				
 			var pixcelPerChar=6;
 			var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-			var xIndicationLabelTop=yScale(0)+(multiAxisAnalChart.bottom-5);
+			var xIndicationLabelTop=scaleHeight+(multiAxisAnalChart.bottom-5);
 			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 			axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,multiAxisMAinGroup,textStyleConfg.xLabelColor,600);			   							
 																	
@@ -15695,7 +15506,7 @@ var drawGauageGraph={
 
 			var verticalLineRef = multiAxisMAinGroup.append('line')
 										  .attr('y1',multiAxisAnalChart.top)
-										  .attr('y2',yScale(0))
+										  .attr('y2',scaleHeight)
 										  .attr('stroke','#a7a7a7')
 										  .attr('display','none');
 			
@@ -15749,7 +15560,7 @@ var drawGauageGraph={
 					
 					yScale[counter]= d3.scale.linear()
 									 .domain([yMin,yMax])
-									 .range([yScale(0),0]);
+									 .range([scaleHeight,0]);
 					
 					
 					if(counter%2==0)
@@ -15836,7 +15647,7 @@ var drawGauageGraph={
 
 			var xAxisGroup = multiAxisMAinGroup.append("g")
 								.attr("class","x axis")
-								.attr("transform","translate("+0+","+(yScale(0)-5)+")")
+								.attr("transform","translate("+0+","+(scaleHeight-5)+")")
 								.attr('fill','none')
 								//.style('display','none')
 								.call(xAxis)
@@ -16010,7 +15821,7 @@ var drawGauageGraph={
 					pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}	
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
-				var yScale(0)=height-pieAnalChart.top-pieAnalChart.bottom;
+				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
 				var  pieMainGroup = svgElement.append("g")
 										   .attr('class','main-group')
@@ -16018,7 +15829,7 @@ var drawGauageGraph={
 										   
 				var dountPieGroup = 	pieMainGroup.append("g")
 											.attr('class','dountPie')
-											.attr("transform", "translate(" + (scaleWidth/2) + "," + (yScale(0)/2) + ")");
+											.attr("transform", "translate(" + (scaleWidth/2) + "," + (scaleHeight/2) + ")");
 
 				var grad = Math.PI/180;							
 				var dist = 0;
@@ -16029,7 +15840,7 @@ var drawGauageGraph={
 					dountDataSum = dountDataSum+dountData[index];
 				}
 						
-				var radiusX = yScale(0) < scaleWidth ? yScale(0) : scaleWidth;
+				var radiusX = scaleHeight < scaleWidth ? scaleHeight : scaleWidth;
 							 radiusX = radiusX *.45;
 				
 				var radiusY = radiusX*.75;
@@ -16295,7 +16106,7 @@ var drawGauageGraph={
 					pieAnalChart={left:width*0.07,right:width*0.07,bottom:height*0.05,top:height*0.05,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}	
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
-				var yScale(0)=height-pieAnalChart.top-pieAnalChart.bottom;
+				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
 				var grad = Math.PI/180;							
 				var dist = 0;
@@ -16321,12 +16132,12 @@ var drawGauageGraph={
 										   
 				var dountPieGroup = 	pieMainGroup.append("g")
 											.attr('class','dountPie')
-											.attr("transform", "translate(" + (scaleWidthPie/2) + "," + (yScale(0)/2) + ")")
+											.attr("transform", "translate(" + (scaleWidthPie/2) + "," + (scaleHeight/2) + ")")
 											.style("webkit-transform","rotateX(0deg)");
 
 				
 				
-				var radiusX = yScale(0)/2 < scaleWidthPie/2 ? yScale(0)/2 : scaleWidthPie/2;
+				var radiusX = scaleHeight/2 < scaleWidthPie/2 ? scaleHeight/2 : scaleWidthPie/2;
 						//	 radiusX = radiusX *.7;
 				
 				var radiusY = radiusX*.7;
@@ -16655,7 +16466,7 @@ var threeDDountChartWithLegendGraph =
 					pieAnalChart={left:width*0.07,right:width*0.07,bottom:height*0.05,top:height*0.05,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}	
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
-				var yScale(0)=height-pieAnalChart.top-pieAnalChart.bottom;
+				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
 				var grad = Math.PI/180;							
 				var dist = 0;
@@ -16681,11 +16492,11 @@ var threeDDountChartWithLegendGraph =
 										   
 				var dountPieGroup = 	pieMainGroup.append("g")
 											.attr('class','dountPie')
-											.attr("transform", "translate(" + (scaleWidthPie/2) + "," + (yScale(0)/2) + ")");
+											.attr("transform", "translate(" + (scaleWidthPie/2) + "," + (scaleHeight/2) + ")");
 
 			
 				
-				var radiusX = (yScale(0)/2 < scaleWidthPie/2) ? yScale(0)/2 : scaleWidthPie/2;
+				var radiusX = (scaleHeight/2 < scaleWidthPie/2) ? scaleHeight/2 : scaleWidthPie/2;
 							// radiusX = radiusX *.7;
 				
 				var radiusY = radiusX*.7;
@@ -16964,10 +16775,10 @@ var threeDDountChartWithLegendGraph =
 		{
 			drillDownDountChartAnalysis:function(data)
 			{
-				var donutOuterRadius,donutParts,donutInnerRadius,saveKeys = [],scaleWidth,yScale(0);
+				var donutOuterRadius,donutParts,donutInnerRadius,saveKeys = [],scaleWidth,scaleHeight;
 				var setMargin={leftMargin:width*.1,rightMargin:width*0.1,bottomMargin:height*0.1,topMargin:height*0.1};
 				scaleWidth = width - setMargin.leftMargin - setMargin.rightMargin;
-				yScale(0) = height - setMargin.topMargin - setMargin.bottomMargin;
+				scaleHeight = height - setMargin.topMargin - setMargin.bottomMargin;
 				
 				var mainGroup;
 				mainGroup	= svgElement.append("g")
@@ -16980,14 +16791,14 @@ var threeDDountChartWithLegendGraph =
 							.attr("transform","translate("+setMargin.leftMargin+","+setMargin.topMargin+")");	
 								
 				// set donut radius
-				if(scaleWidth<yScale(0))
+				if(scaleWidth<scaleHeight)
 				{
 					donutParts = scaleWidth/6;
 					donutOuterRadius = donutParts*2;
 				}
 				else
 				{
-					donutParts = yScale(0)/6;
+					donutParts = scaleHeight/6;
 					donutOuterRadius = donutParts*2;
 				}
 				donutInnerRadius = donutParts;
@@ -16997,7 +16808,7 @@ var threeDDountChartWithLegendGraph =
 				
 				//Image Group for set Image for back tracking
 				var imageGroup = svgElement.append("g").attr('id','imageGroup')
-					.attr("transform", "translate(" + (setMargin.leftMargin+scaleWidth*.5) + "," + (setMargin.topMargin+yScale(0)*.5) + ")");
+					.attr("transform", "translate(" + (setMargin.leftMargin+scaleWidth*.5) + "," + (setMargin.topMargin+scaleHeight*.5) + ")");
 				
 				
 				imageGroup.append("svg:image")
@@ -17056,7 +16867,7 @@ var threeDDountChartWithLegendGraph =
 					
 					var donutGroup = mainGroup.append("g")
 							.attr('id','donutGroup')
-							.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)*.5) + ")");
+							.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.5) + ")");
 					
 					var arc = d3.svg.arc()
 							.innerRadius(innerRadius)
@@ -17149,7 +16960,7 @@ var threeDDountChartWithLegendGraph =
 					
 					var arcGroup = mainGroup.append("g")
 						.attr('id','arcGroup')
-						.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)*.5) + ")");
+						.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.5) + ")");
 					 
 					var pie = d3.layout.pie()
 							.value(function(d,i){ return d});	
@@ -17224,7 +17035,7 @@ var threeDDountChartWithLegendGraph =
 		{
 						var treeMapMargin={left:width*0.05,right:width*0.05,bottom:height*0.1,top:height*0.05,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 			var scaleWidth=width-treeMapMargin.left-treeMapMargin.right;
-			var yScale(0)=height-treeMapMargin.top-treeMapMargin.bottom;
+			var scaleHeight=height-treeMapMargin.top-treeMapMargin.bottom;
 			
 			
 				   
@@ -17235,7 +17046,7 @@ var threeDDountChartWithLegendGraph =
 
 			var gradientGroup = treeMainGroup.append("g")
 								.attr('class','legend')
-								.attr("transform", "translate(" +(scaleWidth*.1)+ "," +(yScale(0) +(10))+ ")");
+								.attr("transform", "translate(" +(scaleWidth*.1)+ "," +(scaleHeight +(10))+ ")");
 						   
 			
 			var minColorValue = d3.min(treeData.children, function (d) {
@@ -17254,7 +17065,7 @@ var threeDDountChartWithLegendGraph =
 							.range([colorCombination.colorLow, colorCombination.colorMed, colorCombination.colorHigh]);
 							   
 			var treemap = d3.layout.treemap()
-				.size([scaleWidth, yScale(0)])
+				.size([scaleWidth, scaleHeight])
 				.sticky(true)
 				.value(function(d) { return d.size; });
 			 
@@ -17447,12 +17258,12 @@ var threeDDountChartWithLegendGraph =
 				var setMargin={left:marginController.leftMarginController(yAxisData),right:width*0.1,bottom:45,top:height*0.1};
 				
 				var scaleWidth = width-setMargin.left-setMargin.right;
-				var yScale(0) = height-setMargin.top-setMargin.bottom;
+				var scaleHeight = height-setMargin.top-setMargin.bottom;
 				
 				var xAxisIndex=[],xAxisDataMaxSize=0;
 				
 				 var estimateDataBarWidth =  (scaleWidth/(1.5*xAxisData.length));	
-				gridManager.init(svgElement, yScale(0), scaleWidth+setMargin.left, setMargin.left-(estimateDataBarWidth/2), setMargin.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth+setMargin.left, setMargin.left-(estimateDataBarWidth/2), setMargin.top,textStyleConfg.gridLineColor);
 				
 				// Cut main group
 				var mainGroup = svgElement.append("g")
@@ -17476,7 +17287,7 @@ var threeDDountChartWithLegendGraph =
 									 
 				var yScale = d3.scale.linear()
 									 .domain([yMin,yMax])
-									 .range([yScale(0),0]); 
+									 .range([scaleHeight,0]); 
 
 				var xAxis = d3.svg.axis()
 									.scale(xScale)
@@ -17492,7 +17303,7 @@ var threeDDountChartWithLegendGraph =
 				// Group for X Axis	
 				var xAxisGroup = mainGroup.append("g")
 									.attr("class","xAxisGroup")
-									.attr("transform","translate("+0+","+yScale(0)+")")
+									.attr("transform","translate("+0+","+scaleHeight+")")
 									.attr("fill","none")
 									.call(xAxis)	
 									.selectAll("text")
@@ -17537,14 +17348,14 @@ var threeDDountChartWithLegendGraph =
 				var area = d3.svg.area()
 								.interpolate("cardinal")
 								.x(function(d,i)  {  return xScale(d); })
-								.y0(yScale(0))
+								.y0(scaleHeight)
 								.y1(function(d,i) {  return yScale(yAxisData[i]); });
 								
 				var areaTemp = d3.svg.area()
 								.interpolate("cardinal")
-								.x(function(d,i)  {  return xScale(i); })
-								.y0(yScale(0))
-								.y1(function(d,i) {  return yScale(0); });
+								.x(function(d,i)  { return xScale(i); })
+								.y0(scaleHeight)
+								.y1(function(d,i) { return scaleHeight; });
 								
 				// Path generate 
 				var areaPath = mainGroup.append("path")
@@ -17619,8 +17430,8 @@ var threeDDountChartWithLegendGraph =
 				
 				// X Axis Lable
 				var xAxisLableGroup = svgElement.append("g").attr("class","label")
-										.attr("transform","translate("+(0)+","+(setMargin.top+yScale(0))+")");
-						//	.attr("transform","translate("+(leftMargin+scaleWidth*.5)+","+(setMargin.topMargin+yScale(0)+(bottomMargin*.3))+")");
+										.attr("transform","translate("+(0)+","+(setMargin.top+scaleHeight)+")");
+						//	.attr("transform","translate("+(leftMargin+scaleWidth*.5)+","+(setMargin.topMargin+scaleHeight+(bottomMargin*.3))+")");
 							
 				var pixcelPerChar=6;
 				var xLabelTotalPixcel=xAxisLabel.toString().length*pixcelPerChar;
@@ -17667,7 +17478,7 @@ var threeDDountChartWithLegendGraph =
 				var setMargin={leftMargin:marginController.leftMarginController(yAxisData),rightMargin:width*0.1,bottomMargin:45,topMargin:height*0.15};
 				
 				var scaleWidth = width - setMargin.leftMargin - setMargin.rightMargin;
-				var yScale(0) = height - setMargin.topMargin - setMargin.bottomMargin;
+				var scaleHeight = height - setMargin.topMargin - setMargin.bottomMargin;
 				for(var j=0;j<yAxisData.length;j++)
 				{
 					if(yAxisLength<yAxisData[j])
@@ -17714,7 +17525,7 @@ var threeDDountChartWithLegendGraph =
 							var x = (d3.event.pageX)-setMargin.leftMargin-leftMarginOfSvg;
 							x = xScale.invert(x);
 							
-							if( x>=0 && x<xAxisData.length-1 && y>setMargin.topMargin && y<=(setMargin.bottomMargin + yScale(0)+10))
+							if( x>=0 && x<xAxisData.length-1 && y>setMargin.topMargin && y<=(setMargin.bottomMargin + scaleHeight+10))
 							{
 								var lineMove = svgElement.append("line")
 										.attr("class","lineMove")
@@ -17734,7 +17545,7 @@ var threeDDountChartWithLegendGraph =
 											.attr("class","lineDiv")
 											.attr("stroke","black")
 											.attr("stroke-width", 2)
-											.attr("fill", "black").style("opacity", 0.8);
+											.attr("fill", "black").style("opacity",0.8);
 								svgElement.append("text").attr("x",setMargin.leftMargin-yAxisLength*11)
 											.attr("y",y)
 											.text(function(){return Math.round(yScale.invert(y-setMargin.topMargin));})
@@ -17747,7 +17558,7 @@ var threeDDountChartWithLegendGraph =
 								var rectHeight =30
 								var rectWidth = text.length *10;
 								var xStartPoint= d3.event.pageX -leftMarginOfSvg;
-								var yStartPoint = yScale(0)+setMargin.topMargin-5;
+								var yStartPoint = scaleHeight+setMargin.topMargin-5;
 								toolTipPathX[0]=xStartPoint;
 								toolTipPathX[1]=xStartPoint-7;
 								toolTipPathX[2]=xStartPoint-rectWidth/2;
@@ -17780,7 +17591,7 @@ var threeDDountChartWithLegendGraph =
 											
 							
 								svgElement.append("text").attr("x",d3.event.pageX-textLength/2-leftMarginOfSvg)
-											.attr("y",yScale(0)+setMargin.topMargin+15)
+											.attr("y",scaleHeight+setMargin.topMargin+15)
 											.text(function(){
 											return	text;
 											})
@@ -17821,7 +17632,7 @@ var threeDDountChartWithLegendGraph =
 						 
 	var yScale = d3.scale.linear()
 						 .domain([yMin,yMax])
-						 .range([yScale(0),0]); 
+						 .range([scaleHeight,0]); 
 
 	var xAxis = d3.svg.axis()
 					  .scale(xScale).tickValues(tickController.getXTickArray(0,(xAxisIndex.length),xAxisDataMaxSize,(scaleWidth)));
@@ -17835,7 +17646,7 @@ var threeDDountChartWithLegendGraph =
 	// Group for X Axis	
 	var xAxisGroup = mainGroup.append("g")
 							  .attr("class","xAxisGroup")
-							  .attr("transform","translate("+0+","+yScale(0)+")")
+							  .attr("transform","translate("+0+","+scaleHeight+")")
 							  .call(xAxis)
 							  .attr("fill","none")
 							  .selectAll("text")
@@ -18023,8 +17834,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	
 	// X Axis Lable
 	var xAxisLableGroup = svgElement.append("g").attr("class","label")
-							.attr("transform","translate("+(0)+","+(setMargin.topMargin+yScale(0))+")");
-			//	.attr("transform","translate("+(leftMargin+scaleWidth*.5)+","+(setMargin.topMargin+yScale(0)+(bottomMargin*.3))+")");
+							.attr("transform","translate("+(0)+","+(setMargin.topMargin+scaleHeight)+")");
+			//	.attr("transform","translate("+(leftMargin+scaleWidth*.5)+","+(setMargin.topMargin+scaleHeight+(bottomMargin*.3))+")");
 				
 	var pixcelPerChar=6;
 	var xLabelTotalPixcel=data.xAxisLabel.toString().length*pixcelPerChar;
@@ -18035,8 +17846,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 
 	// Y Axis Lable
 	var yAxisLableGroup = svgElement.append("g").attr("class","label");
-		//		attr("transform","translate("+(0)+","+(setMargin.topMargin+yScale(0)*.5)+");
-		//		.attr("transform","translate("+(leftMargin/2)+","+(setMargin.topMargin+yScale(0)*.5)+"),rotate("+-90+")");
+		//		attr("transform","translate("+(0)+","+(setMargin.topMargin+scaleHeight*.5)+");
+		//		.attr("transform","translate("+(leftMargin/2)+","+(setMargin.topMargin+scaleHeight*.5)+"),rotate("+-90+")");
 	
 	var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;
 	var yLabelTop=height/2+yLabelTotalPixcel/2;
@@ -18073,13 +17884,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var lineStrokeWidth = data.lineStrokeWidth;
 			var circleRadius =data.circleRadius;
 			
-			var yAxisDataMax = [],yAxisDataMax =[],yMin,yMax,xAxisDataMaxSize =0,xAxisIndex = [];
+			var yAxisDataMax = [],yAxisDataMax =[],yMin,yMax,xAxisDataMaxSize =0,xAxisIndex = [],legendArray = [];
 			
 			// to find yMax array and yMax
 			yAxisDataMax = yAxisData[0]["data"];
 			yMax = d3.max(yAxisDataMax);
 			for(var i=0;i<yAxisData.length;i++)
 			{
+				legendArray[i] = yAxisData[i].name;
 				if(yMax<d3.max(yAxisData[i]["data"])){
 					yAxisDataMax = yAxisData[i]["data"];
 					yMax = d3.max(yAxisDataMax);
@@ -18099,17 +17911,26 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 			var setMargin={left:marginController.leftMarginController(yAxisDataMax),right:width*0.05,bottom:45,top:height*0.15};
 			var scaleWidth = width - setMargin.left - setMargin.right;
-			var yScale(0) = height - setMargin.top - setMargin.bottom;
+			var scaleHeight = height - setMargin.top - setMargin.bottom;
 			
-			gridManager.init(svgElement, yScale(0), scaleWidth, setMargin.left, setMargin.top,textStyleConfg.gridLineColor);
+			gridManager.init(svgElement, scaleHeight, scaleWidth, setMargin.left, setMargin.top,textStyleConfg.gridLineColor);
 						
 			var mainGroup = svgElement.append("g")
 							.attr("class","mainGroup")
 							.attr("transform","translate("+setMargin.left+","+setMargin.top+")");
 							
 			yMin = minMaxController.getMin(yAxisDataMin);
-			yMax = minMaxController.getMax(yAxisDataMax);
-		//	yMax = yMax+100;
+			if(yMax == 0){
+				yMax =yMax;
+			}
+			else{
+				if(yMax>0){
+					yMax =yMax* 1.1;
+				}else{
+					yMax =yMax * 0.7;
+				}
+			}
+		//	yMax = minMaxController.getMax(yAxisDataMax);
 			for(var i=0;i<data.xAxisData.length;i++)
 			{
 				xAxisIndex[i]=i;
@@ -18124,7 +17945,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 								 
 			var yScale = d3.scale.linear()
 								 .domain([yMin,yMax])
-								 .range([0,yScale(0)]); 
+								 .range([0,scaleHeight]); 
 
 			var xAxis = d3.svg.axis()
 							  .scale(xScale).tickValues(tickController.getXTickArray(0,(xAxisIndex.length),xAxisDataMaxSize,(scaleWidth)));
@@ -18137,7 +17958,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			// Group for X Axis	
 			var xAxisGroup = mainGroup.append("g")
 									  .attr("class","xAxisGroup")
-									  .attr("transform","translate("+0+","+yScale(0)+")")
+									  .attr("transform","translate("+0+","+scaleHeight+")")
 									  .call(xAxis)
 									  .attr("fill","none")
 									  .selectAll("text")
@@ -18164,37 +17985,50 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var lineGraph = mainGroup.append("path")
 									.attr("d",lineFunction(yAxisData[i]["data"]))
 									.attr("class","lineGraph")
+									.attr("id","linePath"+i)
 									.attr("stroke",yAxisData[i]["color"])
 									.attr("stroke-width", lineStrokeWidth)
 									.attr("fill", "none");
+				
+				var lineLen = lineGraph.node().getTotalLength();
+			
+				lineGraph.attr("stroke-dasharray",
+				lineLen + ", " + lineLen)
+					.attr("stroke-dashoffset", lineLen);
+
+				lineGraph.transition()
+					.duration(2000)
+					.attr("stroke-dashoffset", 0);
 									
-			var circleRef = mainGroup.selectAll(".circle")
-									 .data(yAxisData[i]["data"])
-									 .enter()
-									 .append("circle")
-									 .attr("cx",0)
-									 .attr("cy",0)
-									 .attr("r",circleRadius)
-									 .attr("fill",yAxisData[i]["color"]);
-			
-			circleRef.transition().duration(1500).attr("cx",function(d,i){return xScale(i)})
-									 .attr("cy",function(d,i){return yScale(d)});
-			
-			circleRef.on("mouseover",function(){
-										d3.select(this).attr("r",circleRadius+2)
-									})
-					.on("mouseout",function(){
-										d3.select(this).attr("r",circleRadius)
-									})
-					.on("mousemove",function(d,j){
-										
-										var heading = xAxisData[j];
-										var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":d}];
-										toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.90);	
-									})
-					.on("mouseleave",function(){
-										toolTipManager.hideTooTip();
-									});
+				var circleRef = mainGroup.selectAll(".circle")
+					.data(yAxisData[i]["data"])
+					.enter()
+					.append("circle")
+					.attr("cx",0)
+					.attr("cy",0)
+					.attr("r",circleRadius)
+					.attr("fill",yAxisData[i]["color"]);
+
+				circleRef.transition().duration(1500).attr("cx",function(d,i){return xScale(i)})
+					.attr("cy",function(d,i){return yScale(d)});
+				
+				circleRef.on("mouseover",function()
+				{
+					d3.select(this).attr("r",circleRadius+2)
+				})
+				.on("mouseout",function()
+				{
+					d3.select(this).attr("r",circleRadius)
+				})
+				.on("mousemove",function(d,j){							
+					var heading = xAxisData[j];
+					var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":d}];
+					toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.90);	
+				})
+				.on("mouseleave",function()
+				{
+					toolTipManager.hideTooTip();
+				});
 			}
 			
 			// *********Title,X Axis label,Y Axis Lable
@@ -18205,14 +18039,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					
 			var pixcelPerChar=6;
 			var xLabelTotalPixcel=data.xAxisLabel.toString().length*pixcelPerChar;
-			var xLabelTop=yScale(0)+setMargin.bottom-5;
+			var xLabelTop=scaleHeight+setMargin.bottom-5;
 			var xLabelLeft=scaleWidth/2-xLabelTotalPixcel/2;
 			axisLabelController.appendLabel(data.xAxisLabel,xLabelLeft,xLabelTop,0,lableGroup,textStyleConfg.xLabelColor,600);
 			
 
 			// Y Axis Lable
 			var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;
-			var yLabelTop=yScale(0)/2+yLabelTotalPixcel/2;
+			var yLabelTop=scaleHeight/2+yLabelTotalPixcel/2;
 			var yIndicationLabelLeft=(-setMargin.left+10);	
 			axisLabelController.appendLabel(data.yAxisLabel,yIndicationLabelLeft,yLabelTop,-90,lableGroup,textStyleConfg.yLabelColor,600);	
 
@@ -18225,6 +18059,67 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						
 		//*********end Title,X Axis label,Y Axis Lable
 		
+	// ******* Legend Logic******
+
+						var lagendRectWidth = 10;
+						var lagendRectHeight = 10; 
+						var yPosition = 16;
+						var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPosition,legendArray,lagendRectWidth+20,lagendRectHeight);
+						
+						var legendGroup = svgElement.append("g").attr("class","legendGroup")
+							.attr("transform","translate("+margin.left+","+(0)+")");
+					//	!isNaN(xScale(xAxisData[i].data[j]))?xScale(xAxisData[i].data[j]):0;
+						var legendRef = legendGroup.selectAll('.rect')
+							.data(legendPositionArray)
+							.enter()
+							.append('rect')
+							.attr("id","legendRectangle")
+							.attr("value",function(d,i){return i;})
+							.attr("status",1)
+							.attr('width',lagendRectWidth)
+							.attr('height',lagendRectHeight)
+							.attr('x',function(d,i){ return legendPositionArray[i].x;})
+							.attr('y',function(d,i){return legendPositionArray[i].y;})
+							.attr('fill',function(d,i){return yAxisData[i].color})
+							.on("click", function (d,i) {
+								var val = parseInt(d3.select(this).attr("value"));
+								var path = svgElement.selectAll("#linePath"+val);
+								console.log(path);
+								var lineLen = path.node().getTotalLength();
+								var status = parseInt(d3.select(this).attr("status"));
+								if(status == 1)
+								{
+									d3.select(this).attr("status",0);
+									d3.select(this).style("fill","grey")
+									svgElement.select("#legend-text"+val).style("text-decoration", "line-through");
+									
+									path.transition()
+										.duration(2000)
+										.attr("stroke-dashoffset", lineLen);
+								}
+								else
+								{
+									d3.select(this).attr("status",1);
+									svgElement.select("#legend-text"+val).style("text-decoration", "none");
+									d3.select(this).style("fill",yAxisData[val].color)
+									path.transition()
+										.duration(2000)
+										.attr("stroke-dashoffset", 0);
+								}
+							  });	
+												
+						var legendTextRef = legendGroup.selectAll('.text')
+							.data(legendPositionArray)
+							.enter()
+							.append('text')
+							.attr('id',function(d,i){ return 'legend-text'+i})
+							.attr('x',function(d,i){return legendPositionArray[i].textXPos-20;})
+							.attr('y',function(d,i){return legendPositionArray[i].y;})
+							.text(function(d,i){return yAxisData[i].name;}).attr("dy",".8em")
+							.attr("font-family","calibri")
+							.attr("fill",textStyleConfg.legendTextColor);
+							
+					// ******* End Legend Logic******
 		//hide axis path
 			hideAxisPath(svgElement);
 		//set font here
@@ -18244,7 +18139,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	var leftMarginOfSvg = $(selectorElement).offset().left;
 	var topMarginOfSvg = $(selectorElement).offset().top;
 	
-	var yAxisIndex = [],yDataLength=0,greatestFactor=0,sum=0,lagendArray = [],maxLagendLength=0,saveKeys=[];
+	var yAxisIndex = [],yDataLength=0,greatestFactor=0,sum=0,lagendArray = [],maxLagendLength=0;
 	
 	for(var i=0;i<xAxisData.length;i++)
 	{	
@@ -18255,7 +18150,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		lagendArray[i] = xAxisData[i].name;
 		if(maxLagendLength<lagendArray[i].toString().length)
 			maxLagendLength = lagendArray[i].toString().length;
-		saveKeys[i]=1;
+		
 	}
 	
 	//for x-Axis max Length for scaling
@@ -18282,9 +18177,9 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	var setMargin={leftMargin:horizontalChartLeftMargin,rightMargin:width*0.05,bottomMargin:height*.2,topMargin:height*0.05};
 
 	var scaleWidth = width - setMargin.leftMargin - setMargin.rightMargin;
-	var yScale(0) = height - setMargin.topMargin - setMargin.bottomMargin;
-	gridManager.init(svgElement, yScale(0), scaleWidth, setMargin.leftMargin, setMargin.topMargin,textStyleConfg.gridLineColor);
-	var rectHeight = yScale(0)/(yAxisIndex.length*2);
+	var scaleHeight = height - setMargin.topMargin - setMargin.bottomMargin;
+	gridManager.init(svgElement, scaleHeight, scaleWidth, setMargin.leftMargin, setMargin.topMargin,textStyleConfg.gridLineColor);
+	var rectHeight = scaleHeight/(yAxisIndex.length*2);
 
 	
 	
@@ -18303,7 +18198,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	var lagendRectWidth = 10;
 	var lagendRectHeight = 10;
 	
-	var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yScale(0)+setMargin.topMargin+setMargin.bottomMargin*.6,lagendArray,lagendRectWidth+30,lagendRectHeight);
+	var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,scaleHeight+setMargin.topMargin+setMargin.bottomMargin*.6,lagendArray,lagendRectWidth+30,lagendRectHeight);
 	
 	var legendGroup = svgElement.append("g").attr("class","legendGroup")
 		.attr("transform","translate("+setMargin.leftMargin+","+(0)+")");
@@ -18314,23 +18209,33 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		.append('rect')
 		.attr("id","legendRectangle")
 		.attr("value",function(d,i){return i;})
+		.attr("state",1)
 		.attr('width',lagendRectWidth)
 		.attr('height',lagendRectHeight)
 		.attr('x',function(d,i){ return legendPositionArray[i].x;})
 		.attr('y',function(d,i){return legendPositionArray[i].y;})
 		.attr('fill',function(d,i){return xAxisData[i].color})
 		.on("click",function(d,i){
-			var value = d3.select(this).attr("value");
-			if(saveKeys[value]==1)
-			{
-				removeRectangle(1);
-				saveKeys[value]=0;
+			
+			var val = parseInt(d3.select(this).attr("value"));
 				
-			}
-			else
+			var state = parseInt(d3.select(this).attr("state"));
+					
+			if (state ==0) 
 			{
-				saveKeys[value]=1;
-				displayRectangle();
+				d3.select(this).attr("state",1);			
+				d3.select(this).style("fill",xAxisData[val].color);	
+				svgElement.selectAll("#text"+val).style("text-decoration","none");
+				$(".rect"+val).fadeToggle(100);
+			
+			}
+			else 
+			{
+				d3.select(this).attr("state",0);		
+				d3.select(this).style("fill","gray");								
+				svgElement.selectAll("#text"+val).style("text-decoration","line-through");
+				$(".rect"+val).fadeToggle(100);
+			
 			}
 		});
 							
@@ -18360,7 +18265,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 								 
 	var yScale = d3.scale.linear()
 		.domain([0,yAxisIndex.length-1])
-		.range([yScale(0)-rectHeight,rectHeight]); 
+		.range([scaleHeight-rectHeight,rectHeight]); 
 
 	var xAxis = d3.svg.axis()
 		.scale(xScale)
@@ -18375,7 +18280,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	// Group for X Axis	
 	var xAxisGroup = mainGroup.append("g")
 		.attr("class","xAxisGroup")
-		.attr("transform","translate("+0+","+yScale(0)+")")
+		.attr("transform","translate("+0+","+scaleHeight+")")
 		.call(xAxis)
 		.attr("fill","none")
 		.selectAll("text")
@@ -18399,7 +18304,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		.attr("x1",-1)
 		.attr("y1",0)
 		.attr("x2",-1)
-		.attr("y2",yScale(0))
+		.attr("y2",scaleHeight)
 		.attr("stroke",textStyleConfg["tick-font-color"])
 		.attr("stroke-width",1);
 
@@ -18420,36 +18325,42 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	}
 	
 //******* Logic for Display Rectangle**********	
-	var rectHeight = yScale(0)/(yAxisIndex.length*2);
+	var rectHeight = scaleHeight/(yAxisIndex.length*2);
 	var factor=0;
 	var duration =1000;
 	var t ="interpolate";
 	var divPathY=[],divPathX=[];
+	var lineData = [];
 	for(var i=0;i<xAxisData.length;i++)
 	{
 		if(i==xAxisData.length-1)
 		t="bounce";
 		for(var j=0;j<yAxisData.length;j++)
 		{
+		//	alert(yAxisData[j]);
+			
 			var rectangle = mainGroup.append("rect")
-				.attr("class","rect"+xAxisData[i].name)
+				.attr("class","rect"+i)
 				.attr("id","rect"+yAxisData[j])
 				.attr("value",i)
 				.attr("key",j)
 				.attr("x",function()
+				{
+					if(i==0)
 					{
-						if(i==0)
-						{
-							return 0;
-						}
-						else
-						{
-							var previousRecHeightSum=0
-							for(var k=0;k<i;k++)
-							previousRecHeightSum = previousRecHeightSum + xScale(xAxisData[k].data[j]);
-							return previousRecHeightSum;
-						}
-					})
+						lineData.push(JSON.parse('{"x":'+0+',"width":'+(xAxisData[i].data[j])+'}'));
+						return 0;
+					}
+					else
+					{
+						var previousRecHeightSum=0
+						for(var k=0;k<i;k++)
+						previousRecHeightSum = previousRecHeightSum + xScale(xAxisData[k].data[j]);
+					
+						lineData.push(JSON.parse('{"x":'+previousRecHeightSum+',"width":'+(xAxisData[i].data[j])+'}'));
+						return previousRecHeightSum;
+					}
+				})
 				.attr("y",yScale(j)-rectHeight/2)
 				.attr("width",0)
 				.attr("height",rectHeight)
@@ -18470,15 +18381,16 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.transition().duration(500)
 				.delay(factor)//.ease(t)
 				.attr("width",function(){
+					
 					return !isNaN(xScale(xAxisData[i].data[j]))?xScale(xAxisData[i].data[j]):0;
+					
 					});
 							
 		}
 		factor = factor + 500;
 		
 	}
-
-	
+	console.log(JSON.stringify(lineData));
 	// *********Title,X Axis label,Y Axis Lable
 				
 	// X Axis Lable
@@ -18487,14 +18399,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					
 	var pixcelPerChar=6;
 	var xLabelTotalPixcel=data.xAxisLabel.toString().length*pixcelPerChar;
-	var xLabelTop=yScale(0)+(setMargin.bottomMargin*.5);
+	var xLabelTop=scaleHeight+(setMargin.bottomMargin*.5);
 	var xLabelLeft=scaleWidth/2-xLabelTotalPixcel/2;
 	
 	axisLabelController.appendLabel(data.xAxisLabel,xLabelLeft,xLabelTop,0,lableGroup,textStyleConfg.xLabelColor,600);
 			
 	// Y Axis Lable
 	var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;
-	var yLabelTop=yScale(0)/2+yLabelTotalPixcel/2;
+	var yLabelTop=scaleHeight/2+yLabelTotalPixcel/2;
 	var yIndicationLabelLeft=(-setMargin.leftMargin+20);	
 	
 	axisLabelController.appendLabel(data.yAxisLabel,yIndicationLabelLeft,yLabelTop,-90,lableGroup,textStyleConfg.yLabelColor,600);	
@@ -18506,19 +18418,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 
 								
 	//*********end Title,X Axis label,Y Axis Lable
-	function removeRectangle(value)
-	{
-		for(var i=value;i<xAxisData.length;i++)
-		{
-			
-			
-		}
-		
-	}
-	function displayRectangle()
-	{
-		
-	}
+	
 		
 		//hide axis path
 			hideAxisPath(svgElement);
@@ -18555,7 +18455,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var margin={left:leftMargin,right:width*0.05,bottom:width*0.05,top:height*0.1,chartSeparator:5};
 			
 			var scaleWidth=width-margin.left-margin.right;
-			var yScale(0)=height-margin.top-margin.bottom;
+			var scaleHeight=height-margin.top-margin.bottom;
 
 			var performanceMainGroup = svgElement.append("g")
 				   .attr('class','main-group')
@@ -18564,7 +18464,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var yDataLength = data.length;
 			var xDataLength = differentActivity.length;
 			
-			var maxRadius = (yScale(0)/yDataLength) < (scaleWidth/xDataLength) ?(yScale(0)/yDataLength) :(scaleWidth/xDataLength);
+			var maxRadius = (scaleHeight/yDataLength) < (scaleWidth/xDataLength) ?(scaleHeight/yDataLength) :(scaleWidth/xDataLength);
 			maxRadius = maxRadius * .4;
 			var minRadius = 11;
 			
@@ -18578,13 +18478,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	/*	// xAxis label here
 			var pixcelPerChar = 6;
 			var totalXLabelPixcel=xLabel.toString().length*pixcelPerChar;
-			var xIndicationLabelTop=yScale(0)+(margin.bottom-5);
+			var xIndicationLabelTop=scaleHeight+(margin.bottom-5);
 			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 			axisLabelController.appendLabel(xLabel,xIndicationLabelLeft,xIndicationLabelTop,0,performanceMainGroup,textStyleConfg.xLabelColor,600);										
 				*/
 		//yAxis Label here				   
 			var totalYLabelPixcel=yLabel.toString().length*pixcelPerChar;
-			var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 			var yIndicationLabelLeft=(-margin.left+15);	
 			axisLabelController.appendLabel(yLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,performanceMainGroup,textStyleConfg.yLabelColor,600);	
 		
@@ -18600,7 +18500,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 
 			var yScale = d3.scale.linear()
 							.domain([0,yDataLength-1])
-							.range([yScale(0)-maxRadius,maxRadius]);
+							.range([scaleHeight-maxRadius,maxRadius]);
 							
 			var lineRef = performanceMainGroup.selectAll(".line")
 								.data(yAxisValues)
@@ -18739,7 +18639,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,(0),legendArray,lagendRectWidth,lagendRectHeight);
 				
-				var legendGroup = svgElement.append("g").attr("class","legendGroup").attr("transform","translate("+margin.left+","+(yScale(0)+margin.top+5)+")");
+				var legendGroup = svgElement.append("g").attr("class","legendGroup").attr("transform","translate("+margin.left+","+(scaleHeight+margin.top+5)+")");
 				
 		//	!isNaN(xScale(xAxisData[i].data[j]))?xScale(xAxisData[i].data[j]):0;	
 				var legendRef = legendGroup.selectAll('.rect')
@@ -18789,7 +18689,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var title = data.title;
 			var xAxisLabel = data.xAxisLabel;
 			var yAxisLabel = data.yAxisLabel;
-			
+			var toolTipUnit = data.toolTipUnit;
 			var yMaxArray =[0],yMinArray = yAxisData[0].data,xAxisIndex =[],xAxisDataMaxSize=0,legendArray=[],originalHeight=[],originalWidth=[];
 			
 			
@@ -18814,7 +18714,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var margin={left:marginController.leftMarginController(yMaxArray),right:width*0.05,bottom:45,top:height*.1};
 			
 			var scaleWidth = width - margin.left - margin.right;
-			var yScale(0) = height - margin.top - margin.bottom;
+			var scaleHeight = height - margin.top - margin.bottom;
 			
 			var widthOfSinglePath = scaleWidth/(yAxisData.length * xAxisData.length+xAxisData.length-1);
 			var	widthOfGroupedPath =  yAxisData.length * widthOfSinglePath;
@@ -18833,7 +18733,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										 
 			var yScale = d3.scale.linear()
 				.domain([0,yMax])
-				.range([yScale(0),0]); 
+				.range([scaleHeight,0]); 
 
 			var xAxis = d3.svg.axis()
 				.scale(xScale)
@@ -18854,7 +18754,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	
 			var temp = d3.svg.line()
 						.x(function(d,i) {  return d; })
-						.y(function(d,i) {return yScale(0); })
+						.y(function(d,i) {return scaleHeight; })
 
 			for(var i = 0;i<yTickArray.length-1;i++)
 			{
@@ -18895,7 +18795,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	   
 			var xAxisGroup = mainGroup.append("g")
 				.attr("class","xAxisGroup")
-				.attr("transform","translate("+(widthOfGroupedPath/2)+","+(yScale(0))+")")
+				.attr("transform","translate("+(widthOfGroupedPath/2)+","+(scaleHeight)+")")
 				.call(xAxis)
 				.attr("fill","none")
 				.selectAll("text")
@@ -18951,7 +18851,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("key",j)
 						.attr("value",i)
 						.attr("fill",yAxisData[j].color)
-						.attr("stroke","black")
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.2)
 				//		.attr("opacity",0.5);
 						.transition().duration(duration)
@@ -18963,10 +18863,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("class","pathOfMultiGroupedBar" +j)
 						.attr("key",j)
 						.attr("value",i)
-						.attr("fill","yAxisData[j].color")
-						.attr("stroke","black")
+						.attr("fill",yAxisData[j].color)
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.2)
-				//		.attr("opacity",0.5)
+						.attr("opacity",0.5)
 						.transition().duration(duration)
 						.delay(delay).ease(easeType)
 						.attr("d", lineFunction(getSideCoordinates(3,widthOfSinglePath,i,j,factor)));
@@ -18977,9 +18877,9 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("key",j)
 						.attr("value",i)
 						.attr("fill",yAxisData[j].color)
-						.attr("stroke","black")
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.2)
-				//		.attr("opacity",0.5)
+						.attr("opacity",0.5)
 						.transition().duration(duration)
 						.delay(delay).ease(easeType)
 						.attr("d", lineFunction(getSideCoordinates(5,widthOfSinglePath,i,j,factor)));;
@@ -18990,15 +18890,15 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("key",j)
 						.attr("value",i)
 						.attr("fill",ColorLuminance(yAxisData[j].color,-.2))
-						.attr("stroke","black")
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.3)
-				//		.attr("opacity",0.5)
+						.attr("opacity",0.5)
 						.on("mousemove",function()
 						{
 							var val = d3.select(this).attr("value");
 							var key = d3.select(this).attr("key");
-							var heading = yAxisData[key].name;
-							var yHeadingValueMap=[{"headingName":xAxisData[val],"headingVal":yAxisData[key].data[val]}];
+							var heading = toolTipUnit+" "+xAxisData[val];
+							var yHeadingValueMap=[{"headingName":yAxisData[key].name,"headingVal":yAxisData[key].data[val]}];
 							toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
 						})
 						.on("mouseleave",function()
@@ -19015,15 +18915,15 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("key",j)
 						.attr("value",i)
 						.attr("fill",ColorLuminance(yAxisData[j].color,-.3))
-						.attr("stroke","black")
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.3)
-				//		.attr("opacity",0.5)
+						.attr("opacity",0.5)
 						.on("mousemove",function()
 						{
 							var val = d3.select(this).attr("value");
 							var key = d3.select(this).attr("key");
-							var heading = yAxisData[key].name;
-							var yHeadingValueMap=[{"headingName":xAxisData[val],"headingVal":yAxisData[key].data[val]}];
+							var heading = toolTipUnit+" "+xAxisData[val];
+							var yHeadingValueMap=[{"headingName":yAxisData[key].name,"headingVal":yAxisData[key].data[val]}];
 							toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
 						})
 						.on("mouseleave",function()
@@ -19040,15 +18940,15 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("key",j)
 						.attr("value",i)
 						.attr("fill",yAxisData[j].color)
-						.attr("stroke","black")
+						.attr("stroke",yAxisData[j].color)
 						.attr("stroke-width",.3)
-				//		.attr("opacity",0.5)
+						.attr("opacity",0.5)
 						.on("mousemove",function()
 						{
 							var val = d3.select(this).attr("value");
 							var key = d3.select(this).attr("key");
-							var heading = yAxisData[key].name;
-							var yHeadingValueMap=[{"headingName":xAxisData[val],"headingVal":yAxisData[key].data[val]}];
+							var heading = toolTipUnit+" "+xAxisData[val];
+							var yHeadingValueMap=[{"headingName":yAxisData[key].name,"headingVal":yAxisData[key].data[val]}];
 							toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
 						})
 						.on("mouseleave",function()
@@ -19205,137 +19105,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				}
 				
 			}
-			function getSideCoordinates1(sideNo,width1,xAxisIndexNo,rectNo,factor)
-			{
-				var lineData = [],nextX,nextY;
-				var sideLength = .25;
-				if(sideNo == 1)
-				{
-					nextX = width/2-width1/2;
-					nextY =  originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
-					nextX =width/2-width1/2;
-					nextY = 0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX =  width/2-width1/2+width1;
-					nextY =	0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX =  width/2-width1/2+width1;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX =  width/2-width1/2;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					
-					return lineData;	
-				}
-				else if(sideNo == 2)
-				{
-					var yfactor=15
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY =  originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
-					nextX =  width/2-width1/2+factor+width1*sideLength;
-					nextY = 0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX =  width/2-width1/2+factor+width1+width1*sideLength;
-					nextY = 0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1+width1*sideLength;
-					nextY = originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY =  originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
-					
-					return lineData;	
-				}
-				else if(sideNo == 3)
-				{
-					var yfactor=15
-					nextX = width/2-width1/2+factor;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
-					nextX = width/2-width1/2+factor;
-					nextY = 0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY = 0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY =  originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor;
-					nextY =  originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));  
-					
-					return lineData;	
-				}
-				else if(sideNo == 4)
-				{
-					var yfactor=15
-					nextX = width/2-width1/2+factor+width1;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1;
-					nextY =	0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1+width1*sideLength;
-					nextY =	0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1+width1*sideLength;
-					nextY = originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					
-					return lineData;	
-				}
-				else if(sideNo == 5)
-				{
-					var yfactor=15
-					nextX = width/2-width1/2+factor;
-					nextY =  originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY =  originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1+width1*sideLength;
-					nextY = originalHeight[xAxisIndexNo].height-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX =	width/2-width1/2+factor+width1;
-					nextY = originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor;
-					nextY =  originalHeight[xAxisIndexNo].height;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					
-					return lineData;	
-				}
-				else if(sideNo == 6)
-				{
-					var yfactor=15
-					nextX = width/2-width1/2+factor;
-					nextY = 0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1*sideLength;
-					nextY = 0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1+width1*sideLength;
-					nextY = 0-yfactor;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor+width1;
-					nextY = 0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					nextX = width/2-width1/2+factor;
-					nextY = 0;
-					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}')); 
-					
-					return lineData;	
-				}
-				
-			}
+			
 			function getSideCoordinates(sideNo,width,xAxisIndexNo,rectNo,factor)
 			{
 				var lineData = [],nextX,nextY;
@@ -19645,6 +19415,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.append('rect')
 				.attr("id","legendRectangle")
 				.attr("value",function(d,i){return i;})
+				.attr("state",1)
 				.attr('width',lagendRectWidth)
 				.attr('height',lagendRectHeight)
 				.attr('x',function(d,i){ return legendPositionArray[i].x;})
@@ -19652,23 +19423,29 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.attr('fill',function(d,i){return yAxisData[i].color})
 				.on("click", function (d,i) {
 						
-			/*		var val = parseInt(d3.select(this).attr("value"));
-					var state = svgElement.selectAll(".pathOfMultiGroupedBar"+val).style("display");
-					alert(state);
-                     if (state == "none") {
-
-								$("#"+selectedElementId).find("path."+legendNameMap[d]).slideUp(400).delay(400).fadeIn();
-								d3.select(this).style("fill",colorArray[val]);	
-								svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","none");
+					var val = parseInt(d3.select(this).attr("value"));
+					
+					var state = parseInt(d3.select(this).attr("state"));
+					
+					
+					
+                    if (state ==0) 
+					{
+						d3.select(this).attr("state",1);			
+						d3.select(this).style("fill",yAxisData[val].color);	
+						svgElement.selectAll("#text"+val).style("text-decoration","none");
+						$(".pathOfMultiGroupedBar"+val).fadeToggle(2000);
                               
-                            } else {
-
-                                var selectedPath = svgElement.selectAll("." + legendNameMap[d]);
-								$("#"+selectedElementId).find("path."+legendNameMap[d]).slideDown(400).delay(400).fadeOut();
-								d3.select(this).style("fill","gray");								
-								svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","line-through");
-                            }
-						*/	
+                    }
+					else 
+					{
+						d3.select(this).attr("state",0);		
+						d3.select(this).style("fill","gray");								
+						svgElement.selectAll("#text"+val).style("text-decoration","line-through");
+						$(".pathOfMultiGroupedBar"+val).fadeToggle(2000);
+							
+                    }
+							
 							
                   });	
 									
@@ -19698,7 +19475,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var setMargin={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1};
 			
 			var scaleWidth = width - setMargin.left - setMargin.right;
-			var yScale(0) = height - setMargin.top - setMargin.bottom;
+			var scaleHeight = height - setMargin.top - setMargin.bottom;
 			var data1=[],grad = Math.PI/180;
 			var donutOuterRadius,donutInnerRadius,TitleIndex=0;
 			
@@ -19707,10 +19484,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.attr("class","mainGroup")
 				.attr("transform","translate("+setMargin.left+","+setMargin.top+")");
 			
-			if(scaleWidth<yScale(0))
+			if(scaleWidth<scaleHeight)
 				donutOuterRadius = scaleWidth/2;
 			else
-				donutOuterRadius =  yScale(0)/2;
+				donutOuterRadius =  scaleHeight/2;
 			
 
 			donutInnerRadius=donutOuterRadius/2.2;
@@ -19726,7 +19503,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 
 			var donutGroup = mainGroup.append("g")
 				.attr('id','donutGroup')
-				.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)*.5) + ")");
+				.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.5) + ")");
 			
 			var arc = d3.svg.arc()
 				.innerRadius(donutInnerRadius-30)
@@ -19746,7 +19523,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.attr("stroke","black");
 			
 		/*	var imageGroup = svgElement.append("g").attr('id','imageGroup')
-					.attr("transform", "translate(" + (setMargin.left+scaleWidth*.5) + "," + (setMargin.top+yScale(0)*.5) + ")");
+					.attr("transform", "translate(" + (setMargin.left+scaleWidth*.5) + "," + (setMargin.top+scaleHeight*.5) + ")");
 				
 				
 				imageGroup.append("svg:image")
@@ -19820,8 +19597,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var opacityFade = .3;
 				var opacityDark = 10;
 				var imgSize,fontSize =10;
-				if(yScale(0)<=scaleWidth)
-				imgSize =yScale(0)/3;
+				if(scaleHeight<=scaleWidth)
+				imgSize =scaleHeight/3;
 				else
 				imgSige =scaleWidth/3;
 				for(var i =0 ; i < dataArr.length-1 ; i++){	
@@ -20133,7 +19910,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					pieAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.15,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}
 				var scaleWidth=width-pieAnalChart.left-pieAnalChart.right;
-				var yScale(0)=height-pieAnalChart.top-pieAnalChart.bottom;
+				var scaleHeight=height-pieAnalChart.top-pieAnalChart.bottom;
 				
 				var  pieMainGroup = svgElement.append("g")
 										   .attr('class','main-group')
@@ -20141,7 +19918,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										   
 				var dountPieGroup = 	pieMainGroup.append("g")
 											.attr('class','dountPie')
-											.attr("transform", "translate(" + (scaleWidth/2) + "," + (yScale(0)/2) + ")");
+											.attr("transform", "translate(" + (scaleWidth/2) + "," + (scaleHeight/2) + ")");
 
 				var leftMarginOfSvg = $(selectorElement).offset().left;
 				var grad = Math.PI/180;							
@@ -20153,7 +19930,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					dountDataSum = dountDataSum+dountData[index];
 				}
 						
-				var radiusX = yScale(0) < scaleWidth ? yScale(0) : scaleWidth;
+				var radiusX = scaleHeight < scaleWidth ? scaleHeight : scaleWidth;
 							 radiusX = radiusX *.45;
 				
 				var radiusY = radiusX*.75;
@@ -20406,7 +20183,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var threeDAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				
 				var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
-				var yScale(0)=height-threeDAnalChart.top-threeDAnalChart.bottom;
+				var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
 					
 				var estimateDataBarWidth =  (scaleWidth/(1.5*barData.length));
 				var radiusY = estimateDataBarWidth*.1;
@@ -20428,13 +20205,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				//xAxis label here			
 				var pixcelPerChar=7;
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(threeDAnalChart.bottom - 5);
+				var xIndicationLabelTop=scaleHeight+(threeDAnalChart.bottom - 5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,threeDBarMainGroup,textStyleConfg.xLabelColor,600);			   							
 							
 				//yAxis label here					
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;			
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-threeDAnalChart.left + 15);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,threeDBarMainGroup,textStyleConfg.yLabelColor,600);			   													   
 				
@@ -20450,7 +20227,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 		//x axis
 		var xAxisIndex =[];
@@ -20474,7 +20251,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										.attr('id','xAxis')
 										.attr("class", "x axis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + yScale(0) + ")")
+										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis)
 										.attr("fill","none")
 										.selectAll("text")
@@ -20523,7 +20300,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.attr('width',estimateDataBarWidth)
 											.attr('height',0)
 											.attr('x',function(d,i){return xScale(i)-(estimateDataBarWidth/2)})
-											.attr('y',yScale(0)  - radiusY)
+											.attr('y',scaleHeight  - radiusY)
 											.attr('fill',function(d,i){ return barData[i].color})
 											.attr("opacity",0.6)
 											
@@ -20542,7 +20319,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.append("ellipse")   
 											.attr("class","rounded3DBar")
 											.attr("cx", function(d,i){return xScale(i)})           
-											.attr("cy", yScale(0) - radiusY)         
+											.attr("cy", scaleHeight - radiusY)         
 											.attr("rx",	estimateDataBarWidth/2 )           
 											.attr("ry", radiusY)
 											.attr('fill',function(d,i){ return barData[i].color});		
@@ -20554,7 +20331,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.append("ellipse")     
 											.attr("class","rounded3DBar")	
 											.attr("cx", function(d,i){return xScale(i)})           
-											.attr("cy",yScale(0) - radiusY)         
+											.attr("cy",scaleHeight - radiusY)         
 											.attr("rx",	function(d,i){ return estimateDataBarWidth/2})           
 											.attr("ry", function(d,i){if((yScale(yMin)-yScale(d) - (2*radiusY))<=0){ return 0}else{return radiusY}})
 											.attr('fill',function(d,i){return barData[i].color});  
@@ -20635,7 +20412,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					arcAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				}
 				var scaleWidth=width-arcAnalChart.left-arcAnalChart.right;
-				var yScale(0)=height-arcAnalChart.top-arcAnalChart.bottom;
+				var scaleHeight=height-arcAnalChart.top-arcAnalChart.bottom;
 				
 				var  mainGroup = svgElement.append("g")
 										   .attr('class','main-group')
@@ -20651,10 +20428,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var  arcMainGroup = mainGroup.append("g")
 										   .attr('class','arc-main-group')
-										   .attr("transform", "translate(" + ((scaleWidth*.5)/2-(arcAnalChart.left*.5)) + "," + (yScale(0)/2) + ")");
+										   .attr("transform", "translate(" + ((scaleWidth*.5)/2-(arcAnalChart.left*.5)) + "," + (scaleHeight/2) + ")");
 										  
 				var estimateDataBarWidth = (scaleWidth*.45)/(2*subData[0].barData.length);
-				var radius = yScale(0) < (scaleWidth*.5) ? yScale(0) : (scaleWidth*.5);
+				var radius = scaleHeight < (scaleWidth*.5) ? scaleHeight : (scaleWidth*.5);
 				radius = radius*.5
 				var innerRadius = radius * .4;
 				var arcSize = (radius-innerRadius)/(2*subData[0].barData.length);
@@ -20852,7 +20629,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					
 					var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 				//x axis
 						var largestStringLngth=0;
@@ -20873,7 +20650,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 												.attr('id','xAxis')
 												.attr("class", "x axis")
 												.attr('fill',"none")
-												.attr("transform", "translate("+0+"," + yScale(0) + ")")
+												.attr("transform", "translate("+0+"," + scaleHeight + ")")
 												.call(xAxis);
 								 xAxisTextRef.selectAll('text')
 												 .text(function(d){return subData[index].label[d];})
@@ -20906,7 +20683,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 													.attr('width',estimateDataBarWidth)
 													.attr('height',0)
 													.attr('x',function(d,i){return xScale(i)-(estimateDataBarWidth/2)})
-													.attr('y',yScale(0)  - radiusY)
+													.attr('y',scaleHeight  - radiusY)
 													.attr('fill',function(d,i){ return color[subData[index].label[i]]})
 													.attr("opacity",0.6);
 								rectGroupRef
@@ -20923,7 +20700,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 													.append("ellipse")
 													.attr('class','cylinder'+index)
 													.attr("cx", function(d,i){return xScale(i)})           
-													.attr("cy",yScale(0) - radiusY)         
+													.attr("cy",scaleHeight - radiusY)         
 													.attr("rx",	estimateDataBarWidth/2 )           
 													.attr("ry", radiusY)
 													.attr('fill',function(d,i){ return color[subData[index].label[i]]});  
@@ -20940,7 +20717,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 													.append("ellipse")      
 													.attr('class','cylinder'+index)
 													.attr("cx", function(d,i){return xScale(i)})           
-													.attr("cy", yScale(0) - radiusY)         
+													.attr("cy", scaleHeight - radiusY)         
 													.attr("rx",	estimateDataBarWidth/2 )           
 													.attr("ry", radiusY)
 													.attr('fill',function(d,i){ return color[subData[index].label[i]]});
@@ -21020,7 +20797,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var compareAnalChart={left:leftMargin,right:width*0.025,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
-				var yScale(0)=height-compareAnalChart.top-compareAnalChart.bottom;
+				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 				var leftMarginOfSvg = $(selectorElement).offset().left;	
 				var gridManager = {
 				init: function (svg, height, width, left, top,color) {
@@ -21054,7 +20831,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 
         };
 
-				gridManager.init(svgElement, yScale(0), scaleWidth, compareAnalChart.left, compareAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, compareAnalChart.left, compareAnalChart.top,textStyleConfg.gridLineColor);
 				var compareChartMainGroup = svgElement.append("g")
 								   .attr('class','main-group')
 								   .attr("transform", "translate(" + compareAnalChart.left + "," + compareAnalChart.top + ")")
@@ -21071,13 +20848,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var pixcelPerChar = 7;
 				// YAxis Label here
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-compareAnalChart.left +15);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(compareAnalChart.bottom - 5);
+				var xIndicationLabelTop=scaleHeight+(compareAnalChart.bottom - 5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);
 				
@@ -21110,7 +20887,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 				var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 		//x axis
 				var largestStringLngth=0;
@@ -21132,7 +20909,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + yScale(0) + ")")
+										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis);
 							 xAxisTextRef.selectAll('text')
 							             .text(function(d){return xAxisData[d];});
@@ -21156,13 +20933,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 								
 				var area = d3.svg.area()
 							.x(function(d,i) { return xScale(i);})
-							.y0(yScale(0))
-							.y1(function(d,i) { return yScale(0) })
+							.y0(scaleHeight)
+							.y1(function(d,i) { return scaleHeight })
 							.interpolate("cardinal");
 							
 				var area2 = d3.svg.area()
 							.x(function(d,i) { return xScale(i);})
-							.y0(yScale(0))
+							.y0(scaleHeight)
 							.y1(function(d,i) { return yScale(d); })
 							.interpolate("cardinal");			
 				var areaPathRef;
@@ -21247,7 +21024,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 			}
 		}
-		var angularMeterChartGraph = 
+	var angularMeterChartGraph = 
 		{
 			angularMeterChartAnalysis:function(meterData)
 			{
@@ -21257,7 +21034,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var meterLabel = meterData["meterLabel"];
 				var meterAnalChart={left:width*0.1,right:width*0.1,bottom:height*0.1,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-meterAnalChart.left-meterAnalChart.right;
-				var yScale(0)=height-meterAnalChart.top-meterAnalChart.bottom;
+				var scaleHeight=height-meterAnalChart.top-meterAnalChart.bottom;
 				
 				var meterArcSize = [1,3,1];
 				
@@ -21268,11 +21045,11 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										   
 				var arcGroup = 	meterMainGroup.append("g")
 											.attr('class','arcGroup')
-											.attr("transform", "translate(" + (scaleWidth*.5) + "," + (yScale(0)/2) + ")");
+											.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight/2) + ")");
 											
 									
 				var grad = Math.PI/180;
-				var radius = yScale(0)*.5 < (scaleWidth*.5) ? yScale(0)*.5 : (scaleWidth*.5);
+				var radius = scaleHeight*.5 < (scaleWidth*.5) ? scaleHeight*.5 : (scaleWidth*.5);
 				var fontSize;
 				if(radius < 151)
 				{
@@ -21531,7 +21308,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var leftMargin = marginController.leftMarginController(yAxisData1);
 				var margin={left:leftMargin,right:width*0.05,bottom:45,top:height*0.075,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-margin.left-margin.right;
-				var yScale(0)=height-margin.top-margin.bottom;
+				var scaleHeight=height-margin.top-margin.bottom;
 				var barWidth; 
 				
 				var leftMarginOfSvg = $(selectorElement).offset().left;
@@ -21542,7 +21319,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										var y = d3.event.pageY;
 										x=x-leftMarginOfSvg-(margin.left);
 										
-										if(x>=0 && x<=(scaleWidth-(barWidth*.5)) && y>=(margin.top+topMarginOfSvg) && y<=((yScale(0)*.85)+margin.top+topMarginOfSvg))
+										if(x>=0 && x<=(scaleWidth-(barWidth*.5)) && y>=(margin.top+topMarginOfSvg) && y<=((scaleHeight*.85)+margin.top+topMarginOfSvg))
 										{
 											var xPathXCord = [];
 											var xPathYCord = [];
@@ -21579,7 +21356,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 														  .attr("x",xScale(x)-(barWidth*.5))
 														  .attr("y",0)
 														  .attr("width",barWidth)
-														  .attr("height",yScale(0)*.5)
+														  .attr("height",scaleHeight*.5)
 														  .attr("fill","red")
 														  .attr("opacity",0.3);
 											rectChartGroup.append("rect")
@@ -21587,14 +21364,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 														  .attr("x",xScale(x)-(barWidth*.5))
 														  .attr("y",0)
 														  .attr("width",barWidth)
-														  .attr("height",yScale(0)*.25)
+														  .attr("height",scaleHeight*.25)
 														  .attr("fill","red")
 														  .attr("opacity",0.3);
 												//		  .attr("fill","cyan");
 											var pathWidth =  (xAxisTickArray[x].toString().length * 6.5)+10;
 											var pathHeight = 20;
 											var xPosition = xScale(x);
-											var yPosition = yScale(0)*.82;
+											var yPosition = scaleHeight*.82;
 											xPathXCord = [xPosition-(pathWidth*.5),xPosition-7,xPosition,xPosition+7,xPosition+((pathWidth*.5)),xPosition+((pathWidth*.5)),xPosition-(pathWidth*.5)];
 											xPathYCord = [yPosition,yPosition,yPosition-7,yPosition,yPosition,yPosition+pathHeight,yPosition+pathHeight];
 
@@ -21609,7 +21386,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											lineChartGroup.append("text")
 														  .attr("class","toolTip")			  
 														  .attr("x",xScale(x)-(pathWidth*.5 - 8))
-														  .attr("y",(yScale(0)*.82)+13)
+														  .attr("y",(scaleHeight*.82)+13)
 														  .attr("fill","white")
 														  .style("font-size","10px","important")
 														  .text(function(){ var i = parseInt(xScale.invert(x)); return xAxisTickArray[x];})
@@ -21636,7 +21413,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 														  .style("font-size","10px","important")
 														  .text(yAxisData1[x]);
 									
-												var textValue = y - yScale(0)*.55;
+												var textValue = y - scaleHeight*.55;
 										
 												var yPosition1 =yScaleOfRect(yAxisData2[x])-12.5;
 									
@@ -21684,20 +21461,20 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var pixcelPerChar=7;
 				var yTotalPixcel=yAxisLabel1.toString().length*pixcelPerChar;
-				var yLabelTop=((yScale(0)*.45)/2)+yTotalPixcel/2;
+				var yLabelTop=((scaleHeight*.45)/2)+yTotalPixcel/2;
 				var yLabelLeft = -margin.left+15;
 			
 				axisLabelController.appendLabel(yAxisLabel1,yLabelLeft,yLabelTop,-90,labelGroup,textStyleConfg.yLabelColor,600);
 								
 				var yTotalPixcel=yAxisLabel2.toString().length*pixcelPerChar;
-				var yLabelTop=(yScale(0)*.55)+(((yScale(0)*.8)-(yScale(0)*.55))/2)+yTotalPixcel/2;
+				var yLabelTop=(scaleHeight*.55)+(((scaleHeight*.8)-(scaleHeight*.55))/2)+yTotalPixcel/2;
 				var yLabelLeft = -margin.left+15;
 			
 				axisLabelController.appendLabel(yAxisLabel2,yLabelLeft,yLabelTop,-90,labelGroup,textStyleConfg.yLabelColor,600);
 				
 				//x indication label
 				var xLabelPixcel=xAxisLabel.length*pixcelPerChar;
-				var xLabelTop=((yScale(0))+margin.bottom - 5);
+				var xLabelTop=((scaleHeight)+margin.bottom - 5);
 				var xLabelLeft=(scaleWidth/2)-xLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xLabelLeft,xLabelTop,0,labelGroup,textStyleConfg.xLabelColor,600);
 				
@@ -21713,7 +21490,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var lineChartGroup;
 				var areaChartGroup = svgElement.append("g")
 								   .attr('class','areaChartGroup')
-								   .attr("transform", "translate(" +margin.left+ "," +(margin.top +(yScale(0)*.92))+ ")")					   
+								   .attr("transform", "translate(" +margin.left+ "," +(margin.top +(scaleHeight*.92))+ ")")					   
 							   
 				var xScale;
 				var yScaleOfLine;
@@ -21744,13 +21521,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.range([0,scaleWidth]); 
 					var area = d3.svg.area()
 						.x(function(d,i) { return xScale(i); })
-						.y0(yScale(0)*.08)
+						.y0(scaleHeight*.08)
 						.y1(function(d,i) { return yScaleOfArea(d); })
 						.interpolate("cardinal");
 						 
 					yScaleOfArea  = d3.scale.linear()
 							.domain([yMinOfLine,yMaxOfLine])
-							.range([yScale(0)*.08,0]);
+							.range([scaleHeight*.08,0]);
 							
 					var areaRef=areaChartGroup
 										.append("path")
@@ -21777,7 +21554,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr('id','xAxis')
 									.attr("class", "x axis")
 									.attr('fill',"none")
-									.attr("transform", "translate("+0+"," + yScale(0)*.08 + ")")
+									.attr("transform", "translate("+0+"," + scaleHeight*.08 + ")")
 									.call(xAxis);
 					xAxisTextRef.selectAll('text')
 									 .text(function(d){return xAxisTickArray[d];})
@@ -21791,10 +21568,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							   
 					rectChartGroup = svgElement.append("g")
 								   .attr('class','rectChartGroup')
-								   .attr("transform", "translate(" +margin.left+ "," +(margin.top +(yScale(0)*.55))+ ")")		
+								   .attr("transform", "translate(" +margin.left+ "," +(margin.top +(scaleHeight*.55))+ ")")		
 					yScaleOfRect = d3.scale.linear()
 							.domain([yMinOfRect,yMaxOfRect])
-							.range([yScale(0)*.25,0]);
+							.range([scaleHeight*.25,0]);
 							
 					var yArray = [];
 					for(var i = x1 ; i<=x2 ; i++)
@@ -21809,7 +21586,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr('width',barWidth)
 									.attr('height',0)
 									.attr('x',function(d,i){return xScale(i+x1)-(barWidth/2)})
-									.attr('y',function(d){ return yScale(0)*.3})
+									.attr('y',function(d){ return scaleHeight*.3})
 									.attr('fill',dataColor);
 						rectRef.transition().duration(1000)
 											.attr('height',function(d,i){return yScaleOfRect(yMinOfRect)-yScaleOfRect(d)})
@@ -21845,7 +21622,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					
 					yScaleOfLine = d3.scale.linear()
 									.domain([yMinOfLine,yMaxOfLine])
-									.range([yScale(0)*.45,0]);
+									.range([scaleHeight*.45,0]);
 
 					var yArray = [];
 					for(var i = x1 ; i<=x2 ; i++)
@@ -21937,7 +21714,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.attr('id','xAxis')
 											.attr("class", "x axis")
 											.attr('fill',"none")
-											.attr("transform", "translate("+0+"," + yScale(0)*.8 + ")")
+											.attr("transform", "translate("+0+"," + scaleHeight*.8 + ")")
 											.call(xAxis);
 							xAxisTextRef.selectAll('text')
 											 .text(function(d){return xAxisTickArray[d];})
@@ -22012,24 +21789,24 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						   .attr('class','brushChartGroup')
 						   .attr("transform", "translate(" +margin.left+ "," +0+ ")");
 						   
-					var imageSize = yScale(0)*.06;
+					var imageSize = scaleHeight*.06;
 					//var array = [-2,scaleWidth-imageSize+2];	 
 						   
 					var rectRef =  brushChartGroup.append("rect")
 												  .attr("id","leftRect")
 												  .attr("x",0)
-												  .attr("y",(margin.top +(yScale(0)*.92)))
+												  .attr("y",(margin.top +(scaleHeight*.92)))
 												  .attr("width",imageSize*.5)
-												  .attr("height",yScale(0)*.08)
+												  .attr("height",scaleHeight*.08)
 												  .attr("fill","gray")
 												  .attr("opacity",0.5);
 												  
 					var rectRef1 =  brushChartGroup.append("rect")
 										  .attr("id","rightRect")
 										  .attr("x",scaleWidth-(imageSize*.5))
-										  .attr("y",(margin.top +(yScale(0)*.92)))
+										  .attr("y",(margin.top +(scaleHeight*.92)))
 										  .attr("width",imageSize*.5)
-										  .attr("height",yScale(0)*.08)
+										  .attr("height",scaleHeight*.08)
 										  .attr("fill","gray")
 										  .attr("opacity",0.5);							  
 										  
@@ -22037,7 +21814,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									   .append('image')
 									   .attr("id","leftImage")
 									   .attr('x',function(d,i){return -2})
-									   .attr('y',function(d,i){return (margin.top +(yScale(0)*.94));})
+									   .attr('y',function(d,i){return (margin.top +(scaleHeight*.94));})
 									   .attr('width',imageSize)
 									   .attr('height',imageSize)
 									   .attr("xlink:href","img/brush.png")
@@ -22074,7 +21851,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									   .append('image')
 									   .attr("id","rightImage")
 									   .attr('x',function(d,i){return scaleWidth-imageSize+2})
-									   .attr('y',function(d,i){return (margin.top +(yScale(0)*.94));})
+									   .attr('y',function(d,i){return (margin.top +(scaleHeight*.94));})
 									   .attr('width',imageSize)
 									   .attr('height',imageSize)
 									   .attr("xlink:href","img/brush.png")
@@ -22137,7 +21914,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var compareAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.2,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				
 				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
-				var yScale(0)=height-compareAnalChart.top-compareAnalChart.bottom;
+				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
 				var leftMarginOfSvg = $(selectorElement).offset().left;	
 				var barWidth =  (scaleWidth/(1.8*xAxisData.length));
 				var upperPath;
@@ -22170,17 +21947,17 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var pixcelPerChar = 7;
 				// YAxis Label here
 				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
-				var yIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var yIndicationLabelLeft=(-compareAnalChart.left +15);
 				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(compareAnalChart.bottom - 5);
+				var xIndicationLabelTop=scaleHeight+(compareAnalChart.bottom - 5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);
 		
-				var horizontalLine = parseInt(yScale(0)/barWidth);
+				var horizontalLine = parseInt(scaleHeight/barWidth);
 				
 				var xScale = d3.scale.linear()
                                      .domain([0,xAxisData.length-1])
@@ -22193,7 +21970,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var yScale = d3.scale.linear()
 								.domain([yMin,yMax])
-								.range([yScale(0),0]);
+								.range([scaleHeight,0]);
 						
 		//x axis
 				var largestStringLngth=0;
@@ -22215,7 +21992,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										.attr('id','xAxis')
 										.attr("class", "xAxis")
 										.attr('fill',"none")
-										.attr("transform", "translate("+0+"," + yScale(0) + ")")
+										.attr("transform", "translate("+0+"," + scaleHeight + ")")
 										.call(xAxis);
 							 xAxisTextRef.selectAll('text')
 							             .text(function(d){return xAxisData[d];});
@@ -22245,7 +22022,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var temp = d3.svg.line()
 							.x(function(d,i) {  return d; })
-							.y(function(d,i) {return yScale(0); })
+							.y(function(d,i) {return scaleHeight; })
 				
 				// grid line here
 				var pathRef;
@@ -22523,7 +22300,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var rightMargin = marginController.leftMarginController(rightYAxisData);
 				var detailAnalChart={left:leftMargin,right:rightMargin,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 				var scaleWidth=width-detailAnalChart.left-detailAnalChart.right;
-				var yScale(0)=height-detailAnalChart.top-detailAnalChart.bottom;
+				var scaleHeight=height-detailAnalChart.top-detailAnalChart.bottom;
 				
 				var imageFolderPath=cnfg.data.imageFolderPath;
 				
@@ -22540,7 +22317,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				}
 				
 				
-				gridManager.init(svgElement, yScale(0), scaleWidth, detailAnalChart.left, detailAnalChart.top,textStyleConfg.gridLineColor);
+				gridManager.init(svgElement, scaleHeight, scaleWidth, detailAnalChart.left, detailAnalChart.top,textStyleConfg.gridLineColor);
             
 		  //alert($("#line28").offset().left);
 			var leftMarginOfSvg = $(selectorElement).offset().left;
@@ -22560,19 +22337,19 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				// Right YAxis Label here
 				var pixcelPerChar = 6;
 				var totalYLabelPixcel=rightYAxisLabel.toString().length*pixcelPerChar;
-				var leftYIndicationLabelTop=yScale(0)/2-totalYLabelPixcel/2;
+				var leftYIndicationLabelTop=scaleHeight/2-totalYLabelPixcel/2;
 				var leftYIndicationLabelLeft=(scaleWidth+rightMargin-15);
 				axisLabelController.appendLabel(rightYAxisLabel,leftYIndicationLabelLeft,leftYIndicationLabelTop,90,scoredMainGroup,textStyleConfg.yLabelColor,600);			   
 				
 				// left YAxis Label here
 				var totalYLabelPixcel=leftYAxisLabel.toString().length*pixcelPerChar;
-				var rightYIndicationLabelTop=yScale(0)/2+totalYLabelPixcel/2;
+				var rightYIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
 				var rightYIndicationLabelLeft=(-detailAnalChart.left + 15);
 				axisLabelController.appendLabel(leftYAxisLabel,rightYIndicationLabelLeft,rightYIndicationLabelTop,-90,scoredMainGroup,textStyleConfg.yLabelColor,600);			   
 
 				// xAxis label here
 				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-				var xIndicationLabelTop=yScale(0)+(detailAnalChart.bottom - 5);
+				var xIndicationLabelTop=scaleHeight+(detailAnalChart.bottom - 5);
 				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
 				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,scoredMainGroup,textStyleConfg.xLabelColor,600);
 				
@@ -22582,7 +22359,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				
 				var leftYScale = d3.scale.linear()
 									 .domain([leftYMin,leftYMax])
-									 .range([yScale(0),0]);
+									 .range([scaleHeight,0]);
 	            
 				var leftYAxis = d3.svg.axis()
                                   .scale(leftYScale)
@@ -22600,7 +22377,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var rightYMax = minMaxController.getMax(rightYAxisData);
 				var rightYScale = d3.scale.linear()
 									 .domain([rightYMin,rightYMax])
-									 .range([yScale(0),0]);
+									 .range([scaleHeight,0]);
 	            
 				var rightYAxis = d3.svg.axis()
                                   .scale(rightYScale)
@@ -22643,7 +22420,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	   
                 var xAxisGroup = scoredMainGroup.append("g")
 									.attr("class","x axis")
-									.attr("transform","translate("+0+","+(yScale(0))+")")
+									.attr("transform","translate("+0+","+(scaleHeight)+")")
 						       	    .attr('fill','none')
 									//.style('display','none')
 									.call(xAxis)
@@ -22658,7 +22435,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							   .append('image')
 							   .attr("class","detailChartObj")
 							   .attr('x',function(d,i){return 0})
-							   .attr('y',function(d,i){return yScale(0)-(bottomSymbolSize)})
+							   .attr('y',function(d,i){return scaleHeight-(bottomSymbolSize)})
 							   .attr('width',bottomSymbolSize)
 							   .attr('height',bottomSymbolSize)
 							   .attr("xlink:href",function(d,i){
@@ -23203,17 +22980,19 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					xLargestStringLngth =xAxisData[i].toString().length;
 				}
 				
-				var margin={left:marginController.leftMarginController(max.toFixed(1)),right:width*0.05,bottom:height*.15,top:height*.1};
+				var margin={left:marginController.leftMarginController(max.toFixed(1)),right:width*0.05,bottom:height*.15,top:height*.05};
 				
 				var scaleWidth = width - margin.left - margin.right;
-				var yScale(0) = height - margin.top - margin.bottom;
-			  
-				
-				var mainGroup = svgElement.append("g").attr("class","mainGroup")
-					.attr("transform","translate("+margin.left+","+margin.top+")");
 				
 				var widthOfBar = scaleWidth/(xAxisData.length*2);
-				
+				margin.bottom = widthOfBar+ widthOfBar*.8;
+				var scaleHeight = height - margin.top - margin.bottom;
+			  
+				gridManager.init(svgElement, scaleHeight, scaleWidth+margin.left, margin.left, margin.top,textStyleConfg.gridLineColor);
+			
+				var mainGroup = svgElement.append("g").attr("class","mainGroup")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+					
 				var xScale = d3.scale.linear()
 					.domain([0,xAxisIndex.length-1])
 					.range([widthOfBar/2,scaleWidth]);
@@ -23221,7 +23000,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									 
 				var yScale = d3.scale.linear()
 					.domain([yMin,yMax])
-					.range([yScale(0),0]); 
+					.range([scaleHeight,0]); 
 					
 				var yTickArray = tickController.getTickArray(yMin,yMax,6);	
 			  
@@ -23240,7 +23019,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var xAxisGroup = mainGroup.append("g")
 					.attr("class","xAxisGroup")
 					.attr("display","none")
-					.attr("transform","translate("+(0)+","+(yScale(0)+widthOfBar/2)+")")
+					.attr("transform","translate("+(0)+","+(scaleHeight+widthOfBar/2)+")")
 					.call(xAxis)
 				//	.attr("fill","none")
 				//	.selectAll("text")
@@ -23266,9 +23045,9 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					})
 					.attr("y",function(){
 						if(i%2==0)
-						return yScale(0)+widthOfBar;
+						return scaleHeight+widthOfBar;
 						else
-						return yScale(0)+widthOfBar+20;
+						return scaleHeight+widthOfBar+widthOfBar*.4;
 					})
 					.text(xAxisData[i])
 					.attr("fill",textStyleConfg["tick-font-color"]);
@@ -23280,19 +23059,19 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.interpolate("closed");
 				
 				var lineData = [],nextX,nextY,factor=6,heightOfBar=0,delay=100,duration = 100,ease = "linear";
-				var lowerStandIndex=0;
+			
 				drawPath(legendDisplayValue);
 				
 				function drawPath(legendDisplayValue)
 				{
 					delay=100;
-					duration = 100
+					duration = 100;
 					svgElement.selectAll("#twoDStackedBarchart").remove();
 					svgElement.selectAll("#twoDStackedBarchartText").remove();
+					svgElement.selectAll(".lowerStand").remove();
 					for(var i =0 ;i< xAxisData.length;i++)
 					{
 						saveKey[i]=0;
-						if(lowerStandIndex==0)
 						drawLowerStand(i);
 						
 						for(j=0;j<yAxisData.length;j++)
@@ -23311,8 +23090,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 								{
 									var val = d3.select(this).attr("value");
 									var key = d3.select(this).attr("key");
-									var heading =yAxisData[key].name;
-									var yHeadingValueMap=[{"headingName":xAxisData[val],"headingVal":yAxisData[key].data[val]}];
+									var heading =xAxisData[val];
+									var yHeadingValueMap=[{"headingName":yAxisData[key].name,"headingVal":yAxisData[key].data[val]}];
 									toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
 								})
 								.on("mouseleave",function()
@@ -23330,19 +23109,20 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						}
 						
 					}
-					lowerStandIndex=1;
+					
 				}	
 			
 				function getCoordinates(i,j)
 				{
 					lineData = [];
 					heightOfBar = 0;
-					var fontSize = 16;
+					var fontSize = 16,barHeightForText = 17;
 					var fontColor = "white";
+					
 					if((j==0 && yAxisData[j].data[i]!=0))
 						{
 							nextX = xScale(i)-widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)-widthOfBar/2;
 							nextY = yScale(yAxisData[j].data[i])+factor;
@@ -23354,15 +23134,17 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							nextY =	yScale(yAxisData[j].data[i])+factor;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)+widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)-widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							
-							if((yScale(0)-yScale(yAxisData[j].data[i]))>17)
+							if((scaleHeight-yScale(yAxisData[j].data[i]))>barHeightForText)
 							{
 								var text = yAxisData[j].data[i];
+								if((text.toString().length*7)>=widthOfBar)
+								fontSize = 12;
 								mainGroup.append("text")
 									.attr("id","twoDStackedBarchartText")
 									.transition().duration(duration).delay(delay)
@@ -23370,7 +23152,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr("y",yScale(yAxisData[j].data[i])+factor)
 									.text(text)
 									.attr("fill",fontColor)
-									.attr("dy",".8em")
+									.attr("dy",".6em")
 									.style("font-family","calibri","important")
 									.style("font-size",fontSize,"important")
 									.style("font-style","bold","important")
@@ -23381,7 +23163,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						else if(yAxisData[j].data[i]!=0 && saveKey[i]==0)
 						{
 							nextX = xScale(i)-widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)-widthOfBar/2;
 							nextY = yScale(yAxisData[j].data[i])+factor;
@@ -23393,15 +23175,17 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							nextY =	yScale(yAxisData[j].data[i])+factor;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)+widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							nextX = xScale(i)-widthOfBar/2;
-							nextY =	yScale(0);
+							nextY =	scaleHeight;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 							
-							if((yScale(0)-yScale(yAxisData[j].data[i]))>17)
+							if((scaleHeight-yScale(yAxisData[j].data[i]))>barHeightForText)
 							{
 								var text = yAxisData[j].data[i];
+								if((text.toString().length*7)>=widthOfBar)
+								fontSize = 12;
 								mainGroup.append("text")
 									.attr("id","twoDStackedBarchartText")
 									.transition().duration(duration).delay(delay)
@@ -23409,7 +23193,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr("y",yScale(yAxisData[j].data[i])+factor)
 									.text(text)
 									.attr("fill",fontColor)
-									.attr("dy",".8em")
+									.attr("dy",".6em")
 									.style("font-family","calibri","important")
 									.style("font-size",fontSize,"important")
 									.style("font-style","bold","important")
@@ -23417,8 +23201,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						
 						}
 						else if(yAxisData[j].data[i]!=0)
-						{
-									
+						{								
 							heightOfBar = yScale(0)-yScale(yAxisData[j].data[i]);
 							nextX = xScale(i)-widthOfBar/2;
 							nextY =	yScale(saveKey[i])+factor;
@@ -23442,9 +23225,11 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							nextY =	yScale(saveKey[i])+factor;
 							lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 								
-							if(heightOfBar>17)
+							if(heightOfBar>barHeightForText)
 							{
 								var text = yAxisData[j].data[i];
+								if((text.toString().length*7)>=widthOfBar)
+								fontSize = 12;
 								mainGroup.append("text")
 									.attr("id","twoDStackedBarchartText")
 									.transition().delay(delay+duration)
@@ -23452,7 +23237,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr("y",yScale(saveKey[i])-heightOfBar+factor)
 									.text(text)
 									.attr("fill",fontColor)
-									.attr("dy",".8em")
+									.attr("dy",".6em")
 									.style("font-family","calibri","important")
 									.style("font-size",fontSize,"important")
 									.style("font-style","bold","important")
@@ -23546,49 +23331,49 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					lineData = [];
 					
 					nextX = xScale(index)-widthOfBar*.3;
-					nextY =	yScale(0)+widthOfBar*.4;
+					nextY =	scaleHeight+widthOfBar*.4;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar*.2;
-					nextY =	yScale(0)+widthOfBar*.3;
+					nextY =	scaleHeight+widthOfBar*.3;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar*.2;
-					nextY =	yScale(0)+widthOfBar*.1;
+					nextY =scaleHeight+widthOfBar*.1;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2-widthOfBar*.1;
-					nextY =	yScale(0)+widthOfBar*.1;
+					nextY =	scaleHeight+widthOfBar*.1;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2-widthOfBar*.1;
-					nextY =	yScale(0)-widthOfBar/2;
+					nextY =	scaleHeight-widthOfBar/2;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2;
-					nextY =	yScale(0)-widthOfBar/2;
+					nextY =	scaleHeight-widthOfBar/2;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2;
-					nextY =	yScale(0);
+					nextY =	scaleHeight;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2;
-					nextY =	yScale(0);
+					nextY =	scaleHeight;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2;
-					nextY =	yScale(0)-widthOfBar/2;
+					nextY =	scaleHeight-widthOfBar/2;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2+widthOfBar*.1;
-					nextY =	yScale(0)-widthOfBar/2;
+					nextY =	scaleHeight-widthOfBar/2;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2+widthOfBar*.1;
-					nextY =	yScale(0)+widthOfBar*.1;
+					nextY =	scaleHeight+widthOfBar*.1;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar*.2;
-					nextY =	yScale(0)+widthOfBar*.1;
+					nextY =	scaleHeight+widthOfBar*.1;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar*.2;
-					nextY =	yScale(0)+widthOfBar*.3;
+					nextY =	scaleHeight+widthOfBar*.3;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar*.3;
-					nextY =	yScale(0)+widthOfBar*.4;
+					nextY =	scaleHeight+widthOfBar*.4;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar*.3;
-					nextY =	yScale(0)+widthOfBar*.4;
+					nextY =	scaleHeight+widthOfBar*.4;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					
 					pathRef = mainGroup.append("path")
@@ -23601,16 +23386,18 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					if(index%2!=0)
 					{
 						mainGroup.append("line")
+							.attr("class","lowerStand")
 							.attr("x1",xScale(index))
-							.attr("y1",yScale(0)+widthOfBar*.4)
+							.attr("y1",scaleHeight+widthOfBar*.4)
 							.attr("x2",xScale(index))
-							.attr("y2",yScale(0)+widthOfBar)
+							.attr("y2",scaleHeight+widthOfBar)
 							.attr("stroke","grey")
 							.attr("stroke-width",1)
 							
 						mainGroup.append("circle")
+							.attr("class","lowerStand")
 							.attr("cx",xScale(index))
-							.attr("cy",yScale(0)+widthOfBar)
+							.attr("cy",scaleHeight+widthOfBar)
 							.attr("r",3)
 							.attr("fill","grey")
 					}
@@ -23633,25 +23420,18 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						var yLabelTop=height/2+yLabelTotalPixcel/2;
 						var yLabelLeft=10;
 						axisLabelController.appendLabel(yAxisLabel,yLabelLeft,yLabelTop,-90,svgElement,textStyleConfg.xLabelColor,600);	
-							
-						/*
-						// yAxis Lable Right Align
-						var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;;
-						var yLabelTop=height/2-yLabelTotalPixcel/2;
-						var yLabelLeft=13;
-						axisLabelController.appendLabel(data.yAxisLabel,width-15,yLabelTop,90,svgElement,textStyleConfg.xLabelColor,600);	
-						*/
-						// For Title
 						
+						// For Title
 						var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
-						axisLabelController.appendLabel(title,leftIndicator,15,0,svgElement,textStyleConfg.xLabelColor,800);	
+						var titleTopPosition = 10;
+						axisLabelController.appendLabel(title,leftIndicator,titleTopPosition,0,svgElement,textStyleConfg.xLabelColor,800);	
 						
 						// ******* Legend Logic******
 
 						var lagendRectWidth = 10;
 						var lagendRectHeight = 10; 
-						
-						var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,25,legendArray,lagendRectWidth+20,lagendRectHeight);
+						var yPosition = 16;
+						var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPosition,legendArray,lagendRectWidth+20,lagendRectHeight);
 						
 						var legendGroup = svgElement.append("g").attr("class","legendGroup")
 							.attr("transform","translate("+margin.left+","+(0)+")");
@@ -23692,7 +23472,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										yTickArray = tickController.getTickArray(yMin,yMax,6);
 										yScale = d3.scale.linear()
 											.domain([yMin,yMax])
-											.range([yScale(0),0]); 
+											.range([scaleHeight,0]); 
 										yAxis = d3.svg.axis()
 											.scale(yScale)
 											.orient("left")
@@ -23704,7 +23484,17 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.attr("fill","none")
 											.selectAll("text")
 											.attr("fill",textStyleConfg["tick-font-color"],"important");
-										drawPath(legendDisplayValue);
+											var status = 0;
+											for(var k=0;k<legendDisplayValue.length;k++)
+											{
+												if(legendDisplayValue[k]==1)
+												{
+													status = 1;
+													break;
+												}
+											}
+											drawPath(legendDisplayValue);
+											
 									}
 									else
 									{
@@ -23728,7 +23518,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										yTickArray = tickController.getTickArray(yMin,yMax,6);
 										yScale = d3.scale.linear()
 											.domain([yMin,yMax])
-											.range([yScale(0),0]); 
+											.range([scaleHeight,0]); 
 										yAxis = d3.svg.axis()
 											.scale(yScale)
 											.orient("left")
@@ -23740,27 +23530,12 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 											.attr("fill","none")
 											.selectAll("text")
 											.attr("fill",textStyleConfg["tick-font-color"],"important");
+											
 										drawPath(legendDisplayValue);
 										
 									}
 							
-					/*			var state = svgElement.selectAll(".pathOfMultiGroupedBar"+val).style("display");
-								alert(state);
-								 if (state == "none") {
-
-											$("#"+selectedElementId).find("path."+legendNameMap[d]).slideUp(400).delay(400).fadeIn();
-											d3.select(this).style("fill",colorArray[val]);	
-											svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","none");
-										  
-										} else {
-
-											var selectedPath = svgElement.selectAll("." + legendNameMap[d]);
-											$("#"+selectedElementId).find("path."+legendNameMap[d]).slideDown(400).delay(400).fadeOut();
-											d3.select(this).style("fill","gray");								
-											svgElement.selectAll(".legend-text."+legendNameMap[d]).style("text-decoration","line-through");
-										}
-										
-								*/		
+					
 							  });	
 												
 						var legendTextRef = legendGroup.selectAll('.text')
@@ -23784,8 +23559,2874 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				setTextStyleAndSvgBackGround(svgElement);
 			}
 		}
-	
+
+		var areaChartWithRangeGraph = 
+		{
+			areaChartWithRangeAnalysis:function(data)
+			{
+			
+			var title = data.title;
+				var xAxisData = data.xAxisData;
+				var xAxisLabel = data.xAxisLabel;
+				var yAxisLabel = data.yAxisLabel;
+				var yDataObj = data.yDataObj;
+				var averageValue = data.averageValue;
+				
+				var leftMargin = marginController.leftMarginController(yDataObj[0].yAxisDataUpper);
+				var compareAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+				
+				var scaleWidth=width-compareAnalChart.left-compareAnalChart.right;
+				var scaleHeight=height-compareAnalChart.top-compareAnalChart.bottom;
+				
+				var leftMarginOfSvg = $(selectorElement).offset().left;	
+				var topMarginOfSvg = $(selectorElement).offset().top;	
+				var	divPathX =[],divPathY=[],toolTipPathX=[],toolTipPathY=[];
+				svgElement.on("mousemove",function(){
+							d3.selectAll(".lineMove").remove();
+							d3.select(".lineDiv").remove();
+							d3.select(".lineDiv1").remove();
+							d3.select(".divText").remove();
+							d3.select(".divText2").remove();
+							d3.select(".rectangle").remove();
+							
+						//	var y = d3.event.screenY-topMarginOfSvg-setMargin.topMargin;
+							var y = d3.event.pageY-topMarginOfSvg;
+						//	var y = d3.mouse(this)[1];
+						var yAxisLength =10;
+					//	console.log(yScale.invert(y-compareAnalChart.top));
+							//build path for y axis toot tip
+							var yFactor =6;
+							divPathY[0]=y;
+							divPathY[1]=y-yFactor*.7;
+							divPathY[2]=y-yFactor*2;
+							divPathY[3]=y-yFactor*2;
+							divPathY[4]=y+yFactor*2;
+							divPathY[5]=y+yFactor*2;
+							divPathY[6]=y+yFactor*.7;
+							divPathY[7]=y;
+							var xFactor =10;
+							divPathX[0]=compareAnalChart.left;
+							divPathX[1]=compareAnalChart.left-xFactor;
+							divPathX[2]=compareAnalChart.left-xFactor;
+							divPathX[3]=compareAnalChart.left-yAxisLength*15;
+							divPathX[4]=compareAnalChart.left-yAxisLength*15;
+							divPathX[5]=compareAnalChart.left-xFactor;
+							divPathX[6]=compareAnalChart.left-xFactor;
+							divPathX[7]=compareAnalChart.left;
+							
+							var x = (d3.event.pageX)-compareAnalChart.left-leftMarginOfSvg;
+							x = xScale.invert(x);
+							
+							if( x>=0 && x<xAxisData.length-1 && y>compareAnalChart.top+30 && y<=(compareAnalChart.bottom + scaleHeight+10))
+							{
+								var lineMove = svgElement.append("line")
+										.attr("class","lineMove")
+										.attr("x1",compareAnalChart.left)
+										.attr("y1",y-1)
+										.attr("x2",scaleWidth+compareAnalChart.left)
+										.attr("y2",y-1)
+										.attr("stroke","black")
+										.attr("stroke-width", .5)
+										.attr("fill", "none");
+								var lineFunction = d3.svg.line()
+											.x(function(d,i) { return divPathX[i]; })
+											.y(function(d,i) { return d;})
+											.interpolate("closed");
+								svgElement.append("path")
+											.attr("d",lineFunction(divPathY))
+											.attr("class","lineDiv")
+											.attr("stroke","black")
+											.attr("stroke-width", 2)
+											.attr("fill", "black").style("opacity",0.8);
+								svgElement.append("text").attr("x",(compareAnalChart.left-yAxisLength*4)+"px")
+											.attr("y",y)
+											.text(function(){return Math.round(yScale.invert(y-compareAnalChart.top));})
+											.attr("display","block")
+											.attr("font-size",12)
+											.attr("class","divText").attr("dy",".4em").attr("fill","white");
+								
+								//x axis tool tip
+								
+								var text = xAxisData[Math.round(xScale.invert(d3.event.pageX-compareAnalChart.left-leftMarginOfSvg))];
+								textLength = text.length*7;
+								var rectHeight =30
+								var rectWidth = text.length *10;
+								var xStartPoint= d3.event.pageX -leftMarginOfSvg;
+								var yStartPoint = scaleHeight+compareAnalChart.top-5;
+								toolTipPathX[0]=xStartPoint;
+								toolTipPathX[1]=xStartPoint-5;
+								toolTipPathX[2]=xStartPoint-rectWidth/2;
+								toolTipPathX[3]=xStartPoint-rectWidth/2;
+								toolTipPathX[4]=xStartPoint+rectWidth/2;
+								toolTipPathX[5]=xStartPoint+rectWidth/2;
+								toolTipPathX[6]=xStartPoint+5;
+							//	toolTipPathX[7]=xStartPoint;
+								
+								toolTipPathY[0]=yStartPoint;
+								toolTipPathY[1]=yStartPoint+rectHeight*.3;
+								toolTipPathY[2]=yStartPoint+rectHeight*.3;
+								toolTipPathY[3]=yStartPoint+rectHeight;
+								toolTipPathY[4]=yStartPoint+rectHeight;
+								toolTipPathY[5]=yStartPoint+rectHeight*.3;
+								toolTipPathY[6]=yStartPoint+rectHeight*.3;
+							//	toolTipPathY[7]=yStartPoint;
+								
+								var lineMove = svgElement.append("line")
+										.attr("class","lineMove")
+										.attr("x1",xStartPoint)
+										.attr("y1",compareAnalChart.top)
+										.attr("x2",xStartPoint)
+										.attr("y2",scaleHeight+compareAnalChart.top)
+										.attr("stroke","black")
+										.attr("stroke-width", .5)
+										.attr("fill", "none");
+								
+								var lineFunction1 = d3.svg.line()
+											.x(function(d,i) { return toolTipPathX[i]; })
+											.y(function(d,i) { return d;})
+											.interpolate("closed");
+								svgElement.append("path")
+											.attr("d",lineFunction1(toolTipPathY))
+											.attr("class","lineDiv1")
+											.attr("stroke","black")
+											.attr("stroke-width", 2)
+											.attr("fill", "black").style("opacity", 0.8);
+											
+							
+								svgElement.append("text").attr("x",d3.event.pageX-textLength/2-leftMarginOfSvg)
+											.attr("y",scaleHeight+compareAnalChart.top+15)
+											.text(function(){
+											return	text;
+											})
+											.attr("class","divText2").attr("dy",".4em").attr("fill","white");
+						/*					
+						//main tool tip
+								var heading=xAxisData[Math.round(xScale.invert(d3.event.pageX-setMargin.leftMargin-leftMarginOfSvg))];
+								var yHeadingValueMap=[{"headingName":data.yAxisLabel,"headingVal":Math.round(yScale.invert(y-setMargin.topMargin))}];
+								toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.90);	
+								*/		
+								}else{
+							//		toolTipManager.hideTooTip();
+								}			
+							
+								}).on("mouseleave",function(){
+							//		toolTipManager.hideTooTip();
+								}).on("mouseout",function(){
+							//		toolTipManager.hideTooTip();
+								});
+				
+			
+			
+				var compareChartMainGroup = svgElement.append("g")
+								   .attr('class','main-group')
+								   .attr("transform", "translate(" + compareAnalChart.left + "," + compareAnalChart.top + ")")
+				
+				// title label here
+				var pixcelPerChar = 7;
+				var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
+				var titleGroup = svgElement.append("g")
+										   .attr('class','title')
+				axisLabelController.appendLabel(title,leftIndicator,compareAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
+				
+			//	axisLabelController.appendLabel(title,compareAnalChart.left,-compareAnalChart.top/1.5,0,titleGroup,textStyleConfg.chartTitleColor,700);
+				
+				var pixcelPerChar = 7;
+				// YAxis Label here
+				var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;
+				var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
+				var yIndicationLabelLeft=(-compareAnalChart.left +15);	
+				axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,compareChartMainGroup,textStyleConfg.yLabelColor,600);		   
+
+				// xAxis label here
+				var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
+				var xIndicationLabelTop=scaleHeight+(compareAnalChart.bottom - 5);
+				var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
+				axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,compareChartMainGroup,textStyleConfg.xLabelColor,600);
+				
+				var xScale = d3.scale.linear()
+                                     .domain([0,xAxisData.length-1])
+                                     .range([0,scaleWidth]); 
+									 
+				var selectArray = yDataObj[0].yAxisDataUpper;
+				var selectArray1 = yDataObj[0].yAxisDataLower;
+				for(var i = 1 ; i<yDataObj.length ; i++ )
+				{
+					if(d3.min(selectArray1)>d3.min(yDataObj[i].yAxisDataLower))
+					{
+						selectArray1 = yDataObj[i].yAxisDataLower;
+					}					
+				}
+				var yMin = minMaxController.getMin(selectArray1);	
+				
+				selectArray = yDataObj[0].yAxisDataUpper;
+				for(var i = 1 ; i<yDataObj.length ; i++ )
+				{
+					if(d3.max(selectArray)<d3.max(yDataObj[i].yAxisDataUpper))
+					{
+						selectArray = yDataObj[i].yAxisDataUpper;
+					}					
+				}
+				var yMax = minMaxController.getMax(selectArray);	
+				
+				var yScale = d3.scale.linear()
+					.domain([yMin,yMax])
+					.range([scaleHeight,0]);
+						
+		//x axis
+				var largestStringLngth=0;
+					for(var counter =0 ;counter<xAxisData.length;counter++)
+					{
+						if(largestStringLngth<(xAxisData[counter].toString()).length)
+						{
+							largestStringLngth = (xAxisData[counter].toString()).length;
+						}
+					}
+					
+				var xAxis = d3.svg.axis()
+							.scale(xScale)
+							.orient("bottom")
+						//	.tickValues()
+							.tickValues(tickController.getXTickArray(0,(xAxisData.length),largestStringLngth, (scaleWidth)));
+				
+				var xAxisTextRef = compareChartMainGroup.append("g")
+										.attr('id','xAxis')
+										.attr("class", "xAxis")
+										.attr('fill',"none")
+										.attr("transform", "translate("+10+"," + scaleHeight + ")")
+										.call(xAxis);
+							 xAxisTextRef.selectAll('text')
+										.attr("fill","black")
+							             .text(function(d){return xAxisData[d];});
+										 
+
+				var yTickArray = tickController.getTickArray(yMin,yMax,8);							
+												
+				var yAxis = d3.svg.axis()
+								.scale(yScale)
+								.orient("left")
+								.tickValues(yTickArray);
+				
+				compareChartMainGroup.append("g")
+								.attr('id','yAxis')
+								.attr("class", "yAxis")
+								.attr('fill',"none")
+								.attr("transform", "translate("+(0)+"," + 0 + ")")
+								.call(yAxis)
+								.selectAll('text')
+								.attr('fill','black');
+					
+				//Line draw at average value
+				
+				compareChartMainGroup.append("line")
+					.attr("x1",0)
+					.attr("y1",yScale(averageValue))
+					.attr("x2",scaleWidth)
+					.attr("y2",yScale(averageValue))
+					.attr("fill","none")
+					.attr("stroke","black")
+					.attr("stroke-width",.4);		
+						
+				var area = d3.svg.area()
+							.x(function(d,i) { return xScale(i);})
+							.y0(scaleHeight)
+							.y1(function(d,i) { return scaleHeight })
+							.interpolate("cardinal");
+					//	
+						
+				var areaPathRef;
+				var opacity = 1;			
+				for(var i = 0 ; i<yDataObj.length ; i++)
+				{
+					var area2 = d3.svg.area()
+							.x(function(d,j) { return xScale(j);})
+							.y0(function(d,j) { return yScale(yDataObj[i].yAxisDataLower[j]); })
+							.y1(function(d,j) { return yScale(d); })
+							.interpolate("cardinal");	
+				
+					areaPathRef = compareChartMainGroup.append("path")
+								.attr("d",area(yDataObj[i].yAxisDataUpper))
+								.attr("class","path"+i)
+								.attr("value",i)
+								.attr("fill",yDataObj[i].color)
+								.attr("opacity",opacity)
+								.attr("display","block");	
+										
+					opacity = opacity - 0.1;	
+					
+					areaPathRef.transition().delay(i*1000).duration(1500).ease('elastic').attr("d",area2(yDataObj[i].yAxisDataUpper));
+			
+					
+				}
+				
+				// legend here
+				var legendArray = [];
+				var legendColorArray = [];
+				for(var i = 0 ; i<yDataObj.length ; i++ )
+				{
+					legendArray.push(yDataObj[i].legend);
+					legendColorArray.push(yDataObj[i].color);					
+				}
+
+				var legendGroup = svgElement.append('g')
+										 .attr('class','legend')
+										 .attr("transform", "translate(" + (compareAnalChart.left) + "," +compareAnalChart.top+ ")")
+				
+				var legendHeight = 10;
+				var legendWidth = 25;
+				var lineStroke = 3;
+				var yPositionOfLegend = 0;
+				var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPositionOfLegend,legendArray,legendWidth+10,legendHeight);
 		
+				var legendRef = legendGroup.selectAll('.line')
+										    .data(legendPositionArray)
+										    .enter()
+											.append('rect')
+											.attr("id",function(d,i){return i})
+											.attr('width',legendWidth)
+											.attr('height',legendHeight)
+											.attr('x',function(d,i){ return legendPositionArray[i].x;})
+											.attr('y',function(d,i){return legendPositionArray[i].y;})
+											.attr("rx",4)
+											.attr("ry",4)
+											.attr('fill',function(d,i){return legendColorArray[i]})
+											.attr("opacity",0.5)
+											.on("click",function(){
+												var index = d3.select(this).attr("id");
+												if(svgElement.select(".path"+index).attr("display") == "none")
+												{
+													svgElement.select(".path"+index).attr("display","block")
+													svgElement.select(".text"+index).style("text-decoration", "none");
+												}
+												else
+												{
+													svgElement.select(".path"+index).attr("display","none")
+													svgElement.select(".text"+index).style("text-decoration", "line-through");
+												}
+											});
+				
+				var legendTextRef = legendGroup.selectAll('.text')
+										    .data(legendPositionArray)
+										    .enter()
+											.append('text')
+											.attr("class",function(d,i){return "text"+i})
+											.attr('x',function(d,i){return legendPositionArray[i].textXPos-10;})
+											.attr('y',function(d,i){return legendPositionArray[i].y +  legendHeight;})
+											.attr('font-family','calibri')
+											.text(function(d,i){return legendArray[i];})
+			
+				//hide axis path
+				hideAxisPath(svgElement);
+				//set font here
+				setTextStyleAndSvgBackGround(svgElement);
+			}
+		}
+		
+		var meterChartGraph = 
+		{
+			meterChartAnalysis:function(meterChartData)
+			{
+						var data = meterChartData["data"];
+		var dataLeft = meterChartData["dataLeft"];
+		var colorArray = meterChartData["colorArray"];
+		var meterLabel = meterChartData["meterLabel"];
+		
+	//	var width = 700;
+	//	var height = 400;
+		
+		var meterChart={left:width*0.005,right:width*0.005,bottom:height*0.005,top:height*0.005};
+				
+		var scaleWidth=width-meterChart.left-meterChart.right;
+		var scaleHeight=height-meterChart.top-meterChart.bottom;
+		
+		var meterArcSize = [1,3,1],grad = Math.PI/180,fontSize=14;
+		
+	//	var svgElement = d3.select("body").append("svg").attr("width",width).attr("height",height);
+					
+		var  mainGroup = svgElement.append("g")
+										.attr('class','main-group')
+										.attr("transform", "translate(" + meterChart.left + "," + meterChart.top + ")");
+										   
+		var centerArcGroup = 	mainGroup.append("g")
+										.attr('class','centerArcGroup')
+										.attr("transform", "translate(" + (scaleWidth*.5) + "," + (scaleHeight*.5) + ")");
+											
+									
+		var radius = scaleHeight*.5 < (scaleWidth*.5) ? scaleHeight*.5 : (scaleWidth*.5);
+		if(radius < 151)
+		{
+			fontSize = 12;
+		}
+		var centerRadius = scaleWidth/6;
+		var centerInnerRadius = centerRadius * .9;
+		centerArcGroup.append("text")
+						.attr("x",function(){
+							var length = meterLabel.toString().length * 9;
+							return -length*.5
+						})
+						.attr("y",-centerRadius*.4)
+						.text(meterLabel);
+						
+		var totalThetaForCenter = 230,tempTheta;	
+		var pi = Math.PI,x1,x2,y1,y2;	
+		
+		// central arc
+		for(var i = 0 ; i < meterArcSize.length ; i++)
+		{
+			var angle=(meterArcSize[i]/5)*(260);
+
+			var innerArc = d3.svg.arc()
+				.innerRadius(centerInnerRadius+20)
+				.outerRadius(centerRadius+20)
+				.startAngle(totalThetaForCenter * (pi/180))
+				.endAngle((angle+totalThetaForCenter) * (pi/180)); 
+			
+			var arcRef = centerArcGroup.append("path")
+				.attr("d", innerArc)
+				.attr("class","individualArc")
+				.attr("fill",colorArray[i]);	 
+					
+			totalThetaForCenter = angle+totalThetaForCenter;	
+				
+		}
+		
+		
+		
+		var dummyAngle=(260);
+		var dummyInnerArc = d3.svg.arc()
+				.innerRadius(centerInnerRadius+20)
+				.outerRadius(centerInnerRadius+21)
+				.startAngle(230 * (pi/180))
+				.endAngle((dummyAngle+230) * (pi/180)); 
+			
+		var dummyArcRef = centerArcGroup.append("path")
+				.attr("d", dummyInnerArc)
+				.attr("class","individualArc")
+				.attr("fill","yellow");
+
+	  
+	  
+		var totalThetaCoverByMeter = totalThetaForCenter;
+		var totalTheta = totalThetaForCenter+1;
+		var startTheta = 230;
+		var innerRadius = centerInnerRadius+20
+		var min = d3.min(data);
+		var max = d3.max(data);
+		var meterScale = d3.scale.linear()
+			.domain([min,max])
+			.range([startTheta+0.5,totalThetaCoverByMeter-0.5]);
+		var index = 0;
+		var tickDiff = (totalThetaCoverByMeter - startTheta)/data.length;
+		for(var counter = 0 ; counter < data.length ; counter++)
+		{
+			totalTheta = data[counter];
+			totalTheta = meterScale(totalTheta);
+			x1 = (innerRadius)*Math.sin((totalTheta)* (Math.PI / 180));
+			y1 = -(innerRadius)*Math.cos((totalTheta)* (Math.PI / 180));
+			x2 = (innerRadius-15)*Math.sin((totalTheta)* (Math.PI / 180));
+			y2 = -(innerRadius-15)*Math.cos((totalTheta)* (Math.PI / 180));			
+			centerArcGroup.append("line")
+				.attr("x1",x1)
+				.attr("y1",y1)
+				.attr("x2",x2)
+				.attr("y2",y2)
+				.attr("stroke",function(){
+					if(totalTheta<(startTheta+52))
+					{
+						return colorArray[0];
+					}
+					else if(totalTheta<(startTheta+208))
+					{
+						return colorArray[1];
+					}
+					else
+					{
+						return colorArray[2];
+					}
+				})
+				.attr("stroke-width",2);
+
+					
+			centerArcGroup.append("text")
+				.attr("x",function(){
+					if(totalTheta < startTheta + 80)
+					{
+						return x2+3; 
+					}
+					else if(totalTheta < startTheta + 160)
+					{
+						return x2 - 9;
+					}
+					else
+					{
+						var length = data[index].toString().length * 8;
+						return x2 - length;
+					}
+				})
+				.attr("y",function(){
+					if(totalTheta < startTheta + 80)
+					{
+						return y2+4; 
+					}
+					else if(totalTheta < startTheta + 160)
+					{
+						return y2 + 13;
+					}
+					else
+					{
+						return y2 + 4
+					}
+				})
+				.attr("fill",function(){
+					if(totalTheta<(startTheta+52))
+					{
+						return colorArray[0];
+					}
+					else if(totalTheta<(startTheta+208))
+					{
+						return colorArray[1];
+					}
+					else
+					{
+						return colorArray[2];
+					}
+				})
+				.style("font-size",fontSize,"important")
+				.text(data[index++])
+				
+			
+			var nestedMeterScale = d3.scale.linear()
+				.domain([0,10])
+				.range([meterScale(data[counter]),meterScale(data[counter+1])]);
+			var tempTheta;
+			if(counter < data.length - 1)
+			{
+				for(var nestedCounter = 0 ; nestedCounter< 10 ;nestedCounter++)
+				{
+					tempTheta = nestedMeterScale(nestedCounter);
+					x1 = (innerRadius)*Math.sin((tempTheta)* (Math.PI / 180));
+					y1 = -(innerRadius)*Math.cos((tempTheta)* (Math.PI / 180));
+					x2 = (innerRadius-7)*Math.sin((tempTheta)* (Math.PI / 180));
+					y2 = -(innerRadius-7)*Math.cos((tempTheta)* (Math.PI / 180));
+						
+					centerArcGroup.append("line")
+						.attr("x1",x1)
+						.attr("y1",y1)
+						.attr("x2",x2)
+						.attr("y2",y2)
+						.attr("stroke",function(){
+							if(tempTheta<(startTheta+52))
+							{
+								return colorArray[0];
+							}
+							else if(tempTheta<(startTheta+208))
+							{
+								return colorArray[1];
+							}	
+							else
+							{
+								return colorArray[2];
+							}
+						})
+				}
+			}
+					
+		}
+		
+		var oldX2 = (innerRadius-40)*Math.sin((meterScale(min))* (Math.PI / 180));
+		var oldY2= -(innerRadius-40)*Math.cos((meterScale(min))* (Math.PI / 180));
+
+		var oldNeedleValue = meterScale(min);
+
+		var pathXcord =[],pathYcord=[];
+	
+		var line = d3.svg.line()
+							 .x(function(d,i) { return d; })
+							 .y(function(d,i) {return pathYcord[i]; })
+							 
+		var pathXcord = [0,oldX2];
+		var pathYcord = [0,oldY2];
+		myFunction();
+		function myFunction() 
+		{
+			setInterval(function(){ needleController(); }, 2500);
+		}
+		
+		function needleController()
+		{
+			svgElement.select("#circleForTransition").remove();
+			svgElement.select("#needleText").remove();
+			
+			var needleValue = Math.floor(Math.random() * ((max-min)+1) + min);
+			var text = needleValue;
+			needleValue = meterScale(needleValue);
+				
+		function pathStartPoint(path) {
+			var d = path.attr("d"),
+			dsplitted = d.split(" ");
+			return dsplitted[1].split(",");
+		  }	
+					
+			var dummyInnerArc1 = d3.svg.arc()
+			.innerRadius(centerInnerRadius-15)
+			.outerRadius(centerInnerRadius-15)
+			.startAngle(oldNeedleValue * (pi/180))
+			.endAngle((needleValue) * (pi/180)); 
+				
+			var path = centerArcGroup.append("path")
+					.attr("d", dummyInnerArc1)
+					.attr("class","individualArc")
+					.attr("fill","f");
+					
+			var  startPoint = pathStartPoint(path);
+			var circle = centerArcGroup.append("circle").attr("id","circleForTransition").attr("r",0).attr("transform", "translate(" + startPoint + ")");
+
+				
+						
+			transition1();
+				
+			function transition1() 
+			{
+					
+				circle.transition()
+					.duration(2000)
+					.attrTween("transform", translateAlong(path.node()));
+					//  .each("end", transition);// infinite loop
+			
+			}
+		  
+		function translateAlong(path) 
+		{ 
+			//console.log(path);
+			var l = path.getTotalLength()/2;
+			return function(i) 
+			{
+				return function(t) 
+				{
+					var p = path.getPointAtLength(t * l);
+					//	console.log(p.x+" "+p.y);
+					svgElement.select("#lineTrans").remove();
+					var line = centerArcGroup.append("line").attr("id","lineTrans")
+						.attr("x1",0).attr("y1",0)
+						.attr("x2",p.x).attr("y2",p.y)
+						.attr("stroke","black")
+						.attr("stroke-width", 3)
+						//.attr("transform", "translate(" + startPoint + ")");
+					return "translate(" + p.x + "," + p.y + ")";//Move marker		
+				}
+			}
+		}
+			  
+			oldNeedleValue = needleValue;
+
+			centerArcGroup.append("text")
+				.attr("id","needleText")
+				.attr("x",function()
+				{
+					var length = text.toString().length * 9;
+					return -length*.5
+				})
+				.attr("y",radius*.4)
+				.text(text);
+		}
+
+			}
+		}
+		
+		
+		
+	var threeDStackedDountChartGraph = 
+	{
+		threeDStackedDountChartAnalysis:function(data)
+		{
+			var setMargin={left:width*0.05,right:width*0.05,bottom:height*0.05,top:height*0.05};
+	
+			var scaleWidth = width - setMargin.left - setMargin.right;
+			var scaleHeight = height - setMargin.top - setMargin.bottom;
+	
+			var mainGroup = svgElement.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMargin.left+","+setMargin.top+")")
+			//	.style("-webkit-transform","rotateX(0deg)rotateY(0deg)rotateZ(0deg)")
+				
+			var dountPieGroup = mainGroup.append("g")
+				.attr('class','dountPie')
+				.attr("transform", "translate(" + (scaleWidth/2) + "," + (scaleHeight/2) + ")");	
+				
+			var radiusX = (scaleHeight/2 < scaleWidth/2) ? scaleHeight/2 : scaleWidth/2;
+			var slice = radiusX/(data.length+1);
+			var outerRadius = radiusX;
+			var radiusY = radiusX*.7;
+			var h=14,innerRadius=.6,dist = 0;
+			var pie = d3.layout.pie().sort(null).value(function(d) {return d;})
+			var dummyData = [],grad = Math.PI/180;
+			for(var k=0;k<data.length;k++)
+			{
+				dummyData = data[k];
+				drawDonut(dummyData,outerRadius,outerRadius*.8,k)
+				outerRadius = outerRadius-slice;	
+			}
+			function drawDonut(dummyData,outerRadius,rY1,k)
+			{
+				dountPieGroup.selectAll(".innerSlice"+k).data(pie(dummyData.dountData)).enter().append("path")
+					.attr("class","innerSlice"+k)
+					.attr('value',function(d,i){return i})
+					.attr("key",k)
+					.style("fill", function(d,i){return dummyData.colorArray[i];})
+					.style("stroke", function(d,i) {return  "black"; })
+					.style("stroke-width",0.3)
+					.attr("d",function(d){ return pieInner(d, outerRadius,rY1, h, innerRadius);})
+					.attr('transform', function (d,i) 
+					{
+						d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
+						var x = Math.cos(d.midAngle) * dist;
+						var y = Math.sin(d.midAngle) * dist;
+						return 'translate(' + x + ',' + y + ')';
+					})
+					.on("mousemove",function()
+					{
+						var value = d3.select(this).attr('value');
+						var key = d3.select(this).attr("key");
+						var heading=data[key].heading;
+						var dountValue =data[key].dountData[value];
+						var yHeadingValueMap=[{"headingName":data[key].dountKey[value],"headingVal":dountValue}];
+						
+						toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
+					
+					})
+					.on("mouseleave",function(){
+						toolTipManager.hideTooTip();
+					})
+					.transition().duration(1500).attrTween("d",arcTweenInner)
+					
+					
+								
+				dountPieGroup.selectAll(".topSlice"+k).data(pie(data[k].dountData)).enter().append("g").attr("class", "topSlice"+k)  
+					.style("fill", function(d,i) 
+					{
+						d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;	
+						var rectangleGradient = dountPieGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rectangleGradient"+i)
+							.attr("spreadMethod", "pad")
+							.attr("x1", 0)
+							.attr("y1", 0)
+							.attr("x2",((outerRadius) * (Math.cos((d.midAngle)))))
+							.attr("y2",((rY1) * (Math.sin((d.midAngle)))))
+							.attr("gradientUnits", "userSpaceOnUse")
+							.attr("gradientTransform","rotate(0)");
+							
+							rectangleGradient
+								.append("stop")
+								.attr("offset", "0")
+								.attr("stop-color",function(){return ColorLuminance(dummyData.colorArray[i], 0.5)});
+							rectangleGradient
+								.append("stop")
+								.attr("offset", "1")
+								.attr("stop-color",function(){return ColorLuminance(dummyData.colorArray[i], -0.2)});
+					
+						return "url(#rectangleGradient"+i+")"
+						return  dummyData.colorArray[i]
+					})
+					.style("stroke", function(d,i) {return  "black"; })
+					.style("stroke-width",0.3)
+					.append('path')
+					.attr('value',function(d,i){return i})
+					.attr("key",k)
+					.attr("outerRadius",outerRadius)
+					.attr("d",function(d){return pieTop(d, outerRadius, rY1, innerRadius);})
+					.attr('transform', function (d,i) 
+					{
+						d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
+						var x = Math.cos(d.midAngle) * dist;
+						var y = Math.sin(d.midAngle) * dist;
+						return 'translate(' + x + ',' + y + ')';
+					})
+					.on("mousemove",function()
+					{
+						var value = d3.select(this).attr('value');
+						var key = d3.select(this).attr("key");
+						var heading=data[key].heading;
+						var dountValue =data[key].dountData[value];
+						var yHeadingValueMap=[{"headingName":data[key].dountKey[value],"headingVal":dountValue}];
+						
+						toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
+					
+					})
+					.on("mouseleave",function(){
+						toolTipManager.hideTooTip();
+					})
+					.transition().duration(1500).attrTween("d",arcTweenTop);
+
+				dountPieGroup.selectAll(".outerSlice"+k).data(pie(dummyData.dountData)).enter().append("path")
+					.attr("class", "outerSlice"+k)
+					.attr('value',function(d,i){return i})
+					.attr("key",k)
+					.style("fill", function(d,i) 
+					{
+						return  dummyData.colorArray[i];
+					})
+					.style("stroke", function(d,i) {return  "black"; })
+					.style("stroke-width",0.3)
+					.attr("d",function(d){ return pieOuter(d, outerRadius,rY1, h);})
+					.attr('transform', function (d,i) 
+					{
+						
+						d.midAngle = ((d.endAngle - d.startAngle) / 2) + d.startAngle;
+						var x = Math.cos(d.midAngle) * dist;
+						var y = Math.sin(d.midAngle) * dist;
+						return 'translate(' + x + ',' + y + ')';
+					})
+					.on("mousemove",function()
+					{
+						var value = d3.select(this).attr('value');
+						var key = d3.select(this).attr("key");
+						var heading=data[key].heading;
+						var dountValue =data[key].dountData[value];
+						var yHeadingValueMap=[{"headingName":data[key].dountKey[value],"headingVal":dountValue}];
+						
+						toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
+					
+					})
+					.on("mouseleave",function(){
+						toolTipManager.hideTooTip();
+					})
+					.transition().duration(1500).attrTween("d",arcTweenOuter);
+			
+			function arcTweenInner(d) 
+			{
+				 var i = d3.interpolate({startAngle: -180*grad, endAngle: -180*grad},d);
+				 return function (call) {
+				  return pieInner(i(call),outerRadius,rY1,h,innerRadius);
+			 };
+			}		
+			
+			function arcTweenTop(d) 
+			{
+				var i = d3.interpolate({startAngle: -180*grad, endAngle: -180*grad},d);
+				return function (call) {
+				return pieTop(i(call),outerRadius,rY1,innerRadius);
+			 };
+			}		
+			
+			function arcTweenOuter(d) {
+			   var i = d3.interpolate({startAngle: -180*grad, endAngle: -180*grad},d);
+			 return function (call) 
+			 {
+			  return pieOuter(i(call),outerRadius,rY1,h);
+			 };
+			}
+			
+			}
+			function pieInner(d, rx, ry, h, ir )
+			{
+				var startAngle = (d.startAngle < Math.PI ? Math.PI : d.startAngle);
+				var endAngle = (d.endAngle < Math.PI ? Math.PI : d.endAngle);
+				
+				var sx = ir*rx*Math.cos(startAngle),
+					sy = ir*ry*Math.sin(startAngle),
+					ex = ir*rx*Math.cos(endAngle),
+					ey = ir*ry*Math.sin(endAngle);
+
+					var ret =[];
+					ret.push("M",sx, sy,"A",ir*rx,ir*ry,"0 0 1",ex,ey, "L",ex,h+ey,"A",ir*rx, ir*ry,"0 0 0",sx,h+sy,"z");
+					return ret.join(" ");
+			}
+			function pieTop(d, rx, ry, ir )
+			{
+				//	alert(JSON.stringify(d))
+				//	alert("top  "+ d +"   "+ rx+"   " +ry+"   "+ ir)
+				
+				if(d.endAngle - d.startAngle == 0 )
+				{	
+					return "M 0 0";
+				}
+			//	alert(d.startAngle)
+				var sx = rx*Math.cos(d.startAngle),
+					sy = ry*Math.sin(d.startAngle),
+					ex = rx*Math.cos(d.endAngle),
+					ey = ry*Math.sin(d.endAngle);
+					
+		//		alert(sx + "   " + sy+"  " + ex+"  "+ey)	
+					
+				var ret =[];
+				ret.push("M",sx,sy,"A",rx,ry,"0",(d.endAngle-d.startAngle > Math.PI? 1: 0),"1",ex,ey,"L",ir*ex,ir*ey);
+				ret.push("A",ir*rx,ir*ry,"0",(d.endAngle-d.startAngle > Math.PI? 1: 0), "0",ir*sx,ir*sy,"z");
+				return ret.join(" ");
+
+			}
+			
+			function pieOuter(d, rx, ry, h )
+			{
+				var startAngle = (d.startAngle > Math.PI ? Math.PI : d.startAngle);
+				var endAngle = (d.endAngle > Math.PI ? Math.PI : d.endAngle);
+				
+				var sx = rx*Math.cos(startAngle),
+					sy = ry*Math.sin(startAngle),
+					ex = rx*Math.cos(endAngle),
+					ey = ry*Math.sin(endAngle);
+					
+					var ret =[];
+					ret.push("M",sx,h+sy,"A",rx,ry,"0 0 1",ex,h+ey,"L",ex,ey,"A",rx,ry,"0 0 0",sx,sy,"z");
+					return ret.join(" ");
+			}
+			
+		
+			
+				// legend here
+				var legendArray = [];
+				var legendColorArray = [];
+				for(var i = 0 ; i<data.length ; i++ )
+				{
+					legendArray.push(data[i].heading);
+					legendColorArray.push(data[i].legendColor);					
+				}
+
+				var legendGroup = svgElement.append('g')
+										 .attr('class','legend')
+										 .attr("transform", "translate(" + (margin.left) + "," +margin.top+ ")")
+				
+				var legendHeight = 10;
+				var legendWidth = 25;
+				var lineStroke = 3;
+				var yPositionOfLegend = 0;
+				var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPositionOfLegend,legendArray,legendWidth+10,legendHeight);
+				
+				var legendRef = legendGroup.selectAll('.line')
+					.data(legendPositionArray)
+					.enter()
+					.append('rect')
+					.attr("id",function(d,i){return i})
+					.attr('width',legendWidth)
+					.attr('height',legendHeight)
+					.attr('x',function(d,i){ return legendPositionArray[i].x;})
+					.attr('y',function(d,i){return legendPositionArray[i].y;})
+					.attr("rx",4)
+					.attr("ry",4)
+					.attr('fill',function(d,i){return legendColorArray[i]})
+					.attr("opacity",0.5)
+					.on("click",function()
+					{
+						var index = d3.select(this).attr("id");
+						if(svgElement.selectAll(".topSlice"+index).attr("display") == "none")
+						{
+							svgElement.selectAll(".topSlice"+index).attr("display","block")
+							svgElement.selectAll(".innerSlice"+index).attr("display","block")
+							svgElement.selectAll(".outerSlice"+index).attr("display","block")
+							svgElement.select(".text"+index).style("text-decoration", "none");
+						}
+						else
+						{
+							svgElement.selectAll(".topSlice"+index).attr("display","none")
+							svgElement.selectAll(".innerSlice"+index).attr("display","none")
+							svgElement.selectAll(".outerSlice"+index).attr("display","none")
+							svgElement.select(".text"+index).style("text-decoration", "line-through");
+						}
+					});
+				
+				var legendTextRef = legendGroup.selectAll('.text')
+					.data(legendPositionArray)
+					.enter()
+					.append('text')
+					.attr("class",function(d,i){return "text"+i})
+					.attr('x',function(d,i){return legendPositionArray[i].textXPos-10;})
+					.attr('y',function(d,i){return legendPositionArray[i].y +  legendHeight;})
+					.attr('font-family','calibri')
+					.text(function(d,i){return legendArray[i];})
+		
+				//hide axis path
+				hideAxisPath(svgElement);
+				//set font here
+				setTextStyleAndSvgBackGround(svgElement);
+		
+		}
+	}
+		
+	var threeDRoundedBarChartGraph = 
+	{
+		threeDRoundedBarChartAnalysis:function(data)
+		{
+			var title = data.title;
+			var xAxisLabel = data.xAxisLabel;
+			var yAxisLabel = data.yAxisLabel;
+			var xAxisData = data.xAxisData;
+			var yAxisData = data.yAxisData;
+			var lowerColorArray = data.lowerColorArray;
+			var upperColor = data.upperColor;
+			var unit = data.unit;
+			var imagesArray = data.imagesArray;
+			var threeDPathColor = data.threeDPathColor;
+			var description = data.description;
+			
+			var leftMargin = marginController.leftMarginController(yAxisData);
+			var setMargin={left:leftMargin,right:width*0.05,bottom:height*0.001,top:height*0.001};
+			var xAxisIndex =[],xLargestStringLngth=0,max = d3.max(yAxisData),min = d3.min(yAxisData);
+			
+			var scaleWidth = width - setMargin.left - setMargin.right;
+			var scaleHeight = height - setMargin.top - setMargin.bottom;
+			
+			var mainGroup = svgElement.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMargin.left+","+setMargin.top+")");
+				
+			var yMin = minMaxController.getMin([min,min+10]);
+			var yMax = minMaxController.getMax([max,max-10]);	
+
+			var widthOfBar = (scaleWidth)/(2*xAxisData.length);
+			widthOfBar = widthOfBar * .7;
+			for(var i=0;i<xAxisData.length;i++)
+			{
+				xAxisIndex[i]=i;
+				if(xLargestStringLngth<xAxisData[i].toString().length)
+				xLargestStringLngth =xAxisData[i].toString().length;
+			}	
+				
+			var xScale = d3.scale.linear()
+				.domain([0,xAxisIndex.length-1])
+				.range([widthOfBar,scaleWidth-widthOfBar]);
+				
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),xLargestStringLngth,(scaleWidth)));
+			
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("display","none")
+				.attr("transform","translate("+(0)+","+(scaleHeight)+")")
+				.call(xAxis)	
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black")
+				.text(function(d){return xAxisData[d]});
+			
+			var yScale = d3.scale.linear()
+				.domain([yMin,yMax])
+				.range([scaleHeight,0]); 
+			
+			var yTickArray = tickController.getTickArray(yMin,yMax,6);
+			
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickValues(yTickArray);
+				
+			var yAxisGroup = mainGroup.append("g")
+				.attr("class","yAxisGroup")
+				.attr("transform","translate("+0+","+0+")")
+				.attr("display","none")
+				.call(yAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black");
+
+			
+			var lineData = [],heightOfBar = 0,frontPathLowerIndex=1,frontLowerLeftIndex = 2,frontLowerRightIndex=3;
+			var lowerPathHeight = d3.min(yAxisData)*.7,frontPathUpperIndex=4,frontUpperLeftIndex = 5,frontUpperRightIndex=6;
+			var upperPathIndex =7;
+		//	var xCoord =[],yCoord =[];
+			
+			var lineFunction = d3.svg.line()
+				.x(function(d) { return d.x; })
+				.y(function(d) { return d.y; })
+				.interpolate("closed");
+			
+	/*		// grid view
+			
+			var gridPathFunction = d3.svg.line()
+				.x(function(d,i) { return d; })
+				.y(function(d,i) { return yCoord[i]; })
+				.interpolate("closed")
+			
+			xCoord =[0,0,scaleWidth*.1,scaleWidth*.1,0];
+			yCoord =[scaleHeight,scaleHeight*.2,0,scaleHeight*.8,scaleHeight];
+			var gridY = mainGroup.append("path")
+				.attr("d", gridPathFunction(xCoord))
+				.attr("class","gridPath")
+				.attr("fill",threeDPathColor)
+				.attr("stroke","black")
+				.attr("stroke-width",2)
+				.attr("opacity",0.8);
+			xCoord =[0,scaleWidth*.1,scaleWidth,scaleWidth-scaleWidth*.1,0];
+			yCoord =[scaleHeight,scaleHeight*.8,scaleHeight*.8,scaleHeight,scaleHeight];
+			var gridX = mainGroup.append("path")
+				.attr("d", gridPathFunction(xCoord))
+				.attr("class","gridPath")
+			//	.attr("fill",ColorLuminance(threeDPathColor, 0.2))
+				.attr("fill",threeDPathColor)
+				.attr("stroke","black")
+				.attr("stroke-width",2)
+				.attr("opacity",0.8)
+				
+			xCoord =[scaleWidth*.1,scaleWidth*.1,scaleWidth,scaleWidth,scaleWidth*.1];
+			yCoord =[scaleHeight*.8,0,0,scaleHeight*.8,scaleHeight*.8];
+			var gridZ = mainGroup.append("path")
+				.attr("d", gridPathFunction(xCoord))
+				.attr("class","gridPath")
+				.attr("fill",threeDPathColor)
+				.attr("stroke","black")
+				.attr("stroke-width",2)
+				.attr("opacity",0.8);
+			
+			var gridLineFunction = d3.svg.line()
+				.x(function(d,i) { return d; })
+				.y(function(d,i) { return yCoord[i]; })
+				.interpolate("linear")
+			var gap = (scaleHeight*.8)/(yTickArray.length-1);
+			var dec = scaleHeight;
+			for(var i=0;i<yTickArray.length;i++)
+			{
+				var decFactor = scaleHeight*.2;
+				
+				xCoord=[],yCoord=[]
+				xCoord=[0,scaleWidth*.1,scaleWidth]
+				yCoord =[dec,dec-decFactor,dec-decFactor]
+				var gridLines = mainGroup.append("path")
+					.attr("d", gridLineFunction(xCoord))
+					.attr("class","gridPathLine")
+					.attr("fill","none")
+					.attr("stroke","black")
+					.attr("stroke-width",2)
+				//	.attr("opacity",0.2);
+				dec = dec - gap; 
+			}
+			*/	
+			var duration = 1000;
+			for(var i=0;i<xAxisIndex.length;i++)
+			{
+				var frontPathLower = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontPathLowerIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",lowerColorArray[i])
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontPathLowerIndex)))	
+				/*	.attr("fill",function(d,j)
+					{
+
+						var rectangleGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "rectangleGradient1")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						rectangleGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(lowerColorArray[i], -0.1)});
+									
+						rectangleGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(lowerColorArray[i], 0.1)});
+									
+						rectangleGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(lowerColorArray[i], -0.2)});
+					
+						return "url(#rectangleGradient1)";
+					})*/
+					
+				
+				var frontPathLowerLeft = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontLowerLeftIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",lowerColorArray[i])
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontLowerLeftIndex)))	
+					
+				var frontPathLowerRight = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontLowerRightIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",lowerColorArray[i])
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontLowerRightIndex)))	
+				
+				var frontPathUpper = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontPathUpperIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+				//	.attr("fill",upperColor)
+					.attr("fill",function(d,j)
+					{
+
+						var rectangleGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "rectangleGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						rectangleGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, -0.1)});
+									
+						rectangleGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, 0.1)});
+									
+						rectangleGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(upperColor, -0.2)});
+					
+						return "url(#rectangleGradient)";
+					})
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontPathUpperIndex)))
+				
+				var frontPathUpperLeft = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontUpperLeftIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",upperColor)
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontUpperLeftIndex)))
+				/*	.attr("fill",function(d,i)
+					{
+
+						var rectangleGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "rectangleGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						rectangleGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, -0.2)});
+								
+						rectangleGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, 0.5)});
+									
+						rectangleGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(upperColor, -0.2)});
+					
+						return "url(#rectangleGradient)";
+					})	*/
+					
+				var frontPathUpperRight = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,frontUpperRightIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",upperColor)
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,frontUpperRightIndex)))
+				/*	.attr("fill",function(d,i)
+					{
+
+						var rectangleGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "rectangleGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						rectangleGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, -0.2)});
+									
+						rectangleGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(upperColor, 0.5)});
+									
+						rectangleGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(upperColor, -0.2)});
+					
+						return "url(#rectangleGradient)";
+					})	*/
+				
+			
+				var upperPath = mainGroup.append("path")
+					.attr("d", lineFunction(getDummyCoordinates(i,upperPathIndex)))	
+					.attr("class","roundedPath")
+					.attr("value",i)
+					.attr("fill",lowerColorArray[i])
+					.transition().duration(duration)
+					.ease("linear")
+					.attr("d", lineFunction(getSideCoordinates(i,upperPathIndex)))
+					
+				d3.selectAll(".roundedPath")
+					.on("mousemove",function()
+					{
+						var val = d3.select(this).attr("value");
+						var heading =xAxisData[val];
+						var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":yAxisData[val]}];
+						toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
+					})
+					.on("mouseleave",function()
+					{
+						toolTipManager.hideTooTip();
+					})
+					
+			}
+			function getSideCoordinates(index,pathSide)
+			{
+				lineData = [];
+				heightOfBar = 0;
+				var factor = 20;
+				var heightFac = 5;
+				var leftWidth =(widthOfBar)*.6
+				if(pathSide==1)
+				{
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2;
+					nextY = yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					if(scaleHeight-heightFac-yScale(lowerPathHeight)>35)
+					{
+						mainGroup.append("svg:image")
+							.attr("xlink:href", imagesArray[index])
+							.transition().duration(100).delay(duration*2)
+							.attr("x",xScale(index)-(widthOfBar/2)*.8)
+							.attr("y",yScale(lowerPathHeight)+10)
+							.attr("width", widthOfBar*.8)
+							.attr("height", 20);
+							
+						var textFactor = 10;	
+						var textDescription = description[index];
+						
+						// $("#searchquery").text().split(/ +/);
+						var textArray = textDescription.split(/ +/);
+					//	console.log(textArray.length);
+						
+					
+						var count =0;
+						var flag = true;
+						for(var k=0;k<textArray.length;k++)
+						{console.log("hiiiiiiiiiiiiiiiiiiii");
+							var text,dummyText="";	
+							for(var j=k;j<textArray.length;j++)
+							{
+								if(j==0)
+								{
+									text = textArray[j];
+									continue;
+								}
+								else
+								{	
+									dummyText = "";
+									dummyText = text+" "+textArray[j];
+									console.log(dummyText);
+									flag=false;
+								}
+								if(((dummyText.length)*4)<widthOfBar)
+								{
+									text = text+" "+textArray[j];
+									flag=true;
+								}
+								else
+								{
+								
+								var textDescriptionLength = text.length*4;
+								mainGroup.append("text")
+									.transition().duration(100).delay(duration)
+								//	.attr("x",xScale(index)-(widthOfBar/2)*.9)
+									.attr("x",xScale(index)-(textDescriptionLength/2))
+									.attr("y",yScale(lowerPathHeight)+40+(textFactor*count))
+									.text(function()
+									{
+										return text;
+									})
+									.attr("dy",".9em")
+									.attr("fill","black")
+									.style("font-size",9,"important")
+									.style("font-family","calibri","important")
+									if(flag==true)
+									text = "";
+									else
+									text=textArray[j];
+									k=j;
+									count++;
+								}
+								
+							}
+						}
+					}
+				}
+				if(pathSide==2)
+				{
+					
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY = scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	yScale(lowerPathHeight)-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==3)
+				{
+					
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY = scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	yScale(lowerPathHeight)-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==4)
+				{
+					var textFactor = 10;
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2;
+					nextY = yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					
+					if((yScale(lowerPathHeight)-yScale(yAxisData[index])+textFactor)>20)
+					{
+						var text =yAxisData[index]+" "+unit;
+						var textLength = text.length*7;
+						mainGroup.append("text")
+							.transition().duration(100).delay(duration)
+						//	.attr("x",xScale(index)-(widthOfBar/2)*.8)
+							.attr("x",xScale(index)-(textLength/2))
+							.attr("y",yScale(yAxisData[index])+textFactor)
+							.text(function()
+							{
+								return text;
+							})
+							.attr("dy",".9em")
+							.attr("fill","black")
+							.attr("font-family","calibri")
+							
+					}
+					
+				}
+				if(pathSide==5)
+				{
+					
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY = yScale(lowerPathHeight)-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	yScale(yAxisData[index])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==6)
+				{
+					
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(lowerPathHeight);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY = yScale(lowerPathHeight)-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	yScale(yAxisData[index])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==7)
+				{
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	yScale(yAxisData[index])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	yScale(yAxisData[index])-2*factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(yAxisData[index])-2*factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	yScale(yAxisData[index])-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	yScale(yAxisData[index]);
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				
+				return lineData;
+			
+			}
+			
+			function getDummyCoordinates(index,pathSide)
+			{
+				lineData = [];
+				heightOfBar = 0;
+				var factor = 20;
+				var heightFac = 5;
+				var leftWidth =(widthOfBar)*.6
+				if(pathSide==1)
+				{
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2;
+					nextY = scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					if(scaleHeight-heightFac-yScale(lowerPathHeight)>35)
+					mainGroup.append("svg:image")
+						.attr("xlink:href", imagesArray[index])
+						.attr("x",xScale(index)-(widthOfBar/2)*.8)
+						.attr("y",yScale(lowerPathHeight)+10)
+						.attr("width", widthOfBar*.8)
+						.attr("height", 20)
+				}
+				if(pathSide==2)
+				{
+					
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY = scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==3)
+				{
+					
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY = scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	scaleHeight-heightFac - factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==4)
+				{
+					var textFactor = 10;
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2;
+					nextY = scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					
+				/*	if((yScale(lowerPathHeight)-yScale(yAxisData[index])+textFactor)>20)
+					{
+						var text =yAxisData[index]+" "+unit;
+						var textLength = text.length*7;
+						mainGroup.append("text")
+						//	.attr("x",xScale(index)-(widthOfBar/2)*.8)
+							.attr("x",xScale(index)-(textLength/2))
+							.attr("y",yScale(yAxisData[index])+textFactor)
+							.text(function()
+							{
+								return text;
+							})
+							.attr("dy",".9em")
+							.attr("fill","black")
+							.attr("font-family","calibri")
+							.transition().delay(1000)
+					}
+					*/
+				}
+				if(pathSide==5)
+				{
+					
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY = scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==6)
+				{
+					
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY = scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				if(pathSide==7)
+				{
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2-leftWidth;
+					nextY =	scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)-widthOfBar/2;
+					nextY =	scaleHeight-heightFac-2*factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac-2*factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2+leftWidth;
+					nextY =	scaleHeight-heightFac-factor;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					nextX = xScale(index)+widthOfBar/2;
+					nextY =	scaleHeight-heightFac;
+					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+				}
+				
+				return lineData;
+			
+			}
+			
+	/*		// *********Title,X Axis label,Y Axis Lable
+						
+			// X Axis Lable				
+			var pixcelPerChar=7;
+			var xLabelTotalPixcel=xAxisLabel.toString().length*pixcelPerChar;
+			var xLabelTop=height;
+			var xLabelLeft=width/2-	xLabelTotalPixcel/2;
+			axisLabelController.appendLabel(xAxisLabel,xLabelLeft,xLabelTop,0,svgElement,textStyleConfg.xLabelColor,600);
+			
+
+			// Y Axis Lable
+			// yAxis Lable Left Align
+			var yLabelTotalPixcel=yAxisLabel.toString().length*pixcelPerChar;;
+			var yLabelTop=height/2+yLabelTotalPixcel/2;
+			var yLabelLeft=10;
+			axisLabelController.appendLabel(yAxisLabel,yLabelLeft,yLabelTop,-90,svgElement,textStyleConfg.xLabelColor,600);	
+			
+			// For Title
+			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
+			var titleTopPosition = 10;
+			axisLabelController.appendLabel(title,leftIndicator,titleTopPosition,0,svgElement,textStyleConfg.xLabelColor,800);	
+			
+			// ******* Legend Logic******
+*/
+	/*		var lagendRectWidth = 10;
+			var lagendRectHeight = 10; 
+			var yPosition = 16;
+			var legendPositionArray = legendController.showHorizontalLegend(scaleWidth,yPosition,legendArray,lagendRectWidth+20,lagendRectHeight);
+			
+			var legendGroup = svgElement.append("g").attr("class","legendGroup")
+				.attr("transform","translate("+margin.left+","+(0)+")");
+		//	!isNaN(xScale(xAxisData[i].data[j]))?xScale(xAxisData[i].data[j]):0;
+			var legendRef = legendGroup.selectAll('.rect')
+				.data(legendPositionArray)
+				.enter()
+				.append('rect')
+				.attr("id","legendRectangle")
+				.attr("value",function(d,i){return i;})
+				.attr('width',lagendRectWidth)
+				.attr('height',lagendRectHeight)
+				.attr('x',function(d,i){ return legendPositionArray[i].x;})
+				.attr('y',function(d,i){return legendPositionArray[i].y;})
+				.attr('fill',function(d,i){return yAxisData[i].color})
+				.on("click", function (d,i) {
+						max=0;
+						var val = parseInt(d3.select(this).attr("value"));
+						if(legendDisplayValue[val]==1)
+						{
+							d3.select(this).attr('fill',"grey");
+							svgElement.selectAll("#legend-text"+val).style("text-decoration","line-through");
+							legendDisplayValue[val]=0;
+							for(var i=0;i<xAxisData.length;i++)
+							{
+								sum = 0;
+								for(var j=0;j<yAxisData.length;j++)
+								{
+									if(legendDisplayValue[j]==1)
+									sum = sum + yAxisData[j].data[i];
+								}
+								max<sum ? max = sum : max = max ; 
+							}
+							var yMin = minMaxController.getMin(yMinArray);
+							var yMax = minMaxController.getMax([max,max-10]);
+							// Group for Y Axis		
+							svgElement.select(".yAxisGroup").remove();
+							yTickArray = tickController.getTickArray(yMin,yMax,6);
+							yScale = d3.scale.linear()
+								.domain([yMin,yMax])
+								.range([scaleHeight,0]); 
+							yAxis = d3.svg.axis()
+								.scale(yScale)
+								.orient("left")
+								.tickValues(yTickArray);
+							yAxisGroup = mainGroup.append("g")
+								.attr("class","yAxisGroup")
+								.attr("transform","translate("+0+","+0+")")
+								.call(yAxis)
+								.attr("fill","none")
+								.selectAll("text")
+								.attr("fill",textStyleConfg["tick-font-color"],"important");
+								var status = 0;
+								for(var k=0;k<legendDisplayValue.length;k++)
+								{
+									if(legendDisplayValue[k]==1)
+									{
+										status = 1;
+										break;
+									}
+								}
+								drawPath(legendDisplayValue);
+								
+						}
+						else
+						{
+							d3.select(this).attr('fill',function(d,i){return yAxisData[val].color});
+							svgElement.selectAll("#legend-text"+val).style("text-decoration","none");
+							legendDisplayValue[val]=1;
+							for(var i=0;i<xAxisData.length;i++)
+							{
+								sum = 0;
+								for(var j=0;j<yAxisData.length;j++)
+								{
+									if(legendDisplayValue[j]==1)
+									sum = sum + yAxisData[j].data[i];
+								}
+								max<sum ? max = sum : max = max ; 
+							}
+							var yMin = minMaxController.getMin(yMinArray);
+							var yMax = minMaxController.getMax([max,max-10]);
+							// Group for Y Axis		
+							svgElement.select(".yAxisGroup").remove();
+							yTickArray = tickController.getTickArray(yMin,yMax,6);
+							yScale = d3.scale.linear()
+								.domain([yMin,yMax])
+								.range([scaleHeight,0]); 
+							yAxis = d3.svg.axis()
+								.scale(yScale)
+								.orient("left")
+								.tickValues(yTickArray);
+							yAxisGroup = mainGroup.append("g")
+								.attr("class","yAxisGroup")
+								.attr("transform","translate("+0+","+0+")")
+								.call(yAxis)
+								.attr("fill","none")
+								.selectAll("text")
+								.attr("fill",textStyleConfg["tick-font-color"],"important");
+								
+							drawPath(legendDisplayValue);
+							
+						}
+				
+		
+				  });	
+									
+			var legendTextRef = legendGroup.selectAll('.text')
+				.data(legendPositionArray)
+				.enter()
+				.append('text')
+				.attr('id',function(d,i){ return 'legend-text'+i})
+				.attr('x',function(d,i){return legendPositionArray[i].textXPos-20;})
+				.attr('y',function(d,i){return legendPositionArray[i].y;})
+				.text(function(d,i){return yAxisData[i].name;}).attr("dy",".8em")
+				.attr("font-family","calibri")
+				.attr("fill",textStyleConfg.legendTextColor);
+							
+					// ******* End Legend Logic******
+			*/
+			//hide axis path
+				hideAxisPath(svgElement);
+				//set font here
+				setTextStyleAndSvgBackGround(svgElement);
+		}
+	}
+		
+	
+	var threeDShutterStackGraph = 
+	{
+		threeDShutterStackAnalysis:function(data)
+		{
+			var barData = data.barData;
+			var xAxisLabel = data.xAxisLabel;
+			var yAxisLabel = data.yAxisLabel;
+			var title = data.title;
+			var unit = data.unit;
+			var commonColor = data.commonColor;
+			var upperEclipsColor = data.upperEclipsColor;
+			var upperPathHeight = data.upperPathHeight;
+			var imagesArray = data.imagesArray;
+			
+			var yAxisValues = [];
+			var total = 0;
+			for(var counter = 0;counter<barData.length ;counter++)
+			{
+				yAxisValues[counter] = barData[counter].yData;
+				total = total + yAxisValues[counter];
+			}
+			var leftMargin = marginController.leftMarginController(yAxisValues);
+			var threeDAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+			
+			var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
+			var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
+			
+			var estimateDataBarWidth =  (scaleWidth/(1.8*barData.length));
+			var radiusY = estimateDataBarWidth*.1;
+			var gradient;
+
+			
+			var mainGroup = svgElement.append("g")
+							   .attr('class','main-group')
+							   .attr("transform", "translate(" + threeDAnalChart.left + "," + threeDAnalChart.top + ")");
+	/*
+			//title here
+			var pixcelPerChar = 8;
+			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
+			var titleGroup = svgElement.append("g")
+									   .attr('class','title')
+			axisLabelController.appendLabel(title,leftIndicator,threeDAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
+			
+			//xAxis label here			
+			var pixcelPerChar=7;
+			var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
+			var xIndicationLabelTop=scaleHeight+(threeDAnalChart.bottom - 5);
+			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
+			axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,mainGroup,textStyleConfg.xLabelColor,600);			   							
+						
+			//yAxis label here					
+			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;			
+			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
+			var yIndicationLabelLeft=(-threeDAnalChart.left + 15);
+			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,mainGroup,textStyleConfg.yLabelColor,600);			   													   
+			
+			*/
+			
+			var xScale = d3.scale.linear()
+								 .domain([0,barData.length-1])
+								 .range([estimateDataBarWidth*.5,scaleWidth-(estimateDataBarWidth*.5)]);
+
+			var yMax = minMaxController.getMax(yAxisValues);	
+			var yMin = minMaxController.getMin(yAxisValues);	
+			
+			
+			yMax = yMax + (upperPathHeight*.5);
+			var yScale = d3.scale.linear()
+							.domain([yMin,yMax])
+							.range([scaleHeight,0]);
+					
+	//x axis
+			var largestStringLngth=0;
+				for(var counter =0 ;counter<barData.length;counter++)
+				{
+					if(largestStringLngth<(barData[counter].yTick.toString()).length)
+					{
+						largestStringLngth = (barData[counter].yTick.toString()).length;
+					}
+				}
+				
+			var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.orient("bottom")
+					//	.tickValues()
+						.tickValues(tickController.getXTickArray(0,(barData.length),largestStringLngth, (scaleWidth)));
+			
+			var xAxisTextRef = mainGroup.append("g")
+									.attr('id','xAxis')
+									.attr("class", "x axis")
+									.attr('fill',"none")
+									.attr("display","none")
+									.attr("transform", "translate("+0+"," + scaleHeight + ")")
+									.call(xAxis);
+					 xAxisTextRef.selectAll('text')
+									 .text(function(d){return barData[d].yTick;});
+									
+					
+					
+			var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left")
+							.tickValues(tickController.getTickArray(yMin,yMax,9));
+			
+			
+			mainGroup.append("g")
+					.attr('id','yAxis')
+					.attr("class", "y axis")
+					.attr('fill',"none")
+					.attr("display","none")
+					.attr("transform", "translate("+(0)+"," + 0 + ")")
+					.call(yAxis)
+					.selectAll('text');
+				
+			var leftMarginOfSvg = $(selectorElement).offset().left;
+							
+			var rectGroupRef = mainGroup
+									.selectAll('.rect')
+									.data(yAxisValues)
+									.enter()
+									.append('rect')
+									.attr("class","rounded3DBar")
+									.attr('width',estimateDataBarWidth)
+									.attr('height',0)
+									.attr('x',function(d,i){return xScale(i)-(estimateDataBarWidth/2)})
+									.attr('y',scaleHeight  - radiusY)
+								//	.attr('fill',function(d,i){ return commonColor});
+									 .attr("fill",function(d,i)
+									 {
+
+										var rectangleGradient = mainGroup.append("svg:defs")
+										.append("svg:linearGradient")
+										.attr("id", "rectangleGradient"+i)
+										.attr("x1", "0%")
+										.attr("y1", "0%")
+										.attr("x2", "100%")
+										.attr("y2", "100%")
+									//	.attr("spreadMethod", "pad")
+										.attr("gradientTransform","rotate(-45)");
+
+										rectangleGradient.append("stop")
+													.attr("offset", "0%")
+													.attr("stop-color", function(){return ColorLuminance(commonColor, -0.8)});
+													
+										rectangleGradient.append("stop")
+													.attr("offset", "33%")
+													.attr("stop-color", function(){return ColorLuminance(commonColor, 0.6)});
+													
+										rectangleGradient
+													.append("stop")
+													.attr("offset", "100%")
+													.attr("stop-color",function(){return ColorLuminance(commonColor, -0.5)});
+									
+										return "url(#rectangleGradient"+i+")";
+									 })		
+									
+					rectGroupRef
+							.transition()
+							.duration(1500)
+							.ease('bounce')
+							.attr('height',function(d,i){return yScale(yMin)-yScale(d)-radiusY})
+							.attr('y',function(d,i){return yScale(d)});
+							
+			var upperEllipseRef = mainGroup
+										.selectAll('.ellipse')
+										.data(yAxisValues)
+										.enter()
+										.append("ellipse")     
+										.attr("class","rounded3DBar")	
+										.attr("cx", function(d,i){return xScale(i)})           
+										.attr("cy",scaleHeight - radiusY)         
+										.attr("rx",	function(d,i){ return estimateDataBarWidth/2})           
+										.attr("ry", function(d,i){ return radiusY})
+									//	.attr('fill',function(d,i){return upperEclipsColor});  
+										.attr("fill",function(d,i)
+										 {
+
+											var upperEllipseGradient = mainGroup.append("svg:defs")
+											.append("svg:linearGradient")
+											.attr("id", "upperEllipseGradient"+i)
+											.attr("x1", "0%")
+											.attr("y1", "0%")
+											.attr("x2", "100%")
+											.attr("y2", "100%")
+										//	.attr("spreadMethod", "pad")
+											.attr("gradientTransform","rotate(-45)");
+
+											upperEllipseGradient.append("stop")
+														.attr("offset", "0%")
+														.attr("stop-color", function(){return ColorLuminance(upperEclipsColor, -0.8)});
+														
+											upperEllipseGradient.append("stop")
+														.attr("offset", "33%")
+														.attr("stop-color", function(){return ColorLuminance(upperEclipsColor, 0.6)});
+														
+											upperEllipseGradient
+														.append("stop")
+														.attr("offset", "100%")
+														.attr("stop-color",function(){return ColorLuminance(upperEclipsColor, -0.5)});
+										
+											return "url(#upperEllipseGradient"+i+")";
+										 })	
+								
+			upperEllipseRef.transition()
+									   .duration(1500)
+									   .ease('bounce')
+									   .attr("cy",function(d,i){return yScale(d)})         
+		
+			var lowerEllipseRef = mainGroup
+										.selectAll('.ellipse')
+										.data(yAxisValues)
+										.enter()
+										.append("ellipse")   
+										.attr("class","rounded3DBar")
+										.attr("cx", function(d,i){return xScale(i)})           
+										.attr("cy", scaleHeight - radiusY)         
+										.attr("rx",	estimateDataBarWidth/2 )           
+										.attr("ry", radiusY)
+									//	.attr('fill',function(d,i){ return commonColor})
+										.attr("fill",function(d,i)
+										 {
+
+											var lowerEllipseGradient = mainGroup.append("svg:defs")
+											.append("svg:linearGradient")
+											.attr("id", "lowerEllipseGradient"+i)
+											.attr("x1", "0%")
+											.attr("y1", "0%")
+											.attr("x2", "100%")
+											.attr("y2", "100%")
+										//	.attr("spreadMethod", "pad")
+											.attr("gradientTransform","rotate(-45)");
+
+											lowerEllipseGradient.append("stop")
+														.attr("offset", "0%")
+														.attr("stop-color", function(){return ColorLuminance(commonColor, -0.8)});
+														
+											lowerEllipseGradient.append("stop")
+														.attr("offset", "33%")
+														.attr("stop-color", function(){return ColorLuminance(commonColor, 0.6)});
+														
+											lowerEllipseGradient
+														.append("stop")
+														.attr("offset", "100%")
+														.attr("stop-color",function(){return ColorLuminance(commonColor, -0.5)});
+										
+											return "url(#lowerEllipseGradient"+i+")";
+										 })		
+										
+			
+			var barWidth= estimateDataBarWidth*.8;
+			var upperPathRadius = radiusY*.8;
+			
+			var rectGroupRef1 = mainGroup
+						.selectAll('.rect')
+						.data(yAxisValues)
+						.enter()
+						.append('rect')
+						.attr("class","rounded3DBar")
+						.attr('width',barWidth)
+						.attr('height',0)
+						.attr('x',function(d,i){return xScale(i)-(barWidth/2)})
+						.attr('y',scaleHeight  - radiusY)
+					//	.attr('fill',function(d,i){ return barData[i].color});
+						.attr("fill",function(d,i)
+						 {
+
+							var rectGroupRefGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rectGroupRefGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+						//	.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(-45)");
+
+							rectGroupRefGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.8)});
+										
+							rectGroupRefGradient.append("stop")
+										.attr("offset", "33%")
+										.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.6)});
+										
+							rectGroupRefGradient
+										.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color",function(){return ColorLuminance(barData[i].color, -0.5)});
+						
+							return "url(#rectGroupRefGradient"+i+")";
+						 })		
+						
+			rectGroupRef1
+					.transition()
+					.duration(1500)
+					.ease('bounce')
+					.attr('height',function(d,i){return upperPathHeight})
+					.attr('y',function(d,i){return yScale(d) - upperPathHeight - upperPathRadius});
+			var pathFunction = d3.svg.line()
+				.x(function(d,i) { return d; })
+				.y(function(d,i) { return yCoord[i]; })
+				.interpolate("closed")
+			
+			for(var i=0;i<yAxisValues.length;i++)
+			{
+				var startPoint = xScale(i)-(barWidth/2);
+				var heightOfY = (yScale(yAxisValues[i]) - upperPathHeight - upperPathRadius);
+				var	xCoordDummy =[startPoint,startPoint,startPoint,startPoint,startPoint];
+				var	yCoordDummy =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
+				xCoord =[startPoint,startPoint-barWidth*.8,startPoint-barWidth,startPoint-barWidth*.8,startPoint];
+				yCoord =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
+				var path = mainGroup.append("path")
+					.attr("d", pathFunction(xCoordDummy))
+					.attr("class","sidePath")	
+				//	.attr("fill",barData[i].color)
+					.attr("fill",function()
+					 {
+						var pathGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "pathGradient"+i)
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						pathGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.2)});
+									
+						pathGradient.append("stop")
+										.attr("offset", "25%")
+										.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.2)});
+										
+						pathGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(barData[i].color, -2)});
+					
+						return "url(#pathGradient"+i+")";
+					 })	
+					.transition().delay(1500)
+					.duration(1000)
+					.attr("d", pathFunction(xCoord))
+				
+				mainGroup.append("svg:image")
+					.attr("xlink:href", imagesArray[i])
+					.transition().duration(100).delay(1500)
+					.attr("x",xScale(i)-(barWidth/2))
+					.attr("y",yScale(yAxisValues[i])+10)
+					.attr("width", barWidth)
+					.attr("height", 20);	
+			}  
+				
+
+			var upperEllipseRef1 = mainGroup
+								.selectAll('.ellipse')
+								.data(yAxisValues)
+								.enter()
+								.append("ellipse")     
+								.attr("class","rounded3DBar")	
+								.attr("cx", function(d,i){return xScale(i)})           
+								.attr("cy",scaleHeight - upperPathRadius)         
+								.attr("rx",	function(d,i){ return barWidth/2})           
+								.attr("ry", function(d,i){ return upperPathRadius})
+								.attr('fill',function(d,i){return ColorLuminance(barData[i].color, -0.3)});  
+						
+			upperEllipseRef1.transition()
+									   .duration(1500)
+									   .ease('bounce')
+									   .attr("cy", function(d,i){return yScale(d) - upperPathHeight - upperPathRadius});         
+
+			var lowerEllipseRef1 = mainGroup
+										.selectAll('.ellipse')
+										.data(yAxisValues)
+										.enter()
+										.append("ellipse")   
+										.attr("class","rounded3DBar")
+										.attr("cx", function(d,i){return xScale(i)})           
+										.attr("cy",scaleHeight - radiusY)         
+										.attr("rx",	barWidth/2 )           
+										.attr("ry", upperPathRadius)
+									//	.attr('fill',function(d,i){ return barData[i].color});	
+										.attr("fill",function(d,i)
+										 {
+
+											var rectGroupRefGradient = mainGroup.append("svg:defs")
+											.append("svg:linearGradient")
+											.attr("id", "rectGroupRefGradient"+i)
+											.attr("x1", "0%")
+											.attr("y1", "0%")
+											.attr("x2", "100%")
+											.attr("y2", "100%")
+										//	.attr("spreadMethod", "pad")
+											.attr("gradientTransform","rotate(-45)");
+
+											rectGroupRefGradient.append("stop")
+														.attr("offset", "0%")
+														.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.8)});
+														
+											rectGroupRefGradient.append("stop")
+														.attr("offset", "33%")
+														.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.6)});
+														
+											rectGroupRefGradient
+														.append("stop")
+														.attr("offset", "100%")
+														.attr("stop-color",function(){return ColorLuminance(barData[i].color, -0.5)});
+										
+											return "url(#rectGroupRefGradient"+i+")";
+										 })	
+				lowerEllipseRef1.transition()
+									   .duration(1500)
+									   .ease('bounce')
+									   .attr("cy", function(d,i){return yScale(d) - upperPathRadius});     
+
+									mainGroup
+										.selectAll('.text')
+										.data(yAxisValues)
+										.enter()
+										.append("text")   
+										.attr("class","rounded3DBar")
+										.attr("x", function(d,i){return xScale(i)-9})           
+										.attr("y",function(d,i){ return yScale(d) - (upperPathHeight*.5)}) 
+										.attr("fill","black")	
+										.text(function(d,i){return getPercentage(d)+""+unit;})           
+									
+										
+								
+			svgElement.selectAll(".rounded3DBar").on("mousemove",function()
+										{
+											var x = d3.event.pageX;
+											var y = d3.event.pageY;
+											x=x-(leftMarginOfSvg+threeDAnalChart.left);
+											x = Math.round(xScale.invert(x));
+											var heading=barData[x].yTick;
+											var yAxisVal = yAxisValues[x];
+											var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":yAxisVal+" "+unit}
+																  ];
+											
+											toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
+											
+										})
+										.on("mouseleave",function(){
+											toolTipManager.hideTooTip();
+										});
+	
+			function getPercentage(val)
+			{
+				return Math.round((val/total)*100);
+			}			
+					
+			//hide axis path
+				hideAxisPath(svgElement);
+				//set font here
+				setTextStyleAndSvgBackGround(svgElement);
+		}
+	}
+	
+	var racingVisualizationGraph = 
+	{
+		racingVisualizationAnalysis:function(data,dataLeft,array)
+		{	
+			
+		
+		//	var array = positionArray;
+			var topValue = 0;
+			var leftValue = 0;
+			var resetBtnGroupingLeft=d3.select("#"+selectedElementId).append("div")
+										  .style("left",(leftValue)+"px")
+										  .style("top",(topValue+8)+"px")
+										  .attr("class",'resetBtnGroupingLeft')
+										  .style("width",(width*.06)+"px")
+										  .style("height",(height)+"px")
+										  .style('background','#c0c0c0')
+										  .style('display','inline-block')
+										  .style("z-index","999")
+										  .style("position","absolute")
+								//  	  .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+										  .style("text-align","center")
+										  .style("border-radius","3px")
+										  .style("cursor","pointer")
+								//		  .style("border","solid 2px")
+										  
+										  
+			var resetBtnGroupingUpper = d3.select("#"+selectedElementId).append("div")
+										  .style("left",(width*.06+leftValue)+"px")
+										  .style("top",(0+topValue)+"px")
+										  .attr("class",'resetBtnGroupingUpper')
+										  .style("width",(width*.94)+"px")
+										  .style("height",(height*.6)+"px")
+									//	  .style('background','#5c5d5d')
+									//	  .style('display','inline-block')
+									//	  .style("z-index","999")
+										  .style("position","absolute")
+									// 	  .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+									//	  .style("text-align","center")
+									//	  .style("border-radius","3px")
+									//	  .style("cursor","pointer")
+									//	  .style("border","solid 2px")
+	
+			var resetBtnGroupingLower = d3.select("#"+selectedElementId).append("div")
+										  .style("left",(width*.06+leftValue)+"px")
+										  .style("top",(height*.6+topValue)+"px")
+										  .attr("class",'resetBtnGroupingLower')
+										  .attr("id","googleMap")
+										  .style("width",(width*.9)+"px")
+										  .style("height",(height*.4)+"px")
+									//    .style('background','#19a586')
+										  .style('display','inline-block')
+										  .style("z-index","999")
+										  .style("position","absolute")
+									//    .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+										  .style("text-align","center")
+										  .style("border-radius","3px")
+										  .style("cursor","pointer")
+										  .style("border","solid 2px")
+										  .call(init)
+			
+			function init(){
+            /*var mapProp = {
+                center:new google.maps.LatLng(31.508742,-0.120850),
+                zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              map=new google.maps.Map(document.getElementById("googleMap"), mapProp);*/
+              /*myCenter=new google.maps.LatLng(31.508742,-0.120850);*/
+               geocoder = new google.maps.Geocoder();
+           /*   if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(success, error);
+                } else {
+                }
+				
+				*/
+
+//               function success(position) 
+				{
+                  myCenter=new google.maps.LatLng(31.508742,-0.120850);
+                  var mapProp = {
+                    center:new google.maps.LatLng(31.508742,-0.120850),
+                    zoom:12,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);  
+                }
+
+        }
+			
+			
+			
+			
+	
+		/*	function init()
+			{
+				  geocoder = new google.maps.Geocoder();
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(success, error);
+                } else {
+                }
+			
+                function success(position) {
+                  myCenter=new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                  var mapProp = {
+                    center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                    zoom:14,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);  
+                }
+
+                function error(msg) {
+                  var mapProp = {
+                center:new google.maps.LatLng(31.508742,-0.120850),
+                zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                }
+			}
+		*/
+				var map;
+		var myCenter=new google.maps.LatLng(22.546329, 78.640733);
+		var markers=[];	
+		setTimeout(function(){
+			drawPathGooglePath();	
+		},2000);
+			
+		
+			function drawPathGooglePath()
+			{
+			
+			for(var i=0;i<array.length;i++)
+					{
+						if(i == 1)
+						{
+							moveToLocation(loc.lat,loc.lng);
+						}
+						var loc=[];
+						loc.lat=array[i].lat;
+						loc.lng=array[i].lon;
+						 resetMarker(loc);
+					}
+			}
+			
+			function moveToLocation(lat, lng){
+        var center = new google.maps.LatLng(lat, lng);
+		console.log(lat+" "+lng);
+        // using global variable:
+        map.panTo(center);
+        }
+			
+		function addMarker(loc){
+		var addresss;
+		console.log("hii"+JSON.stringify(loc));
+		var iconBase = 	'img/icon/';
+ 		var latlng = new google.maps.LatLng(loc.lat, loc.lng);
+			   var position = new google.maps.LatLng(loc.lat, loc.lng);
+				var marker = new google.maps.Marker({
+                position: position,
+				draggable: true,
+                map: map,
+				icon: iconBase + 'marker.png',
+                zoom : 14,
+                title:"",
+                visible:true,
+                text:"",
+            });
+			
+			//55ccee
+			marker.id = loc.id;
+            marker.location = position;
+            markers.push(marker);
+				        
+    }
+	
+	function getObjectPositionInArray(list,obj) {
+      if (list.length > 0 ) {
+        for (i in list) {
+           if (list[i]["id"] === obj.id) {
+               return i;
+           }
+        }
+      }
+      return -1;
+   }
+   
+	function resetMarker(loc){
+      var objIndex = getObjectPositionInArray(markers,loc);
+      if(objIndex < 0){
+        addMarker(loc);
+       console.log("Add");
+      }else{
+        drawPath(markers[objIndex],loc);
+        deleteMarker(objIndex);
+        addMarker(loc);
+        console.log("Update");
+      }
+   }
+   
+   function resetMarker1(loc){
+   var loctemp={};
+	loctemp.lat=loc.lat;
+	loctemp.lng=loc.lon;
+	
+     //   addMarker(loctemp);
+		 var objIndex = getObjectPositionInArray(markers,loctemp);
+      if(objIndex < 0){
+        addMarker(loctemp);
+       console.log("Add");
+      }else{
+     //   drawPath(markers[objIndex],loctemp);
+        deleteMarker(objIndex);
+        addMarker(loctemp);
+        console.log("Update");
+      }
+/*      
+	  drawPath(markers[objIndex],loc);
+        deleteMarker(objIndex);
+        addMarker(loc);
+        console.log("Update");
+      }
+
+*/	  }
+   
+   function drawPath(lastPoint, nextPoint){
+    
+        var lp = lastPoint.getPosition();
+        var np = new google.maps.LatLng(nextPoint.lat, nextPoint.lng);
+
+        var objectPath = new google.maps.Polyline({path: [lp, np],
+                                               strokeColor:"#55ccee",
+                                               strokeOpacity:0.8,
+                                               strokeWeight:2,
+                                               map: map
+        });
+
+   }
+   
+   function deleteMarker(objIndex){
+        markers[objIndex].setMap(null);
+        markers.splice(objIndex, 1);
+   }
+  
+
+		
+	//left div Logic							  
+			var rectBackColor = dataLeft.rectBackColor;
+			var rectColorArray = dataLeft.rectColorArray;
+			var textArray = dataLeft.textArray;
+			var units = dataLeft.units;
+			
+			var widthLeft = $('.resetBtnGroupingLeft').width();
+			var heightLeft = $('.resetBtnGroupingLeft').height();
+			
+			var upperSvg = d3.select(".resetBtnGroupingLeft")
+				.append("svg")
+				.attr("width",widthLeft)
+				.attr("height",heightLeft)
+				
+			var setMarginLeft={left:widthLeft*0.05,right:widthLeft*0.05,bottom:heightLeft*0.01,top:heightLeft*0.01};
+			var scaleWidthLeft = widthLeft - setMarginLeft.left - setMarginLeft.right;
+			var scaleHeightLeft = heightLeft - setMarginLeft.top - setMarginLeft.bottom;
+			
+			var mainGroupLeft = upperSvg.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMarginLeft.left+","+setMarginLeft.top+")");
+			
+			var rectHeightLeft = (scaleHeightLeft)/(rectColorArray.length);
+			var heightLeft = heightLeft*.8;
+			for(var i=0;i<rectColorArray.length;i++)
+			{
+				mainGroupLeft.append("rect")
+					.attr("x",0)
+					.attr("y",i*rectHeightLeft)
+					.attr("width",scaleWidthLeft)
+					.attr("height",rectHeightLeft-2)
+					.attr("fill",rectBackColor)
+					
+					
+				mainGroupLeft.append("rect")
+					.attr("x",scaleWidthLeft*.9)
+					.attr("y",i*rectHeightLeft)
+					.attr("rx",5)
+					.attr("ry",5)
+					.attr("width",scaleWidthLeft*.1)
+					.attr("height",rectHeightLeft-2)
+					.attr("fill",rectColorArray[i])
+					
+				mainGroupLeft.append("text")
+					.attr("x",(scaleWidthLeft*.1))
+					.attr("y",i*rectHeightLeft)
+					.text(textArray[i])
+					.attr("dy",".9em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",9,"important")
+					
+				mainGroupLeft.append("text")
+					.attr("x",(scaleWidthLeft*.1))
+					.attr("y",i*rectHeightLeft+rectHeightLeft*.8)
+					.text(units[i])
+					.attr("dy",".9em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",7,"important")	
+					
+				mainGroupLeft.append("text")
+					.attr("class","currentValueText"+i)
+					.attr("y",i*rectHeightLeft+rectHeightLeft*.5)
+					.text("")
+					.attr("dy",".3em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",14,"important")		
+					
+				
+			}
+							
+	//upper div logic
+	
+			var	largeValueLines =data.largeValueLines;
+			var yAxisData = data.yAxisData;
+			var xAxisData = data.xAxisData;
+			var lineStrokeWidth = data.lineStrokeWidth;
+			
+			var widthUpper = $('.resetBtnGroupingUpper').width();
+			var heightUpper = $('.resetBtnGroupingUpper').height();
+	
+			var setMargin={left:widthUpper*0.05,right:widthUpper*0.05,bottom:heightUpper*0.08,top:heightUpper*0.05};
+			var scaleWidth = widthUpper - setMargin.left - setMargin.right;
+			var scaleHeight = heightUpper - setMargin.top - setMargin.bottom;
+	
+			
+				
+			var yMin =[],yMax=[],xScale,yScale=[],counter = 0,xAxisIndex =[],yAxis=[],yAxisGroup =[],largestStringLen=0;
+			var lineStrokeWidth = 1,lineGraph=[];
+			for(var i=0;i<data.xAxisData.length;i++)
+			{
+				xAxisIndex[i]=i;
+				if(largestStringLen<data.xAxisData[i].toString().length)
+				largestStringLen = data.xAxisData[i].toString().length;
+			}
+			
+			var xScale = d3.scale.linear()
+				.domain([0,xAxisIndex.length-1])
+				.range([0,scaleWidth]);
+			
+
+			
+			var upperSvg = d3.select(".resetBtnGroupingUpper")
+				.append("svg")
+				.attr("width",widthUpper)
+				.attr("height",heightUpper)
+				.on("mousemove",function()
+				{
+				//	d3.selectAll(".lineMove").remove();
+					var leftMarginOfSvg = $(".resetBtnGroupingUpper").offset().left;
+					var topMarginOfSvg = $(".resetBtnGroupingUpper").offset().top;
+					var x = d3.event.pageX-leftMarginOfSvg;
+					var y = d3.event.pageY
+					var xInvert = parseInt(xScale.invert(x));// && y>setMargin.top && y<=(setMargin.bottom + scaleHeight)
+					if( x>setMargin.left && x<(widthUpper-setMargin.right)  && y>setMargin.top && y<=(setMargin.bottom + scaleHeight))
+					{
+						
+						for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
+						{	
+							if(textIndex<largeValueLines.length)
+							{
+								var val = largeValueLines[textIndex]["data"][xInvert];
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+							}
+							else
+							{
+								var val = yAxisData[textIndex-largeValueLines.length]["data"][xInvert];
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+							}
+						}
+						d3.select(".lineMove")
+							.attr("x1",x)
+							.attr("y1",setMargin.top)
+							.attr("x2",x)
+							.attr("y2",scaleHeight+setMargin.top)
+				/*
+						upperSvg.append("line")
+							.attr("class","lineMove")
+							.attr("x1",x)
+							.attr("y1",setMargin.top)
+							.attr("x2",x)
+							.attr("y2",scaleHeight+setMargin.top)
+							.attr("fill","none")
+							.attr("stroke","black")
+							.attr("stroke-width",2)*/
+					}
+					console.log(array[xInvert]);
+					resetMarker1(array[xInvert])
+					
+				});
+										
+						upperSvg.append("line")
+							.attr("class","lineMove")
+							.attr("x1",0)
+							.attr("y1",0)
+							.attr("x2",0)
+							.attr("y2",0)
+							.attr("fill","none")
+							.attr("stroke","white")
+							.attr("stroke-width",2)
+				
+			var mainGroup = upperSvg.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMargin.left+","+setMargin.top+")")
+				
+			
+		
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),largestStringLen,(scaleWidth)));
+			
+			// Group for X Axis	
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("transform","translate("+0+","+scaleHeight+")")
+				.call(xAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","white")
+				.style("font-size",10,"important")
+				.text(function(d){return data.xAxisData[d]});			
+			
+			for(var i=counter;i<largeValueLines.length;i++)
+			{
+				yMin[i] = minMaxController.getMin(largeValueLines[i].data);
+				yMax[i] = minMaxController.getMax(largeValueLines[i].data);
+							 
+				yScale[i] = d3.scale.linear()
+					.domain([yMin[i],yMax[i]])
+					.range([scaleHeight,0]);
+				if(i==0) 
+				{						
+					yAxis[i] = d3.svg.axis()
+						.scale(yScale[i])
+						.orient("left")
+						.ticks(5)
+						
+					yAxisGroup[i] = mainGroup.append("g")
+						.attr("class","yAxisGroup")
+						.attr("id","yAxisGroup"+i)
+						.attr("transform","translate("+0+","+0+")")
+						.attr("display","none")
+						.call(yAxis[i])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+				}
+				else
+				{
+					yAxis[i] = d3.svg.axis()
+						.scale(yScale[i])
+						.orient("right")
+						.ticks(5)
+						
+					yAxisGroup[i] = mainGroup.append("g")
+						.attr("class","yAxisGroup")
+						.attr("id","yAxisGroup"+i)
+						.attr("transform","translate("+scaleWidth+","+0+")")
+						.attr("display","none")
+						.call(yAxis[i])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+				}	
+				
+				var lineFunction = d3.svg.line()
+									.x(function(d,j) { return xScale(j); })
+									.y(function(d,j) { return yScale[i](d); })
+									.interpolate("cardinal");		
+				
+				for(var k=0;k<largeValueLines[i].data.length;k++)
+				{
+					lineGraph[k] = mainGroup.append("path")
+										.attr("d",lineFunction(largeValueLines[i]["data"]))
+										.attr("class","lineGraph"+k)
+										.attr("id","linePath"+i)
+										.attr("stroke",largeValueLines[i]["color"])
+										.attr("stroke-width", lineStrokeWidth*(i+1))
+										.attr("fill", "none");
+				}
+				counter = i;
+			}
+			
+			counter++;
+			
+			var areaForYScale = scaleHeight/(yAxisData.length);
+		//	alert(scaleHeight+" "+areaForYScale*2);
+			for(var i=0;i<yAxisData.length;i++)
+			{
+				
+				yMin[counter] = minMaxController.getMin(yAxisData[i].data);
+				yMax[counter] = minMaxController.getMax(yAxisData[i].data);
+							 
+				yScale[counter] = d3.scale.linear()
+					.domain([yMin[counter],yMax[counter]])
+					.range([((i*areaForYScale)+areaForYScale),(i*areaForYScale)]);
+				
+				yAxis[counter] = d3.svg.axis()
+					.scale(yScale[counter])
+					.orient("left")
+					.ticks(5)
+				
+				yAxisGroup[counter] = mainGroup.append("g")
+						.attr("class","yAxisGroup"+counter)
+						.attr("transform","translate("+0+","+(0)+")")
+						.attr("display","none")
+						.call(yAxis[counter])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+						
+				var lineFunction1 = d3.svg.line()
+									.x(function(d,j) { return xScale(j); })
+									.y(function(d,j) { return yScale[counter](d); })
+									.interpolate("linear");		
+				
+				for(var k=0;k<yAxisData[i].data.length;k++)
+				{
+					
+					lineGraph[k] = mainGroup.append("path")
+										.attr("d",lineFunction1(yAxisData[i]["data"]))
+										.attr("class","lineGraph"+k)
+										.attr("id","linePath"+counter)
+										.attr("fill", "none")
+										.style("stroke-dasharray", ("3, 3"))
+										.style("stroke",yAxisData[i]["color"])
+										.attr("stroke-width", 1+(i))
+										
+				}		
+				
+				
+				counter++;
+				
+			}	
+		//hide axis path
+			hideAxisPath(svgElement);
+		//set font here
+			setTextStyleAndSvgBackGround(svgElement);
+		
+		}
+	}
         return {
             drawLine: lineChart.drawLine,
             drawBarWithMultipleLineAndCircle: lineChart.drawBarWithMultipleLineAndCircle,
@@ -23858,7 +26499,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			performanceChartAnalysis:performanceChartGraph.performanceChartAnalysis,
 			horizontalStackedBarChartAnalysis:horizontalStackedBarChartGraph.horizontalStackedBarChartAnalysis,
 			multiGroupedBarChartAnalysis:multiGroupedBarChartGraph.multiGroupedBarChartAnalysis,
-			twoDStackedBarChartAnalysis:twoDStackedBarChartGraph.twoDStackedBarChartAnalysis
+			twoDStackedBarChartAnalysis:twoDStackedBarChartGraph.twoDStackedBarChartAnalysis,
+			areaChartWithRangeAnalysis:areaChartWithRangeGraph.areaChartWithRangeAnalysis,
+			meterChartAnalysis:meterChartGraph.meterChartAnalysis,
+			threeDStackedDountChartAnalysis:threeDStackedDountChartGraph.threeDStackedDountChartAnalysis,
+			threeDRoundedBarChartAnalysis:threeDRoundedBarChartGraph.threeDRoundedBarChartAnalysis,
+			threeDShutterStackAnalysis:threeDShutterStackGraph.threeDShutterStackAnalysis,
+			racingVisualizationAnalysis:racingVisualizationGraph.racingVisualizationAnalysis
         };
     };
 })(jQuery);

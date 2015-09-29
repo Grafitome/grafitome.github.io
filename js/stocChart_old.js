@@ -12283,6 +12283,7 @@ var drawGauageGraph={
 			var title = data.title;		
 			var	xAxisLabel = data.xAxisLabel;
 			var yAxisLabel = data.yAxisLabel;
+			
 			var toolTipUnit = data.toolTipUnit;
 			var xAxisData = data.xAxisData;
 			var	yAxisData = data.yAxisData;
@@ -25445,7 +25446,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var mainGroup = svgElement.append("g")
 							   .attr('class','main-group')
 							   .attr("transform", "translate(" + threeDAnalChart.left + "," + threeDAnalChart.top + ")");
-	
+	/*
 			//title here
 			var pixcelPerChar = 8;
 			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
@@ -25466,7 +25467,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var yIndicationLabelLeft=(-threeDAnalChart.left + 15);
 			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,mainGroup,textStyleConfg.yLabelColor,600);			   													   
 			
-			
+			*/
 			
 			var xScale = d3.scale.linear()
 								 .domain([0,barData.length-1])
@@ -25501,6 +25502,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.attr('id','xAxis')
 									.attr("class", "x axis")
 									.attr('fill',"none")
+									.attr("display","none")
 									.attr("transform", "translate("+0+"," + scaleHeight + ")")
 									.call(xAxis);
 					 xAxisTextRef.selectAll('text')
@@ -25518,6 +25520,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.attr('id','yAxis')
 					.attr("class", "y axis")
 					.attr('fill',"none")
+					.attr("display","none")
 					.attr("transform", "translate("+(0)+"," + 0 + ")")
 					.call(yAxis)
 					.selectAll('text');
@@ -25706,7 +25709,64 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.ease('bounce')
 					.attr('height',function(d,i){return upperPathHeight})
 					.attr('y',function(d,i){return yScale(d) - upperPathHeight - upperPathRadius});
+			var pathFunction = d3.svg.line()
+				.x(function(d,i) { return d; })
+				.y(function(d,i) { return yCoord[i]; })
+				.interpolate("closed")
+			
+			for(var i=0;i<yAxisValues.length;i++)
+			{
+				var startPoint = xScale(i)-(barWidth/2);
+				var heightOfY = (yScale(yAxisValues[i]) - upperPathHeight - upperPathRadius);
+				var	xCoordDummy =[startPoint,startPoint,startPoint,startPoint,startPoint];
+				var	yCoordDummy =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
+				xCoord =[startPoint,startPoint-barWidth*.8,startPoint-barWidth,startPoint-barWidth*.8,startPoint];
+				yCoord =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
+				var path = mainGroup.append("path")
+					.attr("d", pathFunction(xCoordDummy))
+					.attr("class","sidePath")	
+				//	.attr("fill",barData[i].color)
+					.attr("fill",function()
+					 {
+						var pathGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "pathGradient"+i)
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						pathGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.2)});
+									
+						pathGradient.append("stop")
+										.attr("offset", "25%")
+										.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.2)});
+										
+						pathGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(barData[i].color, -2)});
 					
+						return "url(#pathGradient"+i+")";
+					 })	
+					.transition().delay(1500)
+					.duration(1000)
+					.attr("d", pathFunction(xCoord))
+				
+				mainGroup.append("svg:image")
+					.attr("xlink:href", imagesArray[i])
+					.transition().duration(100).delay(1500)
+					.attr("x",xScale(i)-(barWidth/2))
+					.attr("y",yScale(yAxisValues[i])+10)
+					.attr("width", barWidth)
+					.attr("height", 20);	
+			}  
+				
+
 			var upperEllipseRef1 = mainGroup
 								.selectAll('.ellipse')
 								.data(yAxisValues)
@@ -25811,7 +25871,562 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		}
 	}
 	
+	var racingVisualizationGraph = 
+	{
+		racingVisualizationAnalysis:function(data,dataLeft,array)
+		{	
+			
+		
+		//	var array = positionArray;
+			var topValue = 0;
+			var leftValue = 0;
+			var resetBtnGroupingLeft=d3.select("#"+selectedElementId).append("div")
+										  .style("left",(leftValue)+"px")
+										  .style("top",(topValue+8)+"px")
+										  .attr("class",'resetBtnGroupingLeft')
+										  .style("width",(width*.06)+"px")
+										  .style("height",(height)+"px")
+										  .style('background','#c0c0c0')
+										  .style('display','inline-block')
+										  .style("z-index","999")
+										  .style("position","absolute")
+								//  	  .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+										  .style("text-align","center")
+										  .style("border-radius","3px")
+										  .style("cursor","pointer")
+								//		  .style("border","solid 2px")
+										  
+										  
+			var resetBtnGroupingUpper = d3.select("#"+selectedElementId).append("div")
+										  .style("left",(width*.06+leftValue)+"px")
+										  .style("top",(0+topValue)+"px")
+										  .attr("class",'resetBtnGroupingUpper')
+										  .style("width",(width*.94)+"px")
+										  .style("height",(height*.6)+"px")
+									//	  .style('background','#5c5d5d')
+									//	  .style('display','inline-block')
+									//	  .style("z-index","999")
+										  .style("position","absolute")
+									// 	  .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+									//	  .style("text-align","center")
+									//	  .style("border-radius","3px")
+									//	  .style("cursor","pointer")
+									//	  .style("border","solid 2px")
 	
+			var resetBtnGroupingLower = d3.select("#"+selectedElementId).append("div")
+										  .style("left",(width*.06+leftValue)+"px")
+										  .style("top",(height*.6+topValue)+"px")
+										  .attr("class",'resetBtnGroupingLower')
+										  .attr("id","googleMap")
+										  .style("width",(width*.9)+"px")
+										  .style("height",(height*.4)+"px")
+									//    .style('background','#19a586')
+										  .style('display','inline-block')
+										  .style("z-index","999")
+										  .style("position","absolute")
+									//    .style("line-height",resetBtnHeight+"px")
+										  .style("color","#FFFFFF")
+										  .style("text-align","center")
+										  .style("border-radius","3px")
+										  .style("cursor","pointer")
+										  .style("border","solid 2px")
+										  .call(init)
+			
+			function init(){
+            /*var mapProp = {
+                center:new google.maps.LatLng(31.508742,-0.120850),
+                zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              map=new google.maps.Map(document.getElementById("googleMap"), mapProp);*/
+              /*myCenter=new google.maps.LatLng(31.508742,-0.120850);*/
+               geocoder = new google.maps.Geocoder();
+           /*   if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(success, error);
+                } else {
+                }
+				
+				*/
+
+//               function success(position) 
+				{
+                  myCenter=new google.maps.LatLng(31.508742,-0.120850);
+                  var mapProp = {
+                    center:new google.maps.LatLng(31.508742,-0.120850),
+                    zoom:12,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);  
+                }
+
+        }
+			
+			
+			
+			
+	
+		/*	function init()
+			{
+				  geocoder = new google.maps.Geocoder();
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(success, error);
+                } else {
+                }
+			
+                function success(position) {
+                  myCenter=new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                  var mapProp = {
+                    center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
+                    zoom:14,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);  
+                }
+
+                function error(msg) {
+                  var mapProp = {
+                center:new google.maps.LatLng(31.508742,-0.120850),
+                zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                }
+			}
+		*/
+				var map;
+		var myCenter=new google.maps.LatLng(22.546329, 78.640733);
+		var markers=[];	
+		setTimeout(function(){
+			drawPathGooglePath();	
+		},2000);
+			
+		
+			function drawPathGooglePath()
+			{
+			
+			for(var i=0;i<array.length;i++)
+					{
+						if(i == 1)
+						{
+							moveToLocation(loc.lat,loc.lng);
+						}
+						var loc=[];
+						loc.lat=array[i].lat;
+						loc.lng=array[i].lon;
+						 resetMarker(loc);
+					}
+			}
+			
+			function moveToLocation(lat, lng){
+        var center = new google.maps.LatLng(lat, lng);
+		console.log(lat+" "+lng);
+        // using global variable:
+        map.panTo(center);
+        }
+			
+		function addMarker(loc){
+		var addresss;
+		console.log("hii"+JSON.stringify(loc));
+		var iconBase = 	'img/icon/';
+ 		var latlng = new google.maps.LatLng(loc.lat, loc.lng);
+			   var position = new google.maps.LatLng(loc.lat, loc.lng);
+				var marker = new google.maps.Marker({
+                position: position,
+				draggable: true,
+                map: map,
+				icon: iconBase + 'marker.png',
+                zoom : 14,
+                title:"",
+                visible:true,
+                text:"",
+            });
+			
+			//55ccee
+			marker.id = loc.id;
+            marker.location = position;
+            markers.push(marker);
+				        
+    }
+	
+	function getObjectPositionInArray(list,obj) {
+      if (list.length > 0 ) {
+        for (i in list) {
+           if (list[i]["id"] === obj.id) {
+               return i;
+           }
+        }
+      }
+      return -1;
+   }
+   
+	function resetMarker(loc){
+      var objIndex = getObjectPositionInArray(markers,loc);
+      if(objIndex < 0){
+        addMarker(loc);
+       console.log("Add");
+      }else{
+        drawPath(markers[objIndex],loc);
+        deleteMarker(objIndex);
+        addMarker(loc);
+        console.log("Update");
+      }
+   }
+   
+   function resetMarker1(loc){
+   var loctemp={};
+	loctemp.lat=loc.lat;
+	loctemp.lng=loc.lon;
+	
+     //   addMarker(loctemp);
+		 var objIndex = getObjectPositionInArray(markers,loctemp);
+      if(objIndex < 0){
+        addMarker(loctemp);
+       console.log("Add");
+      }else{
+     //   drawPath(markers[objIndex],loctemp);
+        deleteMarker(objIndex);
+        addMarker(loctemp);
+        console.log("Update");
+      }
+/*      
+	  drawPath(markers[objIndex],loc);
+        deleteMarker(objIndex);
+        addMarker(loc);
+        console.log("Update");
+      }
+
+*/	  }
+   
+   function drawPath(lastPoint, nextPoint){
+    
+        var lp = lastPoint.getPosition();
+        var np = new google.maps.LatLng(nextPoint.lat, nextPoint.lng);
+
+        var objectPath = new google.maps.Polyline({path: [lp, np],
+                                               strokeColor:"#55ccee",
+                                               strokeOpacity:0.8,
+                                               strokeWeight:2,
+                                               map: map
+        });
+
+   }
+   
+   function deleteMarker(objIndex){
+        markers[objIndex].setMap(null);
+        markers.splice(objIndex, 1);
+   }
+  
+
+		
+	//left div Logic							  
+			var rectBackColor = dataLeft.rectBackColor;
+			var rectColorArray = dataLeft.rectColorArray;
+			var textArray = dataLeft.textArray;
+			var units = dataLeft.units;
+			
+			var widthLeft = $('.resetBtnGroupingLeft').width();
+			var heightLeft = $('.resetBtnGroupingLeft').height();
+			
+			var upperSvg = d3.select(".resetBtnGroupingLeft")
+				.append("svg")
+				.attr("width",widthLeft)
+				.attr("height",heightLeft)
+				
+			var setMarginLeft={left:widthLeft*0.05,right:widthLeft*0.05,bottom:heightLeft*0.01,top:heightLeft*0.01};
+			var scaleWidthLeft = widthLeft - setMarginLeft.left - setMarginLeft.right;
+			var scaleHeightLeft = heightLeft - setMarginLeft.top - setMarginLeft.bottom;
+			
+			var mainGroupLeft = upperSvg.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMarginLeft.left+","+setMarginLeft.top+")");
+			
+			var rectHeightLeft = (scaleHeightLeft)/(rectColorArray.length);
+			var heightLeft = heightLeft*.8;
+			for(var i=0;i<rectColorArray.length;i++)
+			{
+				mainGroupLeft.append("rect")
+					.attr("x",0)
+					.attr("y",i*rectHeightLeft)
+					.attr("width",scaleWidthLeft)
+					.attr("height",rectHeightLeft-2)
+					.attr("fill",rectBackColor)
+					
+					
+				mainGroupLeft.append("rect")
+					.attr("x",scaleWidthLeft*.9)
+					.attr("y",i*rectHeightLeft)
+					.attr("rx",5)
+					.attr("ry",5)
+					.attr("width",scaleWidthLeft*.1)
+					.attr("height",rectHeightLeft-2)
+					.attr("fill",rectColorArray[i])
+					
+				mainGroupLeft.append("text")
+					.attr("x",(scaleWidthLeft*.1))
+					.attr("y",i*rectHeightLeft)
+					.text(textArray[i])
+					.attr("dy",".9em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",9,"important")
+					
+				mainGroupLeft.append("text")
+					.attr("x",(scaleWidthLeft*.1))
+					.attr("y",i*rectHeightLeft+rectHeightLeft*.8)
+					.text(units[i])
+					.attr("dy",".9em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",7,"important")	
+					
+				mainGroupLeft.append("text")
+					.attr("class","currentValueText"+i)
+					.attr("y",i*rectHeightLeft+rectHeightLeft*.5)
+					.text("")
+					.attr("dy",".3em")
+					.attr("fill","white")
+					.style("font-family","calibri","important")
+					.style("font-size",14,"important")		
+					
+				
+			}
+							
+	//upper div logic
+	
+			var	largeValueLines =data.largeValueLines;
+			var yAxisData = data.yAxisData;
+			var xAxisData = data.xAxisData;
+			var lineStrokeWidth = data.lineStrokeWidth;
+			
+			var widthUpper = $('.resetBtnGroupingUpper').width();
+			var heightUpper = $('.resetBtnGroupingUpper').height();
+	
+			var setMargin={left:widthUpper*0.05,right:widthUpper*0.05,bottom:heightUpper*0.08,top:heightUpper*0.05};
+			var scaleWidth = widthUpper - setMargin.left - setMargin.right;
+			var scaleHeight = heightUpper - setMargin.top - setMargin.bottom;
+	
+			
+				
+			var yMin =[],yMax=[],xScale,yScale=[],counter = 0,xAxisIndex =[],yAxis=[],yAxisGroup =[],largestStringLen=0;
+			var lineStrokeWidth = 1,lineGraph=[];
+			for(var i=0;i<data.xAxisData.length;i++)
+			{
+				xAxisIndex[i]=i;
+				if(largestStringLen<data.xAxisData[i].toString().length)
+				largestStringLen = data.xAxisData[i].toString().length;
+			}
+			
+			var xScale = d3.scale.linear()
+				.domain([0,xAxisIndex.length-1])
+				.range([0,scaleWidth]);
+			
+
+			
+			var upperSvg = d3.select(".resetBtnGroupingUpper")
+				.append("svg")
+				.attr("width",widthUpper)
+				.attr("height",heightUpper)
+				.on("mousemove",function()
+				{
+				//	d3.selectAll(".lineMove").remove();
+					var leftMarginOfSvg = $(".resetBtnGroupingUpper").offset().left;
+					var topMarginOfSvg = $(".resetBtnGroupingUpper").offset().top;
+					var x = d3.event.pageX-leftMarginOfSvg;
+					var y = d3.event.pageY
+					var xInvert = parseInt(xScale.invert(x));// && y>setMargin.top && y<=(setMargin.bottom + scaleHeight)
+					if( x>setMargin.left && x<(widthUpper-setMargin.right)  && y>setMargin.top && y<=(setMargin.bottom + scaleHeight))
+					{
+						
+						for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
+						{	
+							if(textIndex<largeValueLines.length)
+							{
+								var val = largeValueLines[textIndex]["data"][xInvert];
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+							}
+							else
+							{
+								var val = yAxisData[textIndex-largeValueLines.length]["data"][xInvert];
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+							}
+						}
+						d3.select(".lineMove")
+							.attr("x1",x)
+							.attr("y1",setMargin.top)
+							.attr("x2",x)
+							.attr("y2",scaleHeight+setMargin.top)
+				/*
+						upperSvg.append("line")
+							.attr("class","lineMove")
+							.attr("x1",x)
+							.attr("y1",setMargin.top)
+							.attr("x2",x)
+							.attr("y2",scaleHeight+setMargin.top)
+							.attr("fill","none")
+							.attr("stroke","black")
+							.attr("stroke-width",2)*/
+					}
+					console.log(array[xInvert]);
+					resetMarker1(array[xInvert])
+					
+				});
+										
+						upperSvg.append("line")
+							.attr("class","lineMove")
+							.attr("x1",0)
+							.attr("y1",0)
+							.attr("x2",0)
+							.attr("y2",0)
+							.attr("fill","none")
+							.attr("stroke","white")
+							.attr("stroke-width",2)
+				
+			var mainGroup = upperSvg.append("g")
+				.attr("class","mainGroup")
+				.attr("transform","translate("+setMargin.left+","+setMargin.top+")")
+				
+			
+		
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),largestStringLen,(scaleWidth)));
+			
+			// Group for X Axis	
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("transform","translate("+0+","+scaleHeight+")")
+				.call(xAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","white")
+				.style("font-size",10,"important")
+				.text(function(d){return data.xAxisData[d]});			
+			
+			for(var i=counter;i<largeValueLines.length;i++)
+			{
+				yMin[i] = minMaxController.getMin(largeValueLines[i].data);
+				yMax[i] = minMaxController.getMax(largeValueLines[i].data);
+							 
+				yScale[i] = d3.scale.linear()
+					.domain([yMin[i],yMax[i]])
+					.range([scaleHeight,0]);
+				if(i==0) 
+				{						
+					yAxis[i] = d3.svg.axis()
+						.scale(yScale[i])
+						.orient("left")
+						.ticks(5)
+						
+					yAxisGroup[i] = mainGroup.append("g")
+						.attr("class","yAxisGroup")
+						.attr("id","yAxisGroup"+i)
+						.attr("transform","translate("+0+","+0+")")
+						.attr("display","none")
+						.call(yAxis[i])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+				}
+				else
+				{
+					yAxis[i] = d3.svg.axis()
+						.scale(yScale[i])
+						.orient("right")
+						.ticks(5)
+						
+					yAxisGroup[i] = mainGroup.append("g")
+						.attr("class","yAxisGroup")
+						.attr("id","yAxisGroup"+i)
+						.attr("transform","translate("+scaleWidth+","+0+")")
+						.attr("display","none")
+						.call(yAxis[i])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+				}	
+				
+				var lineFunction = d3.svg.line()
+									.x(function(d,j) { return xScale(j); })
+									.y(function(d,j) { return yScale[i](d); })
+									.interpolate("cardinal");		
+				
+				for(var k=0;k<largeValueLines[i].data.length;k++)
+				{
+					lineGraph[k] = mainGroup.append("path")
+										.attr("d",lineFunction(largeValueLines[i]["data"]))
+										.attr("class","lineGraph"+k)
+										.attr("id","linePath"+i)
+										.attr("stroke",largeValueLines[i]["color"])
+										.attr("stroke-width", lineStrokeWidth*(i+1))
+										.attr("fill", "none");
+				}
+				counter = i;
+			}
+			
+			counter++;
+			
+			var areaForYScale = scaleHeight/(yAxisData.length);
+		//	alert(scaleHeight+" "+areaForYScale*2);
+			for(var i=0;i<yAxisData.length;i++)
+			{
+				
+				yMin[counter] = minMaxController.getMin(yAxisData[i].data);
+				yMax[counter] = minMaxController.getMax(yAxisData[i].data);
+							 
+				yScale[counter] = d3.scale.linear()
+					.domain([yMin[counter],yMax[counter]])
+					.range([((i*areaForYScale)+areaForYScale),(i*areaForYScale)]);
+				
+				yAxis[counter] = d3.svg.axis()
+					.scale(yScale[counter])
+					.orient("left")
+					.ticks(5)
+				
+				yAxisGroup[counter] = mainGroup.append("g")
+						.attr("class","yAxisGroup"+counter)
+						.attr("transform","translate("+0+","+(0)+")")
+						.attr("display","none")
+						.call(yAxis[counter])
+						.attr("fill","none")
+						.selectAll("text")
+						.attr("fill","white");	
+						
+				var lineFunction1 = d3.svg.line()
+									.x(function(d,j) { return xScale(j); })
+									.y(function(d,j) { return yScale[counter](d); })
+									.interpolate("linear");		
+				
+				for(var k=0;k<yAxisData[i].data.length;k++)
+				{
+					
+					lineGraph[k] = mainGroup.append("path")
+										.attr("d",lineFunction1(yAxisData[i]["data"]))
+										.attr("class","lineGraph"+k)
+										.attr("id","linePath"+counter)
+										.attr("fill", "none")
+										.style("stroke-dasharray", ("3, 3"))
+										.style("stroke",yAxisData[i]["color"])
+										.attr("stroke-width", 1+(i))
+										
+				}		
+				
+				
+				counter++;
+				
+			}	
+		//hide axis path
+			hideAxisPath(svgElement);
+		//set font here
+			setTextStyleAndSvgBackGround(svgElement);
+		
+		}
+	}
         return {
             drawLine: lineChart.drawLine,
             drawBarWithMultipleLineAndCircle: lineChart.drawBarWithMultipleLineAndCircle,
@@ -25889,7 +26504,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			meterChartAnalysis:meterChartGraph.meterChartAnalysis,
 			threeDStackedDountChartAnalysis:threeDStackedDountChartGraph.threeDStackedDountChartAnalysis,
 			threeDRoundedBarChartAnalysis:threeDRoundedBarChartGraph.threeDRoundedBarChartAnalysis,
-			threeDShutterStackAnalysis:threeDShutterStackGraph.threeDShutterStackAnalysis
+			threeDShutterStackAnalysis:threeDShutterStackGraph.threeDShutterStackAnalysis,
+			racingVisualizationAnalysis:racingVisualizationGraph.racingVisualizationAnalysis
         };
     };
 })(jQuery);
