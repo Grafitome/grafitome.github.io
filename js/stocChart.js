@@ -505,6 +505,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 					xPathCord[4] = x+shiftPositionX + gap + pathWidth - shiftX;
 					xPathCord[5] = x + shiftPositionX + gap - shiftX;
 					xPathCord[6] =  x + shiftPositionX + gap - shiftX;
+					xPathCord[7] = x + shiftPositionX - shiftX;
 					
 					yPathCord[0] = y-shiftPositionY - shiftY;
 					yPathCord[1] = y-shiftPositionY-gap - shiftY;
@@ -513,6 +514,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 					yPathCord[4] = y-shiftPositionY+yLength - shiftY;
 					yPathCord[5] = y-shiftPositionY+yLength - shiftY;
 					yPathCord[6] = y-shiftPositionY+gap - shiftY;
+					yPathCord[7] = y-shiftPositionY - shiftY;
 				
 					var path = svgElement.append("path")
 							.attr("d",lineFunction(yPathCord))
@@ -539,6 +541,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 					xPathCord[4] = x - shiftPositionX - gap - pathWidth - shiftX;
 					xPathCord[5] = x - shiftPositionX - gap - shiftX;
 					xPathCord[6] = x - shiftPositionX - gap - shiftX;
+					xPathCord[7] = x - shiftPositionX - shiftX;
 					
 					yPathCord[0] = y-shiftPositionY - shiftY;
 					yPathCord[1] = y-shiftPositionY-gap - shiftY;
@@ -547,6 +550,7 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 					yPathCord[4] = y-shiftPositionY+yLength - shiftY;
 					yPathCord[5] = y-shiftPositionY+yLength - shiftY;
 					yPathCord[6] = y-shiftPositionY+gap - shiftY;
+					yPathCord[7] = y-shiftPositionY - shiftY;
 					
 	var path = svgElement.append("path")
 							.attr("d",lineFunction(yPathCord))
@@ -26043,7 +26047,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 		
 		//	var array = positionArray;
-			var topValue = 10;
+			var topValue = 30;
 			var leftValue = 0;
 			var resetBtnGroupingLeft=d3.select("#"+selectedElementId).append("div")
 										  .style("left",(leftValue)+"px")
@@ -26548,7 +26552,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					var y = d3.event.pageY
 					var xInvert = parseInt(xScale.invert(x));// && y>setMargin.top && y<=(setMargin.bottom + scaleHeight)
 					xInvert = xInvert -1;
-					console.log(xInvert+" "+x);
+			//		console.log(xInvert+" "+x);
 					//mainGroup.append("circle").attr("cx",xScale(i)).attr("cy",setMargin.top+30).attr("r",5).attr("fill","white");
 					if( x>setMargin.left && x<(widthUpper-setMargin.right)  && y>setMargin.top && y<=(setMargin.bottom + scaleHeight))
 					{
@@ -27006,7 +27010,8 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	{
 		rankWiseInformaticChartAnalysis:function(data)
 		{
-			
+		//	var width = 400;
+		//	var height =300;
 			var rank = data.rank;
 			var icon = data.icon;
 			var name = data.name;
@@ -27124,7 +27129,7 @@ feMerge.append("feMergeNode")
 							return "url(#leftOuterPathGradient"+i+")";
 						
 					})
-					.style("filter", "url(#drop-shadow)")
+		//			.style("filter", "url(#drop-shadow)")
 			/*		 <defs>
 					<filter id="f1" x="0" y="0" width="200%" height="200%">
 					  <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
@@ -27188,7 +27193,7 @@ feMerge.append("feMergeNode")
 							return "url(#leftOuterCircleGradient"+i+")";
 						
 					})
-					.style("filter", "url(#drop-shadow)")
+		//			.style("filter", "url(#drop-shadow)")
 					
 				mainGroup.append("circle")
 					.attr("class","leftInnerCircle")//chart-list-number
@@ -27268,11 +27273,12 @@ feMerge.append("feMergeNode")
 							return "url(#rightOuterPathGradient"+i+")";
 						
 					})	
-					.style("filter", "url(#drop-shadow)")
+		//			.style("filter", "url(#drop-shadow)")
 			
 				
-				textArray=[];	
-				textArray = wrapText(data.description[i],widthOfPath ,textSize);
+				textArray=[];
+				var textLength = textStyleConfg["font-size"]/2;
+				textArray = wrapText(data.description[i],widthOfPath*.9 ,textLength);
 				for(var k=0;k<textArray.length;k++)
 				{
 				mainGroup.append("text")   
@@ -27316,7 +27322,7 @@ feMerge.append("feMergeNode")
 							return "url(#rightOuterCircleGradient"+i+")";
 						
 					})
-					.style("filter", "url(#drop-shadow)")
+		//			.style("filter", "url(#drop-shadow)")
 				
 				
 				
@@ -27503,6 +27509,8 @@ feMerge.append("feMergeNode")
 	{
 		infographicBarChartAnalysis:function(data)
 		{
+		//	var width = 400;
+		//	var height = 300;
 			var rank = data.rank;
 			var icon = data.icon;
 			var yAxisData = data.yAxisData;
@@ -27633,10 +27641,7 @@ feMerge.append("feMergeNode")
 										.attr("offset", "0%")
 										.attr("stop-color", function(){return ColorLuminance(color[i], 0.2)});
 									
-				/*			rectangleGradient.append("stop")
-										.attr("offset", "33%")
-										.attr("stop-color", function(){return ColorLuminance(color[i], 0.5)});
-					*/					
+			
 							rectangleGradient
 										.append("stop")
 										.attr("offset", "100%")
@@ -27735,7 +27740,7 @@ feMerge.append("feMergeNode")
 						.text(function(){return textArray1[k];})	
 					}
 					
-					var textPositionGap = 25,textSize =textStyleConfg["font-description"]/2,yPosition=10;
+					var textPositionGap = 15,textSize =textStyleConfg["font-description"]/2,yPosition=10;
 					var textArray = wrapText(description[i],widthForText ,textSize);
 				//	console.log(name[i]);
 					for(var k=0;k<textArray.length;k++)
@@ -28097,11 +28102,34 @@ feMerge.append("feMergeNode")
 						
 					var pies = pieGroup.append("path")
 						.attr("d",pie)
+						.attr("value",i)
 						.attr("fill",pieBackColor)
-						
+						.on("mousemove",function(){
+							toolTipManagerPath.hideTooTip();
+							var val = parseInt(d3.select(this).attr("value"));
+							var heading = "";
+							var value = yAxisData[val];
+							toolTipManagerPath.showToolTip(d3.event,width,heading,value,pieBackColor);
+				
+						})	
+						.on("mouseleave",function(){
+							toolTipManagerPath.hideTooTip();
+						})
 					var innerpies = pieGroup.append("path")
 						.attr("d",innerArc)
+						.attr("value",i)
 						.attr("fill",innerArcColor)
+						.on("mousemove",function(){
+							toolTipManagerPath.hideTooTip();
+							var val = parseInt(d3.select(this).attr("value"));
+							var heading = "";
+							var value = yAxisData[val];
+							toolTipManagerPath.showToolTip(d3.event,width,heading,value,innerArcColor);
+				
+						})	
+						.on("mouseleave",function(){
+							toolTipManagerPath.hideTooTip();
+						})
 						
 					var arcs = arcGroup.append("path")
 						.attr("d",arc)
@@ -28257,8 +28285,8 @@ feMerge.append("feMergeNode")
 	{
 		infographicRankStandAnalysis:function(data)
 		{
-		//		var width =300;
-		//		var height = 400;
+		//		var width =400;
+		//		var height = 300;
 				var rank = data.rank;
 				var icon = data.icon;
 				var description = data.description;

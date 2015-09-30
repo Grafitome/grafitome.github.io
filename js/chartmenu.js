@@ -3552,7 +3552,7 @@ $("#racingVisualization").click(function(){
 		"innerCircleColor":["#d35454","#2d459b","#0289c9","#01a765"],
 		"outerCircleColor" :"#dddee2"
 	}
-	var textStyleConfg={"font-family":"arial","font-size":12,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":25,"gridLineColor":"#353b37"};
+	var textStyleConfg={"font-family":"arial","font-size":8,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":14,"gridLineColor":"#353b37"};
   var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
   stocChart55.rankWiseInformaticChartAnalysis(data);
  });
@@ -3573,7 +3573,7 @@ $("#racingVisualization").click(function(){
 		"backColor":"#fffceb",
 		"unit" : "%"
 	}
-	var textStyleConfg={"font-description":8,"font-size-heading":20,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
+	var textStyleConfg={"font-description":8,"font-size-heading":16,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
   var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
   stocChart55.infographicBarChartAnalysis(data);
  });

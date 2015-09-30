@@ -84,8 +84,22 @@ $(document).ready(function(){
 	  	
 	  $(".chartBigOuter").hide();	
 	  $("#line1").empty();
+/*	var basicLineData =   
+			{
+			"xAxisTickArray":["January","February","March","April","May","June","July","August","September","October","November","December"],
+			"yAxisfactor":"Number Of Orders",
+			"yLabelColor":"red",
+			"xAxisfactor":"Month Wise Data",
+			"xLabelColor":"green",
+			"padding":10,
+			"yAxisData":[
+						{"Name":"Sale","Shape":"circle","color":"cyan","data":[67,1644,39,22,62,191,1161,110,1,12,0,0]},
+						{"Name":"Refunded","Shape":"circle","color":"blue","data":[0,1,0,0,4,149,76,24,0,2,0,0]},
+						{"Name":"Partially Refunded","Shape":"circle","color":"orange","data":[0,0,0,0,0,0,0,0,0,0,0,0]},
+						{"Name":"Pending","Shape":"circle","color":"brown","data":[0,0,0,0,0,0,1,25,0,2,0,0]}]
+	   }
 	  
-	  var basicLineData =
+	*/  var basicLineData =
 		{
 				title : "Sold Quantity in Last 10 Month ",
 				xAxisTickArray:["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14","Aug'14","Sept'14","Oct'14"],
@@ -122,6 +136,7 @@ $(document).ready(function(){
 				}]
 				
 		};
+		
 		
 		
 		$("#basicLineChart").show();
@@ -2513,7 +2528,7 @@ $("#line1").empty();
 		
 		var treeData = {
 				factor : "Asset Value",
-				unit : "%",
+				unit : "$",
 				range : [-40,40],
 				name: "tree",
 				children:[
@@ -2894,7 +2909,7 @@ $("#line1").empty();
 					title : "Product Sale(Brand wise)",
 					xAxisLabel :"Current Status",
 					yAxisLabel :"Product",
-					yAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
+					yAxisData : ["Formal dfer ree erer Shirt","Jeans tyer rtyer re ytry rytrt rtye tryhe ter rytret","T-Shirt","Trouser","Blazers","Sports Wear"],
 					key: [
 							{
 								name: 'Zara',
@@ -2916,10 +2931,36 @@ $("#line1").empty();
 				}  
 		
 		
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":12,"gridLineColor":"#353b37"};
 		var stocChart55=$("#line1").stocCharts(textStyleConfg);
 		stocChart55.horizontalStackedBarChartAnalysis(data);
 	});
+	
+	
+	$("#simpleBarChart").click(function(){
+		selectedChartIndex=$(this).attr("index");
+		updateJsfiddleLink(selectedChartIndex);
+		$("#line1").empty();
+			$(".chartDetails").hide();
+	    $(".simpleBarChart").show();
+		
+		var data = {
+					title : "Product Sale(Brand wise)",
+					xAxisLabel :"Brand",
+					yAxisLabel :"Product sale",
+					xAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
+					yAxisData : [50, 30, 40, 37, 20,30],
+					color :["#00FFFF"]
+					
+				}  
+		
+		
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+		var stocChart55=$("#line1").stocCharts(textStyleConfg);
+		stocChart55.simpleBarChartAnalysis(data);
+	});
+	
+	
 	
 	$("#multiGroupedBarChart").click(function(){
 		selectedChartIndex=$(this).attr("index");
@@ -3345,20 +3386,16 @@ $("#twoDStackedBarChart").click(function(){
 		$("#advanceChartContainer").empty();
 	
  	var data = {
-				"title" : "Monthly Profit",
-				"xAxisLabel" : "Month's",
-				"yAxisLabel" : "Profit Percentage",
-				"xAxisData" : ["Jan'14","Feb'14","Mar'14","Apr'14","May'14","Jun'14","Jul'14"/*,"Aug'14","Sept'14","Oct'14"*/],
 				"yAxisData" : [60,90,80,58,86,55,77],
 				"lowerColorArray":["#ed1e79","#fbb03b","#666666","#92278f","#0071bd","#cc886d","#356aa0"],
 				"upperColor":"#e6e6e6",
 				"imagesArray" :["img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png","img/icon/icon4.png","img/icon/icon5.png","img/icon/icon1.png","img/icon/icon2.png"],
 				"threeDPathColor":"#f7fbf4",
-				"description" : ["biaxially oriented df polypropyleneeeeeeee","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation"],
+				"xAxisData" : ["biaxially oriented df polypropyle","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation"],
 				"unit" : "%"
 			}
 			
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":10,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
+	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":8,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
 						
 	var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
 		 stocChart43.threeDRoundedBarChartAnalysis(data);
@@ -3372,53 +3409,43 @@ $("#twoDStackedBarChart").click(function(){
 	//	updateJsfiddleLink(selectedChartIndex);
 		$("#advanceChartContainer").empty();
   
- var data =
+  var data =
    {
      title : "Foreign Visitors Rate",
      barData: [{
-      "yTick": "USA",
+      "yTick": "01 Step",
       "yData": 80,
       "color": "#FF0F00"
       }, {
-      "yTick": "China",
+      "yTick": "02 Step",
       "yData": 148,
       "color": "#FF6600"
       }, {
-      "yTick": "Japan",
-      "yData": 221,
+      "yTick": "03 Step",
+      "yData": 121,
       "color": "#FF9E01"
       }, {
-      "yTick": "Germany",
-      "yData": 300,
+      "yTick": "04 Step",
+      "yData": 100,
       "color": "#FCD202"
       }, {
-      "yTick": "pakistan",
-      "yData": 380,
+      "yTick": "05 Step",
+      "yData": 180,
       "color": "#F8FF01"
-      }, {
-      "yTick": "France",
-      "yData": 460,
-      "color": "#B0DE09"
-      }, {
-      "yTick": "India",
-      "yData": 550,
-      "color": "#04D215"
-      }, {
-      "yTick": "Spain",
-      "yData": 680,
-      "color": "#0D8ECF"
       }],  
     commonColor : "#ffffff", 
     upperEclipsColor : "gray",
     xAxisLabel : "Country",
     yAxisLabel :"Visit(in Millons)",
     upperPathHeight : 40,
-	"imagesArray" :["img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png","img/icon/icon4.png","img/icon/icon5.png","img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png"],
+	cylinderHeight : 130,
+	"imagesArray" :["img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png"],
+	"lowerTextDes" :["biaxially oriented","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation ANDRITZ Biax","Easy operation ANDRITZ Biax","ANDRITZ Biax","biaxially oriented polyamide"],
     unit : "%"  
    }  
   
   
- var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
+ var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":8,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":8,"gridLineColor":"#353b37"};
   var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
   stocChart55.threeDShutterStackAnalysis(data);
  });
@@ -3510,6 +3537,94 @@ $("#racingVisualization").click(function(){
   var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
   stocChart55.racingVisualizationAnalysis(data,dataLeft,positionArray);
  });
+	
+	$("#rankWiseInformaticChart").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+  
+	var data = {
+	
+		"rank":["01","02","03","04"],
+		"icon":["img/logos/img1.png","img/logos/img9.png","img/logos/img6.png","img/logos/img5.png"],
+		"name":["5467","7645","554","45"],
+		"description":["product infographics design","product infographics design","product infographics design","product infographics design"],
+		"innerCircleColor":["#d35454","#2d459b","#0289c9","#01a765"],
+		"outerCircleColor" :"#dddee2"
+	}
+	var textStyleConfg={"font-family":"arial","font-size":12,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":25,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.rankWiseInformaticChartAnalysis(data);
+ });
+ 
+ $("#infographicBarChart").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+  
+	var data = 
+	{
+		"rank":["01","02","03","04","05"],
+		"icon":["img/logos/img1.png","img/logos/img9.png","img/logos/img6.png","img/logos/img5.png","img/logos/img7.png"],
+		"yAxisData":[65,78,90,64,50],
+		"title": ["product abc","product abc","product abc","product abc","product abc"],
+		"description":["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
+		"color":["#d5be8c","#fce9a7","#8dceb6","#f26748","#757547","#503721"],
+		"backColor":"#fffceb",
+		"unit" : "%"
+	}
+	var textStyleConfg={"font-description":8,"font-size-heading":20,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.infographicBarChartAnalysis(data);
+ });
+ 
+ $("#infographicBartWithPieChart").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+  
+var data = 
+	{
+		"rank" : ["01","02","03","04","05"],
+		"icon" : ["img/logo_colored/img1.png","img/logo_colored/img9.png","img/logo_colored/img6.png","img/logo_colored/img5.png","img/logo_colored/img7.png"],
+		"yAxisData" : [35,50,70,90,100],
+		"title" : ["product abc","product abc","product abc","product abc","product abc"],
+		"description" : ["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
+		"color" : ["#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"],
+		"backColor"	:"#d1cfd0",//
+		"pieBackColor" : "#503721",
+		"innerArcColor" : "#fce9a7",
+		
+	}
+	var textStyleConfg={"font-description":8,"font-size-heading":20,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.infographicBartWithPieChartAnalysis(data);
+ });
+  
+  
+ $("#infographicRankStand").click(function(){
+ //	selectedChartIndex=$(this).attr("index");
+	//	updateJsfiddleLink(selectedChartIndex);
+		$("#advanceChartContainer").empty();
+  
+var data = 
+	{
+		"rank" : ["01","02","03","04"],
+		"icon" : ["img/logo_colored/img1.png","img/logo_colored/img9.png","img/logo_colored/img6.png","img/logo_colored/img5.png","img/logo_colored/img7.png"],
+		"title" : ["product abc","product abc","product abc","product abc","product abc"],
+		"description" : ["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
+		"bulbImage" :"img/logo_colored/bulb.png",
+		"cylinderColor" : "#c9c9c7",
+		"pathColor" : "#FFFFFF",
+		"unit" : "%"
+	}
+	
+	var textStyleConfg={"font-description":8,"font-size-heading":12,"font-color-heading":"black","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
+  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+  stocChart55.infographicRankStandAnalysis(data);
+ });
+ 
+ 
 	
 	$(document).on('click','#chartResetButton',function(){
 		$('#mapOfIndiaWithChart').trigger('click');

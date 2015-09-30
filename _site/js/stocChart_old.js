@@ -11,9 +11,9 @@ var t=x.length;if(t){x.sort(c);for(var e,r=1,u=x[0],i=[u];t>r;++r)e=x[r],l(e[0],
 		$.fn.stocCharts = function (styleConfg) {
         var WM = {
             attachWaterMark: function (id) {
-				selectorElement.parent().css('background-image', 'url(http://www.stocinn.com/stoccharts/img/stoc-chart-logo.png)');
-                selectorElement.parent().css('background-repeat', ' no-repeat');
-               selectorElement.parent().css('background-position', 'bottom right');
+				//selectorElement.parent().css('background-image', 'url(http://www.stocinn.com/stoccharts/img/stoc-chart-logo.png)');
+               // selectorElement.parent().css('background-repeat', ' no-repeat');
+             //  selectorElement.parent().css('background-position', 'bottom right');
             }
         }
         var selectorElement = $(this);
@@ -10570,9 +10570,9 @@ var threeDBarChart = {
 					
                 }
 				
-				
+	/*			
 			if(minValue == 0){
-				minValue =minValue - 2;
+				minValue =minValue-2;
 			}
 			else{
 				if(minValue<0){
@@ -10581,13 +10581,13 @@ var threeDBarChart = {
 					minValue =minValue * .3;
 				}
 			}
-		
+		*/
 			if(maxValue == 0){
 				maxValue =maxValue +  2;
 			}
 			else{
 				if(maxValue>0){
-					maxValue =maxValue* 1.5;
+					maxValue =maxValue* 1.3;
 				}else{
 					maxValue =maxValue * 0.7;
 				}
@@ -17115,7 +17115,7 @@ var threeDDountChartWithLegendGraph =
 						svgElement.select(".gradientRepresentIcon").attr("display","block").transition().duration(1000)
 									.attr("x",yScale(value));
 									
-						var yHeadingValueMap=[{"headingName":treeData.factor,"headingVal":d.size+treeData.unit}];
+						var yHeadingValueMap=[{"headingName":treeData.factor,"headingVal":treeData.unit+d.size}];
 						var heading = d.name;
 						toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);			
 						
@@ -18172,16 +18172,40 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			yDataLength=yAxisData[j].length;
 		
 	}
-	var horizontalChartLeftMargin = marginController.leftMarginController(yAxisData);
-	horizontalChartLeftMargin = horizontalChartLeftMargin*.7;
+	var dummyTextArray =[],counter=0;
+	for(var i=0;i<yAxisIndex.length;i++)
+	{	
+		var textArray1 =[],text11="",text22="";
+		textArray1 = yAxisData[i].split(/ +/);
+		
+		if(textArray1.length>2)
+		{
+			for(var j=0;j<textArray1.length;j++)
+			{
+				if(j<=(textArray1.length*.5))
+				{
+					text11 = text11 + textArray1[j]+" ";
+					
+				}
+				else
+				{
+					text22 = text22 + textArray1[j]+ " ";
+				}
+					
+			}
+			dummyTextArray[counter++] =text11;
+			dummyTextArray[counter++] =text22;
+		}
+	}
+	
+	var horizontalChartLeftMargin = marginController.leftMarginController(dummyTextArray);
+	horizontalChartLeftMargin = horizontalChartLeftMargin*.6;
 	var setMargin={leftMargin:horizontalChartLeftMargin,rightMargin:width*0.05,bottomMargin:height*.2,topMargin:height*0.05};
 
 	var scaleWidth = width - setMargin.leftMargin - setMargin.rightMargin;
 	var scaleHeight = height - setMargin.topMargin - setMargin.bottomMargin;
 	gridManager.init(svgElement, scaleHeight, scaleWidth, setMargin.leftMargin, setMargin.topMargin,textStyleConfg.gridLineColor);
 	var rectHeight = scaleHeight/(yAxisIndex.length*2);
-
-	
 	
 /*	maxLagendLength = maxLagendLength*7;
 	var gap = 5;
@@ -18293,10 +18317,65 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		.attr("transform","translate("+0+","+0+")")
 		.call(yAxis)
 		.attr("fill","none")
+		.attr("display","none")
 		.selectAll("text")
 		.attr("fill","black")
 		.text(function(d){return yAxisData[d]})
 		.attr("transform","rotate(-30)");
+	
+	for(var i=0;i<yAxisIndex.length;i++)
+	{	
+		var textArray =[],text1="",text2="",textGap =15;
+		textArray = yAxisData[i].split(/ +/);
+		
+		if(textArray.length>2){
+			for(var j=0;j<textArray.length;j++)
+			{
+				if(j<(textArray.length*.5))
+				{
+					text1 = text1 + textArray[j]+" ";
+				}
+				else
+				{
+					text2 = text2 + textArray[j]+ " ";
+				}
+					
+			}
+			console.log(text1+" hhhhhhhhhhhhhhhhhhh"+text2);
+			for(var k =0;k<2;k++)
+			{
+				if(k==0)	
+				svgElement.append("text")
+					.attr("class","yAxisGroup")
+					.attr("x",30)
+					.attr("y",yScale(i)+rectHeight*.7+textGap*k)
+					.text(text1)
+					.attr("fill",textStyleConfg["tick-font-color"])
+					
+					
+				else
+					svgElement.append("text")
+					.attr("class","yAxisGroup")
+					.attr("x",30)
+					.attr("y",yScale(i)+rectHeight*.7+textGap*k)
+					.text(text2)
+					.attr("fill",textStyleConfg["tick-font-color"])
+					
+					
+					
+			}
+			
+		}
+		else
+			svgElement.append("text")
+					.attr("class","yAxisGroup")
+					.attr("x",30)
+					.attr("y",yScale(i)+rectHeight*.7)
+					.text(yAxisData[i])
+					.attr("fill",textStyleConfg["tick-font-color"])
+					
+				
+	}
 	
 	// y-Axis tick Line Vertical	
 	var xTickLine = mainGroup.append("line")
@@ -24540,14 +24619,13 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		
 		}
 	}
-		
+	
 	var threeDRoundedBarChartGraph = 
 	{
 		threeDRoundedBarChartAnalysis:function(data)
 		{
-			var title = data.title;
-			var xAxisLabel = data.xAxisLabel;
-			var yAxisLabel = data.yAxisLabel;
+		//	var width = 400;
+		//	var height = 300;
 			var xAxisData = data.xAxisData;
 			var yAxisData = data.yAxisData;
 			var lowerColorArray = data.lowerColorArray;
@@ -24555,10 +24633,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var unit = data.unit;
 			var imagesArray = data.imagesArray;
 			var threeDPathColor = data.threeDPathColor;
-			var description = data.description;
+			
 			
 			var leftMargin = marginController.leftMarginController(yAxisData);
-			var setMargin={left:leftMargin,right:width*0.05,bottom:height*0.001,top:height*0.001};
+			var setMargin={left:10,right:0,bottom:height*0.001,top:height*0.001};
 			var xAxisIndex =[],xLargestStringLngth=0,max = d3.max(yAxisData),min = d3.min(yAxisData);
 			
 			var scaleWidth = width - setMargin.left - setMargin.right;
@@ -24572,7 +24650,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var yMax = minMaxController.getMax([max,max-10]);	
 
 			var widthOfBar = (scaleWidth)/(2*xAxisData.length);
-			widthOfBar = widthOfBar * .7;
+			widthOfBar = widthOfBar * .8;
 			for(var i=0;i<xAxisData.length;i++)
 			{
 				xAxisIndex[i]=i;
@@ -24690,7 +24768,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				dec = dec - gap; 
 			}
 			*/	
-			var duration = 1000;
+			var duration = 600;
 			for(var i=0;i<xAxisIndex.length;i++)
 			{
 				var frontPathLower = mainGroup.append("path")
@@ -24870,7 +24948,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.ease("linear")
 					.attr("d", lineFunction(getSideCoordinates(i,upperPathIndex)))
 					
-				d3.selectAll(".roundedPath")
+			/*	d3.selectAll(".roundedPath")
 					.on("mousemove",function()
 					{
 						var val = d3.select(this).attr("value");
@@ -24881,9 +24959,66 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.on("mouseleave",function()
 					{
 						toolTipManager.hideTooTip();
-					})
+					})*/
 					
 			}
+			
+			function wrapText(text, widthOfTextArea,size) {
+	   var dummyTextArray = text.split(/ +/);
+	   var textArray =[],dummyText="",finalText="",counter=0,c=1;
+	 //  console.log(dummyTextArray.length);
+	 if(dummyTextArray.length==1)
+	 {
+		 textArray[counter]= text;
+		 return  textArray;
+	 }
+		for(var i=0;i<dummyTextArray.length;i++)
+		{
+			
+			if(dummyTextArray[i])
+			{	
+				if(i==0)
+				{
+					dummyText = dummyTextArray[i];
+		//			console.log("1"+dummyText+" "+finalText);
+					continue;
+				}
+				else
+				{
+					finalText = dummyText;
+					dummyText =dummyText+" "+dummyTextArray[i];
+					if(dummyText.length*size<widthOfTextArea)
+					{		
+						if(i==dummyTextArray.length-1)
+						{
+							textArray[counter++] = dummyText; 
+			//				console.log("4"+dummyText+" "+finalText);
+							c=0;
+						}
+				//		console.log("2"+dummyText+" "+finalText);
+						continue;
+					}
+					else
+					{
+						textArray[counter++] = finalText; 
+						if(i==dummyTextArray.length-1 && c==1)
+						{
+							textArray[counter++] = dummyTextArray[i]; 
+			//				console.log("5"+dummyText+" "+finalText);
+						}
+			//			console.log("3"+dummyText+" "+finalText);
+						finalText=""
+						dummyText =dummyTextArray[i];
+					}
+				}
+			}
+			
+			
+		}
+		
+		return textArray;
+	}	
+			
 			function getSideCoordinates(index,pathSide)
 			{
 				lineData = [];
@@ -24893,93 +25028,53 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				var leftWidth =(widthOfBar)*.6
 				if(pathSide==1)
 				{
-					nextX = xScale(index)-widthOfBar/2;
+					var textFactor = 10;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	scaleHeight-heightFac;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY = yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	scaleHeight-heightFac;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					if(scaleHeight-heightFac-yScale(lowerPathHeight)>35)
-					{
-						mainGroup.append("svg:image")
-							.attr("xlink:href", imagesArray[index])
-							.transition().duration(100).delay(duration*2)
-							.attr("x",xScale(index)-(widthOfBar/2)*.8)
-							.attr("y",yScale(lowerPathHeight)+10)
-							.attr("width", widthOfBar*.8)
-							.attr("height", 20);
+				//	if(scaleHeight-heightFac-yScale(lowerPathHeight)>35)
+				//	{
+						
 							
-						var textFactor = 10;	
-						var textDescription = description[index];
-						
-						// $("#searchquery").text().split(/ +/);
-						var textArray = textDescription.split(/ +/);
-					//	console.log(textArray.length);
-						
+				
 					
-						var count =0;
-						var flag = true;
-						for(var k=0;k<textArray.length;k++)
-						{console.log("hiiiiiiiiiiiiiiiiiiii");
-							var text,dummyText="";	
-							for(var j=k;j<textArray.length;j++)
+					if((yScale(lowerPathHeight)-yScale(yAxisData[index])+textFactor)>20)
+					{
+						var text =yAxisData[index]+""+unit;
+						var textLength = text.length*7;
+						mainGroup.append("text")
+							.attr("class","chart-list-number")
+							.transition().duration(100).delay(duration)
+						//	.attr("x",xScale(index)-(widthOfBar/2)*.8)
+							.attr("x",xScale(index)-(textLength/2))
+							.attr("y",yScale(lowerPathHeight)+textFactor)
+							.text(function()
 							{
-								if(j==0)
-								{
-									text = textArray[j];
-									continue;
-								}
-								else
-								{	
-									dummyText = "";
-									dummyText = text+" "+textArray[j];
-									console.log(dummyText);
-									flag=false;
-								}
-								if(((dummyText.length)*4)<widthOfBar)
-								{
-									text = text+" "+textArray[j];
-									flag=true;
-								}
-								else
-								{
-								
-								var textDescriptionLength = text.length*4;
-								mainGroup.append("text")
-									.transition().duration(100).delay(duration)
-								//	.attr("x",xScale(index)-(widthOfBar/2)*.9)
-									.attr("x",xScale(index)-(textDescriptionLength/2))
-									.attr("y",yScale(lowerPathHeight)+40+(textFactor*count))
-									.text(function()
-									{
-										return text;
-									})
-									.attr("dy",".9em")
-									.attr("fill","black")
-									.style("font-size",9,"important")
-									.style("font-family","calibri","important")
-									if(flag==true)
-									text = "";
-									else
-									text=textArray[j];
-									k=j;
-									count++;
-								}
-								
-							}
-						}
+								return text;
+							})
+							.attr("dy",".9em")
+							.attr("fill","black")
+							.attr("font-family",textStyleConfg["font-family"],"important")
+							.attr("font-weight","bold")
+							.style("font-size","12px","important")
+							
 					}
+					
+			//		}
 				}
 				if(pathSide==2)
 				{
 					
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	scaleHeight-heightFac;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2-leftWidth;
@@ -24988,14 +25083,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					nextX = xScale(index)-widthOfBar/2-leftWidth;
 					nextY =	yScale(lowerPathHeight)-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 				}
 				if(pathSide==3)
 				{
 					
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	scaleHeight-heightFac;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2+leftWidth;
@@ -25004,27 +25099,27 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					nextX = xScale(index)+widthOfBar/2+leftWidth;
 					nextY =	yScale(lowerPathHeight)-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 				}
 				if(pathSide==4)
 				{
 					var textFactor = 10;
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY = yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					
-					if((yScale(lowerPathHeight)-yScale(yAxisData[index])+textFactor)>20)
+				/*	if((yScale(lowerPathHeight)-yScale(yAxisData[index])+textFactor)>20)
 					{
 						var text =yAxisData[index]+" "+unit;
 						var textLength = text.length*7;
@@ -25039,15 +25134,41 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							})
 							.attr("dy",".9em")
 							.attr("fill","black")
-							.attr("font-family","calibri")
+							.attr("font-family",textStyleConfg["font-family"])
 							
-					}
+					}*/
+					var textDummyArray,text =xAxisData[index];
+					textDummyArray =text.split(/ +/);
+					var yPosition =10;
+					var textArray=[],textSize;
+					if(textStyleConfg["font-size"]>10)
+					textSize=6
+					else if(textStyleConfg["font-size"]>=8 && textStyleConfg["font-size"]<=10 )
+					textSize=4
+					else
+					textSize=2
+					textArray = wrapText(text, widthOfBar*.8,textSize);
+				//	console.log(textArray);
+					for(var k=0;k<textArray.length;k++)
+					{
+					mainGroup.append("text")   
+								.attr("class","rounded")
+								.attr("x", function(d){return xScale(index)-textArray[k].length*(textSize*.5)})           
+								.attr("y",function(d){ return yScale(yAxisData[index])+textFactor+yPosition*k}) 
+								.attr("fill",textStyleConfg["font-color"])
+								.style("font-size",textStyleConfg["font-size"])
+								.style("font-family",textStyleConfg["font-family"],"important")
+								.attr("dy",".9em")
+								.text(function(d){return textArray[k];})
+								.transition().delay(25000)
+								
+					}	
 					
 				}
 				if(pathSide==5)
 				{
 					
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)-widthOfBar/2-leftWidth;
@@ -25056,14 +25177,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					nextX = xScale(index)-widthOfBar/2-leftWidth;
 					nextY =	yScale(yAxisData[index])-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 				}
 				if(pathSide==6)
 				{
 					
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(lowerPathHeight);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
 					nextX = xScale(index)+widthOfBar/2+leftWidth;
@@ -25072,30 +25193,37 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					nextX = xScale(index)+widthOfBar/2+leftWidth;
 					nextY =	yScale(yAxisData[index])-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 				}
 				if(pathSide==7)
 				{
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 					nextX = xScale(index)-widthOfBar/2-leftWidth;
 					nextY =	yScale(yAxisData[index])-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)-widthOfBar/2;
+					nextX = xScale(index)-widthOfBar/2-widthOfBar*.2;
 					nextY =	yScale(yAxisData[index])-2*factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(yAxisData[index])-2*factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
 					nextX = xScale(index)+widthOfBar/2+leftWidth;
 					nextY =	yScale(yAxisData[index])-factor;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
-					nextX = xScale(index)+widthOfBar/2;
+					nextX = xScale(index)+widthOfBar/2+widthOfBar*.2;
 					nextY =	yScale(yAxisData[index]);
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));	
+					mainGroup.append("svg:image")
+							.attr("xlink:href", imagesArray[index])
+							.transition().duration(100).delay(duration*2)
+							.attr("x",xScale(index)-(widthOfBar/2)*.8)
+							.attr("y",yScale(yAxisData[index])-(factor*2))
+							.attr("width", widthOfBar*.8)
+							.attr("height", factor*2);
 				}
 				
 				return lineData;
@@ -25123,13 +25251,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					nextX = xScale(index)+widthOfBar/2;
 					nextY =	scaleHeight-heightFac;
 					lineData.push(JSON.parse('{"x":'+nextX+',"y":'+nextY+'}'));
-					if(scaleHeight-heightFac-yScale(lowerPathHeight)>35)
-					mainGroup.append("svg:image")
-						.attr("xlink:href", imagesArray[index])
-						.attr("x",xScale(index)-(widthOfBar/2)*.8)
-						.attr("y",yScale(lowerPathHeight)+10)
-						.attr("width", widthOfBar*.8)
-						.attr("height", 20)
+					
 				}
 				if(pathSide==2)
 				{
@@ -25409,78 +25531,64 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				setTextStyleAndSvgBackGround(svgElement);
 		}
 	}
-		
-	
+
 	var threeDShutterStackGraph = 
 	{
 		threeDShutterStackAnalysis:function(data)
 		{
-			var barData = data.barData;
-			var xAxisLabel = data.xAxisLabel;
-			var yAxisLabel = data.yAxisLabel;
-			var title = data.title;
-			var unit = data.unit;
-			var commonColor = data.commonColor;
-			var upperEclipsColor = data.upperEclipsColor;
-			var upperPathHeight = data.upperPathHeight;
-			var imagesArray = data.imagesArray;
-			
-			var yAxisValues = [];
-			var total = 0;
-			for(var counter = 0;counter<barData.length ;counter++)
-			{
-				yAxisValues[counter] = barData[counter].yData;
-				total = total + yAxisValues[counter];
-			}
-			var leftMargin = marginController.leftMarginController(yAxisValues);
-			var threeDAnalChart={left:leftMargin,right:width*0.05,bottom:45,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
-			
-			var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
-			var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
-			
-			var estimateDataBarWidth =  (scaleWidth/(1.8*barData.length));
-			var radiusY = estimateDataBarWidth*.1;
-			var gradient;
+//	var width =600;
+//	var height= 400;
+	var barData = data.barData;
+	var xAxisLabel = data.xAxisLabel;
+	var yAxisLabel = data.yAxisLabel;
+	var title = data.title;
+	var unit = data.unit;
+	var commonColor = data.commonColor;
+	var upperEclipsColor = data.upperEclipsColor;
+	var upperPathHeight = data.upperPathHeight;
+	var imagesArray = data.imagesArray;
+	var textDescription =[]
+	var cylinderHeight = data.cylinderHeight;
+	var yAxisValues = [];
+	var lowerTextDes=data.lowerTextDes;
+	var total = 0;
+	for(var counter = 0;counter<barData.length ;counter++)
+	{
+		textDescription[counter] = barData[counter].yTick;
+		yAxisValues[counter] = barData[counter].yData;
+		total = total + yAxisValues[counter];
+	}
+	
+	var leftMargin = marginController.leftMarginController(yAxisValues);
+	var threeDAnalChart={left:25,right:0,bottom:10,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+	
+	var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
+	var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
+	
+	var estimateDataBarWidth =  ((scaleWidth)/((barData.length+1)));
+	
+	var radiusY = estimateDataBarWidth*.1;
+	var gradient;
 
-			
-			var mainGroup = svgElement.append("g")
-							   .attr('class','main-group')
-							   .attr("transform", "translate(" + threeDAnalChart.left + "," + threeDAnalChart.top + ")");
-	/*
-			//title here
-			var pixcelPerChar = 8;
-			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
-			var titleGroup = svgElement.append("g")
-									   .attr('class','title')
-			axisLabelController.appendLabel(title,leftIndicator,threeDAnalChart.top/2,0,titleGroup,textStyleConfg.chartTitleColor,800);
-			
-			//xAxis label here			
-			var pixcelPerChar=7;
-			var totalXLabelPixcel=xAxisLabel.toString().length*pixcelPerChar;
-			var xIndicationLabelTop=scaleHeight+(threeDAnalChart.bottom - 5);
-			var xIndicationLabelLeft=scaleWidth/2-totalXLabelPixcel/2;
-			axisLabelController.appendLabel(xAxisLabel,xIndicationLabelLeft,xIndicationLabelTop,0,mainGroup,textStyleConfg.xLabelColor,600);			   							
-						
-			//yAxis label here					
-			var totalYLabelPixcel=yAxisLabel.toString().length*pixcelPerChar;			
-			var yIndicationLabelTop=scaleHeight/2+totalYLabelPixcel/2;
-			var yIndicationLabelLeft=(-threeDAnalChart.left + 15);
-			axisLabelController.appendLabel(yAxisLabel,yIndicationLabelLeft,yIndicationLabelTop,-90,mainGroup,textStyleConfg.yLabelColor,600);			   													   
-			
-			*/
-			
-			var xScale = d3.scale.linear()
+//	var svgElement = d3.select("body").append("svg").attr("width",width).attr("height",height);
+	
+	var mainGroup = svgElement.append("g")
+					   .attr('class','main-group')
+					   .attr("transform", "translate(" + threeDAnalChart.left + "," + threeDAnalChart.top + ")");
+
+	var xScale = d3.scale.linear()
 								 .domain([0,barData.length-1])
-								 .range([estimateDataBarWidth*.5,scaleWidth-(estimateDataBarWidth*.5)]);
+								 .range([estimateDataBarWidth*1.1,scaleWidth-(estimateDataBarWidth*.5)]);					
 
-			var yMax = minMaxController.getMax(yAxisValues);	
-			var yMin = minMaxController.getMin(yAxisValues);	
-			
-			
-			yMax = yMax + (upperPathHeight*.5);
-			var yScale = d3.scale.linear()
-							.domain([yMin,yMax])
-							.range([scaleHeight,0]);
+//	var yMax = minMaxController.getMax(yAxisValues);	
+//	var yMin = minMaxController.getMin(yAxisValues);	
+	var yMin = 0;
+	var yMax = 1000;
+	
+	yMax = yMax + (upperPathHeight*.5);
+	var yScale = d3.scale.linear()
+					.domain([yMin,yMax])
+					.range([scaleHeight,0]);
 					
 	//x axis
 			var largestStringLngth=0;
@@ -25507,35 +25615,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									.call(xAxis);
 					 xAxisTextRef.selectAll('text')
 									 .text(function(d){return barData[d].yTick;});
-									
-					
-					
-			var yAxis = d3.svg.axis()
-							.scale(yScale)
-							.orient("left")
-							.tickValues(tickController.getTickArray(yMin,yMax,9));
-			
-			
-			mainGroup.append("g")
-					.attr('id','yAxis')
-					.attr("class", "y axis")
-					.attr('fill',"none")
-					.attr("display","none")
-					.attr("transform", "translate("+(0)+"," + 0 + ")")
-					.call(yAxis)
-					.selectAll('text');
-				
-			var leftMarginOfSvg = $(selectorElement).offset().left;
-							
-			var rectGroupRef = mainGroup
-									.selectAll('.rect')
-									.data(yAxisValues)
-									.enter()
+	for(var i=0;i<yAxisValues.length;i++)
+	{
+					var rectGroupRef = mainGroup
 									.append('rect')
 									.attr("class","rounded3DBar")
 									.attr('width',estimateDataBarWidth)
 									.attr('height',0)
-									.attr('x',function(d,i){return xScale(i)-(estimateDataBarWidth/2)})
+									.attr('x',function(){return xScale(i)-(estimateDataBarWidth/2)})
 									.attr('y',scaleHeight  - radiusY)
 								//	.attr('fill',function(d,i){ return commonColor});
 									 .attr("fill",function(d,i)
@@ -25571,16 +25658,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							.transition()
 							.duration(1500)
 							.ease('bounce')
-							.attr('height',function(d,i){return yScale(yMin)-yScale(d)-radiusY})
-							.attr('y',function(d,i){return yScale(d)});
+							.attr('height',function(d){return scaleHeight-yScale(cylinderHeight)-radiusY})
+							.attr('y',function(d,i){return yScale(cylinderHeight)});
 							
-			var upperEllipseRef = mainGroup
-										.selectAll('.ellipse')
-										.data(yAxisValues)
-										.enter()
+						var upperEllipseRef = mainGroup
+										
 										.append("ellipse")     
 										.attr("class","rounded3DBar")	
-										.attr("cx", function(d,i){return xScale(i)})           
+										.attr("cx", function(d){return xScale(i)})           
 										.attr("cy",scaleHeight - radiusY)         
 										.attr("rx",	function(d,i){ return estimateDataBarWidth/2})           
 										.attr("ry", function(d,i){ return radiusY})
@@ -25617,7 +25702,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			upperEllipseRef.transition()
 									   .duration(1500)
 									   .ease('bounce')
-									   .attr("cy",function(d,i){return yScale(d)})         
+									   .attr("cy",function(d,i){return yScale(cylinderHeight)})         
 		
 			var lowerEllipseRef = mainGroup
 										.selectAll('.ellipse')
@@ -25625,7 +25710,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										.enter()
 										.append("ellipse")   
 										.attr("class","rounded3DBar")
-										.attr("cx", function(d,i){return xScale(i)})           
+										.attr("cx", function(d){return xScale(i)})           
 										.attr("cy", scaleHeight - radiusY)         
 										.attr("rx",	estimateDataBarWidth/2 )           
 										.attr("ry", radiusY)
@@ -25658,9 +25743,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 										
 											return "url(#lowerEllipseGradient"+i+")";
 										 })		
-										
-			
-			var barWidth= estimateDataBarWidth*.8;
+					var barWidth= estimateDataBarWidth*.8;
 			var upperPathRadius = radiusY*.8;
 			
 			var rectGroupRef1 = mainGroup
@@ -25671,10 +25754,10 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						.attr("class","rounded3DBar")
 						.attr('width',barWidth)
 						.attr('height',0)
-						.attr('x',function(d,i){return xScale(i)-(barWidth/2)})
+						.attr('x',function(d){return xScale(i)-(barWidth/2)})
 						.attr('y',scaleHeight  - radiusY)
 					//	.attr('fill',function(d,i){ return barData[i].color});
-						.attr("fill",function(d,i)
+						.attr("fill",function(d)
 						 {
 
 							var rectGroupRefGradient = mainGroup.append("svg:defs")
@@ -25708,19 +25791,76 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.duration(1500)
 					.ease('bounce')
 					.attr('height',function(d,i){return upperPathHeight})
-					.attr('y',function(d,i){return yScale(d) - upperPathHeight - upperPathRadius});
+					.attr('y',function(d,i){return yScale(cylinderHeight) - upperPathHeight - upperPathRadius});
+					
+					
+		var upperEllipseRef1 = mainGroup
+								
+								.append("ellipse")     
+								.attr("class","rounded3DBar")	
+								.attr("cx", function(d){return xScale(i)})           
+								.attr("cy",scaleHeight - upperPathRadius)         
+								.attr("rx",	function(d,i){ return barWidth/2})           
+								.attr("ry", function(d,i){ return upperPathRadius})
+								.attr('fill',function(d){return ColorLuminance(barData[i].color, -0.3)});  
+						
+			upperEllipseRef1.transition()
+									   .duration(1500)
+									   .ease('bounce')
+									   .attr("cy", function(d,i){return yScale(cylinderHeight) - upperPathHeight - upperPathRadius});         
+
+			var lowerEllipseRef1 = mainGroup
+										
+										.append("ellipse")   
+										.attr("class","rounded3DBar")
+										.attr("cx", function(d){return xScale(i)})           
+										.attr("cy",scaleHeight - radiusY)         
+										.attr("rx",	barWidth/2 )           
+										.attr("ry", upperPathRadius)
+									//	.attr('fill',function(d){ return barData[i].color});	
+										.attr("fill",function(d)
+										 {
+
+											var rectGroupRefGradient = mainGroup.append("svg:defs")
+											.append("svg:linearGradient")
+											.attr("id", "rectGroupRefGradient"+i)
+											.attr("x1", "0%")
+											.attr("y1", "0%")
+											.attr("x2", "100%")
+											.attr("y2", "100%")
+										//	.attr("spreadMethod", "pad")
+											.attr("gradientTransform","rotate(-45)");
+
+											rectGroupRefGradient.append("stop")
+														.attr("offset", "0%")
+														.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.8)});
+														
+											rectGroupRefGradient.append("stop")
+														.attr("offset", "33%")
+														.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.6)});
+														
+											rectGroupRefGradient
+														.append("stop")
+														.attr("offset", "100%")
+														.attr("stop-color",function(){return ColorLuminance(barData[i].color, -0.5)});
+										
+											return "url(#rectGroupRefGradient"+i+")";
+										 })	
+				lowerEllipseRef1.transition()
+									   .duration(1500)
+									   .ease('bounce')
+									   .attr("cy", function(d,i){return yScale(cylinderHeight) - upperPathRadius});     
+
 			var pathFunction = d3.svg.line()
 				.x(function(d,i) { return d; })
 				.y(function(d,i) { return yCoord[i]; })
-				.interpolate("closed")
-			
-			for(var i=0;i<yAxisValues.length;i++)
-			{
+				.interpolate("closed")						
+	
 				var startPoint = xScale(i)-(barWidth/2);
-				var heightOfY = (yScale(yAxisValues[i]) - upperPathHeight - upperPathRadius);
+				var heightOfY = (yScale(cylinderHeight) - upperPathHeight - upperPathRadius);
 				var	xCoordDummy =[startPoint,startPoint,startPoint,startPoint,startPoint];
 				var	yCoordDummy =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
-				xCoord =[startPoint,startPoint-barWidth*.8,startPoint-barWidth,startPoint-barWidth*.8,startPoint];
+				xCoord =[startPoint,startPoint-estimateDataBarWidth*.9,startPoint-estimateDataBarWidth,startPoint-estimateDataBarWidth*.9,startPoint];
 				yCoord =[heightOfY,heightOfY,(heightOfY+upperPathHeight/2),heightOfY+upperPathHeight,heightOfY+upperPathHeight];
 				var path = mainGroup.append("path")
 					.attr("d", pathFunction(xCoordDummy))
@@ -25756,114 +25896,139 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.transition().delay(1500)
 					.duration(1000)
 					.attr("d", pathFunction(xCoord))
-				
+				if(scaleHeight - yScale(cylinderHeight)>40)
+				{
 				mainGroup.append("svg:image")
 					.attr("xlink:href", imagesArray[i])
 					.transition().duration(100).delay(1500)
 					.attr("x",xScale(i)-(barWidth/2))
-					.attr("y",yScale(yAxisValues[i])+10)
+					.attr("y",yScale(cylinderHeight)+15)
 					.attr("width", barWidth)
 					.attr("height", 20);	
-			}  
+				}	
+					mainGroup.append("text")   
+							.attr("class","roundedText")
+							.attr("x", function(d){return xScale(i)-9})           
+							.attr("y",function(d){ return yScale(cylinderHeight) - (upperPathHeight*.5)}) 
+							.text(function(d){return yAxisValues[i];})
+							.attr("fill",textStyleConfg["font-color"])
+							.style("font-weight","bold")
+							.style("font-size","16")
+							
+							
+				var textDummyArray1,text1 =textDescription[i];
+			//	console.log(text1);
+				textDummyArray1 =text1.split(/ +/);
+				var yPosition1 =10;
+				var textArray1=[],textSize1=2;
+				if(textStyleConfg["titleFontSize"]>10)
+				textSize1=6
+				else if(textStyleConfg["titleFontSize"]>=8 && textStyleConfg["titleFontSize"]<=10 )
+				textSize1=4
+				else
+				textSize1=2
+				textArray1 = wrapText(text1, estimateDataBarWidth*.8,textSize1);
+			
+				for(var k=0;k<textArray1.length;k++)
+				{
 				
-
-			var upperEllipseRef1 = mainGroup
-								.selectAll('.ellipse')
-								.data(yAxisValues)
-								.enter()
-								.append("ellipse")     
-								.attr("class","rounded3DBar")	
-								.attr("cx", function(d,i){return xScale(i)})           
-								.attr("cy",scaleHeight - upperPathRadius)         
-								.attr("rx",	function(d,i){ return barWidth/2})           
-								.attr("ry", function(d,i){ return upperPathRadius})
-								.attr('fill',function(d,i){return ColorLuminance(barData[i].color, -0.3)});  
-						
-			upperEllipseRef1.transition()
-									   .duration(1500)
-									   .ease('bounce')
-									   .attr("cy", function(d,i){return yScale(d) - upperPathHeight - upperPathRadius});         
-
-			var lowerEllipseRef1 = mainGroup
-										.selectAll('.ellipse')
-										.data(yAxisValues)
-										.enter()
-										.append("ellipse")   
-										.attr("class","rounded3DBar")
-										.attr("cx", function(d,i){return xScale(i)})           
-										.attr("cy",scaleHeight - radiusY)         
-										.attr("rx",	barWidth/2 )           
-										.attr("ry", upperPathRadius)
-									//	.attr('fill',function(d,i){ return barData[i].color});	
-										.attr("fill",function(d,i)
-										 {
-
-											var rectGroupRefGradient = mainGroup.append("svg:defs")
-											.append("svg:linearGradient")
-											.attr("id", "rectGroupRefGradient"+i)
-											.attr("x1", "0%")
-											.attr("y1", "0%")
-											.attr("x2", "100%")
-											.attr("y2", "100%")
-										//	.attr("spreadMethod", "pad")
-											.attr("gradientTransform","rotate(-45)");
-
-											rectGroupRefGradient.append("stop")
-														.attr("offset", "0%")
-														.attr("stop-color", function(){return ColorLuminance(barData[i].color, -0.8)});
-														
-											rectGroupRefGradient.append("stop")
-														.attr("offset", "33%")
-														.attr("stop-color", function(){return ColorLuminance(barData[i].color, 0.6)});
-														
-											rectGroupRefGradient
-														.append("stop")
-														.attr("offset", "100%")
-														.attr("stop-color",function(){return ColorLuminance(barData[i].color, -0.5)});
-										
-											return "url(#rectGroupRefGradient"+i+")";
-										 })	
-				lowerEllipseRef1.transition()
-									   .duration(1500)
-									   .ease('bounce')
-									   .attr("cy", function(d,i){return yScale(d) - upperPathRadius});     
-
-									mainGroup
-										.selectAll('.text')
-										.data(yAxisValues)
-										.enter()
-										.append("text")   
-										.attr("class","rounded3DBar")
-										.attr("x", function(d,i){return xScale(i)-9})           
-										.attr("y",function(d,i){ return yScale(d) - (upperPathHeight*.5)}) 
-										.attr("fill","black")	
-										.text(function(d,i){return getPercentage(d)+""+unit;})           
-									
-										
-								
-			svgElement.selectAll(".rounded3DBar").on("mousemove",function()
-										{
-											var x = d3.event.pageX;
-											var y = d3.event.pageY;
-											x=x-(leftMarginOfSvg+threeDAnalChart.left);
-											x = Math.round(xScale.invert(x));
-											var heading=barData[x].yTick;
-											var yAxisVal = yAxisValues[x];
-											var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":yAxisVal+" "+unit}
-																  ];
-											
-											toolTipManager.showToolTip(d3.event,"",(heading), false,yHeadingValueMap,d3.event.pageY*.96);	
-											
-										})
-										.on("mouseleave",function(){
-											toolTipManager.hideTooTip();
-										});
+					mainGroup.append("text")   	 
+							.attr("class","flagText")
+							.attr("x", function(d){return xScale(i)-(barWidth/2)-estimateDataBarWidth*.8})           
+							.attr("y",function(d){ return yScale(cylinderHeight) - upperPathHeight*.8+yPosition1*k}) 
+							.attr("fill",textStyleConfg["font-color"])
+							.style("font-size",textStyleConfg["titleFontSize"])
+							.style("font-family",textStyleConfg["font-family"])
+							.attr("dy",".8em")
+							.text(function(d){return textArray1[k];})
+				}
+			
+				var textDummyArray,text =lowerTextDes[i];
+				textDummyArray =text.split(/ +/);
+				var yPosition =10;
+				var textArray=[],textSize;
+				if(textStyleConfg["font-size"]>10)
+				textSize=6
+				else if(textStyleConfg["font-size"]>=8 && textStyleConfg["font-size"]<=10 )
+				textSize=5
+				else
+				textSize=2
+				textArray = wrapText(text, estimateDataBarWidth*.8,textSize);
+			//	console.log(textArray);
+				for(var k=0;k<textArray.length;k++)
+				{
+				mainGroup.append("text")   
+							.attr("class","cylinderText")
+							.attr("x", function(d){return xScale(i)-(textArray[k].length*(textSize*.7))*.5})           
+							.attr("y",function(d){ return yScale(cylinderHeight)+40+yPosition*k}) 
+							.attr("fill",textStyleConfg["font-color"])
+							.style("font-size",textStyleConfg["font-size"])
+							.style("font-family",textStyleConfg["font-family"],"important")
+							.attr("dy",".9em")
+							.text(function(d){return textArray[k];})
+							.transition().delay(25000)
+							
+				}			
+				cylinderHeight = cylinderHeight+upperPathHeight*5;	
+				
+	}	
+		
 	
-			function getPercentage(val)
-			{
-				return Math.round((val/total)*100);
-			}			
-					
+	function wrapText(text, widthOfTextArea,size) {
+	   var dummyTextArray = text.split(/ +/);
+	   var textArray =[],dummyText="",finalText="",counter=0,c=1;
+	 //  console.log(dummyTextArray.length);
+	 if(dummyTextArray.length==1)
+	 {
+		 textArray[counter]= text;
+		 return  textArray;
+	 }
+		for(var i=0;i<dummyTextArray.length;i++)
+		{
+			
+			if(dummyTextArray[i])
+			{	
+				if(i==0)
+				{
+					dummyText = dummyTextArray[i];
+		//			console.log("1"+dummyText+" "+finalText);
+					continue;
+				}
+				else
+				{
+					finalText = dummyText;
+					dummyText =dummyText+" "+dummyTextArray[i];
+					if(dummyText.length*size<widthOfTextArea)
+					{		
+						if(i==dummyTextArray.length-1)
+						{
+							textArray[counter++] = dummyText; 
+			//				console.log("4"+dummyText+" "+finalText);
+							c=0;
+						}
+				//		console.log("2"+dummyText+" "+finalText);
+						continue;
+					}
+					else
+					{
+						textArray[counter++] = finalText; 
+						if(i==dummyTextArray.length-1 && c==1)
+						{
+							textArray[counter++] = dummyTextArray[i]; 
+			//				console.log("5"+dummyText+" "+finalText);
+						}
+			//			console.log("3"+dummyText+" "+finalText);
+						finalText=""
+						dummyText =dummyTextArray[i];
+					}
+				}
+			}
+			
+			
+		}
+		
+		return textArray;
+	}	
 			//hide axis path
 				hideAxisPath(svgElement);
 				//set font here
@@ -25878,7 +26043,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 		
 		//	var array = positionArray;
-			var topValue = 0;
+			var topValue = 10;
 			var leftValue = 0;
 			var resetBtnGroupingLeft=d3.select("#"+selectedElementId).append("div")
 										  .style("left",(leftValue)+"px")
@@ -25914,7 +26079,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 									//	  .style("border-radius","3px")
 									//	  .style("cursor","pointer")
 									//	  .style("border","solid 2px")
-	
+			
 			var resetBtnGroupingLower = d3.select("#"+selectedElementId).append("div")
 										  .style("left",(width*.06+leftValue)+"px")
 										  .style("top",(height*.6+topValue)+"px")
@@ -26021,14 +26186,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 			function moveToLocation(lat, lng){
         var center = new google.maps.LatLng(lat, lng);
-		console.log(lat+" "+lng);
+	
         // using global variable:
         map.panTo(center);
         }
 			
 		function addMarker(loc){
 		var addresss;
-		console.log("hii"+JSON.stringify(loc));
+//		console.log("hii"+JSON.stringify(loc));
 		var iconBase = 	'img/icon/';
  		var latlng = new google.maps.LatLng(loc.lat, loc.lng);
 			   var position = new google.maps.LatLng(loc.lat, loc.lng);
@@ -26065,12 +26230,12 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
       var objIndex = getObjectPositionInArray(markers,loc);
       if(objIndex < 0){
         addMarker(loc);
-       console.log("Add");
+ //      console.log("Add");
       }else{
         drawPath(markers[objIndex],loc);
         deleteMarker(objIndex);
         addMarker(loc);
-        console.log("Update");
+ //       console.log("Update");
       }
    }
    
@@ -26083,12 +26248,12 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		 var objIndex = getObjectPositionInArray(markers,loctemp);
       if(objIndex < 0){
         addMarker(loctemp);
-       console.log("Add");
+  //     console.log("Add");
       }else{
      //   drawPath(markers[objIndex],loctemp);
         deleteMarker(objIndex);
         addMarker(loctemp);
-        console.log("Update");
+ //       console.log("Update");
       }
 /*      
 	  drawPath(markers[objIndex],loc);
@@ -26146,24 +26311,72 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var heightLeft = heightLeft*.8;
 			for(var i=0;i<rectColorArray.length;i++)
 			{
-				mainGroupLeft.append("rect")
+			 mainGroupLeft.append("rect")
+					.attr("class","rect"+i)
 					.attr("x",0)
 					.attr("y",i*rectHeightLeft)
 					.attr("width",scaleWidthLeft)
 					.attr("height",rectHeightLeft-2)
 					.attr("fill",rectBackColor)
+					.attr("key",1)
+					.attr("val",i)
+					.on("click",function()
+					{
+					/*	var key = parseInt(d3.select(this).attr("key"));
+						if(key==1)
+						{
+							d3.select(this).attr("key",0);
+							var val=parseInt(d3.select(this).attr("val"));
+							d3.select(".rect"+val).transition().duration(500).attr("width",scaleWidthLeft*.1);
+							d3.select(".smallRect"+val).transition().duration(500).attr("x",0)
+						}
+						else
+						{
+							d3.select(this).attr("key",1);
+							d3.select(this).attr("width",scaleWidthLeft);
+						}*/
+					})
 					
 					
 				mainGroupLeft.append("rect")
+					.attr("class","smallRect"+i)
 					.attr("x",scaleWidthLeft*.9)
 					.attr("y",i*rectHeightLeft)
 					.attr("rx",5)
 					.attr("ry",5)
+					.attr("key",1)
+					.attr("val",i)
 					.attr("width",scaleWidthLeft*.1)
 					.attr("height",rectHeightLeft-2)
 					.attr("fill",rectColorArray[i])
+					.on("click",function()
+					{
+						var key = parseInt(d3.select(this).attr("key"));
+						var val=parseInt(d3.select(this).attr("val"));
+						if(key==1)
+						{
+							d3.select(this).attr("key",0);
+							
+							d3.select(".rect"+val).transition().duration(500).attr("width",scaleWidthLeft*.1);
+							d3.select(".smallRect"+val).transition().duration(500).attr("x",0)
+							d3.select("#textArray"+val).transition().duration(500).attr("x",-200)
+							d3.select("#textUnit"+val).transition().duration(500).attr("x",-200)
+							d3.select("#textValue"+val).transition().duration(500).attr("x",-200)
+						}
+						else
+						{
+							
+							d3.select(this).attr("key",1);
+							d3.select(".rect"+val).transition().duration(500).attr("width",scaleWidthLeft);
+							d3.select(".smallRect"+val).transition().duration(500).attr("x",scaleWidthLeft*.9)
+							d3.select("#textArray"+val).transition().duration(500).attr("x",scaleWidthLeft*.1)
+							d3.select("#textUnit"+val).transition().duration(500).attr("x",scaleWidthLeft*.1)
+							d3.select("#textValue"+val).transition().duration(500).attr("x",scaleWidthLeft*.3)
+						}
+					})
 					
 				mainGroupLeft.append("text")
+					.attr("id","textArray"+i)
 					.attr("x",(scaleWidthLeft*.1))
 					.attr("y",i*rectHeightLeft)
 					.text(textArray[i])
@@ -26173,6 +26386,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.style("font-size",9,"important")
 					
 				mainGroupLeft.append("text")
+					.attr("id","textUnit"+i)
 					.attr("x",(scaleWidthLeft*.1))
 					.attr("y",i*rectHeightLeft+rectHeightLeft*.8)
 					.text(units[i])
@@ -26182,14 +26396,15 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					.style("font-size",7,"important")	
 					
 				mainGroupLeft.append("text")
+					.attr("id","textValue"+i)
 					.attr("class","currentValueText"+i)
 					.attr("y",i*rectHeightLeft+rectHeightLeft*.5)
+					.attr("x",(scaleWidthLeft*.3))
 					.text("")
 					.attr("dy",".3em")
 					.attr("fill","white")
 					.style("font-family","calibri","important")
 					.style("font-size",14,"important")		
-					
 				
 			}
 							
@@ -26206,9 +26421,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var setMargin={left:widthUpper*0.05,right:widthUpper*0.05,bottom:heightUpper*0.08,top:heightUpper*0.05};
 			var scaleWidth = widthUpper - setMargin.left - setMargin.right;
 			var scaleHeight = heightUpper - setMargin.top - setMargin.bottom;
-	
-			
-				
+		
 			var yMin =[],yMax=[],xScale,yScale=[],counter = 0,xAxisIndex =[],yAxis=[],yAxisGroup =[],largestStringLen=0;
 			var lineStrokeWidth = 1,lineGraph=[];
 			for(var i=0;i<data.xAxisData.length;i++)
@@ -26222,7 +26435,105 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				.domain([0,xAxisIndex.length-1])
 				.range([0,scaleWidth]);
 			
-
+		d3.select(window).on('keydown',function()
+		{
+			var keyCode = d3.event.keyCode;
+			var xPostionOfLine = d3.select(".lineMove").attr("x1");
+		
+			var value = parseInt(xScale.invert(xPostionOfLine)) -1;
+			var update= xScale(value)+setMargin.left;
+	
+			if(keyCode==39)
+			{
+		
+				update = xScale(value+1)+setMargin.left;
+				if(value+1>xAxisData.length-1)
+				{
+					update = xScale(0)+setMargin.left;
+					value = -1;
+				}
+				d3.select(".lineMove").attr("x1",update).attr("x2",update);
+				for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
+				{
+					if(textIndex<largeValueLines.length)
+					{
+						var val = largeValueLines[textIndex]["data"][value+1];
+						var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+						if(key == 1)
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+						.text(val);
+						else
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(-200)-(val.toString().length)*4)
+						.text(val);
+					}
+					else
+					{
+						var val = yAxisData[textIndex-largeValueLines.length]["data"][value+1];
+						var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+						if(key == 1)
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+						.text(val);
+						else
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(-200)-(val.toString().length)*4)
+						.text(val);
+					}
+			
+				}
+				resetMarker1(array[value+1]);
+				
+			}
+			else if(keyCode==37)
+			{
+			
+				update = xScale(value-1)+setMargin.left;
+				if(value-1<0)
+				{
+					update = xScale(xAxisData.length-1)+setMargin.left;
+					value = xAxisData.length;
+				}
+				d3.select(".lineMove").attr("x1",update).attr("x2",update);
+				
+				for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
+				{
+					if(textIndex<largeValueLines.length)
+					{
+						var val = largeValueLines[textIndex]["data"][value-1];
+						var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+						if(key == 1)
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+						.text(val);
+						else
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(-200)-(val.toString().length)*4)
+						.text(val);
+					}
+					else
+					{
+						var val = yAxisData[textIndex-largeValueLines.length]["data"][value-1];
+						var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+						if(key == 1)
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+						.text(val);
+						else
+						d3.select(".currentValueText"+(textIndex))
+						.attr("x",(-200)-(val.toString().length)*4)
+						.text(val);
+					}
+			
+				}
+				resetMarker1(array[value-1]);
+			}
+			
+						
+		//	}
+		});
+		
 			
 			var upperSvg = d3.select(".resetBtnGroupingUpper")
 				.append("svg")
@@ -26236,31 +26547,47 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					var x = d3.event.pageX-leftMarginOfSvg;
 					var y = d3.event.pageY
 					var xInvert = parseInt(xScale.invert(x));// && y>setMargin.top && y<=(setMargin.bottom + scaleHeight)
+					xInvert = xInvert -1;
+					console.log(xInvert+" "+x);
+					//mainGroup.append("circle").attr("cx",xScale(i)).attr("cy",setMargin.top+30).attr("r",5).attr("fill","white");
 					if( x>setMargin.left && x<(widthUpper-setMargin.right)  && y>setMargin.top && y<=(setMargin.bottom + scaleHeight))
 					{
-						
-						for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
-						{	
-							if(textIndex<largeValueLines.length)
-							{
-								var val = largeValueLines[textIndex]["data"][xInvert];
-								d3.select(".currentValueText"+(textIndex))
-								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
-								.text(val);
-							}
-							else
-							{
-								var val = yAxisData[textIndex-largeValueLines.length]["data"][xInvert];
-								d3.select(".currentValueText"+(textIndex))
-								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
-								.text(val);
-							}
-						}
+				//		upperSvg.append("circle").attr("cx",x).attr("cy",y).attr("r",5).attr("fill","white");
 						d3.select(".lineMove")
 							.attr("x1",x)
 							.attr("y1",setMargin.top)
 							.attr("x2",x)
 							.attr("y2",scaleHeight+setMargin.top)
+						for(var textIndex = 0 ; textIndex<rectColorArray.length ;textIndex++)
+						{	
+							if(textIndex<largeValueLines.length)
+							{
+								var val = largeValueLines[textIndex]["data"][xInvert];
+								var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+								if(key == 1)
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+								else
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(-200)-(val.toString().length)*4)
+								.text(val);
+							}
+							else
+							{
+								var val = yAxisData[textIndex-largeValueLines.length]["data"][xInvert];
+								var key = parseInt(d3.select(".smallRect"+textIndex).attr("key"));
+								if(key == 1)
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(scaleWidthLeft*.5)-(val.toString().length)*4)
+								.text(val);
+								else
+								d3.select(".currentValueText"+(textIndex))
+								.attr("x",(-200)-(val.toString().length)*4)
+								.text(val);
+							}
+						}
+						resetMarker1(array[xInvert])
 				/*
 						upperSvg.append("line")
 							.attr("class","lineMove")
@@ -26272,17 +26599,18 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							.attr("stroke","black")
 							.attr("stroke-width",2)*/
 					}
-					console.log(array[xInvert]);
-					resetMarker1(array[xInvert])
+	//				console.log(array[xInvert]);
+					
 					
 				});
-										
+								
+						
 						upperSvg.append("line")
 							.attr("class","lineMove")
-							.attr("x1",0)
-							.attr("y1",0)
-							.attr("x2",0)
-							.attr("y2",0)
+							.attr("x1",setMargin.left)
+							.attr("y1",setMargin.top)
+							.attr("x2",setMargin.left)
+							.attr("y2",scaleHeight+setMargin.top)
 							.attr("fill","none")
 							.attr("stroke","white")
 							.attr("stroke-width",2)
@@ -26290,9 +26618,18 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var mainGroup = upperSvg.append("g")
 				.attr("class","mainGroup")
 				.attr("transform","translate("+setMargin.left+","+setMargin.top+")")
+		/*				
+				mainGroup.append("line")
+				.attr("x1",0).attr("y1",setMargin.top+20)
+				.attr("x2",scaleWidth).attr("y2",setMargin.top+20)
+				.attr("stroke","white").attr("stroke-width",4)
+				.attr("class","appendLine");	
 				
-			
-		
+				for(var i=0;i<xAxisIndex.length;i++)
+				{
+					mainGroup.append("circle").attr("cx",xScale(i)).attr("cy",setMargin.top+30).attr("r",5).attr("fill","white");
+				}	
+		*/
 			var xAxis = d3.svg.axis()
 				.scale(xScale)
 				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),largestStringLen,(scaleWidth)));
@@ -26427,6 +26764,2086 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 		
 		}
 	}
+	
+	
+	var simpleBarChartGraph = 
+	{
+		simpleBarChartAnalysis:function(data)
+		{
+			var xAxisData = data.xAxisData;
+			var yAxisData = data.yAxisData;
+			var title = data.title;
+			var xAxisLabel = data.xAxisLabel;
+			var yAxisLabel = data.yAxisLabel;
+			var color = data.color;
+			var yMin,yMax,xAxisIndex=[],xAxisDataMaxSize=0;
+			yMin = minMaxController.getMin(yAxisData);
+			yMax = minMaxController.getMax(yAxisData);
+			
+			for(var i=0;i<xAxisData.length;i++)
+			{
+				xAxisIndex[i]=i;
+				if(xAxisDataMaxSize<xAxisData[i].length)
+				xAxisDataMaxSize =xAxisData[i].length;
+			}
+			var leftMargin = marginController.leftMarginController(yAxisData);
+			var margin={left:leftMargin,right:width*0.05,bottom:65,top:height*.1};
+			
+			var scaleWidth = width - margin.left - margin.right;
+			var scaleHeight = height - margin.top - margin.bottom;
+			
+			var widthOfBar = scaleWidth/(1.1*yAxisData.length);
+			
+			
+		
+			var mainGroup = svgElement.append("g").attr("class","mainGroup")
+				.attr("transform","translate("+margin.left+","+margin.top+")");
+			
+			var xScale = d3.scale.linear()
+				.domain([0,(xAxisIndex.length-1)])
+				.range([widthOfBar*.5,scaleWidth-widthOfBar*.5]);
+			
+			var yTickArray = tickController.getTickArray(yMin,yMax,8);	
+/*			var yTickLine = mainGroup.append("line").attr("x1",widthOfBar*.1).attr("y1",0)
+				.attr("x2",widthOfBar*.1).attr("y2",scaleHeight)
+				.attr("stroke","black")
+				.attr("stroke-width",1)
+			
+			var gap = (scaleHeight)/(yTickArray.length-1);
+			var dec = scaleHeight;
+			for(var i=0;i<yTickArray.length;i++)
+			{
+				var lines = mainGroup.append("line").attr("x1",0).attr("y1",dec)
+				.attr("x2",widthOfBar*.1).attr("y2",dec)
+				.attr("stroke","black")
+				.attr("stroke-width",1)
+				dec = dec -gap;
+			}
+			*/
+			
+			var yScale = d3.scale.linear()
+				.domain([0,yMax])
+				.range([scaleHeight,0]); 
+
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.tickValues(tickController.getXTickArray(0,(xAxisIndex.length),xAxisDataMaxSize,(scaleWidth)));
+									  
+										 
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickValues(yTickArray);
+			
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("transform","translate("+(0)+","+(scaleHeight)+")")
+				.call(xAxis)
+				.attr("display","none")
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black")
+				.text(function(d){return xAxisData[d]});
+		
+			// Group for Y Axis	
+			//	yAxis Left Align
+			var yAxisGroup = mainGroup.append("g")
+				.attr("class","yAxisGroup")
+				.attr("transform","translate("+0+","+0+")")
+				.call(yAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black");
+				
+			
+			for(var i = 0;i<xAxisIndex.length;i++)
+			{
+				var text =xAxisData[i];
+				var yPosition =12;
+				var textArray=[],textSize=textStyleConfg["font-size"];
+				textArray = wrapText(text, widthOfBar,textSize);
+				for(var k=0;k<textArray.length;k++)
+				{
+				mainGroup.append("text")   
+							.attr("class","xAxisTicks")
+							.attr("x", function(d){return xScale(i)-(textArray[k].length*(textSize*.5))*.5})           
+							.attr("y",function(d){ return scaleHeight+5+yPosition*k}) 
+							.attr("fill",textStyleConfg["font-color"])
+							.style("font-size",textStyleConfg["font-size"])
+							.style("font-family",textStyleConfg["font-family"],"important")
+							.attr("dy",".9em")
+							.text(function(d){return textArray[k];})
+							.transition().delay(25000)
+							
+				}		
+			}
+			for(var i = 0;i<yAxisData.length;i++)
+			{
+				
+				mainGroup.append("rect")
+					.attr("fill",color)
+					.attr("x",xScale(i)-widthOfBar*.5)
+					.attr("y",scaleHeight)
+					.attr("height",0)
+					.attr("value",i)
+					.attr("width",widthOfBar)
+					.on("mousemove",function()
+					{
+						var val = d3.select(this).attr("value");
+						var heading = xAxisData[val];
+						var yHeadingValueMap=[{"headingName":yAxisLabel,"headingVal":yAxisData[val]}];
+						toolTipManager.showToolTip(d3.event,"",heading, false,yHeadingValueMap,d3.event.pageY*.95);
+					})
+					.on("mouseleave",function()
+					{
+							toolTipManager.hideTooTip();
+					})
+					.transition().duration(2000).ease("elastic")
+					.attr("x",xScale(i)-widthOfBar*.5)
+					.attr("y",yScale(yAxisData[i]))
+					.attr("height",scaleHeight-yScale(yAxisData[i]))
+					.attr("width",widthOfBar)
+					
+				
+				
+			}
+	
+	function wrapText(text, widthOfTextArea,size) {
+	   var dummyTextArray = text.split(/ +/);
+	   var textArray =[],dummyText="",finalText="",counter=0,c=1;
+	 //  console.log(dummyTextArray.length);
+	 if(dummyTextArray.length==1)
+	 {
+		 textArray[counter]= text;
+		 return  textArray;
+	 }
+		for(var i=0;i<dummyTextArray.length;i++)
+		{
+			
+			if(dummyTextArray[i])
+			{	
+				if(i==0)
+				{
+					dummyText = dummyTextArray[i];
+		//			console.log("1"+dummyText+" "+finalText);
+					continue;
+				}
+				else
+				{
+					finalText = dummyText;
+					dummyText =dummyText+" "+dummyTextArray[i];
+					if(dummyText.length*size<widthOfTextArea)
+					{		
+						if(i==dummyTextArray.length-1)
+						{
+							textArray[counter++] = dummyText; 
+			//				console.log("4"+dummyText+" "+finalText);
+							c=0;
+						}
+				//		console.log("2"+dummyText+" "+finalText);
+						continue;
+					}
+					else
+					{
+						textArray[counter++] = finalText; 
+						if(i==dummyTextArray.length-1 && c==1)
+						{
+							textArray[counter++] = dummyTextArray[i]; 
+			//				console.log("5"+dummyText+" "+finalText);
+						}
+			//			console.log("3"+dummyText+" "+finalText);
+						finalText=""
+						dummyText =dummyTextArray[i];
+					}
+				}
+			}
+			
+			
+		}
+		
+		return textArray;
+	}	
+			// *********Title,X Axis label,Y Axis Lable
+			
+			// X Axis Lable				
+			var pixcelPerChar=7;
+			var xLabelTotalPixcel=data.xAxisLabel.toString().length*pixcelPerChar;
+			var xLabelTop=height-5;
+			var xLabelLeft=width/2-	xLabelTotalPixcel/2;
+			axisLabelController.appendLabel(data.xAxisLabel,xLabelLeft,xLabelTop,0,svgElement,textStyleConfg.xLabelColor,600);
+			
+
+			// Y Axis Lable
+			// yAxis Lable Left Align
+			var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;;
+			var yLabelTop=height/2+yLabelTotalPixcel/2;
+			var yLabelLeft=13;
+			axisLabelController.appendLabel(data.yAxisLabel,yLabelLeft,yLabelTop,-90,svgElement,textStyleConfg.xLabelColor,600);	
+				
+			/*
+			// yAxis Lable Right Align
+			var yLabelTotalPixcel=data.yAxisLabel.toString().length*pixcelPerChar;;
+			var yLabelTop=height/2-yLabelTotalPixcel/2;
+			var yLabelLeft=13;
+			axisLabelController.appendLabel(data.yAxisLabel,width-15,yLabelTop,90,svgElement,textStyleConfg.xLabelColor,600);	
+			*/
+			// For Title
+			
+			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
+			axisLabelController.appendLabel(title,leftIndicator,15,0,svgElement,textStyleConfg.xLabelColor,800);	
+			
+			//hide axis path
+				hideAxisPath(svgElement);
+				//set font here
+				setTextStyleAndSvgBackGround(svgElement);
+			
+			
+		}
+	}
+		
+	var rankWiseInformaticChartGraph = 
+	{
+		rankWiseInformaticChartAnalysis:function(data)
+		{
+			
+			var rank = data.rank;
+			var icon = data.icon;
+			var name = data.name;
+			
+			var description = data.description;
+			var innerCircleColor=data.innerCircleColor;
+			var outerCircleColor = data.outerCircleColor;
+			var margin={left:width*0.001,right:width*0.001,bottom:height*.001,top:height*.001};
+			
+			var scaleWidth = width - margin.left - margin.right;
+			var scaleHeight = height - margin.top - margin.bottom;
+			
+		
+			
+				
+			var mainGroup = svgElement.append("g").attr("class","mainGroup")
+				.attr("transform","translate("+margin.left+","+margin.top+")")
+			
+			var heightRatio = scaleHeight/(rank.length*2);
+			var radiusOfCircle = scaleWidth*.2<heightRatio ?  scaleWidth*.2 : heightRatio;
+			radiusOfCircle = radiusOfCircle*.8
+			var yScale = d3.scale.linear()
+				.domain([0,rank.length-1])
+				.range([radiusOfCircle,scaleHeight-radiusOfCircle]); 
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left");
+			var yAxisGroup = mainGroup.append("g")
+				.attr("class","yAxisGroup")
+				.attr("transform","translate("+0+","+0+")")
+				.call(yAxis)
+				.attr("display","none")
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black");
+			
+			var xCord = [],yCord =[];
+			
+			var lineFunction = d3.svg.line()
+				.x(function(d,i) { return xCord[i]; })
+				.y(function(d,i) { return d; })
+				.interpolate("closed");
+			var factor = 20,startPoint = radiusOfCircle*2;
+								// filters go in defs element
+var defs = svgElement.append("defs");
+
+// create filter with id #drop-shadow
+// height=130% so that the shadow is not clipped
+var filter = defs.append("filter")
+    .attr("id", "drop-shadow")
+    .attr("height", "150%");
+
+// SourceAlpha refers to opacity of graphic that this filter will be applied to
+// convolve that with a Gaussian with standard deviation 3 and store result
+// in blur
+filter.append("feGaussianBlur")
+    .attr("in", "SourceAlpha")
+    .attr("stdDeviation", 5)
+    .attr("result", "blur");
+
+// translate output of Gaussian blur to the right and downwards with 2px
+// store result in offsetBlur
+var feOffset = filter.append("feOffset")
+    .attr("in", "blur")
+    .attr("dx", 5)
+    .attr("dy", 5)
+    .attr("result", "offsetBlur");
+
+// overlay original SourceGraphic over translated blurred opacity by using
+// feMerge filter. Order of specifying inputs is important!
+var feMerge = filter.append("feMerge");
+
+feMerge.append("feMergeNode")
+    .attr("in", "offsetBlur")
+feMerge.append("feMergeNode")
+    .attr("in", "SourceGraphic");
+
+	
+
+			for(var i=0;i<rank.length;i++)
+			{
+			
+					
+			//Left Side Circle
+			
+				var yStart=yScale(i)-radiusOfCircle*.7,yEnd = yScale(i)+radiusOfCircle*.7;
+				
+				xCord = [startPoint,scaleWidth*.5-factor,scaleWidth*.5,scaleWidth*.5-factor,startPoint]
+				yCord =[yStart,yStart,yScale(i),yEnd,yEnd]
+				
+				
+				pathRefLeft = mainGroup.append("path")
+					.attr("d", lineFunction(yCord))	
+					.attr("class","leftPath")	  
+					.attr("fill",function()
+					{
+							var leftOuterPathGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "leftOuterPathGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							leftOuterPathGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, 0.5)});
+							leftOuterPathGradient
+										.append("stop")
+										.attr("offset", "1")
+										.attr("stop-color",function(){return ColorLuminance(outerCircleColor, -0.5)});
+						
+							return "url(#leftOuterPathGradient"+i+")";
+						
+					})
+					.style("filter", "url(#drop-shadow)")
+			/*		 <defs>
+					<filter id="f1" x="0" y="0" width="200%" height="200%">
+					  <feOffset result="offOut" in="SourceGraphic" dx="20" dy="20" />
+					  <feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+					  <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+					</filter>
+				  </defs>
+				   <rect width="90" height="90" stroke="green" stroke-width="3" fill="yellow" filter="url(#f1)" />
+			*/		var yPosition =10;
+					var textArray=[],textSize=5;
+				/*	if(textStyleConfg["font-size"]>10)
+					textSize=6
+					else if(textStyleConfg["font-size"]>=8 && textStyleConfg["font-size"]<=10 )
+					textSize=4
+					else
+					textSize=2
+					*/
+					var widthOfPath = scaleWidth*.5 - radiusOfCircle*2-radiusOfCircle-factor;
+					var textPositionGap=10;
+					textArray = wrapText(data.name[i],widthOfPath ,textSize);
+				//	console.log(name[i]);
+					for(var k=0;k<textArray.length;k++)
+					{
+						mainGroup.append("text")   
+									.attr("class","leftPathText")
+									.attr("x", function(d){return radiusOfCircle*2+radiusOfCircle+textPositionGap })           
+									.attr("y",function(d){ return yScale(i)+yPosition*k}) 
+									.attr("fill",textStyleConfg["chartTitleColor"])//textStyleConfg["font-color"]
+									.style("font-size",textStyleConfg["titleFontSize"])//textStyleConfg["font-size"]
+									.style("font-family",textStyleConfg["font-family"])//textStyleConfg["font-family"],"important"
+									.attr("dy",".1em")
+									.attr("font-weight","bold")
+									.text(function(d){return textArray[k];})			
+					}	
+			
+				mainGroup.append("circle")
+					.attr("class","leftOuterCircle")
+					.attr("cx",radiusOfCircle*2)
+					.attr("cy",yScale(i))
+					.attr("r",radiusOfCircle)
+					.attr("fill",function()
+					{
+							var leftOuterCircleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "leftOuterCircleGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							leftOuterCircleGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, 0.5)});
+							leftOuterCircleGradient
+										.append("stop")
+										.attr("offset", "1")
+										.attr("stop-color",function(){return ColorLuminance(outerCircleColor, -0.5)});
+						
+							return "url(#leftOuterCircleGradient"+i+")";
+						
+					})
+					.style("filter", "url(#drop-shadow)")
+					
+				mainGroup.append("circle")
+					.attr("class","leftInnerCircle")//chart-list-number
+					.attr("cx",radiusOfCircle*2)
+					.attr("cy",yScale(i))
+					.attr("r",radiusOfCircle*.6)
+					.attr("fill",function()
+					{
+							var leftInnerCircleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "leftInnerCircleGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							leftInnerCircleGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(innerCircleColor[i], -0.5)});
+							leftInnerCircleGradient
+										.append("stop")
+										.attr("offset", "1")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], 0.5)});
+						
+							return "url(#leftInnerCircleGradient"+i+")";
+						
+					})
+					.attr("stroke",ColorLuminance(innerCircleColor[i],0.4))
+					.attr("stroke-width",2)
+			
+					mainGroup.append("text")   
+						.attr("class","rank")
+						.attr("x", function(){return radiusOfCircle*2-(rank[i].toString().length*5)*.7})           
+						.attr("y",function(){ return yScale(i)}) 
+						.attr("fill",textStyleConfg["font-color"])//textStyleConfg["font-color"]
+						.style("font-size",textStyleConfg["titleFontSize"])//textStyleConfg["font-size"]----textStyleConfg["titleFontSize"]
+						.style("font-family",textStyleConfg["font-family"])//textStyleConfg["font-family"]
+						.attr("dy",".3em")
+						.attr("font-weight","bold")
+						.text(function(){return rank[i];})
+						
+			//Right Side Circle
+			
+				var startPointRight = scaleWidth - radiusOfCircle*2; 	
+				
+				xCord = [startPointRight,scaleWidth*.5+factor,scaleWidth*.5,scaleWidth*.5+factor,startPointRight]
+			
+				pathRefLeft = mainGroup.append("path")
+					.attr("d", lineFunction(yCord))	
+					.attr("class","RightPath")	  
+					.attr("fill",function()
+					{
+							var rightOuterPathGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rightOuterPathGradient"+i)
+							.attr("x1", startPointRight)
+							.attr("y1", yStart)
+							.attr("x2", scaleWidth*.5)
+							.attr("y2", yScale(i))
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							rightOuterPathGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(innerCircleColor[i], 0.9)});
+							rightOuterPathGradient
+										.append("stop")
+										.attr("offset", "75%")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], 0.2)});
+							rightOuterPathGradient
+										.append("stop")
+										.attr("offset", "80%")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], -0.3)});
+						
+							return "url(#rightOuterPathGradient"+i+")";
+						
+					})	
+					.style("filter", "url(#drop-shadow)")
+			
+				
+				textArray=[];	
+				textArray = wrapText(data.description[i],widthOfPath ,textSize);
+				for(var k=0;k<textArray.length;k++)
+				{
+				mainGroup.append("text")   
+							.attr("class","leftPathText")
+							.attr("x", function(d){return scaleWidth*.5+factor })           
+							.attr("y",function(d){ return yScale(i)-radiusOfCircle*.3+yPosition*k}) 
+							.attr("fill",textStyleConfg["font-color"])//textStyleConfg["font-color"]
+							.style("font-size",textStyleConfg["font-size"])//textStyleConfg["font-size"]
+							.style("font-family",textStyleConfg["font-family"])//textStyleConfg["font-family"],"important"
+							.attr("dy",".1em")
+							.text(function(d){return textArray[k];})
+							
+							
+				}	
+			
+				mainGroup.append("circle")
+					.attr("class","rightOuterCircle")
+					.attr("cx",scaleWidth - radiusOfCircle*2)
+					.attr("cy",yScale(i))
+					.attr("r",radiusOfCircle)
+					.attr("fill",function()
+					{
+							var rightOuterCircleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rightOuterCircleGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							rightOuterCircleGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(innerCircleColor[i], 0.5)});
+							rightOuterCircleGradient
+										.append("stop")
+										.attr("offset", "1")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], -0.5)});
+						
+							return "url(#rightOuterCircleGradient"+i+")";
+						
+					})
+					.style("filter", "url(#drop-shadow)")
+				
+				
+				
+				mainGroup.append("circle")
+					.attr("class","rightInnerCircle")
+					.attr("cx",scaleWidth - radiusOfCircle*2)
+					.attr("cy",yScale(i))
+					.attr("r",radiusOfCircle*.6)
+					.attr("fill",function()
+					{
+							var rightInnerCircleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rightInnerCircleGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+							.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							rightInnerCircleGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(innerCircleColor[i], -0.5)});
+							rightInnerCircleGradient
+										.append("stop")
+										.attr("offset", "1")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], 0.5)});
+						
+							return "url(#rightInnerCircleGradient"+i+")";
+						
+					})
+					.attr("stroke",ColorLuminance(innerCircleColor[i],0.4))
+					.attr("stroke-width",3)
+			
+				mainGroup.append("svg:image")
+					.attr("xlink:href", icon[i])
+				//	.transition().duration(100).delay(duration*2)
+					.attr("x",scaleWidth - radiusOfCircle*2-radiusOfCircle*.4)
+					.attr("y",yScale(i)-radiusOfCircle*.4)
+					.attr("width", radiusOfCircle*.8)
+					.attr("height", radiusOfCircle*.8);
+					
+				mainGroup.append("line")
+					.attr("x1",scaleWidth*.5-factor)
+					.attr("y1",yEnd)
+					.attr("x2",scaleWidth*.5+factor)
+					.attr("y2",yStart)
+				//	.attr("stroke",ColorLuminance(outerCircleColor,-0.5))
+					.attr("stroke",function()
+					{
+							var lineGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "line"+i)
+							.attr("x1", scaleWidth*.5-factor)
+							.attr("y1", yEnd)
+							.attr("x2", scaleWidth*.5+factor)
+							.attr("y2",yStart)
+							 .attr("gradientUnits", "userSpaceOnUse")
+				//			.attr("spreadMethod", "pad")
+				//			.attr("gradientTransform","rotate(0)");
+
+							lineGradient.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, -0.4)});
+							lineGradient.append("stop")
+										.attr("offset", "60%")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, -0.6)});
+							lineGradient
+										.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], -0.6)});
+							
+						
+							return "url(#line"+i+")";
+						
+					})
+					.attr("stroke-width",2)		
+					
+					mainGroup.append("line")
+					.attr("x1",scaleWidth*.5-factor)
+					.attr("y1",yStart)
+					.attr("x2",scaleWidth*.5+factor)
+					.attr("y2",yEnd)
+				//	.attr("stroke",ColorLuminance(outerCircleColor,-0.5))
+					.attr("stroke",function()
+					{
+							var lineGradient1 = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "line1"+i)
+							.attr("x1", scaleWidth*.5-factor)
+							.attr("y1", yStart)
+							.attr("x2", scaleWidth*.5+factor)
+							.attr("y2",yEnd)
+							 .attr("gradientUnits", "userSpaceOnUse")
+				//			.attr("spreadMethod", "pad")
+				//			.attr("gradientTransform","rotate(0)");
+
+							lineGradient1.append("stop")
+										.attr("offset", "0")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, -0.4)});
+							lineGradient1.append("stop")
+										.attr("offset", "15%")
+										.attr("stop-color", function(){return ColorLuminance(outerCircleColor, -0.6)});
+							lineGradient1
+										.append("stop")
+										.attr("offset", "75%")
+										.attr("stop-color",function(){return ColorLuminance(innerCircleColor[i], -0.6)});
+							
+						
+							return "url(#line1"+i+")";
+						
+					})
+					.attr("stroke-width",3)		
+				
+			}
+			
+			function wrapText(text, widthOfTextArea,size) {
+				var dummyTextArray = text.split(/ +/);
+				var textArray =[],dummyText="",finalText="",counter=0,c=1;
+				 console.log(dummyTextArray);
+				if(dummyTextArray.length==1)
+				{
+				 textArray[counter]= text;
+				 return  textArray;
+				}
+				for(var i=0;i<dummyTextArray.length;i++)
+				{
+					
+					if(dummyTextArray[i])
+					{	
+						if(i==0)
+						{
+							dummyText = dummyTextArray[i];
+				//			console.log("1"+dummyText+" "+finalText);
+							continue;
+						}
+						else
+						{
+							finalText = dummyText;
+							dummyText =dummyText+" "+dummyTextArray[i];
+							if(dummyText.length*size<widthOfTextArea)
+							{		
+								if(i==dummyTextArray.length-1)
+								{
+									textArray[counter++] = dummyText; 
+					//				console.log("4"+dummyText+" "+finalText);
+									c=0;
+								}
+						//		console.log("2"+dummyText+" "+finalText);
+								continue;
+							}
+							else
+							{
+								textArray[counter++] = finalText; 
+								if(i==dummyTextArray.length-1 && c==1)
+								{
+									textArray[counter++] = dummyTextArray[i]; 
+					//				console.log("5"+dummyText+" "+finalText);
+								}
+					//			console.log("3"+dummyText+" "+finalText);
+								finalText=""
+								dummyText =dummyTextArray[i];
+							}
+						}
+					}
+					
+					
+				}
+				
+				return textArray;
+			}	
+			
+			
+			//hide axis path
+				hideAxisPath(svgElement);
+			//set font here
+	//			setTextStyleAndSvgBackGround(svgElement);
+		}
+	}
+	
+	
+	
+	var infographicBarChartGraph = 
+	{
+		infographicBarChartAnalysis:function(data)
+		{
+			var rank = data.rank;
+			var icon = data.icon;
+			var yAxisData = data.yAxisData;
+			var description = data.description;
+			var color = data.color;
+			var title = data.title;
+			var backColor =data.backColor;
+			var unit = data.unit;
+			
+			var margin={left:width*0.001,right:width*0.001,bottom:height*.03,top:height*.001};
+			
+			var scaleWidth = width - margin.left - margin.right;
+			var scaleHeight = height - margin.top - margin.bottom;
+			
+	/*		var svgElement = d3.select("body")
+				.append("svg")
+				.attr("width",width)
+				.attr("height",height)
+*/
+				var defs = svgElement.append("defs");
+
+				// create filter with id #drop-shadow
+				// height=130% so that the shadow is not clipped
+				var filter = defs.append("filter")
+					.attr("id", "drop-shadow")
+					.attr("height", "150%")
+					
+
+				// SourceAlpha refers to opacity of graphic that this filter will be applied to
+				// convolve that with a Gaussian with standard deviation 3 and store result
+				// in blur
+				filter.append("feGaussianBlur")
+					.attr("in", "SourceAlpha")
+					.attr("stdDeviation", 3	)
+					.attr("result", "blur")
+					
+
+				// translate output of Gaussian blur to the right and downwards with 2px
+				// store result in offsetBlur
+				var feOffset = filter.append("feOffset")
+					.attr("in", "blur")
+					.attr("dx", 2)
+					.attr("dy", 2)
+					.attr("result", "offsetBlur");
+
+				// overlay original SourceGraphic over translated blurred opacity by using
+				// feMerge filter. Order of specifying inputs is important!
+				var feMerge = filter.append("feMerge");
+
+				feMerge.append("feMergeNode")
+					.attr("in", "offsetBlur")
+				feMerge.append("feMergeNode")
+					.attr("in", "SourceGraphic");
+			
+			var mainGroup = svgElement.append("g").attr("class","mainGroup")
+				.attr("transform","translate("+margin.left+","+margin.top+")")
+			
+			var widthOfBar = (scaleWidth)/(1.2*yAxisData.length);
+			
+			var xScale = d3.scale.linear()
+				.domain([0,(yAxisData.length-1)])
+				.range([widthOfBar*.7,scaleWidth-widthOfBar*.7]);
+			
+			var xAxis = d3.svg.axis()
+				.scale(xScale)
+				.orient("bottom")
+				.tickValues(tickController.getXTickArray(0,(yAxisData.length),5,(scaleWidth)));
+			
+			var xAxisGroup = mainGroup.append("g")
+				.attr("class","xAxisGroup")
+				.attr("transform","translate("+(0)+","+(scaleHeight)+")")
+				.call(xAxis)
+				.attr("display","none")
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black")
+				.text(function(d){return rank[d]});
+			
+			var yMin = d3.min(yAxisData);
+			var yMax = d3.max(yAxisData);
+			yMin = minMaxController.getMin([yMin,yMin+10]);
+			yMax = minMaxController.getMax([yMax,yMax-10]);	
+			var yScale = d3.scale.linear()
+				.domain([0,yMax])
+				.range([scaleHeight*.6,0]); 
+			
+			var yTickArray = tickController.getTickArray(yMin,yMax,8);		
+			
+			var yAxis = d3.svg.axis()
+				.scale(yScale)
+				.orient("left")
+				.tickValues(yTickArray);	
+
+			var yAxisGroup = mainGroup.append("g")
+				.attr("class","yAxisGroup")
+				.attr("transform","translate("+0+","+0+")")
+				.call(yAxis)
+				.attr("fill","none")
+				.selectAll("text")
+				.attr("fill","black");
+			
+			var rectGroupRef = mainGroup
+				.selectAll('.rect')
+				.data(yAxisData)
+				.enter()
+				.append('rect')
+				.attr("class","rounded3DBar")
+				.attr('width',widthOfBar)
+				.attr('height',function(d,i){ return scaleHeight-yScale(d);})
+				.attr('x',function(d,i){return xScale(i)-widthOfBar*.5})
+				.attr('y',function(d,i){return yScale(d);})
+				.attr("rx",10)
+				.attr("ry",10)
+				.attr("fill",function(d,i)
+						{
+
+							var rectangleGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rectangleGradient"+i)
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+						//	.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							rectangleGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(color[i], 0.2)});
+									
+				/*			rectangleGradient.append("stop")
+										.attr("offset", "33%")
+										.attr("stop-color", function(){return ColorLuminance(color[i], 0.5)});
+					*/					
+							rectangleGradient
+										.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color",function(){return ColorLuminance(color[i], -0.1)});
+						
+							return "url(#rectangleGradient"+i+")";
+						})	
+				.style("filter", "url(#drop-shadow)")
+				
+			
+				
+			var lineFunction = d3.svg.line()
+						.x(function(d,i) { return xCoord[i]; })
+						.y(function(d) { return d; })
+						.interpolate("closed");
+						
+			var xCoord = [scaleWidth*.01,scaleWidth*.01,scaleWidth-scaleWidth*.01,scaleWidth-scaleWidth*.01]
+			var yCoord = [scaleHeight*.75,scaleHeight*.85,scaleHeight*.85,scaleHeight*.75]
+			
+			mainGroup.append("path")
+							.attr("d", lineFunction(yCoord))	
+							.attr("class","roundedPath")
+							.attr("fill",function(d,i)
+							{
+
+								var pathGradient = mainGroup.append("svg:defs")
+								.append("svg:linearGradient")
+								.attr("id", "pathGradient")
+								.attr("x1", "0%")
+								.attr("y1", "0%")
+								.attr("x2", "100%")
+								.attr("y2", "100%")
+							//	.attr("spreadMethod", "pad")
+								.attr("gradientTransform","rotate(0)");
+
+								pathGradient.append("stop")
+											.attr("offset", "0%")
+											.attr("stop-color", function(){return ColorLuminance(backColor, 0.3)});
+										
+								pathGradient.append("stop")
+											.attr("offset", "33%")
+											.attr("stop-color", function(){return ColorLuminance(backColor, 0.1)});
+											
+								pathGradient
+											.append("stop")
+											.attr("offset", "100%")
+											.attr("stop-color",function(){return ColorLuminance(backColor, -0.2)});
+							
+								return "url(#pathGradient)";
+							})	
+							.style("filter", "url(#drop-shadow)")
+			var widthForText = widthOfBar*.9;
+			for(var i=0;i<yAxisData.length;i++)
+			{
+				mainGroup.append("svg:image")
+					.attr("xlink:href", data.icon[i])
+				//	.transition().duration(100).delay(duration*2)
+					.attr("x",xScale(i)-widthOfBar*.5)
+					.attr("y",scaleHeight*.76)
+					.attr("width",widthOfBar)
+					.attr("height", scaleHeight*.08);
+				var text = yAxisData[i]+""+unit
+				mainGroup.append("text")   
+					.attr("class","textData")
+					.attr("x", function(){return xScale(i)-((text.toString().length)*9)*.5 })           
+					.attr("y",function(){ return yScale(yAxisData[i])-10}) 
+					.attr("fill",textStyleConfg["font-color-heading"])
+					.style("font-size",textStyleConfg["font-size-heading"])
+					.style("font-family",textStyleConfg["font-family"])
+					.attr("dy",".1em")
+					.text(text)	
+				
+				mainGroup.append("text")   
+					.attr("class","textOfRank")
+					.attr("x", function(){return xScale(i)-((rank[i].toString().length)*9)*.5 })           
+					.attr("y",function(){ return scaleHeight*.91}) 
+					.attr("fill",textStyleConfg["font-color"])
+					.style("font-size",textStyleConfg["font-size-heading"])
+					.style("font-family",textStyleConfg["font-family"])
+					.attr("dy",".1em")
+					.text(rank[i])	
+				
+				var textPositionGap1 = 25,textSize1 = textStyleConfg["titleFontSize"]/2,yPosition1=10;
+				var textArray1 = wrapText(title[i],widthForText ,textSize1);
+				for(var k=0;k<textArray1.length;k++)
+				{
+					mainGroup.append("text")   
+						.attr("class","textHeading")
+						.attr("x", function(){return xScale(i)-widthForText*.5})           
+						.attr("y",function(){ return scaleHeight*.95+yPosition1*k}) 
+					//	.attr("text-anchor", "middle")
+						.attr("fill",textStyleConfg["font-color"])
+						.style("font-size",textStyleConfg["titleFontSize"])
+						.style("font-family",textStyleConfg["font-family"])
+						.attr("dy",".1em")
+						.text(function(){return textArray1[k];})	
+					}
+					
+					var textPositionGap = 25,textSize =textStyleConfg["font-description"]/2,yPosition=10;
+					var textArray = wrapText(description[i],widthForText ,textSize);
+				//	console.log(name[i]);
+					for(var k=0;k<textArray.length;k++)
+					{
+						mainGroup.append("text")   
+									.attr("class","leftPathText")
+									.attr("x", function(){return xScale(i)-widthForText*.5})           
+									.attr("y",function(){ return yScale(yAxisData[i])+textPositionGap+yPosition*k}) 
+									.attr("fill",textStyleConfg["font-color"])
+									.style("font-size",textStyleConfg["font-description"])
+									.style("font-family",textStyleConfg["font-family"])
+									.attr("dy",".1em")
+									.attr("font-weight","bold")
+									.text(function(){return textArray[k];})			
+					}	
+							
+			/*	mainGroup.append("text")   
+					.attr("class","textOfRank")
+					.attr("x", function(d){return scaleWidth*.5+factor })           
+					.attr("y",function(d){ return yScale(i)-radiusOfCircle*.3+yPosition*k}) 
+					.attr("fill",textStyleConfg["font-color"])//textStyleConfg["font-color"]
+					.style("font-size",textStyleConfg["font-size"])//textStyleConfg["font-size"]
+					.style("font-family",textStyleConfg["font-family"])//textStyleConfg["font-family"],"important"
+					.attr("dy",".1em")
+					.text(function(d){return textArray[k];})	
+			*/	
+			}
+			
+			function wrapText(text, widthOfTextArea,size) {
+						var dummyTextArray = text.split(/ +/);
+						var textArray =[],dummyText="",finalText="",counter=0,c=1;
+				//		 console.log(dummyTextArray);
+						if(dummyTextArray.length==1)
+						{
+						 textArray[counter]= text;
+						 return  textArray;
+						}
+						for(var i=0;i<dummyTextArray.length;i++)
+						{
+							
+							if(dummyTextArray[i])
+							{	
+								if(i==0)
+								{
+									dummyText = dummyTextArray[i];
+						//			console.log("1"+dummyText+" "+finalText);
+									continue;
+								}
+								else
+								{
+									finalText = dummyText;
+									dummyText =dummyText+" "+dummyTextArray[i];
+									if(dummyText.length*size<widthOfTextArea)
+									{		
+										if(i==dummyTextArray.length-1)
+										{
+											textArray[counter++] = dummyText; 
+							//				console.log("4"+dummyText+" "+finalText);
+											c=0;
+										}
+								//		console.log("2"+dummyText+" "+finalText);
+										continue;
+									}
+									else
+									{
+										textArray[counter++] = finalText; 
+										if(i==dummyTextArray.length-1 && c==1)
+										{
+											textArray[counter++] = dummyTextArray[i]; 
+							//				console.log("5"+dummyText+" "+finalText);
+										}
+							//			console.log("3"+dummyText+" "+finalText);
+										finalText=""
+										dummyText =dummyTextArray[i];
+									}
+								}
+							}
+							
+							
+						}
+						
+						return textArray;
+					}	
+			//hide axis path
+				hideAxisPath(svgElement);
+			//set font here
+	//			setTextStyleAndSvgBackGround(svgElement);
+		}
+	}
+	
+	var infographicBartWithPieChartGraph = 
+	{
+		infographicBartWithPieChartAnalysis:function(data)
+		{
+			//	var width = 300;
+		//		var height = 400;
+				var rank = data.rank;
+				var icon = data.icon;
+				var yAxisData = data.yAxisData;
+				var description = data.description;
+				var color = data.color;
+				var title = data.title;
+				var backColor =data.backColor;
+				var pieBackColor=data.pieBackColor;
+				var innerArcColor = data.innerArcColor;
+				
+				var margin={left:width*0.001,right:width*0.001,bottom:height*.03,top:height*.05};
+				
+				var scaleWidth = width - margin.left - margin.right;
+				var scaleHeight = height - margin.top - margin.bottom;
+				
+				var sum=0,percentage=[],angle=[];
+				for(var i=0;i<yAxisData.length;i++)
+				{
+					sum = sum + yAxisData[i];
+				}
+				for(var i=0;i<yAxisData.length;i++)
+				{
+					percentage[i] = (yAxisData[i]/sum)*100;
+					angle[i] = (percentage[i]/100)*360;
+				}
+				
+		/*		var svgElement = d3.select("body")
+					.append("svg")
+					.attr("width",width)
+					.attr("height",height)
+*/
+				var defs = svgElement.append("defs");
+
+				// create filter with id #drop-shadow
+				// height=130% so that the shadow is not clipped
+				var filter = defs.append("filter")
+					.attr("id", "drop-shadow")
+					.attr("height", "150%")
+					
+
+				// SourceAlpha refers to opacity of graphic that this filter will be applied to
+				// convolve that with a Gaussian with standard deviation 3 and store result
+				// in blur
+				filter.append("feGaussianBlur")
+					.attr("in", "SourceAlpha")
+					.attr("stdDeviation", 3	)
+					.attr("result", "blur")
+					
+
+				// translate output of Gaussian blur to the right and downwards with 2px
+				// store result in offsetBlur
+				var feOffset = filter.append("feOffset")
+					.attr("in", "blur")
+					.attr("dx", 5)
+					.attr("dy", 10)
+					.attr("result", "offsetBlur");
+
+				// overlay original SourceGraphic over translated blurred opacity by using
+				// feMerge filter. Order of specifying inputs is important!
+				var feMerge = filter.append("feMerge");
+
+				feMerge.append("feMergeNode")
+					.attr("in", "offsetBlur")
+				feMerge.append("feMergeNode")
+					.attr("in", "SourceGraphic");
+					
+				
+				
+				var mainGroup = svgElement.append("g").attr("class","mainGroup")
+					.attr("transform","translate("+margin.left+","+margin.top+")")
+				
+				var widthOfBar = (scaleWidth)/(1.3*yAxisData.length);
+				
+				var xScale = d3.scale.linear()
+					.domain([0,(yAxisData.length-1)])
+					.range([widthOfBar*.7,scaleWidth-widthOfBar*.7]);
+				
+				var xAxis = d3.svg.axis()
+					.scale(xScale)
+					.orient("bottom")
+					.tickValues(tickController.getXTickArray(0,(yAxisData.length),5,(scaleWidth)));
+				
+				var xAxisGroup = mainGroup.append("g")
+					.attr("class","xAxisGroup")
+					.attr("transform","translate("+(0)+","+(scaleHeight)+")")
+					.call(xAxis)
+					.attr("display","none")
+					.attr("fill","none")
+					.selectAll("text")
+					.attr("fill","black")
+					.text(function(d){return rank[d]});
+				
+				var yMin = d3.min(yAxisData);
+				var yMax = d3.max(yAxisData);
+				yMin = minMaxController.getMin([yMin,yMin+10]);
+				yMax = minMaxController.getMax([yMax,yMax-10]);	
+				var yScale = d3.scale.linear()
+					.domain([0,yMax])
+					.range([scaleHeight,scaleHeight*.3]); 
+				
+				var yTickArray = tickController.getTickArray(yMin,yMax,8);		
+				
+				var yAxis = d3.svg.axis()
+					.scale(yScale)
+					.orient("left")
+					.tickValues(yTickArray);	
+
+				var yAxisGroup = mainGroup.append("g")
+					.attr("class","yAxisGroup")
+					.attr("transform","translate("+0+","+0+")")
+					.call(yAxis)
+					.attr("fill","none")
+					.selectAll("text")
+					.attr("fill","black");
+				
+				var backRectGroupRef = mainGroup
+					.selectAll('.rect')
+					.data(yAxisData)
+					.enter()
+					.append('rect')
+					.attr("class","rounded3DBar")
+					.attr('width',widthOfBar)
+					.attr('height',function(d,i){ return scaleHeight-0;})
+					.attr('x',function(d,i){return xScale(i)-widthOfBar*.5})
+					.attr('y',function(d,i){return 0;})
+					.attr("rx",10)
+					.attr("ry",10)
+					.attr("fill",backColor)
+					.style("filter", "url(#drop-shadow)")
+					.attr("opacity",.3)
+				/*	
+				var rectGroupRef = mainGroup
+					.selectAll('.rect')
+					.data(yAxisData)
+					.enter()
+					.append('rect')
+					.attr("class","rounded3DBar")
+					.attr('width',widthOfBar)
+					.attr('height',function(d,i){ return scaleHeight-yScale(d);})
+					.attr('x',function(d,i){return xScale(i)-widthOfBar*.5})
+					.attr('y',function(d,i){return yScale(d);})
+					.attr("rx",8)
+					.attr("ry",8)
+					.attr("fill",function(d,i)
+							{
+
+								var rectangleGradient = mainGroup.append("svg:defs")
+								.append("svg:linearGradient")
+								.attr("id", "rectangleGradient"+i)
+								.attr("x1", "0%")
+								.attr("y1", "0%")
+								.attr("x2", "100%")
+								.attr("y2", "100%")
+							//	.attr("spreadMethod", "pad")
+								.attr("gradientTransform","rotate(0)");
+
+								rectangleGradient.append("stop")
+											.attr("offset", "0%")
+											.attr("stop-color", function(){return ColorLuminance(color[i], 0.2)});
+										
+								
+								rectangleGradient
+											.append("stop")
+											.attr("offset", "100%")
+											.attr("stop-color",function(){return ColorLuminance(color[i], -0.1)});
+							
+								return "url(#rectangleGradient"+i+")";
+							})	
+					.style("filter", "url(#drop-shadow)")
+				*/
+
+
+			// Returns path data for a rectangle with rounded right corners.
+			// Note: it’s probably easier to use a <rect> element with rx and ry attributes!
+			// The top-left corner is ⟨x,y⟩.
+			function roundedRect(x, y, width, height, radius) {
+			  return "M" + x + "," + y
+				   + "h" + width
+				 //  + "a" + radius + "," + radius + " 0 0 1 " + radius + "," + radius
+				   + "v" + (height-radius)
+				   + "a" + radius + "," + radius + " 0 0 1 " + -radius + "," + radius
+				   + "h" + (2*radius-width)
+				   + "a" + radius + "," + radius + " 0 0 1 " + -radius + "," + -radius
+				   + "z";
+			}
+			function dummyRoundedRect(x, y, width, height, radius) {
+			  return "M" + x+10 + "," + y
+				   + "h" + width
+			   //    + "a" + radius + "," + radius + " 0 0 1 " + radius + "," + radius
+				   + "v" + (height-radius)
+				   + "a" + radius + "," + radius + " 0 0 1 " + -radius + "," + radius
+				   + "h" + (2*radius-width)
+				   + "a" + radius + "," + radius + " 0 0 1 " + -radius + "," + -radius
+				   + "z";
+			}
+				var widthForText = widthOfBar*.9;
+
+				var arc = d3.svg.arc()
+					.innerRadius(0)
+					.outerRadius(widthOfBar*.4)
+					.startAngle(90*(Math.PI/180))
+					.endAngle((270)*(Math.PI/180));
+				var pie = d3.svg.arc()
+					.innerRadius(0)
+					.outerRadius(widthOfBar*.25)
+					.startAngle(0*(Math.PI/180))
+					.endAngle((360)*(Math.PI/180));
+					
+				for(var i=0;i<yAxisData.length;i++)
+				{
+				
+					mainGroup.append("path")
+						.attr("d", function() {
+						return dummyRoundedRect(xScale(i)- widthOfBar*.5, scaleHeight, widthOfBar , 0, 10);
+						})
+						.attr("fill",function()
+							{
+
+								var rectangleGradient = mainGroup.append("svg:defs")
+								.append("svg:linearGradient")
+								.attr("id", "rectangleGradient"+i)
+								.attr("x1", "0%")
+								.attr("y1", "0%")
+								.attr("x2", "100%")
+								.attr("y2", "100%")
+							//	.attr("spreadMethod", "pad")
+								.attr("gradientTransform","rotate(0)");
+
+								rectangleGradient.append("stop")
+											.attr("offset", "0%")
+											.attr("stop-color", function(){return ColorLuminance(color[i], 0.3)});
+										
+								
+								rectangleGradient
+											.append("stop")
+											.attr("offset", "100%")
+											.attr("stop-color",function(){return ColorLuminance(color[i], -0.1)});
+							
+								return "url(#rectangleGradient"+i+")";
+							})	
+							.transition()
+							.duration(2000)
+							.ease("elastic")
+							.attr("d", function() {
+								return roundedRect(xScale(i)-widthOfBar*.5,yScale(yAxisData[i]), widthOfBar , scaleHeight-yScale(yAxisData[i]), 10);
+								})
+						
+					
+					
+					var innerArc = d3.svg.arc()
+						.innerRadius(0)
+						.outerRadius(widthOfBar*.25)
+						.startAngle(0*(Math.PI/180))
+						.endAngle((angle[i])*(Math.PI/180));
+					
+					var arcGroup = mainGroup.append("g")
+						.attr("id","arcGroup"+i)
+						.attr("transform","translate("+(xScale(i))+","+(0)+")");
+					
+					var pieGroup = mainGroup.append("g")
+						.attr("id","pieGroup"+i)
+						.attr("transform","translate("+(xScale(i))+","+(widthOfBar*.8)+")");
+						
+					var pies = pieGroup.append("path")
+						.attr("d",pie)
+						.attr("fill",pieBackColor)
+						
+					var innerpies = pieGroup.append("path")
+						.attr("d",innerArc)
+						.attr("fill",innerArcColor)
+						
+					var arcs = arcGroup.append("path")
+						.attr("d",arc)
+						.attr("fill",function()
+						{
+							var arcGradient = arcGroup.append("svg:defs")
+								.append("svg:radialGradient")
+								.attr("id", "arcGradient"+i)
+								.attr("gradientUnits", "userSpaceOnUse")
+								.attr("cx", 0)
+								.attr("cy", 0)
+								.attr("r", "100%")
+					
+								arcGradient.append("stop")
+											.attr("offset", "0")
+											.attr("stop-color", function(){return ColorLuminance(color[i], 0.9)});
+								arcGradient.append("stop")
+											.attr("offset", "20%")
+											.attr("stop-color",function(){return ColorLuminance(color[i], -0.1)});
+								arcGradient.append("stop")
+											.attr("offset", "22%")
+											.attr("stop-color",function(){return ColorLuminance(color[i], -0.1)});
+								arcGradient.append("stop")
+											.attr("offset", "27%")
+											.attr("stop-color",function(){return ColorLuminance(color[i], -0.2)});
+								arcGradient.append("stop")
+											.attr("offset", "33%")
+											.attr("stop-color",function(){return "black"});
+							
+								return "url(#arcGradient"+i+")";
+									
+							
+						})
+						
+					mainGroup.append("svg:image")
+						.attr("xlink:href", data.icon[i])
+					//	.transition().duration(100).delay(duration*2)
+						.attr("x",xScale(i)-widthOfBar*.4)
+						.attr("y",0)
+						.attr("width",widthOfBar*.8)
+						.attr("height", widthOfBar*.3);
+						
+					mainGroup.append("text")   
+						.attr("class","textOfRank")
+						.attr("x", function(){return xScale(i)-((rank[i].toString().length)*9)*.5 })           
+						.attr("y",function(){ return scaleHeight*.95}) 
+						.attr("fill",textStyleConfg["font-color-heading"])
+						.style("font-size",textStyleConfg["font-size-heading"])
+						.style("font-family",textStyleConfg["font-family"])
+						.attr("dy",".1em")
+						.text(rank[i])	
+						
+					var textPositionGap = 25,textSize = textStyleConfg["font-description"]/2,yPosition=10;
+					var textArray = wrapText(description[i],widthForText ,textSize);
+				
+					for(var k=0;k<textArray.length;k++)
+					{
+						mainGroup.append("text")   
+									.attr("class","leftPathText")
+									.attr("x", function(){return xScale(i)-widthForText*.5})           
+									.attr("y",function(){ return widthOfBar*1.3+yPosition*k}) 
+									.attr("fill",textStyleConfg["font-color"])
+									.style("font-size",textStyleConfg["font-description"])
+									.style("font-family",textStyleConfg["font-family"])
+									.attr("dy",".1em")
+									.attr("font-weight","bold")
+									.text(function(){return textArray[k];})			
+					}	
+					
+					var textSize1 = textStyleConfg["titleFontSize"]/2;
+					var textArray1 = wrapText(title[i],widthForText ,textSize1);
+					for(var k=0;k<textArray1.length;k++)
+					{
+						mainGroup.append("text")   
+							.attr("class","textHeading")
+							.attr("x", function(){return xScale(i)-widthForText*.5})           
+							.attr("y",function(){ return scaleHeight*.85+yPosition*k}) 
+						//	.attr("text-anchor", "middle")
+							.attr("fill",textStyleConfg["chartTitleColor"])
+							.style("font-size",textStyleConfg["titleFontSize"])
+							.style("font-family",textStyleConfg["font-family"])
+							.attr("dy",".1em")
+							.text(function(){return textArray1[k];})	
+					}
+						
+				}
+
+				
+				function wrapText(text, widthOfTextArea,size) {
+							var dummyTextArray = text.split(/ +/);
+							var textArray =[],dummyText="",finalText="",counter=0,c=1;
+					//		 console.log(dummyTextArray);
+							if(dummyTextArray.length==1)
+							{
+							 textArray[counter]= text;
+							 return  textArray;
+							}
+							for(var i=0;i<dummyTextArray.length;i++)
+							{
+								
+								if(dummyTextArray[i])
+								{	
+									if(i==0)
+									{
+										dummyText = dummyTextArray[i];
+							//			console.log("1"+dummyText+" "+finalText);
+										continue;
+									}
+									else
+									{
+										finalText = dummyText;
+										dummyText =dummyText+" "+dummyTextArray[i];
+										if(dummyText.length*size<widthOfTextArea)
+										{		
+											if(i==dummyTextArray.length-1)
+											{
+												textArray[counter++] = dummyText; 
+								//				console.log("4"+dummyText+" "+finalText);
+												c=0;
+											}
+									//		console.log("2"+dummyText+" "+finalText);
+											continue;
+										}
+										else
+										{
+											textArray[counter++] = finalText; 
+											if(i==dummyTextArray.length-1 && c==1)
+											{
+												textArray[counter++] = dummyTextArray[i]; 
+								//				console.log("5"+dummyText+" "+finalText);
+											}
+								//			console.log("3"+dummyText+" "+finalText);
+											finalText=""
+											dummyText =dummyTextArray[i];
+										}
+									}
+								}
+								
+								
+							}
+							
+							return textArray;
+						}	
+			
+			//hide axis path
+				hideAxisPath(svgElement);
+			//set font here
+	//			setTextStyleAndSvgBackGround(svgElement);
+		}
+	}
+	
+	var infographicRankStandGraph = 
+	{
+		infographicRankStandAnalysis:function(data)
+		{
+		//		var width =300;
+		//		var height = 400;
+				var rank = data.rank;
+				var icon = data.icon;
+				var description = data.description;
+				var title = data.title;
+				
+				var unit = data.unit;
+				var cylinderColor=data.cylinderColor;
+				var pathColor= data.pathColor;
+				var margin={left:width*0.001,right:width*0.001,bottom:height*.03,top:height*.05};
+				
+				var scaleWidth = width - margin.left - margin.right;
+				var scaleHeight = height - margin.top - margin.bottom;
+				
+	
+
+				var defs = svgElement.append("defs");
+
+				// create filter with id #drop-shadow
+				// height=130% so that the shadow is not clipped
+				var filter = defs.append("filter")
+					.attr("id", "drop-shadow")
+					.attr("height", "150%")
+					
+
+				// SourceAlpha refers to opacity of graphic that this filter will be applied to
+				// convolve that with a Gaussian with standard deviation 3 and store result
+				// in blur
+				filter.append("feGaussianBlur")
+					.attr("in", "SourceAlpha")
+					.attr("stdDeviation", 1	)
+					.attr("result", "blur")
+					
+
+				// translate output of Gaussian blur to the right and downwards with 2px
+				// store result in offsetBlur
+				var feOffset = filter.append("feOffset")
+					.attr("in", "blur")
+					.attr("dx", 1)
+					.attr("dy", 5)
+					.attr("result", "offsetBlur");
+
+				 filter.append("feFlood")
+					.attr("in", "offsetBlur")
+					.attr("flood-color", "#3d3d3d")
+					.attr("flood-opacity", "0.5")
+					.attr("result", "offsetColor");
+				filter.append("feComposite")
+					.attr("in", "offsetColor")
+					.attr("in2", "offsetBlur")
+					.attr("operator", "in")
+					.attr("result", "offsetBlur");	
+					
+				// overlay original SourceGraphic over translated blurred opacity by using
+				// feMerge filter. Order of specifying inputs is important!
+				var feMerge = filter.append("feMerge");
+
+				feMerge.append("feMergeNode")
+					.attr("in", "offsetBlur")
+				feMerge.append("feMergeNode")
+					.attr("in", "SourceGraphic");
+					
+				
+				var defs1 = svgElement.append("defs");
+
+				// create filter with id #drop-shadow
+				// height=130% so that the shadow is not clipped
+				var filter1 = defs1.append("filter")
+					.attr("id", "drop-shadow-left")
+					.attr("height", "150%")
+					
+
+				// SourceAlpha refers to opacity of graphic that this filter will be applied to
+				// convolve that with a Gaussian with standard deviation 3 and store result
+				// in blur
+				filter1.append("feGaussianBlur")
+					.attr("in", "SourceAlpha")
+					.attr("stdDeviation", 1	)
+					.attr("result", "blur")
+					
+
+				// translate output of Gaussian blur to the right and downwards with 2px
+				// store result in offsetBlur
+				var feOffset1 = filter1.append("feOffset")
+					.attr("in", "blur")
+					.attr("dx", -1)
+					.attr("dy", 5)
+					.attr("result", "offsetBlur");
+
+				 filter1.append("feFlood")
+					.attr("in", "offsetBlur")
+					.attr("flood-color", "#3d3d3d")
+					.attr("flood-opacity", "0.5")
+					.attr("result", "offsetColor");
+				filter1.append("feComposite")
+					.attr("in", "offsetColor")
+					.attr("in2", "offsetBlur")
+					.attr("operator", "in")
+					.attr("result", "offsetBlur");	
+					
+				// overlay original SourceGraphic over translated blurred opacity by using
+				// feMerge filter. Order of specifying inputs is important!
+				var feMerge1 = filter1.append("feMerge");
+
+				feMerge1.append("feMergeNode")
+					.attr("in", "offsetBlur")
+				feMerge1.append("feMergeNode")
+					.attr("in", "SourceGraphic");
+					
+					
+				var defs2 = svgElement.append("defs");
+
+				// create filter with id #drop-shadow
+				// height=130% so that the shadow is not clipped
+				var filter2 = defs2.append("filter")
+					.attr("id", "drop-shadow-cylinder")
+					.attr("height", "150%")
+					
+
+				// SourceAlpha refers to opacity of graphic that this filter will be applied to
+				// convolve that with a Gaussian with standard deviation 3 and store result
+				// in blur
+				filter2.append("feGaussianBlur")
+					.attr("in", "SourceAlpha")
+					.attr("stdDeviation", 0	)
+					.attr("result", "blur")
+					
+
+				// translate output of Gaussian blur to the right and downwards with 2px
+				// store result in offsetBlur
+				var feOffset2= filter2.append("feOffset")
+					.attr("in", "blur")
+					.attr("dx", 0)
+					.attr("dy", 8)
+					.attr("result", "offsetBlur");
+
+				 filter2.append("feFlood")
+					.attr("in", "offsetBlur")
+					.attr("flood-color",ColorLuminance("#FFFFFF", -0.2))
+			   //     .attr("flood-opacity", "0.5")
+					.attr("result", "offsetColor");
+				filter2.append("feComposite")
+					.attr("in", "offsetColor")
+					.attr("in2", "offsetBlur")
+					.attr("operator", "in")
+					.attr("result", "offsetBlur");	
+					
+				// overlay original SourceGraphic over translated blurred opacity by using
+				// feMerge filter. Order of specifying inputs is important!
+				var feMerge2 = filter2.append("feMerge");
+
+				feMerge2.append("feMergeNode")
+					.attr("in", "offsetBlur")
+				feMerge2.append("feMergeNode")
+					.attr("in", "SourceGraphic");
+					
+				var mainGroup = svgElement.append("g").attr("class","mainGroup")
+					.attr("transform","translate("+margin.left+","+margin.top+")")
+				
+				var widthOfCylinder = (scaleWidth)*.045;
+				var heightOfPath = (scaleHeight)/(2.7*rank.length);
+				
+				var xAxisData = ["1","2","3"];
+				
+				var xScale = d3.scale.linear()
+					.domain([0,(xAxisData.length-1)])
+					.range([0,scaleWidth]);
+				
+				var xAxis = d3.svg.axis()
+					.scale(xScale)
+					.orient("bottom")
+					.tickValues(tickController.getXTickArray(0,(xAxisData.length),5,(scaleWidth)));
+				
+				var xAxisGroup = mainGroup.append("g")
+					.attr("class","xAxisGroup")
+					.attr("transform","translate("+(0)+","+(scaleHeight)+")")
+					.call(xAxis)
+					.attr("display","none")
+					.attr("fill","none")
+					.selectAll("text")
+					.attr("fill","black")
+					.text(function(d){return xAxisData[d]});
+				
+
+				var yScale = d3.scale.linear()
+					.domain([0,rank.length-1])
+					.range([scaleHeight-scaleHeight*.2-heightOfPath*.5,scaleHeight*.15+heightOfPath*.5]); 			
+				
+				var yAxis = d3.svg.axis()
+					.scale(yScale)
+					.orient("left");
+
+				var yAxisGroup = mainGroup.append("g")
+					.attr("class","yAxisGroup")
+					.attr("transform","translate("+0+","+0+")")
+					.call(yAxis)
+					.attr("fill","none")
+					.selectAll("text")
+					.attr("fill","black");
+					
+				mainGroup.append("svg:image")
+					.attr("xlink:href", data.bulbImage)
+					.attr("x",xScale(1)-widthOfCylinder*2)
+					.attr("y",-10)
+					.attr("width",widthOfCylinder*4)
+					.attr("height", scaleHeight*.16);	
+					
+				var rectGroupRef = mainGroup
+					.append('rect')
+					.attr("class","rounded3DBar")
+					.attr('width',widthOfCylinder)
+					.attr('height',scaleHeight*.9)
+					.attr('x',function(){return (xScale(1)-widthOfCylinder*.5);})
+					.attr('y',scaleHeight*.12)
+				//	.attr('fill',function(d,i){ return cylinderColor});
+					.attr("fill",function(d,i)
+					 {
+
+						var rectangleGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "rectangleGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						rectangleGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, -0.5)});
+									
+						rectangleGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, 0.4)});
+									
+						rectangleGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(cylinderColor, -0.9)});
+					
+						return "url(#rectangleGradient)";
+					 })	
+					 .style("filter", "url(#drop-shadow-cylinder)")
+				var	radiusY = widthOfCylinder*.1
+				var upperEllipseRef = mainGroup
+					.append("ellipse")     
+					.attr("class","rounded3DBar")	
+					.attr("cx", function(){return xScale(1)})           
+					.attr("cy",scaleHeight*.12)         
+					.attr("rx",	function(d,i){ return widthOfCylinder/2})           
+					.attr("ry", function(d,i){ return radiusY })
+				//	.attr('fill',function(d,i){return cylinderColor});  
+					.attr("fill",function(d,i)
+					 {
+
+						var upperEllipseGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "upperEllipseGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						upperEllipseGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, -0.5)});
+									
+						upperEllipseGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, 0.4)});
+									
+						upperEllipseGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(cylinderColor, -0.9)});
+					
+						return "url(#upperEllipseGradient)";
+					 })			
+				
+				var lowerEllipseRef = mainGroup
+					.append("ellipse")   
+					.attr("class","rounded3DBar")
+					.attr("cx", function(d){return xScale(1)})           
+					.attr("cy", scaleHeight)         
+					.attr("rx",	widthOfCylinder/2 )           
+					.attr("ry", radiusY)
+				//	.attr('fill',function(d,i){ return cylinderColor})
+					.attr("fill",function(d,i)
+					 {
+
+						var lowerEllipseGradient = mainGroup.append("svg:defs")
+						.append("svg:linearGradient")
+						.attr("id", "lowerEllipseGradient")
+						.attr("x1", "0%")
+						.attr("y1", "0%")
+						.attr("x2", "100%")
+						.attr("y2", "100%")
+					//	.attr("spreadMethod", "pad")
+						.attr("gradientTransform","rotate(-45)");
+
+						lowerEllipseGradient.append("stop")
+									.attr("offset", "0%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, -0.5)});
+									
+						lowerEllipseGradient.append("stop")
+									.attr("offset", "33%")
+									.attr("stop-color", function(){return ColorLuminance(cylinderColor, 0.4)});
+									
+						lowerEllipseGradient
+									.append("stop")
+									.attr("offset", "100%")
+									.attr("stop-color",function(){return ColorLuminance(cylinderColor, -0.9)});
+					
+						return "url(#lowerEllipseGradient)";
+					 })			
+					 .style("filter", "url(#drop-shadow-cylinder)")
+					 
+					 
+				
+					 
+				var pathFunction = d3.svg.line()
+					.x(function(d,i) { return d; })
+					.y(function(d,i) { return yCoord[i]; })
+					.interpolate("closed")			
+				
+				var startPoint,startPointRight,xCoord=[],yCoord=[];
+				for(var i=0;i<rank.length;i++)
+				{
+					startPoint = yScale(i)+heightOfPath*.5;
+					xCoord =[xScale(1)-widthOfCylinder*.5,widthOfCylinder,0,xScale(1)-widthOfCylinder*.5];
+					yCoord =[startPoint,startPoint,startPoint-heightOfPath,startPoint-heightOfPath];
+					var path = mainGroup.append("path")
+						.attr("d", pathFunction(xCoord))
+						.attr("class","leftSidePath")	
+					//	.attr("fill",cylinderColor)
+						.attr("fill",function(d,i)
+						 {
+
+							var leftSidePathGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "leftSidePathGradient")
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+						//	.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							leftSidePathGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(pathColor, -0.1)});
+								
+							leftSidePathGradient.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color", function(){return ColorLuminance(pathColor, 0.2)});
+									
+						
+						
+							return "url(#leftSidePathGradient)";
+						 })			
+						 .style("filter", "url(#drop-shadow-left)")
+						
+					startPointRight = yScale(i)+widthOfCylinder*.8+heightOfPath*.5;
+					xCoord =[xScale(1)+widthOfCylinder*.5,scaleWidth-widthOfCylinder,scaleWidth,xScale(1)+widthOfCylinder*.5];
+					yCoord =[startPointRight,startPointRight,startPointRight-heightOfPath,startPointRight-heightOfPath];
+					var path = mainGroup.append("path")
+						.attr("d", pathFunction(xCoord))
+						.attr("class","rightSidePath")	
+					//	.attr("fill",ColorLuminance("#FFFFFF",-0.1))
+						.attr("fill",function(d,i)
+						 {
+							var rightSidePathGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "rightSidePathGradient")
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+						//	.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(0)");
+
+							rightSidePathGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(pathColor, -0.1)});
+										
+							rightSidePathGradient
+										.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color",function(){return ColorLuminance(pathColor, 0.1)});
+						
+							return "url(#rightSidePathGradient)";
+						 })			
+						 .style("filter", "url(#drop-shadow)")
+				
+
+					mainGroup.append("path")
+						.attr("d", function(){  return arcPathRight(xScale(1)+widthOfCylinder*.5,yScale(i)-heightOfPath*.5, heightOfPath*.5,widthOfCylinder*.4);})
+						.attr("fill",cylinderColor)
+						
+					mainGroup.append("path")
+						.attr("d", function(){  return arcPathLeft(xScale(1)-widthOfCylinder*.5,yScale(i)+heightOfPath*.8, heightOfPath*.37,widthOfCylinder*.4);})
+						.attr("fill",cylinderColor)
+				
+				
+						 mainGroup.append("path")
+						.attr("d", function(){  return dummyRoundedRect(xScale(1)-widthOfCylinder*.5-widthOfCylinder*.3,yScale(i)-heightOfPath*.5,widthOfCylinder+widthOfCylinder*.6);})
+					//	.attr("fill","#c9c9c7")
+						.attr("fill",function()
+						{
+
+							var circularArcGradient = mainGroup.append("svg:defs")
+							.append("svg:linearGradient")
+							.attr("id", "circularArcGradient")
+							.attr("x1", "0%")
+							.attr("y1", "0%")
+							.attr("x2", "100%")
+							.attr("y2", "100%")
+						//	.attr("spreadMethod", "pad")
+							.attr("gradientTransform","rotate(-45)");
+
+							circularArcGradient.append("stop")
+										.attr("offset", "0%")
+										.attr("stop-color", function(){return ColorLuminance(cylinderColor, -0.2)});
+								
+							circularArcGradient.append("stop")
+										.attr("offset", "33%")
+										.attr("stop-color", function(){return ColorLuminance(cylinderColor, 0.9)});
+									
+							
+							circularArcGradient
+										.append("stop")
+										.attr("offset", "100%")
+										.attr("stop-color",function(){return ColorLuminance(cylinderColor, -0.2)});
+						
+							return "url(#circularArcGradient)";
+						})	
+						
+					mainGroup.append("text")   
+						.attr("class","textOfRank")
+						.attr("x", function(){return xScale(1)-((rank[i].toString().length)*9)*.5 })           
+						.attr("y",function(){ return yScale(i)}) 
+						.attr("fill",textStyleConfg["font-color"])
+						.style("font-size",textStyleConfg["font-size"])
+						.style("font-family",textStyleConfg["font-family"])
+						.attr("dy",".5em")
+						.text(rank[i])	
+					
+					mainGroup.append("svg:image")
+						.attr("xlink:href", data.icon[i])
+					//	.transition().duration(100).delay(duration*2)
+						.attr("x",widthOfCylinder+5)
+						.attr("y",yScale(i)-heightOfPath*.5)
+						.attr("width",widthOfCylinder)
+						.attr("height", heightOfPath);	
+
+					var textPositionGap = 25,textSize = textStyleConfg["font-description"]/2,yPosition=10;
+					var textArray = wrapText(description[i],(scaleWidth*.5-widthOfCylinder*2.2) ,textSize);
+				
+					for(var k=0;k<textArray.length;k++)
+					{
+						mainGroup.append("text")   
+									.attr("class","leftPathText")
+									.attr("x", function(){return xScale(1)+widthOfCylinder*1.5})           
+									.attr("y",function(){ return yScale(i)+widthOfCylinder*.5+yPosition*k}) 
+									.attr("fill",textStyleConfg["font-color-heading"])
+									.style("font-size",textStyleConfg["font-description"])
+									.style("font-family",textStyleConfg["font-family"])
+								//	.attr("dy",".5em")
+									.attr("font-weight","bold")
+									.text(function(){return textArray[k];})			
+					}	
+				
+					var textSize1 = textStyleConfg["font-size-heading"]/2;
+					var textArray1 = wrapText(title[i],(scaleWidth*.5-widthOfCylinder*3) ,textSize1);
+					for(var k=0;k<textArray1.length;k++)
+					{
+						mainGroup.append("text")   
+							.attr("class","textHeading")
+							.attr("x", function(){return 2.7*widthOfCylinder})           
+							.attr("y",function(){ return yScale(i)-heightOfPath*.1+yPosition*k}) 
+						//	.attr("text-anchor", "middle")
+							.attr("fill",textStyleConfg["font-color-heading"])
+							.style("font-size",textStyleConfg["font-size-heading"])
+							.style("font-family",textStyleConfg["font-family"])
+							.attr("dy",".1em")
+							.text(function(){return textArray1[k];})	
+					}
+				
+				}
+					
+				//(xScale(1)-widthOfCylinder*.5-widthOfCylinder*.3,yScale(i)-heightOfPath*.5,widthOfCylinder+widthOfCylinder*.6);})	
+				function dummyRoundedRect(x, y,radius) 
+				{
+					var down = heightOfPath	;
+					return "M" + x + "," + (y+heightOfPath*.5)+
+						 "C" + (x) + "," +(y+heightOfPath*.1)+" "+ (x+radius)+ "," +(y+heightOfPath*.4)+" " + (x+radius-1)+"," + (y+heightOfPath*.01)+
+						 "V" +	(y+heightOfPath*.6)+
+						 "C" +	(x+radius)+","+(y+down+heightOfPath*.7)+" "+(x)+","+(y+heightOfPath*.8)+ " "+(x)+","+(y+down+heightOfPath*.5)+
+						 "z";
+					 
+				}	
+			//	(xScale(1)+widthOfCylinder*.5,yScale(i)-heightOfPath*.5, heightOfPath*.5,widthOfCylinder*.45)
+				function arcPathRight(x, y,r,radius) 
+				{
+					var down =radius ;
+					return "M" + (x) + "," + (y-heightOfPath*.05)+
+						 "C" + (x+down) + "," +(y-heightOfPath*.05)+" "+ (x+down)+ "," +(y+r)+" " + (x)+"," + (y+r);
+				}	
+			//  (xScale(1)-widthOfCylinder*.5,yScale(i)+heightOfPath*.3, heightOfPath*.37,widthOfCylinder*.45);}
+				function arcPathLeft(x, y,r,radius) 
+				{
+					var down = radius;
+					return "M" + (x) + "," + (y+heightOfPath*.3)+
+						 "C" + (x-down) + "," +(y+heightOfPath*.3)+" "+ (x-down)+ "," +(y-r)+" " + (x)+"," + (y-r-2);
+				}	
+					
+					
+					
+				function wrapText(text, widthOfTextArea,size) {
+							var dummyTextArray = text.split(/ +/);
+							var textArray =[],dummyText="",finalText="",counter=0,c=1;
+					//		 console.log(dummyTextArray);
+							if(dummyTextArray.length==1)
+							{
+							 textArray[counter]= text;
+							 return  textArray;
+							}
+							for(var i=0;i<dummyTextArray.length;i++)
+							{
+								
+								if(dummyTextArray[i])
+								{	
+									if(i==0)
+									{
+										dummyText = dummyTextArray[i];
+							//			console.log("1"+dummyText+" "+finalText);
+										continue;
+									}
+									else
+									{
+										finalText = dummyText;
+										dummyText =dummyText+" "+dummyTextArray[i];
+										if(dummyText.length*size<widthOfTextArea)
+										{		
+											if(i==dummyTextArray.length-1)
+											{
+												textArray[counter++] = dummyText; 
+								//				console.log("4"+dummyText+" "+finalText);
+												c=0;
+											}
+									//		console.log("2"+dummyText+" "+finalText);
+											continue;
+										}
+										else
+										{
+											textArray[counter++] = finalText; 
+											if(i==dummyTextArray.length-1 && c==1)
+											{
+												textArray[counter++] = dummyTextArray[i]; 
+								//				console.log("5"+dummyText+" "+finalText);
+											}
+								//			console.log("3"+dummyText+" "+finalText);
+											finalText=""
+											dummyText =dummyTextArray[i];
+										}
+									}
+								}
+								
+								
+							}
+							
+							return textArray;
+						}	
+			
+			//hide axis path
+				hideAxisPath(svgElement);
+			//set font here
+	//			setTextStyleAndSvgBackGround(svgElement);
+		
+		}
+	}
+
+	
         return {
             drawLine: lineChart.drawLine,
             drawBarWithMultipleLineAndCircle: lineChart.drawBarWithMultipleLineAndCircle,
@@ -26505,7 +28922,12 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			threeDStackedDountChartAnalysis:threeDStackedDountChartGraph.threeDStackedDountChartAnalysis,
 			threeDRoundedBarChartAnalysis:threeDRoundedBarChartGraph.threeDRoundedBarChartAnalysis,
 			threeDShutterStackAnalysis:threeDShutterStackGraph.threeDShutterStackAnalysis,
-			racingVisualizationAnalysis:racingVisualizationGraph.racingVisualizationAnalysis
+			racingVisualizationAnalysis:racingVisualizationGraph.racingVisualizationAnalysis,
+			simpleBarChartAnalysis:simpleBarChartGraph.simpleBarChartAnalysis,
+			rankWiseInformaticChartAnalysis:rankWiseInformaticChartGraph.rankWiseInformaticChartAnalysis,
+			infographicBarChartAnalysis:infographicBarChartGraph.infographicBarChartAnalysis,
+			infographicBartWithPieChartAnalysis:infographicBartWithPieChartGraph.infographicBartWithPieChartAnalysis,
+			infographicRankStandAnalysis:infographicRankStandGraph.infographicRankStandAnalysis
         };
     };
 })(jQuery);
