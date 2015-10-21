@@ -31440,14 +31440,14 @@ feMerge.append("feMergeNode")
 					.attr("stroke-width",.2)
 					.transition().duration(duration).ease(ease)
 					.attr("d", lineFunction(getSideCoordinates(upperPath+3,i)));
-					
+					/*
 				mainGroup.append("svg:image")
 						.attr("xlink:href", icon[i])
 						.attr("x",xScale(i)-widthOfBar*.5)
 						.attr("y",0)
 						.attr("width",widthOfBar)
 						.attr("height", scaleHeight*.1);
-						
+					*/
 				var textSize = textStyleConfg["font-heading-size"]/2,yPosition=textStyleConfg["font-heading-size"]+2,widthForText =(scaleWidth)/(xAxisData.length*1.2);
 				var textArray = wrapText(key[i],widthForText ,textSize);
 					/*		.style("font-size",textStyleConfg["font-heading-size"])
