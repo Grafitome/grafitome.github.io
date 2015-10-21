@@ -1,0 +1,238 @@
+<html>
+    <head>
+        <script src="js/jquery.min.js"></script>
+        <!--<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>-->
+       <!-- <script src="js/d3.min.js"></script>-->
+        <script src="js/stocChart.min.js"></script>
+        <!--<script src="Scripts/stocLib.js"></script>-->
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body  style="background: none">
+        <div class="container">
+            <div  style= "background: #fff none repeat scroll 0 0;
+                  float: left;
+                  margin: 0;
+                  padding: 15px;
+                  width: 100%;">
+                <div class="navBar" style="margin-bottom:15px">Assignments Performance Charts</div>
+                <div class="col-sm-6">
+                    <div id="performanceChartContainer">
+
+                        <div class="chartTitleHeader">Class Performance</div>
+                        <div id="headerDropDown" style="float:right;border-color:#808080;border-radius:3px;"><span style="padding: 0px 2px 0px 0px;color:black !important;">Recent</span>
+                            <select id="DropDownAssignmentSelection" onchange="classPerformanceAssignment(value);">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select><span style="padding: 0px 0px 0px 4px;color:black !important;">Assignments</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div id="horizontalStackedBarChartContainer">
+                        <div class="chartTitleHeader">Active Assignments</div>
+                    </div>
+                </div>
+
+                <!--<div id="ComparisonChartContainer"></div>-->
+
+
+                <script>
+                    var textStyleConfg = {"font-family": "sans-serif", "font-size": 12, "background": "none", "font-color": "#000000", "tick-font-color": "#000000", "legendTextColor": "Black", "font-weight": 400, "xLabelColor": "#000000", "yLabelColor": "#000000", "chartTitleColor": "#000000", "titleFontSize": 16, "gridLineColor": "#353b37"};
+                    function classPerformanceAssignment() {
+//                        try {
+                        $.getJSON('http://54.169.200.77:9097/api/v1/teacher_dashboard/completed_worksheet_overview?user_id=2&num_of_assignments_to_consider=20', function (data) {
+//                                debugger;
+                            $("#performanceChartContainer").find('svg').remove();
+                            var stocChart55 = $("#performanceChartContainer").stocCharts(textStyleConfg);
+                            data = JSON.stringify(data, function (key, value) {
+                                // if value is null, return "" as a replacement
+                                if (value === null) {
+                                    return 0;
+                                }
+                                // otherwise, leave the value unchanged
+                                return value;
+                            });
+                            data = JSON.parse(data);
+							alert(JSON.stringify(data));
+                            stocChart55.performanceChartAnalysis(data);
+                        });
+//                        }
+//                        catch (err) {
+////                            document.getElementById("demo").innerHTML = err.message;
+//                            alert();
+//                        }
+                    }
+
+                    $(document).ready(function () {
+                        classPerformanceAssignment(1);
+                        try {
+                            $.getJSON('http://54.169.200.77:9097/api/v1/teacher_dashboard/active_worksheet_overview?user_id=2', function (data) {
+                             //   debugger;
+                                var yAxis = data[0];
+                                var keyData = data[1];
+                                var horizontalStackedBarChart = {
+                                    title: "",
+                                    xAxisLabel: "Student Count",
+                                    yAxisLabel: "Assignments",
+                                    yAxisData: yAxis, //["6th A Maths Ass1", "6th B Maths Ass1", "7th A Maths Ass1", "7th B Maths Ass1", "8th A Maths Ass1", "8th B Maths Ass1"],
+                                    key: keyData
+                                }
+                                var textStyleConfg = {"font-family": "sans-serif", "font-size": 12, "background": "none", "font-color": "#000000", "tick-font-color": "#000000", "legendTextColor": "#000000", "font-weight": 400, "xLabelColor": "#000000", "yLabelColor": "#000000", "chartTitleColor": "#000000", "titleFontSize": 16, "gridLineColor": "#ffffff"};
+                                var stocChart55 = $("#horizontalStackedBarChartContainer").stocCharts(textStyleConfg);
+                           //     debugger;
+                                //            horizontalStackedBarChart = JSON.stringify(horizontalStackedBarChart, function (key, value) {
+                                //                debugger;
+                                //                // if value is null, return "" as a replacement
+                                //                if (value === null || value == "" || value.length == 0 ) {
+                                //                    return 0;
+                                //                }
+                                //                // otherwise, leave the value unchanged
+                                //                for (var yAxisVal = 0; yAxisVal < value.yAxisData.length; yAxisVal++) {
+                                //                    if (yAxisVal == "") {
+                                //                        return 0;
+                                //                    }else if (value.yAxisData[yAxisVal].length > 25) {
+                                //                        (value.yAxisData[yAxisVal].match(/.{1,20}/g));
+                                //                    }
+                                //                }
+                                //                return value;
+                                //            });
+                                //            horizontalStackedBarChart = JSON.parse(horizontalStackedBarChart);
+                                stocChart55.horizontalStackedBarChartAnalysis(horizontalStackedBarChart);
+                            }).error(function () {
+                                document.getElementById("horizontalStackedBarChartContainer").innerHTML = "No Chart Available";
+                            });
+                        }
+
+                        catch (err) {
+                            ;
+                            alert();
+                        }
+                        //var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"black","legendTextColor":"white","font-weight":400,"xLabelColor":"black","yLabelColor":"black","chartTitleColor":"black","titleFontSize":16,"gridLineColor":"#353b37"};
+
+                        //performanceChartGraph.performanceChartAnalysis(performanceChartData, "performanceChartContainer", textStyleConfg);
+
+                        ///Summary
+                        ///Bubble Chart 2
+                        ///Summary End
+
+                        //var ComparisonChart =
+                        //{
+                        //    "title": "Student Standings",
+                        //    "yLabel": "subject(class Wise)",
+                        //    "xLabel": "Metrices",
+                        //    "data": [
+                        //      {
+                        //          "class_name": "7th-B Maths",
+                        //          "class_url": "http://example.com",
+                        //          //	  "activity": 12,
+                        //          //	  "recall": 24,
+                        //          //	  "understanding": 36,
+                        //          "xData": [67, 67, 67, 67],
+                        //          "xDataColor": ["#FF0000", "#FF0000", "#00B30C", "#00B30C"],
+                        //          "tip": ["Lorem Ipsum activity", "Lorem Ipsum recall", "Lorem Ipsum Understanding"],
+                        //          //"tip-recall": "Lorem Ipsum recall",
+                        //          //"tip-understanding": "Lorem Ipsum understanding",
+                        //          //	  "color-activity": "#f7f7f7",
+                        //          //	  "color-recall": "#f7f7f7",
+                        //          //	  "color-understanding": "#f7f7f7"
+                        //      },
+                        //      {
+                        //          "class_name": "7th-A Maths",
+                        //          "class_url": "http://example.com",
+                        //          //	  "activity": 12,
+                        //          //	  "recall": 24,
+                        //          //	  "understanding": 36,
+                        //          "xData": [67, 67, 67, 67],
+                        //          "xDataColor": ["#FF0000", "#FF0000", "#00B30C", "#00B30C"],
+                        //          "tip-activity": "Lorem Ipsum activity",
+                        //          "tip-recall": "Lorem Ipsum recall",
+                        //          "tip-understanding": "Lorem Ipsum understanding",
+                        //          //	  "color-activity": "#fcb322",
+                        //          //	  "color-recall": "#fcb322",
+                        //          //	  "color-understanding": "#fcb322"
+                        //      },
+                        //      {
+                        //          "class_name": "6th-A Maths",
+                        //          "class_url": "http://example.com",
+                        //          //	  "activity": 12,
+                        //          //	  "recall": 24,
+                        //          //	  "understanding": 36,
+                        //          "xData": [67, 67, 67, 67],
+                        //          "xDataColor": ["#FF0000", "#FF0000", "#00B30C", "#00B30C"],
+                        //          "tip-activity": "Lorem Ipsum activity",
+                        //          "tip-recall": "Lorem Ipsum recall",
+                        //          "tip-understanding": "Lorem Ipsum understanding",
+                        //          //	  "color-activity": "#fcb322",
+                        //          //	  "color-recall": "#fcb322",
+                        //          //	  "color-understanding": "#fcb322"
+                        //      },
+                        //      {
+                        //          "class_name": "6th-B Maths",
+                        //          "class_url": "http://example.com",
+                        //          //	  "activity": 12,
+                        //          //	  "recall": 24,
+                        //          //	  "understanding": 36,
+                        //          "xData": [67, 67, 67, 67],
+                        //          "xDataColor": ["#FF0000", "#FF0000", "#00B30C", "#00B30C"],
+                        //          "tip-activity": "Lorem Ipsum activity",
+                        //          "tip-recall": "Lorem Ipsum recall",
+                        //          "tip-understanding": "Lorem Ipsum understanding",
+                        //          //	  "color-activity": "#fcb322",
+                        //          //	  "color-recall": "#fcb322",
+                        //          //	  "color-understanding": "#fcb322"
+                        //      }
+                        //    ],
+                        //    "differentActivity": ["BAD", "BAD", "GOOD","GOOD"],
+                        //    "maxValue": 67,
+                        //    "minValue": 20,
+                        //    "lineColor": "White"
+                        //}
+
+
+                        //var textStyleConfg = { "font-family": " 'Maven Pro',sans-serif", "font-size": 12, "background": "none", "font-color": "#a7a7a7", "tick-font-color": "black", "legendTextColor": "white", "font-weight": 400, "xLabelColor": "black", "yLabelColor": "black", "chartTitleColor": "black", "titleFontSize": 16, "gridLineColor": "#353b37" };
+
+                        //ComparisonChartGraph.ComparisonChartGraphAnalysis(ComparisonChart, "ComparisonChartContainer", textStyleConfg);
+
+
+
+                        //Summary
+                        //Heat Map Configuration.
+                        //Summary
+
+
+                        //var heatMapData = {
+                        //		data:{
+                        //			Activity:[18,20,22,16,10,9],
+                        //			Recall:[10,29,21,50,22,8],
+                        //			UnderStanding:[11,26,23,9,27,7]
+                        //		},
+                        //		xLabel:"Class Name",
+                        //		yLabel:"Grades",
+                        //		yAxisValue:['6th B Maths','6th A Maths','7th B Maths','7th A Maths','8th B Maths','8th A Maths']
+                        //};
+
+                        //var cfgHeatMap = {
+
+                        //		colorLow: '#5c6b6b',
+                        //		colorMed: '#535c5c',
+                        //		colorHigh: '#2f3939',
+                        //		yAxisLabelSpacing: 80
+                        //}
+
+                        ////var yAxisValue = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+                        ////var xAxisValue = ['Akash', 'Rajiv', 'Mohit', 'Gaurav', 'Gurjant'];
+
+                        //var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"black","legendTextColor":"white","font-weight":400,"xLabelColor":"black","yLabelColor":"black","chartTitleColor":"black","titleFontSize":16,"gridLineColor":"#353b37"};
+                        //heatMapChart.drawHeatMapChart(heatMapData,cfgHeatMap,"heatMapChartContainer");
+
+                    });
+
+
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

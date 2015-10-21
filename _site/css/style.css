@@ -1,3 +1,17 @@
+body{	font-family: 'Open Sans', sans-serif;}
+@font-face {
+    font-family: 'swis721_ltex_btlight';
+    src: url('../fonts/tt0371m_.eot');
+    src: url('../fonts/tt0371m_.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/tt0371m_.woff2') format('woff2'),
+         url('../fonts/tt0371m_.woff') format('woff'),
+         url('../fonts/tt0371m_.ttf') format('truetype'),
+         url('../fonts/tt0371m_.svg#swis721_ltex_btlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 #advanceChartContainer { 
     height: 80%;
 	margin:60px auto 0 auto; width:98%;
@@ -1242,3 +1256,11 @@ section.customVisualization h2 span{font-size:20px; letter-spacing:-2px;}
     left: 12%;
 	
 }
+
+.info-graphics{padding:60px 15px 15px 15px;  width:100%; background-color:white;
+}
+	
+.info-graphics-thum{ border:solid 1px #2aa1d2; height:260px; margin-bottom:30px; background-color:white; }
+.info-graphics-thum:hover{ box-shadow:0 0 10px #2aa1d2; transition:0.3s;-webkit-transition:0.3s; 
+	    -webkit-transition-delay: 0.3s; /* Safari */
+    transition-delay: 0.3s; }
