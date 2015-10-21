@@ -26761,7 +26761,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	
 	var racingVisualizationGraph = 
 	{
-		racingVisualizationAnalysis:function(data,dataLeft,array)
+		racingVisualizationAnalysis:function(data,array)
 		{	
 			
 		
@@ -27008,11 +27008,35 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
   
 
 		
-	//left div Logic							  
-			var rectBackColor = dataLeft.rectBackColor;
-			var rectColorArray = dataLeft.rectColorArray;
-			var textArray = dataLeft.textArray;
-			var units = dataLeft.units;
+	//left div Logic	
+			var	largeValueLines =data.largeValueLines;
+			var yAxisData = data.yAxisData;
+			var xAxisData = data.xAxisData;
+			var rectBackColor = data.rectBackColor;
+			var rectColorArray =[];
+			var textArray =[];
+			var units =[]
+			var lenCount=0;
+			var largeValueLinesLength = largeValueLines.length;
+			for(var i=0;i<largeValueLines.length;i++)
+			{
+				rectColorArray[i] = largeValueLines[i]["color"];
+				textArray[i] =	largeValueLines[i]["name"];
+				units[i] = largeValueLines[i]["units"];
+			}
+		
+			for(var i=largeValueLinesLength;i<yAxisData.length+largeValueLinesLength;i++)
+			{
+				rectColorArray[i] = yAxisData[i-largeValueLinesLength]["color"];
+				textArray[i] =	yAxisData[i-largeValueLinesLength]["name"];
+				units[i] = yAxisData[i-largeValueLinesLength]["units"];
+				
+			}
+			console.log(rectColorArray);
+			
+	//		var rectColorArray = dataLeft.rectColorArray;
+	//		var textArray = dataLeft.textArray;
+	//		var units = dataLeft.units;
 			
 			var widthLeft = $('.resetBtnGroupingLeft').width();
 			var heightLeft = $('.resetBtnGroupingLeft').height();
@@ -27140,7 +27164,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			var	largeValueLines =data.largeValueLines;
 			var yAxisData = data.yAxisData;
 			var xAxisData = data.xAxisData;
-			var lineStrokeWidth = data.lineStrokeWidth;
+		
 			
 			var widthUpper = $('.resetBtnGroupingUpper').width();
 			var heightUpper = $('.resetBtnGroupingUpper').height();
@@ -31440,14 +31464,14 @@ feMerge.append("feMergeNode")
 					.attr("stroke-width",.2)
 					.transition().duration(duration).ease(ease)
 					.attr("d", lineFunction(getSideCoordinates(upperPath+3,i)));
-					/*
+					
 				mainGroup.append("svg:image")
 						.attr("xlink:href", icon[i])
 						.attr("x",xScale(i)-widthOfBar*.5)
 						.attr("y",0)
 						.attr("width",widthOfBar)
 						.attr("height", scaleHeight*.1);
-					*/
+						
 				var textSize = textStyleConfg["font-heading-size"]/2,yPosition=textStyleConfg["font-heading-size"]+2,widthForText =(scaleWidth)/(xAxisData.length*1.2);
 				var textArray = wrapText(key[i],widthForText ,textSize);
 					/*		.style("font-size",textStyleConfg["font-heading-size"])

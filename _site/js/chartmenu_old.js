@@ -70,7 +70,7 @@ function updateJsfiddleLink(index){
 
 $(document).ready(function(){
   
- var textStyleConfg={"font-family":"'Maven Pro',sans-serif","font-size":"12","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":300,"xLabelColor":"#a7a7a7","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
+ var textStyleConfg={"font-family":"'Maven Pro',sans-serif","font-size":"12px","background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":300,"xLabelColor":"#a7a7a7","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
  
    
  
@@ -187,6 +187,7 @@ $(document).ready(function(){
      }] 
   };
 	
+	
 	var cfgScatterPlot =  {
 		
 		padding :30,
@@ -293,6 +294,7 @@ $(document).ready(function(){
 				Gurjant:[13,16,29,18,21],
 				Guarav:[18,12,23,14,8]
 			},
+			pointerImage:"http://stocinn.github.io/stocweb/img/pointer.png",
 			xLabel:"Employee Name",
 			yLabel:"Working Hours",
 			yAxisValue:['Monday','Tuesday','Wednesday','Thursday','Friday']
@@ -303,7 +305,8 @@ $(document).ready(function(){
 			colorLow: '#5c6b6b',
 			colorMed: '#535c5c',
 			colorHigh: '#2f3939',
-			yAxisLabelSpacing: 80
+			yAxisLabelSpacing: 80,
+			xLabelRotate :"false"
 	}
 	
 	//var yAxisValue = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
@@ -323,7 +326,7 @@ $(document).ready(function(){
 		
 		$("#transitPie").show();
 		
-		var dataSet= {
+	var dataSet= {
 						key :['Agnitio','Apple Inc','IBM','Facebook','Accenture','Gold Man Sach'],
 						value : [12000,8850,10000,4234,10234,12134],
 						label : 'Cost',
@@ -332,6 +335,16 @@ $(document).ready(function(){
 						legendOrient : "right"
 						
 					};
+					/*
+		var dataSet= {
+						key :['Kurkure','7UP','Mountain Dew'],
+						value : [12000,8850,10000],
+						label : 'Cost',
+						color : ['#e67a77','#95d7bb','#aec785'],
+						innerRadius:0,
+						legendOrient : "right"
+						
+					};*/
 		   
 		var textStyleConfg={"font-family":"Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif","font-size":10,"background":"none","font-color":"white","font-weight":300,"axisTextColor":"purple","legendTextColor":"#a7a7a7","gridLineColor":"#353b37"};	
 		var stocChart5=$("#line1").stocCharts(textStyleConfg);
@@ -446,6 +459,7 @@ $(document).ready(function(){
 						yAxisLabel : "Sales",
 						yAxisUnit : "Crores",
 						toolTipUnit : "Year",
+						currencyUnit:"\u20B9",
 						yAxisData : [275,300,320,250,230,270,140,190,300,370],
 						xAxisLabel : "Years",
 						xAxisData : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
@@ -839,7 +853,7 @@ $(document).ready(function(){
 	  $(".3DPyramidSliceChartMenu").show();
 		
 		var colorArray=["#fffc00","#ffb400","#2ca02c","#d62728","#9467bd","#5fe9e4", "#3e99f0", "#1cff31", "#bcbd22"];
-		var data=[200, 155, 110, 130, 240, 270, 185];
+		var data=[200, 155, 110, 130, 240, 270, 185];//11.03, 59.8, 306.84, 2.02, 5.09, 43.9
 		var labelArray=["Ford","Mercedes","Volkswagon","Ferrari","BMW","RENUALT","HYUNDAI"];
 		var config={"data":data,"colorArray":colorArray,"labels":labelArray,"unit":"B$"};
 		
@@ -1443,6 +1457,16 @@ $("#line1").empty();
 						xAxisLabel : "Month",
 						xAxisData : ["1'Mar","2'Mar","3'Mar","4'Mar","5'Mar","6'Mar","7'Mar","8'Mar","9'Mar","10'Mar","11'Mar","12'Mar","13'Mar","14'Mar","15'Mar"]
 				   }
+				   
+	/*	var data = {
+					    title : "Last 15 day's temperature readings",
+						titleColor : "gray",
+						yAxisUnit : "\u00B0"+"C",
+						yAxisLabel : "Temperature",
+						yAxisData : [28,55,42,65,20,35],
+						xAxisLabel : "Month",
+						xAxisData : ["Mirinda","pepsi","Kurkure","7UP","Duke","Mtn Dew"]
+				   }*/
 
 		var cnfg={"data":data};
 		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
@@ -1459,11 +1483,12 @@ $("#line1").empty();
 		$(".chartDetails").hide();
 	  $(".comparisonChartMenu").show();
 
-		var data =  {
+	var data =  {
 						title : "Last 16 Year Data , Estimated v/s Actual Profit",
 						titleColor : "gray",
 						yAxisLabel : "Profit",
-						yAxisUnit : "Million",
+						yAxisUnit : "",
+						currencyUnit:"\u20B9",
 						yAxisEstimateData : [300,390,300,270,230,180,150,350,300,300,390,300,270,200,230,180],
 						yAxisEstimateDataUnit : 'Estimated',
 						yAxisActualData : [330,450,320,250,270,140,190,300,370,330,450,320,250,230,270,140],
@@ -1471,7 +1496,20 @@ $("#line1").empty();
 						xAxisLabel : "Years",
 						xAxisData : [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014]
 					}
-
+					/*
+		var data =  {
+						title : "Last 16 Year Data , Estimated v/s Actual Profit",
+						titleColor : "gray",
+						yAxisLabel : "Profit",
+						yAxisUnit : "Million",
+						yAxisEstimateData : [300,390,300,270,200,230,180],
+						yAxisEstimateDataUnit : 'Estimated',
+						yAxisActualData : [330,450,320,250,230,270,140],
+						yAxisActualDataUnit : 'Actual',
+						xAxisLabel : "Years",
+						xAxisData : [2008,2009,2010,2011,2012,2013,2014]
+					}
+*/
 		var cnfg={"data":data};
 		var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":15,"gridLineColor":"#353b37"};
 		var stocChart37=$("#line1").stocCharts(textStyleConfg);
@@ -1867,13 +1905,14 @@ $("#line1").empty();
 		var data =  {
 						title : "Last 16 Year Data , Estimated v/s Actual Profit",
 						yAxisLabel : "Profit",
-						yAxisUnit : "Million",
+						yAxisUnit : "",
 						yAxisEstimateData : [325,250,340,230,250,290,100,220,350,300],
 						yAxisEstimateDataUnit : 'Estimated',
 						yAxisActualData : [275,300,320,250,230,270,140,190,300,370],
 						yAxisActualDataUnit : 'Actual',
 						xAxisLabel : "Years",
 						xAxisData : [2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
+						currencyUnit:"\u20B9",
 						legendArray : ['Estimate Data','Actual Data']
 		    }
 		
@@ -2031,8 +2070,20 @@ $("#line1").empty();
 			dountKey : ["Excellent","Above Avg.","Average","Below Avg.","Poor"],
 		    colorArray : ['#a7a7a7','#95d7bb','#fcb322','#e67a77','#aec785'],
 			unit : "%",
-			factor :"Students"
+			factor :"student"
 		}
+		
+	/*
+	var data= {
+     dountKey :['Kurkure','7UP','Mountain Dew'],
+     dountData : [12000,8850,10000],
+     label : 'Cost',
+     colorArray : ['#e67a77','#95d7bb','#aec785'],
+     unit : "%",
+	factor :"% Share"
+     
+    };
+	*/
 	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 		var stocChart49=$("#line1").stocCharts(textStyleConfg);
 		stocChart49.threeDPieChartWithLegendAnalysis(data);
@@ -2052,6 +2103,15 @@ $("#line1").empty();
 			unit : "%",
 			factor :"Students"
 		}
+	/*	var data = 
+		{
+			dountData : [65,35],
+			dountKey : ["Other than Pepsi Products","Pepsi Products"],
+		    colorArray : ['#a7a7a7','#95d7bb'],
+			unit : "%",
+			factor :"Students"
+		}
+		*/
 	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","gridLineColor":"#353b37"};
 		var stocChart49=$("#line1").stocCharts(textStyleConfg);
 		stocChart49.threeDDountChartWithLegendAnalysis(data);
@@ -2909,7 +2969,7 @@ $("#line1").empty();
 					title : "Product Sale(Brand wise)",
 					xAxisLabel :"Current Status",
 					yAxisLabel :"Product",
-					yAxisData : ["Formal dfer ree erer Shirt","Jeans tyer rtyer re ytry rytrt rtye tryhe ter rytret","T-Shirt","Trouser","Blazers","Sports Wear"],
+					yAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
 					key: [
 							{
 								name: 'Zara',
@@ -2929,8 +2989,33 @@ $("#line1").empty();
 							
 						]
 				}  
-		
-		
+		/*
+			
+		var data = {
+					title : "Product Sale(Brand wise)",
+					xAxisLabel :"Current Status",
+					yAxisLabel :"Product",
+					yAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser"],
+					key: [
+							{
+								name: 'Zara',
+								data: [50, 30, 40, 37],
+								color : "#00FFFF"
+							},
+							{
+								name: 'Levis',
+								data: [0, 40, 32, 25],
+								color : "#DCDCDC"
+							}, 
+							{
+								name: 'Woodland',
+								data: [0, 43, 0, 22],
+								color : "#7FFFD4"
+							}
+							
+						]
+				}  
+				*/
 	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":12,"gridLineColor":"#353b37"};
 		var stocChart55=$("#line1").stocCharts(textStyleConfg);
 		stocChart55.horizontalStackedBarChartAnalysis(data);
@@ -2948,13 +3033,24 @@ $("#line1").empty();
 					title : "Product Sale(Brand wise)",
 					xAxisLabel :"Brand",
 					yAxisLabel :"Product sale",
+					
+					
 					xAxisData : ["Formal Shirt","Jeans","T-Shirt","Trouser","Blazers","Sports Wear"],
 					yAxisData : [50, 30, 40, 37, 20,30],
 					color :["#00FFFF"]
 					
 				}  
-		
-		
+		/*
+		var data = {
+					title : "Product Sale(Product Wise)",
+					xAxisLabel :"Brand",
+					yAxisLabel :"Product sale",
+					xAxisData : ["Pepsi","Mirinda","Mountain Dew","Kurkure","Lipton"],
+					yAxisData : [50, 30, 40, 37, 20],
+					color :["#00FFFF"]
+					
+				}  
+		*/
 	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
 		var stocChart55=$("#line1").stocCharts(textStyleConfg);
 		stocChart55.simpleBarChartAnalysis(data);
@@ -3379,77 +3475,7 @@ $("#twoDStackedBarChart").click(function(){
 		
 	
 	});
-	
-	$("#threeDRoundedBarChart").click(function(){
-	//	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
-	
- 	var data = {
-				"yAxisData" : [60,90,80,58,86,55,77],
-				"lowerColorArray":["#ed1e79","#fbb03b","#666666","#92278f","#0071bd","#cc886d","#356aa0"],
-				"upperColor":"#e6e6e6",
-				"imagesArray" :["img/icon/icon1.png","img/icon/icon2.png","img/icon/icon3.png","img/icon/icon4.png","img/icon/icon5.png","img/icon/icon1.png","img/icon/icon2.png"],
-				"threeDPathColor":"#f7fbf4",
-				"xAxisData" : ["biaxially oriented df polypropyle","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation"],
-				"unit" : "%"
-			}
-			
-	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":8,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"white","yLabelColor":"white","chartTitleColor":"white","titleFontSize":16,"gridLineColor":"#353b37"};
-						
-	var stocChart43=$("#advanceChartContainer").stocCharts(textStyleConfg);
-		 stocChart43.threeDRoundedBarChartAnalysis(data);
 
-		
-	
-	});
-	
- $("#threeDShutterStack").click(function(){
- //	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
-  
-  var data =
-   {
-     title : "Foreign Visitors Rate",
-     barData: [{
-      "yTick": "01 Step",
-      "yData": 80,
-      "color": "#FF0F00"
-      }, {
-      "yTick": "02 Step",
-      "yData": 148,
-      "color": "#FF6600"
-      }, {
-      "yTick": "03 Step",
-      "yData": 121,
-      "color": "#FF9E01"
-      }, {
-      "yTick": "04 Step",
-      "yData": 100,
-      "color": "#FCD202"
-      }, {
-      "yTick": "05 Step",
-      "yData": 180,
-      "color": "#F8FF01"
-      }],  
-    commonColor : "#ffffff", 
-    upperEclipsColor : "gray",
-    xAxisLabel : "Country",
-    yAxisLabel :"Visit(in Millons)",
-    upperPathHeight : 40,
-	cylinderHeight : 130,
-	"imagesArray" :["img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png","img/per.png"],
-	"lowerTextDes" :["biaxially oriented","biaxially oriented polyethylene terephtalate","biaxially oriented polyamide","biaxially oriented polystyrene","ANDRITZ Biax","Superior film quality","Easy operation ANDRITZ Biax","Easy operation ANDRITZ Biax","ANDRITZ Biax","biaxially oriented polyamide"],
-    unit : "%"  
-   }  
-  
-  
- var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":8,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":8,"gridLineColor":"#353b37"};
-  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
-  stocChart55.threeDShutterStackAnalysis(data);
- });
-	
 $("#racingVisualization").click(function(){
  //	selectedChartIndex=$(this).attr("index");
 	//	updateJsfiddleLink(selectedChartIndex);
@@ -3538,93 +3564,316 @@ $("#racingVisualization").click(function(){
   stocChart55.racingVisualizationAnalysis(data,dataLeft,positionArray);
  });
 	
-	$("#rankWiseInformaticChart").click(function(){
- //	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
-  
-	var data = {
-	
-		"rank":["01","02","03","04"],
-		"icon":["img/logos/img1.png","img/logos/img9.png","img/logos/img6.png","img/logos/img5.png"],
-		"name":["5467","7645","554","45"],
-		"description":["product infographics design","product infographics design","product infographics design","product infographics design"],
-		"innerCircleColor":["#d35454","#2d459b","#0289c9","#01a765"],
-		"outerCircleColor" :"#dddee2"
-	}
-	var textStyleConfg={"font-family":"arial","font-size":12,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":25,"gridLineColor":"#353b37"};
-  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
-  stocChart55.rankWiseInformaticChartAnalysis(data);
- });
+
  
- $("#infographicBarChart").click(function(){
- //	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
+ 
   
+  
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+jQuery(document).ready(function() {
+  checkContainer();
+});
+
+function checkContainer () {
+
+
+  if($('#infographicChartContainer').is(':visible')){ //if the container is visible on the page
+     $("#infographicTilledBarChart").empty();
+
 	var data = 
 	{
-		"rank":["01","02","03","04","05"],
-		"icon":["img/logos/img1.png","img/logos/img9.png","img/logos/img6.png","img/logos/img5.png","img/logos/img7.png"],
-		"yAxisData":[65,78,90,64,50],
-		"title": ["product abc","product abc","product abc","product abc","product abc"],
-		"description":["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
-		"color":["#d5be8c","#fce9a7","#8dceb6","#f26748","#757547","#503721"],
-		"backColor":"#fffceb",
-		"unit" : "%"
+		"rank" : ["01","02","03","04"],
+		"icon" : ["img/logos/lays.png","img/logos/kurkure.png","img/logos/tropicana.png","img/logos/mirinda.png"],
+		"yAxisData" : [35,50,70,90],
+		"title" : ["Lays","Kurkure","Tropicana","Mirinda"],
+		"description" : ["Lay,s Potato Chips india's Magic Masala","Kurkure Festive Giftbox","Tropicana Mixed Fruit 100 % juice","Mirinda Orange Soft Drink"],
+		"color" : ["#74a317","#4e4a47","#92979b","#62aed2","#3dbfb7","#503721"],
+		"backColor" : "#dadada",
+		"leftTitle":"Product Name",
+		"rightTitle":"Product Description",
+		"unit": "%"
 	}
-	var textStyleConfg={"font-description":8,"font-size-heading":20,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
-  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
-  stocChart55.infographicBarChartAnalysis(data);
- });
- 
- $("#infographicBartWithPieChart").click(function(){
- //	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
-  
-var data = 
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":13,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#333","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"white","font-description-family":"'Open Sans', sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"white","font-heading-family":"'Roboto', sans-serif","font-heading-weight":400,"font-number-size":14,"font-number-color":"white","font-number-family":"'Roboto', sans-serif","font-number-weight":600,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+	var stocChart55=$("#infographicTilledBarChart").stocCharts(textStyleConfg);
+	stocChart55.infographicTilledBarChartAnalysis(data);
+	
+	
+
+	$("#infographicSmoothPath").empty();
+	var data = 
 	{
 		"rank" : ["01","02","03","04","05"],
-		"icon" : ["img/logo_colored/img1.png","img/logo_colored/img9.png","img/logo_colored/img6.png","img/logo_colored/img5.png","img/logo_colored/img7.png"],
-		"yAxisData" : [35,50,70,90,100],
-		"title" : ["product abc","product abc","product abc","product abc","product abc"],
-		"description" : ["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
+		"key" : [23,1359.01,54,65,876],
+		"title" : ["Cheetos","Tropicana Tomato","Tropicana Cranberry","Tropicana Coconut","Pepsi"],
+		"description" : ["Cheetos Cheese Ball - 30g","Tropicana Tomato Fruit Juice - 1000ml","Tropicana Cranberry Delight Friut Juice - 1000ml","Tropicana Creations Coconut & Mixed Fruit - 200ml","Pepsi Soft Drink 1L Bottle"],
+		"color" : ["#f15c5e","#797a7c","#f8b75d","#55b8be","#1fb7cf","#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"]
+	}
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"white","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":12,"font-heading-color":"white","font-heading-family":"'Roboto', sans-serif","font-heading-weight":400,"font-number-size":14,"font-number-color":"#ffffff","font-number-family":"'Roboto', sans-serif","font-number-weight":400,"font-rank-size":16,"font-rank-color":"#000","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicSmoothPath").stocCharts(textStyleConfg);
+  stocChart55.infographicSmoothPathAnalysis(data);
+  
+  
+  
+  	$("#infographicBarChartWithPercentage").empty();
+	var data = 
+			{
+				"xAxisData" : [43.09,11.03,5.09,306.83,59.8],
+				"color" : ["#f15c5e","#797a7c","#f8b75d","#55b8be","#1fb7cf","#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"],
+				"labelColor":["#f15c5e","#797a7c","#f8b75d","#55b8be","#1fb7cf"],
+				"icon" : ["img/logos/amazon.png","img/logos/srs.png","img/logos/basket.png","img/logos/grocermax.png","img/logos/kada.png"],
+				"key" : ["Amazon","Srs","Big-Basket","Grocermax","Kada"],
+				"backColor"	:"#d1cfd0",
+				"unit" : "%"
+			}
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"white","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":10,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":100,"font-number-size":10,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicBarChartWithPercentage").stocCharts(textStyleConfg);
+  stocChart55.infographicBarChartWithPercentageAnalysis(data);
+  
+  
+  
+  	$("#infographicBarChartCardStand").empty();
+	var data = 
+	{
+		"rank" : ["01","02","03","04","05"],
+		"icon" : ["img/logos/lays.png","img/logos/kurkure.png","img/logos/tropicana.png","img/logos/mirinda.png"],
+		"yAxisData" : [35,50,70,100],
+		"description" : ["Lay,s Potato Chips india's Magic Masala","Kurkure Festive Giftbox","Tropicana Mixed Fruit 100 % juice","Mirinda Orange Soft Drink"],
 		"color" : ["#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"],
-		"backColor"	:"#d1cfd0",//
-		"pieBackColor" : "#503721",
-		"innerArcColor" : "#fce9a7",
+		"rotateText" : "true",
+		"backColor"	:"#d1cfd0"
 		
 	}
-	var textStyleConfg={"font-description":8,"font-size-heading":20,"font-color-heading":"white","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
-  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
-  stocChart55.infographicBartWithPieChartAnalysis(data);
- });
+		
+var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":12,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":12,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800,"font-rank-size":16,"font-rank-color":"#000","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicBarChartCardStand").stocCharts(textStyleConfg);
+  stocChart55.infographicBarChartCardStandAnalysis(data);
   
   
- $("#infographicRankStand").click(function(){
- //	selectedChartIndex=$(this).attr("index");
-	//	updateJsfiddleLink(selectedChartIndex);
-		$("#advanceChartContainer").empty();
-  
+ 
+$("#infographicRankStand").empty(); 
 var data = 
 	{
-		"rank" : ["01","02","03","04"],
+		"rank" : ["01","02","03"],
 		"icon" : ["img/logo_colored/img1.png","img/logo_colored/img9.png","img/logo_colored/img6.png","img/logo_colored/img5.png","img/logo_colored/img7.png"],
-		"title" : ["product abc","product abc","product abc","product abc","product abc"],
-		"description" : ["product infographics design for products according to brand","product infographics design","product infographics design","product infographics design","product infographics design"],
+		"title" : ["Rank 10","Rank 12","Rank 15"],
+		"description" : ["Pepsi","Kurkure","Gatorade"],
 		"bulbImage" :"img/logo_colored/bulb.png",
 		"cylinderColor" : "#c9c9c7",
 		"pathColor" : "#FFFFFF",
 		"unit" : "%"
 	}
 	
-	var textStyleConfg={"font-description":8,"font-size-heading":12,"font-color-heading":"black","font-family":"arial","font-size":12,"background":"none","font-color":"black","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37"};
-  var stocChart55=$("#advanceChartContainer").stocCharts(textStyleConfg);
+var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":12,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":14,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800,"font-rank-size":14,"font-rank-color":"#000","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicRankStand").stocCharts(textStyleConfg);
   stocChart55.infographicRankStandAnalysis(data);
- });
+
+
+
+  	
+	$("#infographicStepUpChart").empty();
+	var data = 
+	{
+		"icon" : ["img/logos/lays.png","img/logos/kurkure.png","img/logos/tropicana.png","img/logos/mirinda.png"],
+		"yAxisData" : [35,50,70,100],
+		"title" : ["Lays","Kurkure","Tropicana","Mirinda"],
+		"description" : ["Lay,s Potato Chips india's Magic Masala","Kurkure Festive Giftbox","Tropicana Mixed Fruit 100 % juice","Mirinda Orange Soft Drink"],
+		"color" : ["#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"]
+	}
+		
+		
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":14,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800,"font-rank-size":14,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicStepUpChart").stocCharts(textStyleConfg);
+  stocChart55.infographicStepUpChartAnalysis(data);
+
+ 
+
+
+$("#infographicBarChart").empty();
+  var data = 
+	{
+		"rank":["01","02","03","04","05"],
+		"icon":["img/logos/himalayan.png","img/logos/quaker.png","img/logos/tropicana.png","img/logos/quaker.png","img/logos/quaker.png"],
+		"yAxisData":[133164.0,77989.0,75290.0,66975.0,63816.0],
+		"title": ["Himalayan","Quaker Oats","tropicana","Quaker Oats","Quaker Oats"],
+		"description":["Himalayan natural mineral water - 1L Carton(pack of 12)","Quaker Oats - 1kg Pouch","tropicana Orange 100% juice - 1000ml","Quaker Oats - 1.5kg Pack","Quaker Oats - 1kg Pouch"],
+		"color":["#d5be8c","#fce9a7","#8dceb6","#f26748","#757547","#503721"],
+		"backColor":"#fffceb",
+		"mainTitle" : "product sales",
+		"currencyUnit":"\u20B9",
+		"unit" : ""
+	}
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":100,"font-number-size":10,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":13,"font-rank-color":"#000","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicBarChart").stocCharts(textStyleConfg);
+  stocChart55.infographicBarChartAnalysis(data);
+
  
  
+
+
+ 
+		
+$("#infographicBartWithPieChart").empty();
+var data = 
+	{
+		"rank" : ["01","02","03","04","05"],
+			"icon":["img/logos/lays.png","img/logos/lays.png","img/logos/lays.png","img/logos/lays.png","img/logos/lays.png"],
+		"yAxisData" : [35,50,70,90,100],
+		"title" : ["Lays","Lays","Lays","Lays","Lays"],
+		"description" : ["Lays Potato Chips - American Style Cream & Onion Flavour 52g","Lays Potato Chips - India's Magic Masala - 52g pack","Lays Potato Chips - India's Magic Masala(Party Pack) 177g pack","Lays Potato Chips - American Style Cream & Onion Flavour 52g","Lays Potato Chips - American Style Cream & Onion Flavour 52g"],
+		"color" : ["#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"],
+		"backColor"	:"#d1cfd0",//
+		"pieBackColor" : "#503721",
+		"innerArcColor" : "#fce9a7",
+		
+	}
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":12,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":400,"font-number-size":12,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":14,"font-rank-color":"#000","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+  var stocChart55=$("#infographicBartWithPieChart").stocCharts(textStyleConfg);
+  stocChart55.infographicBartWithPieChartAnalysis(data);
+
+ 
+  
+  $("#infographicCircleChart").empty();
+	var data = {
+		"key":[133164.0,77989.0,75290.0,66975.0,63816.0],
+		"description":["Himalayan natural mineral water - 1L Carton(pack of 12)","Quaker Oats - 1kg Pouch","tropicana Orange 100% juice - 1000ml","Quaker Oats - 1.5kg Pack","Quaker Oats - 1kg Pouch"],
+		"icon":["img/logos/himalayan.png","img/logos/quaker.png","img/logos/tropicana.png","img/logos/quaker.png","img/logos/quaker.png"],
+		"centerIcon" : "img/logo_colored/img2.png",
+		"color" : "white"
+		
+	}
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":9,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":14,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+	
+  var stocChart55=$("#infographicCircleChart").stocCharts(textStyleConfg);
+  stocChart55.infographicCircleChartAnalysis(data);
+  
+  
+  
+ 
+$("#infographicTrianglePath").empty();
+	var data = {
+		"key" : 3,
+		"color" : "#ef2f1a"
+	}
+	
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":12,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":20,"font-number-color":"#ffffff","font-number-family":"'Maven Pro',sans-serif","font-number-weight":800};
+  var stocChart55=$("#infographicTrianglePath").stocCharts(textStyleConfg);
+  stocChart55.infographicTrianglePathAnalysis(data);
+
+  
+  	
+
+	$("#threeDRoundedBarChart").empty();
+ 	var data = {
+				"yAxisData" : [60,90,80,58,86],
+				"lowerColorArray":["#ed1e79","#fbb03b","#666666","#92278f","#0071bd","#cc886d","#356aa0"],
+				"upperColor":"#e6e6e6",
+				"imagesArray" :["img/logos/lays.png","img/logos/kurkure.png","img/logos/tropicana.png","img/logos/mirinda.png"],
+				"threeDPathColor":"#f7fbf4",
+				"xAxisData" : ["Lays","Kurkure","Tropicana","Mirinda"],
+				"unit" : "%"
+			}
+			
+		
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":12,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":11,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":12,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+						
+	var stocChart43=$("#threeDRoundedBarChart").stocCharts(textStyleConfg);
+		 stocChart43.threeDRoundedBarChartAnalysis(data);
+
+
+	
+
+$("#threeDShutterStack").empty();
+  var data =
+   {
+     title : "Product Rate",
+     barData: [{
+      "yTick": "01 Step",
+      "yData": 80,
+      "color": "#FF0F00"
+      }, {
+      "yTick": "02 Step",
+      "yData": 148,
+      "color": "#FF6600"
+      }, {
+      "yTick": "03 Step",
+      "yData": 121,
+      "color": "#FF9E01"
+      }, {
+      "yTick": "04 Step",
+      "yData": 100,
+      "color": "#FCD202"
+      }, {
+      "yTick": "05 Step",
+      "yData": 180,
+      "color": "#F8FF01"
+      }],  
+    commonColor : "#ffffff", 
+    upperEclipsColor : "gray",
+ //   xAxisLabel : "Country",
+ //   yAxisLabel :"Visit(in Millons)",
+    upperPathHeight : 35,
+	cylinderHeight : 120,
+	"imagesArray" :["img/logos/himalayan.png","img/logos/quaker.png","img/logos/tropicana.png","img/logos/quaker.png","img/logos/quaker.png"],
+	"lowerTextDes" :["Himalayan","Quaker Oats","tropicana","Quaker Oats","Quaker Oats"],
+    unit : "%"  
+   }  
+
+var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":16,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":10,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":12,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+						
+  var stocChart55=$("#threeDShutterStack").stocCharts(textStyleConfg);
+  stocChart55.threeDShutterStackAnalysis(data);
+ 	
+ 
+  $("#infographicBarChartWithCylinder").empty();
+var data = 
+			{
+				"xAxisData" : [50,70,88,95,100],
+				"color" : ["#42a5f5","#ef5350","#5c6bc0","#66bb6a","#26a69a","#f3aa1f","#cb1b6e","#7e3d97","#318dcc","#3dbfb7","#503721"],
+				"icon" : ["logo_colored/img1.png","logo_colored/img9.png","logo_colored/img6.png","logo_colored/img5.png","logo_colored/img7.png"],
+				"key" : ["Lays","Kurkure","Tropicana","Mirinda","Pepsi"],
+				"backColor"	:"#d1cfd0",
+				"unit" : "%"
+			}
+	var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":12,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":12,"font-description-color":"#000","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":9,"font-heading-color":"black","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":12,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":16,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":600};
+
+  var stocChart55=$("#infographicBarChartWithCylinder").stocCharts(textStyleConfg);
+  stocChart55.infographicBarChartWithCylinderAnalysis(data);
+  
+  
+ 
+	$("#rankWiseInformaticChart").empty();
+	var data = {
+	
+		"rank":["01","02","03","04","05"],
+		"icon":["img/logos/img1.png","img/logos/img9.png","img/logos/img6.png","img/logos/img5.png","img/logos/kurkure.png"],
+		"name":["9","7","6","4","2"],
+		"description":["7UP","Mountain Dew","Lays","Lipton","Kurkure"],
+		"innerCircleColor":["#d35454","#2d459b","#0289c9","#01a765","#503721"],
+		"outerCircleColor" :"#dddee2",
+		"leftLabel":"rank data",
+		"rightLabel":"product name"
+	}
+	
+var textStyleConfg={"font-family":"'Roboto', sans-serif","font-size":13,"background":"none","font-color":"white","tick-font-color":"#000","legendTextColor":"white","font-weight":400,"xLabelColor":"#000","yLabelColor":"#a7a7a7","chartTitleColor":"black","titleFontSize":10,"gridLineColor":"#353b37","font-description-size":10,"font-description-color":"#ffffff","font-description-family":"Open Sans, sans-serif","font-description-weight":100,"font-heading-size":14,"font-heading-color":"#000","font-heading-family":"Open Sans, sans-serif","font-heading-weight":10,"font-number-size":14,"font-number-color":"#000","font-number-family":"'Maven Pro',sans-serif","font-number-weight":400,"font-rank-size":14,"font-rank-color":"white","font-rank-family":"'Roboto', sans-serif","font-rank-weight":400};
+  var stocChart55=$("#rankWiseInformaticChart").stocCharts(textStyleConfg);
+  stocChart55.rankWiseInformaticChartAnalysis(data);
+  
+  } else {
+    setTimeout(checkContainer, 50); //wait 50 ms, then try again
+  }
+}
 	
 	$(document).on('click','#chartResetButton',function(){
 		$('#mapOfIndiaWithChart').trigger('click');

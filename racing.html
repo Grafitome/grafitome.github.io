@@ -19,68 +19,71 @@ and open the template in the editor.
 		<script>
 //#dfdfdf
 	//	$("#advContainer").empty();
-	  var data =
+	 	  var data =
 		{
 			
 				"xAxisData":["0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888",
 				"0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888",
 				"0.00.000","0.26.222","0.52.444","1.18.666","1.44.888","0.00.000","0.26.222","0.52.444","1.18.666","1.44.888"],
-				"lineStrokeWidth" : 1,
+				
+				"rectBackColor": "#757575",
+				
 				"largeValueLines" :[
 										{				
-											"name" : "Angel",
+											"name" : "GPS_LAT",
+											"units": "mm",
 											"color": "#de1a19",
 											"data" : [123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723,123,423,302,223,723]
 										},
 										{
-											"name" : "Venture",
+											"name" : "GPS_LON",
+											"units": "mm",
 											"color": "#b6ca16",
 											"data" : [850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729,850,870,120,223,729]			
 										}
 									],
-				
+			
 				"yAxisData":
 				[
 					{				
-						"name" : "Angel",
+						"name" : "RPM",
+						"units": "rpm",
 						"color": "#249f19",
 						"data" : [13,13,13,13,13,13,13,13,13,13,13,13,12,13,13,13,13,12,11,13,13,13,12,11,13,13,13,12,13,13]
 					},
 					{
-						"name" : "Venture",
+						"name" : "ODOMT",
+						"units": "m",
 						"color": "#d08c0c",
 						"data" : [12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29,12,17,20,23,29]			
 					},
 					{
-						"name" : "Micro",
+						"name" : "GPS_SPEED",
+						"units": "km/hr",
 						"color": "#acc8cd",
 						"data" : [33,32,33,33,34,34,34,34,34,35,35,35,35,35,35,36,36,36,36,36,37,37,37,37,37,37,37,38,38,38]			
 					},
 					{
-						"name" : "Micro",
+						"name" : "SPEED",
+						"units": "km/hr",
 						"color": "#c932c0",
-						"data" : [53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30]			
+						"data" : [13,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30,53,23,12,23,30]			
 					},
 					{
-						"name" : "Micro",
+						"name" : "GEAR_SPEED",
+						"units": "",
 						"color": "#8f7031",
 						"data" : [43,43,43,43,44,43,43,45,45,40,43,43,42,43,40,43,43,42,43,40,43,43,42,43,40,43,43,42,43,40]			
 					},
 					{
-						"name" : "Micro",
+						"name" : "TH20",
+						"units": "",
 						"color": "#156d12",
 						"data" : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]			
 					}
 					
 				]
 				
-		}
-		var dataLeft = 
-		{
-			"rectColorArray" : ["#de1a19","#b6ca16","#249f19","#d08c0c","#acc8cd","#c932c0","#8f7031","#156d12"],
-			"units" : ["mm","mm","rpm","m","km/hr","km/hr","",""],
-			"textArray" : ["GPS_LAT","GPS_LON","RPM","ODOMT","GPS_SPEED","SPEED","GEAR_SPEED","TH20"],
-			"rectBackColor": "#757575"
 		}
 		
 		var positionArray=[{"lat": 50.8284, "lon":4.71969},{"lat": 50.828, "lon":4.7217},{"lat": 50.828, "lon":4.72407}
@@ -99,7 +102,7 @@ and open the template in the editor.
 			
 	var textStyleConfg={"font-family":" 'Maven Pro',sans-serif","font-size":12,"background":"none","font-color":"#a7a7a7","tick-font-color":"#a7a7a7","legendTextColor":"white","font-weight":400,"xLabelColor":"#a7a7a7","yLabelColor":"#a7a7a7","chartTitleColor":"#a7a7a7","titleFontSize":16,"gridLineColor":"#353b37"};
   var stocChart55=$("#advContainer").stocCharts(textStyleConfg);
-  stocChart55.racingVisualizationAnalysis(data,dataLeft,positionArray);
+  stocChart55.racingVisualizationAnalysis(data,positionArray);
 
 		
 		</script>

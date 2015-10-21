@@ -9646,15 +9646,15 @@ function sweep(d) {
                 svgMeter.append("g").append("svg:image")
                     .attr("id", "img")
                     .attr("xlink:href", pointerImage)
-                    .attr("width", width / 20)
-                    .attr("height", width / 20)
+                    .attr("width", width / 30)
+                    .attr("height", width / 30)
                     .style('display', 'none');
 
                 function drawPointer(d, x) {
                     svgMeter.select(" #img").style('display', 'block');
                     svgMeter.select("#img")
                         .transition()
-                        .attr("x", width - (0.16 * width))
+                        .attr("x", width - (0.15 * width))
                         .attr("y", meterYScale(d.hours));
                 }
 
@@ -10266,8 +10266,8 @@ function sweep(d) {
 			allTextDescription.style("fill",textStyle["font-description-color"],null);
 			allTextDescription.style("font-weight",textStyle["font-description-weight"]);
 	
-	
-		var allTextHeading=svgElement.selectAll(".heading");
+
+		var allTextHeading=svgElement.selectAll(".headingInfo");
 			allTextHeading.style("font-size",textStyle["font-heading-size"]+"px",null)
 			allTextHeading.style("font-family",textStyle["font-heading-family"])
 			allTextHeading.style("fill",textStyle["font-heading-color"]);
@@ -26338,7 +26338,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			
 			var pixcelPerChar=7;
 			var leftIndicator = (width/2) - ((title.length*pixcelPerChar)/2)
-			var titleTopPosition = 10;
+			var titleTopPosition = 15;
 			axisLabelController.appendLabel(title,leftIndicator,titleTopPosition,0,svgElement,textStyleConfg.xLabelColor,800);	
 								
 			for(var counter = 0;counter<barData.length ;counter++)
@@ -26349,14 +26349,14 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 			}
 			
 			var leftMargin = marginController.leftMarginController(yAxisValues);
-			var threeDAnalChart={left:25,right:0,bottom:10,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
+			var threeDAnalChart={left:25,right:5,bottom:10,top:height*0.1,chartSeparator:5,xScalePaddingTop:height*0.2,yScalePaddingLeft:width*0.1};
 			
 			var scaleWidth=width-threeDAnalChart.left-threeDAnalChart.right;
 			var scaleHeight=height-threeDAnalChart.top-threeDAnalChart.bottom;
 			
 			var estimateDataBarWidth =  ((scaleWidth)/((barData.length+1)));
 			
-			var radiusY = estimateDataBarWidth*.07;
+			var radiusY = estimateDataBarWidth*.03;
 			var gradient;
 
 		//	var svgElement = d3.select("body").append("svg").attr("width",width).attr("height",height);
@@ -26715,7 +26715,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						{
 						
 							mainGroup.append("text")   	 
-									.attr("class","heading flagText")
+									.attr("class","headingInfo flagText")
 									.attr("x", function(d){return xScale(i)-(barWidth/2)-estimateDataBarWidth*.6})           
 									.attr("y",function(d){ return yScale(cylinderHeight) - upperPathHeight*.6+yPosition1*k}) 
 									.attr("dy",".3em")
@@ -26731,14 +26731,18 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 					//	console.log(textArray);
 						for(var k=0;k<textArray.length;k++)
 						{
-							if(yScale(cylinderHeight)+40+yPosition*k<=scaleHeight)
-								mainGroup.append("text")   
-									.attr("class","description cylinderText")
-									.attr("x", function(d){return xScale(i)-(textArray[k].length*(textSize*.7))*.5})           
-									.attr("y",function(d){ return yScale(cylinderHeight)+40+yPosition*k})
-									.attr("dy",".9em")
-									.text(function(d){return textArray[k];})
-									.transition().delay(25000)
+						//	if((scaleHeight-(yScale(cylinderHeight)+40+yPosition*k))>0)
+						//	{
+						//		console.log(scaleHeight-(yScale(cylinderHeight)+40+yPosition*k+"   ");
+								if(yScale(cylinderHeight)+40+yPosition*k<=scaleHeight)
+									mainGroup.append("text")   
+										.attr("class","description cylinderText")
+										.attr("x", function(d){return xScale(i)-(textArray[k].length*(textSize*.7))*.5})           
+										.attr("y",function(d){ return yScale(cylinderHeight)+40+yPosition*k})
+										.attr("dy",".9em")
+										.text(function(d){return textArray[k];})
+										.transition().delay(25000)
+						//	}
 									
 						}			
 						cylinderHeight = cylinderHeight+upperPathHeight*5;	
@@ -27256,10 +27260,15 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 						
 		//	}
 		});
-		
+			
+	var zoom = d3.behavior.zoom()
+     .scaleExtent([1, 5])
+     .on("zoom", zoomed);
+	
 			
 			var upperSvg = d3.select(".resetBtnGroupingUpper")
 				.append("svg")
+				.attr("id","upperSvg")
 				.attr("width",widthUpper)
 				.attr("height",heightUpper)
 				.on("mousemove",function()
@@ -27325,9 +27334,34 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 	//				console.log(array[xInvert]);
 					
 					
-				});
-								
-						
+				})
+				.call(zoom);
+				
+				
+				
+
+	 
+
+		/*						
+					var drag = d3.behavior.drag()
+     .origin(function(d) { return d; })
+     .on("dragstart", dragstarted)
+     .on("drag", dragged)
+     .on("dragend", dragended);
+
+function dragstarted(d) {
+   d3.event.sourceEvent.stopPropagation();
+   d3.select(this).classed("dragging", true);
+ }
+
+ function dragged(d) {
+//   d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+ }
+
+ function dragended(d) {
+   d3.select(this).classed("dragging", false);
+ }
+	*/ 
 						upperSvg.append("line")
 							.attr("class","lineMove")
 							.attr("x1",setMargin.left)
@@ -27337,10 +27371,19 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 							.attr("fill","none")
 							.attr("stroke","white")
 							.attr("stroke-width",2)
-				
+	
+			
 			var mainGroup = upperSvg.append("g")
 				.attr("class","mainGroup")
 				.attr("transform","translate("+setMargin.left+","+setMargin.top+")")
+				
+	
+
+	 
+	function zoomed() {
+  mainGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+ }	
+			
 		/*				
 				mainGroup.append("line")
 				.attr("x1",0).attr("y1",setMargin.top+20)
@@ -27484,10 +27527,7 @@ var color =[],j=0,dataArrayX =[],index=0,dataArrayY =[],average=0,x=0,y=0,z=0,sl
 				counter++;
 				
 			}	
-//			var zoom = d3.behavior.zoom()
-//				.x(x)
-//				.y(y)
-//				.on("zoom", zoomed);
+
 		//hide axis path
 			hideAxisPath(svgElement);
 		//set font here
@@ -27888,7 +27928,7 @@ feMerge.append("feMergeNode")
 					for(var k=0;k<textArray.length;k++)
 					{
 						mainGroup.append("text")   
-									.attr("class","heading leftPathText")
+									.attr("class","headingInfo leftPathText")
 									.attr("x", function(d){return radiusOfCircle*2+radiusOfCircle+textPositionGap })           
 									.attr("y",function(d){ return yScale(i)+yPosition*k}) 
 									.attr("dy",".1em")
@@ -28211,7 +28251,7 @@ feMerge.append("feMergeNode")
 			
 			var pixcelPerChar=7;
 			var leftIndicator = (width/2) - (((mainTitle.length)*pixcelPerChar)/2)
-			var titleTopPosition = 10;
+			var titleTopPosition = 15;
 			axisLabelController.appendLabel(mainTitle,leftIndicator,titleTopPosition,0,svgElement,textStyleConfg.xLabelColor,800);	
 				
 				var defs = svgElement.append("defs");
@@ -28422,7 +28462,7 @@ feMerge.append("feMergeNode")
 				for(var k=0;k<textArray1.length;k++)
 				{
 					mainGroup.append("text")   
-						.attr("class","heading textHeading")
+						.attr("class","headingInfo textHeading")
 						.attr("x", function(){return xScale(i)-widthForText*.5})           
 						.attr("y",function(){ return scaleHeight*.95+yPosition1*k}) 
 					//	.attr("text-anchor", "middle")
@@ -28834,7 +28874,7 @@ feMerge.append("feMergeNode")
 					for(var k=0;k<textArray1.length;k++)
 					{
 						mainGroup.append("text")   
-							.attr("class","heading textHeading")
+							.attr("class","headingInfo textHeading")
 							.attr("x", function(){return xScale(i)-widthForText*.5})           
 							.attr("y",function(){ return scaleHeight*.85+yPosition*k}) 
 						//	.attr("text-anchor", "middle")
@@ -29325,7 +29365,7 @@ feMerge.append("feMergeNode")
 					for(var k=0;k<textArray1.length;k++)
 					{
 						mainGroup.append("text")   
-							.attr("class","heading textHeading")
+							.attr("class","headingInfo textHeading")
 							.attr("x", function(){return 2.7*widthOfCylinder})           
 							.attr("y",function(){ return yScale(i)-heightOfPath*.1+yPosition*k}) 
 						//	.attr("text-anchor", "middle")
@@ -29618,6 +29658,7 @@ feMerge.append("feMergeNode")
 				//	console.log(outerRadius*1.5);
 					for(var k=0;k<textArray.length;k++)
 					{
+						
 						if((yPosition*(k+1))>outerRadius*1.2)
 						{
 							textArray[k] = textArray[k]+"...";
@@ -29663,7 +29704,13 @@ feMerge.append("feMergeNode")
 				//	console.log(name[i]);
 					for(var k=0;k<textArray.length;k++)
 					{
-						svgElement.select("#donutGroup"+i).append("text")   
+						if((yPosition*(k+1))>outerRadius*.9)
+						{
+							textArray[k] = textArray[k]+"...";
+						}
+						if((yPosition*k)<=outerRadius*.9)
+						{
+							svgElement.select("#donutGroup"+i).append("text")   
 									.attr("class","description leftPathText")
 									.attr("value",i)
 									.attr("x", function(){return -outerRadius*.7})           
@@ -29692,6 +29739,7 @@ feMerge.append("feMergeNode")
 										svgElement.select("#centerImage").attr("display","block");
 										svgElement.select("#textAtCenter").remove();
 									})
+							}
 					}	
 				}
 					
@@ -29903,7 +29951,7 @@ feMerge.append("feMergeNode")
 				for(var k=0;k<textArray.length;k++)
 				{
 					mainGroup.append("text")   
-								.attr("class","heading leftPathText")
+								.attr("class","headingInfo leftPathText")
 								.attr("x", function(){return scaleWidth*.05})           
 								.attr("y",function(){ return yScale(i)-heightOfBar*.5+yPosition*k}) 
 								.attr("dy",".1em")
@@ -30241,7 +30289,7 @@ feMerge.append("feMergeNode")
 						for(var k=0;k<textArray.length;k++)
 						{
 							mainGroup.append("text")   
-										.attr("class","heading leftPathText")
+										.attr("class","headingInfo leftPathText")
 										.attr("x", function(){return scaleWidth*.75})           
 										.attr("y",function(){ return yScale(i)-heightOfBar*.5+yPosition*k}) 
 										.attr("dy",".1em")
@@ -30613,7 +30661,7 @@ feMerge.append("feMergeNode")
 				for(var k=0;k<textArray.length;k++)
 				{
 					mainGroup.append("text")   
-								.attr("class","heading leftPathText")
+								.attr("class","headingInfo leftPathText")
 								.attr("x", function(){return startPoint+scaleWidth*.02/*scaleWidth*.7*/})           
 								.attr("y",function(){ return yScale(i)-heightOfBar*.8+yPosition*k})
 								.attr("dy",".5em")
@@ -31110,7 +31158,7 @@ feMerge.append("feMergeNode")
 						for(var k=0;k<textArray.length;k++)
 						{
 							mainGroup.append("text")   
-										.attr("class","heading titleOfText")
+										.attr("class","headingInfo titleOfText")
 										.attr("x", function(){return scaleWidth*.25})           
 										.attr("y",function(){ return yScale(i)+heightOfBar*.1+yPosition*k}) 
 										.attr("dy",".5em")
@@ -31392,27 +31440,30 @@ feMerge.append("feMergeNode")
 					.attr("stroke-width",.2)
 					.transition().duration(duration).ease(ease)
 					.attr("d", lineFunction(getSideCoordinates(upperPath+3,i)));
-					
+					/*
 				mainGroup.append("svg:image")
 						.attr("xlink:href", icon[i])
 						.attr("x",xScale(i)-widthOfBar*.5)
 						.attr("y",0)
 						.attr("width",widthOfBar)
 						.attr("height", scaleHeight*.1);
-						
+					*/
 				var textSize = textStyleConfg["font-heading-size"]/2,yPosition=textStyleConfg["font-heading-size"]+2,widthForText =(scaleWidth)/(xAxisData.length*1.2);
 				var textArray = wrapText(key[i],widthForText ,textSize);
-			
+					/*		.style("font-size",textStyleConfg["font-heading-size"])
+								.style("font-family",textStyleConfg["font-heading-family"])
+								.style("font-weight",textStyleConfg["font-heading-weight"])*/
 				for(var k=0;k<textArray.length;k++)
 				{
 					mainGroup.append("text")   
-								.attr("class","heading leftPathText")
+								.attr("class","headingInfo leftPathText")
 								.attr("x", function(){return (xScale(i)-(textArray[k].length*textSize)*.5)})           
 								.attr("y",function(){ return scaleHeight+margin.bottom*.6+yPosition*k}) 
 								.style("fill",data.labelColor[i],"important")
 								.attr("dy",".1em")
-								.text(function(){return textArray[k];})			
-				}	
+								.text(function(){return textArray[k];})		
+							
+				}
 			}
 			function getDummyCoordinates(sideNo,xAxisIndexNo)
 			{
@@ -31607,6 +31658,7 @@ feMerge.append("feMergeNode")
 		
 		
 		setTextStyleAndSvgBackGround(svgElement);
+		
 		setTextStyleAndSvgBackGroundInfographic(svgElement);
 			
 		}
@@ -31943,7 +31995,7 @@ feMerge.append("feMergeNode")
 			
 			var xAxisGroup = mainGroup.append("g")
 				.attr("class","xAxisGroup")
-				.attr("transform","translate("+(0)+","+(scaleHeight+3)+")")
+				.attr("transform","translate("+(0)+","+(scaleHeight-1)+")")
 				.call(xAxis)
 			//	.attr("display","none")
 				.attr("fill","none")
@@ -31958,7 +32010,7 @@ feMerge.append("feMergeNode")
 		//	yMax = minMaxController.getMax([yMax,yMax-10]);	
 			var yScale = d3.scale.linear()
 				.domain([yMin,yMax])
-				.range([scaleHeight,widthOfBar*.5]); 
+				.range([scaleHeight-widthOfBar*.1,widthOfBar*.5]); 
 			
 			var yTickArray = tickController.getTickArray(yMin,yMax,11);		
 			
@@ -32136,9 +32188,9 @@ feMerge.append("feMergeNode")
 				for(var k=0;k<textArray.length;k++)
 				{
 					mainGroup.append("text")   
-								.attr("class","heading leftPathText")
+								.attr("class","headingInfo leftPathText")
 								.attr("x", function(){return (xScale(i)-(textArray[k].length*5)*.5)})           
-								.attr("y",function(){ return scaleHeight+margin.bottom*.7+yPosition*k}) 
+								.attr("y",function(){ return scaleHeight+margin.bottom*.6+yPosition*k}) 
 								.attr("dy",".1em")
 								.text(function(){return textArray[k];})			
 				}	
